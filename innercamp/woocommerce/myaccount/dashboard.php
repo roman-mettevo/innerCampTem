@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+        echo '<script> window.location.href = "/my-account/orders/"; </script>';
+
 $allowed_html = array(
 	'a' => array(
 		'href' => array(),

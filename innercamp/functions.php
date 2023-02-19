@@ -260,11 +260,11 @@ add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 //		'parent_slug'	=> 'general-settings',
 //	));
 //	
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Theme Footer Settings',
-		'menu_title'	=> 'Footer',
-		'parent_slug'	=> 'general-settings',
-	));
+//	acf_add_options_sub_page(array(
+//		'page_title' 	=> 'Theme Footer Settings',
+//		'menu_title'	=> 'Footer',
+//		'parent_slug'	=> 'general-settings',
+//	));
    
  }
 

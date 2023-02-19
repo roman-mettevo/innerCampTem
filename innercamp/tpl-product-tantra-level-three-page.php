@@ -673,7 +673,7 @@ if( $featured_posts ): ?>
             <div class="certificate-content">
              
   <?php if( get_sub_field('title')): ?><!-- if under__the -->
-    <h2><?php the_sub_field('title'); ?></h2>
+    <?php the_sub_field('title'); ?>
   <?php endif; ?>
 
               
@@ -711,25 +711,101 @@ if( $featured_posts ): ?>
                 
               </div>
               <div class="hint">
-                <p>*In order to get your diploma and appear on the map, you need to facilitate <strong>at least 100 hours of Tantra</strong> and present proof of this experience. This can be done in any format (online or in-person) with one-2-one sessions or group sessions. <strong>At least 50% of these sessions should be paid.</strong> Also, you should participate in at least <strong>one on-site InnerCamp Retreat.</strong></p>
+               
+               
+  <?php if( get_sub_field('after_text')): ?><!-- if under__the -->
+   <p> <?php the_sub_field('after_text'); ?></p>
+  <?php endif; ?>
+
               </div>
             </div>
           </article>
           
+           <?php elseif( get_row_layout() == 'section_10' ): ?>
+          
+          
           <div class="session-wrap">
-            <h2 class="title">Live Sessions</h2>
+   
+  <?php if( get_sub_field('title')): ?><!-- if under__the -->
+    <h2 class="title"> <?php the_sub_field('title'); ?></h2>
+  <?php endif; ?>
+           
+           
+           
+           
+            
             <article class="session" id="session">
               <div class="top-row">
                 <div class="session-content-wrap">
                   <div class="session-schedule">
-                    <div class="clock">6:00 pm &mdash; 8:00 pm CET</div><span>*Amsterdam / Paris time zone</span>
-                    <div class="calen">Thursdays (biweekly)</div><span class="schedule-date">Jun 1, Jun 15, Jun 29, Jul 13, Jul 27, Aug 10 <strong>(2023)</strong></span><a class="bundle-check" href="#">Check my local time here</a>
+                  
+                  
+                  
+
+      <!-- if under__the -->
+<!--      <div class="clock">6:00 pm — 8:00 pm CET</div>-->
+      <div class="clock">  <?php if( get_sub_field('data_time__to')): ?><!-- if under__the -->
+      <?php the_sub_field('data_time__to'); ?>
+      <?php endif; ?> — <?php if( get_sub_field('data_time__do')): ?><!-- if under__the -->
+      <?php the_sub_field('data_time__do'); ?>
+      <?php endif; ?></div>
+      <!-- if under__the -->
+      <span>*<?php if( get_sub_field('timezone')): ?><!-- if under__the -->
+      <?php the_sub_field('timezone'); ?>
+      <?php endif; ?></span>
+      <!-- if under__the -->
+      <div class="calen"><?php if( get_sub_field('calendar_day')): ?><!-- if under__the -->
+      <?php the_sub_field('calendar_day'); ?>
+      <?php endif; ?></div>
+      <!-- if under__the -->
+      <span class="schedule-date"><?php if( get_sub_field('data_day')): ?><!-- if under__the -->
+      <?php the_sub_field('data_day'); ?>
+      <?php endif; ?></span>
+
+
+      
+      
+      <?php //   date_default_timezone_set('UTC+1:00'); ?>
+  <?php // echo $date = new DateTimeZone('Europe/Paris'); ?>
+                   <?php // echo date('l jS \of F Y h:i:s A'); 
+//date_default_timezone_set('Europe/Paris');
+//echo date_default_timezone_get() . ' => ' . date('l jS \of F Y h:i:s A') . ' => ' . date('T');
+                    
+                    
+//                     date('l jS \of F Y h:i:s A') . ' => ' . date('T');
+                    
+                 $date = new DateTime();
+                    
+                    echo '<br>';
+                    
+                    echo date('h:i A', $date->format('U')); 
+                    
+                    echo '<br>';
+                    
+                    echo "The current timezone is <b>" . date_default_timezone_get() . "</b><br/>";
+                    
+                    ?>
+                    
+                    <a class="bundle-check" href="#">Check my local time here</a>
                   </div>
-                  <ul class="session-benefit">
-                    <li>6 live sessions</li>
-                    <li>Biweekly sessions</li>
-                    <li>All live sessions are recorded</li>
-                  </ul>
+                  
+               
+
+                  
+    <?php if( have_rows('check_list') ): ?>
+        <ul class="session-benefit">
+          <?php while( have_rows('check_list') ): the_row();
+            // vars  ?>
+            
+              <li><?php the_sub_field('list_text'); ?></li>
+
+          <?php endwhile; ?>
+        </ul>
+      <?php endif; ?>
+               
+                  
+                  
+                  
                 </div>
                 <div class="session-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-sessions.png" alt=""><a class="bundle-download" href="#">Download the Timetable</a></div>
               </div>

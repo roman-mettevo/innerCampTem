@@ -67,13 +67,13 @@
           <?php } ?>
            
         <?php if ( is_user_logged_in() ) {  ?>
-      <a class="affiliate" href="/my-account/">Affiliate Program</a>
+      <a class="affiliate" href="/my-account/#">Affiliate Program</a>
         <?php }else{ ?>
       <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
         <?php } ?>
            
         <?php if ( is_user_logged_in() ) {  ?>
-      <a class="account" href="/my-account/">Account information</a>
+      <a class="account" href="/my-account/edit-account/">Account information</a>
           <?php } ?>
           
           <?php if ( is_user_logged_in() ) {  ?>
@@ -208,10 +208,7 @@
         </div>
 
         <?php } ?> 
-        
- 
-        
-        
+
       </div>
       <div class="bottom__">
        
@@ -265,13 +262,13 @@
                   <?php } ?>
   
                  <?php if ( is_user_logged_in() ) {  ?>
-                <a class="affiliate" href="/my-account/orders/">Affiliate Program</a>
+                <a class="affiliate" href="/my-account/orders/#">Affiliate Program</a>
                   <?php }else{ ?>
                 <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
                   <?php } ?>
 
                  <?php if ( is_user_logged_in() ) {  ?>
-                <a class="account" href="/my-account/orders/">Account information</a>
+                <a class="account" href="/my-account/edit-account/">Account information</a>
                   <?php }else{ ?>
                 <a class="account" data-fancybox="" data-src="#log-in" href="javascript:;">Account information</a>
                   <?php } ?>

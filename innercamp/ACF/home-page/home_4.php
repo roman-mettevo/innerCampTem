@@ -119,7 +119,9 @@
                   </div>
                   <div class="box__content">
                     <p class="man"><?php $post_date = get_the_date( 'F j, Y' ); echo $post_date; ?></p>
-                    <h3 class="title__" ><?php echo the_title();?></h3><a class="level" href="javascript:;">Levels 1 & 2</a>
+                    <a href="<?php echo get_the_permalink(); ?>" class="title__" ><?php echo the_title();?></a>
+                    
+                    <a class="level" href="javascript:;">Levels 1 & 2</a>
                     <div class="categor"><a href="javascript:;">Fundamentals,</a><a href="javascript:;">Facilitator & Coach</a></div>
                     <div class="date">Nov 11, 2022 to Sep 15, 2023</div>
                     <div class="lang">English</div>

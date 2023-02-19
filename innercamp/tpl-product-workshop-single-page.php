@@ -5,8 +5,9 @@
 *
 */
 get_header(); ?>
-   
-    <div class="left__menu__scroll">
+<?php $product = wc_get_product( $post->ID ); // Works for any product type ?>
+
+    <!-- <div class="left__menu__scroll">
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
@@ -24,7 +25,7 @@ get_header(); ?>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     
 <section class="workshop__1 header__scroll">
   <div class="container">

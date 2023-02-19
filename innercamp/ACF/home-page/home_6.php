@@ -56,7 +56,7 @@
               <div class="workshop__box">
                 <div class="top__"><img src="<?= get_template_directory_uri(); ?>/img/home__6_icon1.svg" alt="">Breathwork</div>
                 <div class="soom"><span class="video">Zoom meeting in English</span><span class="calen"><?php $post_date = get_the_date( 'M j' ); echo $post_date; ?></span></div>
-                <h3 class="title__"><?php the_title(); ?></h3>
+                <a href="<?php echo get_the_permalink(); ?>" class="title__"><?php the_title(); ?></a>
                 <p><?php echo  substr(wp_strip_all_tags(get_the_content()), 0, 143).'...'; ?></p>
                 <div class="box__img">
                   <div class="images"><img src="<?= get_template_directory_uri(); ?>/img/home__6_user.png" alt=""><span class="name">Marjolein Van Ommeren</span></div><a class="join" href="<?php echo get_the_permalink(); ?>">Join for free</a>

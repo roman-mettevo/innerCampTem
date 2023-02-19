@@ -110,12 +110,13 @@ get_header(); ?>
                       <?php } ?>
 
                    <?php   // GET TAGS BY POST_ID
-                      $tags = get_the_tags($post->ID);  ?>
- 
+                      $tags = get_the_tags(get_the_id());  ?>
                   <ul>
-                   <?php foreach($tags as $tag) :  ?>
-                        <li><a class="tag" href="<?php bloginfo('url');?>/tag/<?php print_r($tag->slug);?>"><?php print_r($tag->name); ?></a></li>
-                    <?php endforeach; ?>
+                  <?php if ($tags) { ?>
+                   <?php foreach($tags as $tag) { ?>
+                        <li><a class="tag" href="<?php echo $tag->url;?>"><?php echo $tag->name; ?></a></li>
+                    <?php } ?>
+                    <?php } ?>
                   </ul>
                 </div>
                 

@@ -17,7 +17,7 @@ function custom_login(){
         if ( is_wp_error($user) ) {
             echo '<span class="error-login">'. $user->get_error_message() . '</span>';
         }else{
-            echo '<script> window.location.href = "/my-account/"; </script>';
+            echo '<script> window.location.href = "/my-account/orders/"; </script>';
         }
     }
     die;
