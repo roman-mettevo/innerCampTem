@@ -1,0 +1,211 @@
+/*!
+Theme Name: innercamp
+Theme URI:  
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: innercamp
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+innercamp is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+.woocommerce-notices-wrapper {
+  display: none !important;
+}
+.wpcf7-not-valid {
+  /*   box-shadow: inset 0 0 25px rgba(255, 0, 0, 0.49),  0 0 0 3px rgba(255, 0, 0, 0.49);  */
+}
+
+textarea {
+  height: 100px;
+}
+
+.wpcf7-response-output,
+.wpcf7-not-valid-tip {
+  display: none !important;
+}
+
+.wpcf7-not-valid {
+  /*  border: 1px solid #ff0000 !important; */
+}
+
+.wpcf7-not-valid {
+  /*  border: 1px solid #ff0000 !important; */
+
+  /*  color: #ff0000;*/
+}
+
+/*
+footer[main] form .wpcf7-list-item label{
+  display: flex;
+}
+
+footer[main] form .wpcf7-list-item label>*:nth-child(2){
+  display: flex;
+  order: 1;
+}
+footer[main] form .wpcf7-list-item label>*:nth-child(1){
+  display: flex;
+  order: 2;
+}
+
+footer[main] form .wpcf7-list-item{
+  margin: 0;
+}
+*/
+body{
+  margin: 0 !important;
+}
+
+body > div.woocommerce {
+  display: flex !important;
+  flex-direction: column;
+  padding: 150px 0;
+}
+
+body > section {
+  /* 	display:none; */
+}
+
+body > section[class*='__1'],
+body > section.descry {
+  /* 	display:block; */
+}
+
+body.page-id-403 header[main],
+body.error404 header[main],
+body.page-template-tpl-profile-page header[main],
+body.page-template-tpl-find-your-coach header[main],
+body.page-template-tpl-app-page header[main],
+body.page-template-tpl-blog-page header[main] {
+  background: #424f44;
+  backdrop-filter: blur(9px);
+
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.38);
+}
+
+body.woocommerce-page:not(.woocommerce-lost-password) header[main] {
+  /*  background: #424F44;*/
+  /*  backdrop-filter: blur(9px);*/
+
+  /*  box-shadow: 0 0 13px rgba(0, 0, 0, 0.38); */
+}
+
+body.page-template-tpl-app-page header[main] {
+  background: #424f44;
+  backdrop-filter: blur(9px);
+  box-shadow: 0 0 13px rgba(0, 0, 0, 0.38);
+}
+
+
+
+
+/*-----Nazar style-----*/
+section.blog-single__2 .col p {
+  word-break: break-all;
+}
+
+section.retreats__1 .title strong {
+  font-family: var(--p);
+}
+section.retreats__2 .training-price {
+  column-gap: 10px;
+}
+section.workshops__1 .title strong {
+  font-family: var(--p);
+}
+section.workshops__1 .workshops__1-description p {
+  font-family: var(--osb);
+}
+section.certified__2 .training-price {
+  column-gap: 10px;
+}
+section.certified__1 .title strong {
+  font-family: var(--p);
+}
+section.certified__1 p {
+  font-family: var(--ob);
+}
+
+.app__3 .crossed-out {
+  text-decoration: line-through;
+}
+section.certified__2 .experience-item.trainings .man {
+  color: rgb(66, 79, 68);
+}
+/* section.testimonial__2, */
+section.testimonial__4 {
+  overflow: hidden !important;
+}
+section.testimonial__2 .testimonial__2-top-slider,
+section.testimonial__2 .testimonial__2-bottom-slider,
+section.testimonial__2 .testimonial__2-bottom-slider .splide__track,
+section.testimonial__2 .testimonial__2-top-slider .splide__track,
+section.testimonial__4 .testimonial__4-video-slider,
+section.testimonial__4 .testimonial__4-video-slider .splide__track {
+  overflow: visible !important;
+}
+@media (max-width: 600px) {
+  .testimonial__3 .bundle {
+    font: 700 14px/1.63em var(--ob) !important;
+  }
+}
+
+.app__3 .row:nth-child(3) .box__ .bottom__ a img {
+  padding: 13px 24px;
+}
+@media (max-width: 600px) {
+  .app__3 .row:nth-child(3) .box__ .bottom__ a {
+    max-width: 173px;
+    width: 100%;
+  }
+  .app__3 .row:nth-child(3) .box__ .bottom__ a img {
+    padding: 12px 24px;
+  }
+}
+section.careers__4 textarea {
+  height: 220px;
+}
+
+/*-----careers modal window-----*/
+.vacancy-description-block {
+  height: 100vh !important;
+}
+.vacancy-description-block .vacancy-description-content {
+  height: 100% !important;
+  box-sizing: border-box;
+}
+.vacancy-description-block .vacancy-description-list {
+  height: 100% !important;
+}
+.vacancy-description-block .vacancy-item {
+  height: 100% !important;
+}
+.vacancy-description-block .item-wrap {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column;
+}
+.vacancy-description-block .item-content-wrapper {
+  padding: 30px;
+}
+.vacancy-description-block .item-content {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+.vacancy-description-block .item-content-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
