@@ -5,20 +5,67 @@
 *
 */
 get_header(); ?>
-   
+<?php $product = wc_get_product( $post->ID ); // Works for any product type ?>
+
+<?php
+  if(have_rows('workshop')):
+    while(have_rows('workshop')) : the_row(); ?>
+      <?php if( get_row_layout() == 'section_1' ): ?>
+        <section class="workshop__1" data-menuscroll  <?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl12">
+                <?php 
+                  if( get_sub_field('title')): ?><!-- if under__the -->
+                    <h1 class="title"><?php the_sub_field('title'); ?></h1>
+                <?php endif;
+                  if(get_sub_field('content')): 
+                    echo the_sub_field('content');
+                  endif;             
+                
+                ?>                   
+                <a class="bundle" href="#">Join now</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <?php endif;
+    endwhile;
+  endif; ?>
+
+
     <div class="left__menu__scroll">
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
-            <div class="box__"><a class="bundle" href="javascript:;">Book now</a>
+            <div class="box__">
+             
+           <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Join now'); ?></a>
+                
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+          </form>
+
               <ul>
-                <li class="active"> <a href="#corse-basic">Course basics</a></li>
-                <li ><a href="#workshop-details">Workshop details</a></li>
-                <li> <a href="#facilitators">Facilitators</a></li>
-                <li> <a href="#innercamp-membership">InnerCamp membership</a></li>
-                <li> <a href="#how-to-get-ready">How to get ready?</a></li>
-                <li> <a href="#workshop-participant-consent">Workshop participant consent</a></li>
-                <li> <a href="#faq">FAQ</a></li>
+                <li class="active"><a href="javascript:;">Course basics</a></li>
+                <li><a href="javascript:;">Accreditations</a></li>
+                <li><a href="javascript:;">Benefits</a></li>
+                <li><a href="javascript:;">About the course</a></li>
+                <li><a href="javascript:;">The Program</a></li>
+                <li><a href="javascript:;">Facilitators</a></li>
+                <li><a href="javascript:;">Certification</a></li>
+                <li><a href="javascript:;">Optional retreat</a></li>
+                <li><a href="javascript:;">Live sessions</a></li>
+                <li><a href="javascript:;">Book a free call</a></li>
+                <li><a href="javascript:;">Testimonials</a></li>
+                <li><a href="javascript:;">Why we are loved</a></li>
+                <li><a href="javascript:;">Book now</a></li>
+                <li><a href="javascript:;">FAQ</a></li>
               </ul>
             </div>
           </div>
@@ -26,248 +73,357 @@ get_header(); ?>
       </div>
     </div>
     
-<section class="workshop__1 header__scroll">
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl12">
-        <h2 class="title">Creating divine union - Balancing our masculine &amp; feminine energies within</h2>
-        <p>Learn to keep your energies in check and well-balanced to feel harmony, ease, and bliss within.</p><a class="bundle" href="#">Join now</a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="workshop__2">
-  <div class="container">
-    <div class="row">
-      <div id="corse-basic" class="col m12 s12 l12 xl9 offset-xl3"><span class="notice">Join the InnerCamp Community to get access to this virtual workshop.</span>
-        <div class="card">
-          <div class="card-body">
-            <div class="img">
-              <!-- <img src="<?= get_template_directory_uri(); ?>/img/workshop/man-and-woman.jpg" alt="">-->
+  <section class="workshop__2">
+    <div class="container">
+      <div class="row">  
+        <?php 
+          if(have_rows('workshop')):
+            while(have_rows('workshop')) : the_row(); ?>
+              <?php if( get_row_layout() == 'section_2' ){    
+                if ( have_rows( 'navigation_menu' ) ) : 
+                  while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                    <div id="<?php the_sub_field( 'menu_scroll' ); ?>" class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php endwhile; 
+                endif; 
+                if ( have_rows( 'content_layout' ) ) : 
+                  while ( have_rows( 'content_layout' ) ) : the_row(); ?>
+                    <span class="notice"><?php the_sub_field( 'notice' ); ?></span>
+                      <?php $images = get_sub_field( 'images' ); ?>
+                        <div class="card">
+                          <div class="card-body">
+                            <?php if ( $images ) { ?>
+                              <div class="img" style="background:url(<?php echo esc_url( $images['url'] ); ?>); background-size: cover; background-repeat: no-repeat;">
+                            <?php } else { ?>
+                              <div class="img">
+                            <?php } ?>
+                          </div>
+                        <div class="description">
+                          <?php $link = get_sub_field( 'link' ); 
+                            if ( $link ) : ?>
+                              <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+                            <?php endif; ?>
+                            <ul class="info-list">
+                              <?php 
+                                if(get_sub_field('data_time__to')) { ?>
+                                  <li class="info-item info-data"><?php the_sub_field( 'data_time__to' ); ?></li>
+                                <?php }
+                                if ( have_rows( 'icons_list' ) ) : 
+                                  while ( have_rows( 'icons_list' ) ) : the_row(); 
+                                  if(!empty(get_sub_field('list_title')) && !empty(get_sub_field('after_title_text'))) { ?>
+                                    <li class="info-item info-time">
+                                      <div class="text-item"><?php the_sub_field( 'list_title' ); ?><span><?php the_sub_field( 'after_title_text' ); ?></span>
+                                      </div>
+                                    </li>
+                                  <?php }
+                                endwhile; 
+                              endif; 
+                              if(get_sub_field('earth_button')) { ?>
+                                <li class="info-item check-time"><?php the_sub_field( 'earth_button' ); ?></li>
+                              <?php }
+                              if(get_sub_field('status')) { ?>
+                                <li class="info-item virtual-workshop"><?php the_sub_field( 'status' ); ?></li>
+                              <?php }?>
+                            </ul>
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <?php 
+                        if(get_sub_field('footer_content')):
+                          the_sub_field('footer_content');
+                        endif;
+                      ?>
+                    </div>
+                    <?php endwhile; 
+                     endif; ?>
+                  </div>
+                </div>
+
+                <?php } elseif( get_row_layout() == 'section_3' ) { ?>
+                  <div id="workshop-details" class="col m12 s12 l12 xl9 offset-xl3">
+                    <div class="img">
+                      <?php $images = get_sub_field( 'images' ); ?>
+                      <?php if ( $images ) : ?>
+                        <img src="<?php echo esc_url( $images['url'] ); ?>" alt="<?php echo esc_attr( $images['alt'] ); ?>" />
+                      <?php endif; ?>
+                    </div>
+                    <div class="text">
+                      <?php 
+                        if(get_sub_field('title')) { ?>
+                          <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                        <?php }
+                        if(get_sub_field('content')) {
+                          the_sub_field('content');
+                        }
+                      ?>
+                    </div>
+                </div>
+                <?php } elseif( get_row_layout() == 'section_4' ) { ?>
+                
+                <div id="facilitators" class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php 
+                    if(get_sub_field('title')) { ?>
+                      <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                    <?php }
+                  ?>
+                  <?php $team = get_sub_field( 'team' ); ?>
+                  <?php if ( $team ) : ?>
+                    <?php $post = $team; ?>
+                    <?php setup_postdata( $post ); ?>
+                    <div class="teacher">
+                      <div class="img">
+                        <?php the_post_thumbnail();  ?>
+                      </div>
+                      <div class="text">
+                        <h3 class="heading"><?php the_title(); ?></h3>
+                        <ul class="skills">
+                          <?php
+                            $posttags = get_the_tags();
+                            if ($posttags) {
+                              foreach($posttags as $tag) {
+                                echo'<li>' . $tag->name . '</li>'; 
+                              }
+                            }
+                          ?>
+                        </ul>
+                        <?php the_content(); ?>
+                      </div>
+                    </div>
+                    <?php wp_reset_postdata(); ?>
+                    <?php endif; ?>
+                  </div>
+                <?php } ?>
+                <?php endwhile;
+                endif;
+                ?>
+              </div>
             </div>
-            <div class="description"><a class="bundle" href="#">Join now</a>
-              <ul class="info-list">
-                <li class="info-item info-data">Dec 19, 2022</li>
-                <li class="info-item info-time">
-                  <div class="text-item">7:00 pm &mdash; 8:30 pm CET<span>*Amsterdam / Paris time zone</span></div>
-                </li>
-                <li class="info-item check-time">Check my local time here</li>
-                <li class="info-item virtual-workshop">virtual workshop</li>
-              </ul>
+          </section>
+          
+      
+<?php 
+  if(have_rows('workshop')):
+  while(have_rows('workshop')) : the_row(); 
+  if(get_row_layout() == 'section_5' ) { ?>
+    <?php $bg_phone = get_sub_field( 'bg_phone' ); ?>
+			<?php if ( $bg_phone ) { ?>
+        <section id="innercamp-membership" class="workshop__3" style="background:url(<?php echo esc_url( $bg_phone['url'] ); ?>); background-size: cover; background-repeat: no-repeat;">
+      <?php } else {?>
+				<section id="innercamp-membership" class="workshop__3">
+			<?php } ?>
+      <div class="container">
+        <div class="row">
+          <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php $phone_image_background = get_sub_field( 'phone_image_background' ); ?>
+			<?php if ( $phone_image_background ) { ?>
+        <div class="iphone-banner" style="background:url(<?php echo esc_url( $phone_image_background['url'] ); ?>); background-size: cover; background-repeat: no-repeat;"></div>
+      <?php } else { ?>
+        <div class="iphone-banner"></div>
+      <?php } ?>
+      <?php $phone_image = get_sub_field( 'phone_image' ); ?>
+			<?php if ( $phone_image ) : ?>
+				<img class="iphone-13" src="<?php echo esc_url( $phone_image['url'] ); ?>" alt="<?php echo esc_attr( $phone_image['alt'] ); ?>" />
+			<?php endif; ?>
+            
+            <div class="join-now-wrapper">
+              <div class="join-now">
+                <?php 
+                  if(get_sub_field('title')) { ?>
+                    <h3 class="heading"><?php the_sub_field( 'title' ); ?></h3>
+                  <?php }
+                  $link = get_sub_field( 'link' ); ?>
+                  <?php if ( $link ) : ?>
+                    <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+                  <?php endif; 
+                ?>
+              </div>
+              <div class="join-now-arrow"></div>
             </div>
           </div>
-          <div class="card-footer">This workshop <strong>will be recorded</strong> and you will <strong>get access</strong> to
-                                        the recording in case you miss it.
+        </div>
+        <div class="row">
+          <div class="col m12 s12 l12 xl9 offset-xl3">
+            <div class="trial">
+              <?php 
+              if(get_sub_field('free_trial_block_title')) { ?>
+                <h2 class="heading"><span><?php the_sub_field( 'free_trial_block_title' ); ?></span></h2>
+              <?php }
+              ?>
+              <div class="trial-box">
+                <div class="text">
+                  <?php 
+                  if(get_sub_field('product_price_per_month')) {
+                    the_sub_field( 'product_price_per_month' );
+                  }
+                  ?>
+                  <p><strong>OR</strong></p>
+                  <?php 
+                    if(get_sub_field('price_per_year')) {
+                      the_sub_field( 'price_per_year' );
+                    }
+                  ?>
+              
+                </div>
+                <?php 
+                  $link = get_sub_field( 'link' ); ?>
+                  <?php if ( $link ) : ?>
+                    <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+                  <?php endif; 
+                ?>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div id="workshop-details" class="col m12 s12 l12 xl9 offset-xl3">
-        <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/workshop/about-workshop.jpg" alt=""></div>
-        <div class="text">
-          <h2 class="title">About this Workshop</h2>
-          <p>
-            These apparent opposite energies have real effects on our lives. When feminine enegry is
-            dominant you may feel unsupported, unconfident and fragile. When there&rsquo;s more masculine
-            energy running through your body you may be more inclined to anger, frustration and fatigue.
-          </p>
-          <p>
-            Having a healthy balance of masculine and feminine energies can help you pursue what you want
-            yet remain sensitive and gentle, be cold-headed yet emotional, be nurturing yet independent.
-            When everything is in equal proportions it improves energy flow and creates conditions for a
-            positive shift in life.
-          </p>
-        </div>
-      </div>
-      <div id="facilitators" class="col m12 s12 l12 xl9 offset-xl3">
-        <h2 class="title">This workshop is facilitated by</h2>
-        <div class="teacher">
-          <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/workshop/workshop-is-faciliared.jpg" alt=""></div>
-          <div class="text">
-            <h3 class="heading">Marjolein Van Ommeren</h3>
-            <ul class="skills">
-              <li>Method teacher</li>
-              <li>Sacred Womb Awakening Practitioner</li>
-              <li>Shamanic Healing Practitioner</li>
-            </ul>
-            <p>
-              Marjolein is an InnerCamp Tantra teacher and a Sacred Womb Awakening and Shamanic Healing
-              Practitioner. She strongly believes that we are all healers. Her mission is to help
-              people restore balance in their lives by reconnecting them to their inner light and to
-              help people raise their vibration. Womb/Hara Awakening are ancient, self-empowering
-              practices which are returning into the awareness of the Western world, helping people to
-              reconnect to their true purpose and aligning their lives.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="innercamp-membership" class="workshop__3">
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl9 offset-xl3">
-        <div class="iphone-banner"></div><img class="iphone-13" src="<?= get_template_directory_uri(); ?>/img/workshop/iPhone 13.png" alt="">
-        <div class="join-now-wrapper">
-          <div class="join-now">
-            <h3 class="heading">Join the InnerCamp Community to get access to this virtual workshop.</h3><a class="bundle" href="#">Join now</a>
-          </div>
-          <div class="join-now-arrow"></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col m12 s12 l12 xl9 offset-xl3">
-        <div class="trial">
-          <h2 class="heading"><span><strong>Try for</strong> free for 7 days</span></h2>
-          <div class="trial-box">
-            <div class="text">
-              <p>Then <strong>$29.99</strong>/month</p>
-              <p><strong>OR</strong></p>
-              <p>$299 per year.</p>
-            </div><a class="bundle" href="#">Join now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
+  <?php }
+
+endwhile;
+endif;
+?>
+
+
 <section class="workshop__4">
   <div class="container"></div>
 </section>
-<section class="workshop__5">
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l6 xl6">
-        <h2 class="title">Upgrade your life</h2>
-        <div class="bot__"><a class="bord-bundle" href="javascript:;">less than $1/day</a></div>
-      </div>
-    </div>
-  </div>
-  <video playsinline="" autoplay="" muted="" loop="" preload="none">
-    <source src="https://innercamp.mettevo.com/wp-content/uploads/2023/01/video-app-online-video-cutter.com_.mp4" type="video/mp4">
-  </video>
-</section>
-<section id="how-to-get-ready" class="workshop__6">
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl9 offset-xl3">
-        <h2 class="title">How to prepare for the session:</h2>
-        <div class="list-and-photo">
-          <ul class="list">
-            <li class="list-item">It is best not to eat a big meal before the session.</li>
-            <li class="list-item">Set up a quiet space where you will be undisturbed for the session.</li>
-            <li class="list-item">
-              Make sure that you have access to a yoga mat, cushions, bolsters, blankets, a blindfold
-              (optional) and tissues.
-            </li>
-            <li class="list-item">
-              Join the session on time to not miss the instructions of the techniques we will be
-              using.
-            </li>
-            <li class="list-item">
-              You will need a good internet connection and a good speaker or headphones because we
-              will play music.
-            </li>
-            <li class="list-item">Bring a notebook / journal and a pen, crayons, markers, etc.</li>
-            <li class="list-item">You can also bring a drink of cacao, herbal tea or water.</li>
-          </ul>
-          <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/workshop/woman.jpg" alt=""></div>
+<?php 
+  if(have_rows('workshop')):
+    while(have_rows('workshop')) : the_row(); 
+      if ( get_row_layout() == 'section_6' ) { ?>
+        <section class="workshop__5">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l6 xl6">
+              <?php 
+                if(get_sub_field('section_title')) { ?>
+                  <h2 class="title"><?php the_sub_field( 'section_title' ); ?></h2>
+                <?php }
+              ?>
+              <div class="bot__">
+                <?php 
+                  if(get_sub_field('price_per_day')) { ?>
+                    <div class="bord-bundle"><?php the_sub_field( 'price_per_day' ); ?></div>
+                  <?php } 
+                ?>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="workshop__7">
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl9 offset-xl3">
-        <h2 class="title">Got questions?</h2>
-        <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p><a class="bundle" href="#">Schedule now</a>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="workshop__8">
-  <div class="container">
-    <div class="row">
-      <div id="workshop-participant-consent" class="col m12 s12 l12 xl9 offset-xl3">
-        <h3 class="heading">
-          By purchasing this service, I agree with the Terms of this website and the next
-          indications:
-        </h3>
-        <ul class="agreement-list">
-          <li class="agreement-item">
-            <div class="agreement-text">
-              Breathwork and other techniques we use can result in intense physical
-              and emotional release. Therefore, it is not advised for persons with epilepsy, detached
-              retina, glaucoma, uncontrolled high blood pressure, cardiovascular diseases (including
-              prior
-              heart attack), mental disorders (manic disorder, bipolar disorder, schizophrenia,
-              obsessive
-              compulsive disorder (OCD), paranoia, psychotic episodes, depersonalization, etc.),
-              strokes,
-              TIA&acute;s, seizures or other brain/neurological conditions, a history of aneurysms in the
-              immediate family, use of prescription blood thinners, hospitalized for any psychiatric
-              condition or emotional crisis within the past 10 years, osteoporosis or physical
-              injuries
-              that are not fully healed, acute somatic and viral diseases, chronic obstructive
-              pulmonary
-              disease (COPD-II and COPD-III), chronic diseases with symptoms of decompensation or
-              terminal
-              illness, individual intolerance of oxygen insufficiency, cancer and Low Impulse Control.
+        <?php 
+          $video_background = get_sub_field( 'video_background' );
+          if($video_background) { ?>
+            <video playsinline="" autoplay="" muted="" loop="" preload="none">
+            <source src="<?php echo $video_background['url']; ?>" type="video/mp4">
+          </video>
+          <?php }
+        ?>
+        </section>        
+      <?php } elseif(get_row_layout() == 'section_7') { ?>
+        <section id="how-to-get-ready" class="workshop__6">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php 
+                  if(get_sub_field('title')) { ?>
+                    <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                  <?php }
+                ?>
+                <div class="list-and-photo">
+                  <?php if ( have_rows( 'list' ) ) : ?>
+                    <ul class="list">
+                      <?php while ( have_rows( 'list' ) ) : the_row(); ?>
+                        <li class="list-item"><?php the_sub_field( 'list_item' ); ?></li>
+                      <?php endwhile; ?>
+                    </ul>
+                  <?php endif; ?>
+                  <div class="img">
+                    <?php $images = get_sub_field( 'images' ); 
+                    if ( $images ) : ?>
+                      <img src="<?php echo esc_url( $images['url'] ); ?>" alt="<?php echo esc_attr( $images['alt'] ); ?>" />
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
             </div>
-          </li>
-          <li class="agreement-item">
-            <div class="agreement-text">
-              Pregnant women are advised against practicing Breathwork and some of
-              our techniques without first consulting and getting approval from their primary care
-              physician.
+          </div>
+        </section>
+      <?php } elseif (get_row_layout() == 'section_8' ) {  ?>
+        <section class="workshop__7">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php 
+                if(get_sub_field('title')) { ?>
+                  <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                <?php }
+                  if(get_sub_field('text')) :
+                    the_sub_field( 'text' ); 
+                  endif;
+
+                  $link = get_sub_field( 'link' );
+                  if ( $link ) : ?>
+                    <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+                  <?php endif; 
+                ?>
+              </div>
             </div>
-          </li>
-          <li class="agreement-item">
-            <div class="agreement-text">
-              Persons with asthma should bring their inhaler and consult with their
-              primary care physician and the facilitator.
+          </div>
+        </section>
+      <?php } elseif (get_row_layout() == 'section_9') { ?>
+        <section class="workshop__8">
+          <div class="container">
+            <div class="row">
+              <div id="workshop-participant-consent" class="col m12 s12 l12 xl9 offset-xl3">
+                <?php 
+                  if(get_sub_field('title')) { ?>
+                    <h3 class="heading"><?php the_sub_field('title'); ?></h3>
+                  <?php }
+
+                  if ( have_rows( 'box_list' ) ) : ?>
+                    <ul class="agreement-list">
+                    <?php while ( have_rows( 'box_list' ) ) : the_row(); ?>
+                    <li class="agreement-item">
+                      <div class="agreement-text">
+                      <?php the_sub_field( 'paragraph' ); ?>
+                      </div>
+                    </li>
+                    <?php endwhile; ?>
+                    </ul>
+                  <?php endif; 
+                ?>
+              </div>      
             </div>
-          </li>
-          <li class="agreement-item">
-            <div class="agreement-text">
-              This work is deeply experiential. It may involve intense and
-              energetic emotional release. This workshop is not advised for persons who are under the
-              influence of alcohol or drugs.
+          </div>
+        </section>
+      <?php } elseif (get_row_layout() == 'section_10') { ?>
+        <section class="workshop__9">
+          <div class="container">
+            <div class="row">
+              <div id="faq" class="col m12 s12 l12 xl9 offset-xl3">
+                <?php 
+                  if(get_sub_field('title')) { ?>
+                    <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                  <?php }
+                  if ( have_rows( 'box_list' ) ) : 
+                    while ( have_rows( 'box_list' ) ) : the_row(); ?>
+                    <div class="dropdown">
+                      <button class="drop-button" type="button"><?php the_sub_field( 'title' ); ?></button>
+                      <p class="drop-text">
+                      <?php the_sub_field( 'paragraph' ); ?>
+                      </p>
+                    </div>
+                  <?php endwhile; ?>
+                <?php endif; ?>
+              </div>
             </div>
-          </li>
-        </ul>
-      </div>
-      <div id="faq" class="col m12 s12 l12 xl9 offset-xl3">
-        <h2 class="title">Frequently asked questions</h2>
-        <div class="dropdown">
-          <button class="drop-button" type="button">Do I need to turn my camera on?</button>
-          <p class="drop-text">
-            We help you create a company culture of support, listening, and awareness that helps your
-            employees &ndash; and your business &ndash; thrive. Through breathwork, bodywork, meditation and mindset
-            coaching tools, we go to the employees&rsquo; core to build the rock solid foundation they will
-            need to succeed mentally, spiritually, and professionally. Set in secluded and inspirational
-            locations, our bespoke retreats are a holiday with deep purpose and long-lasting beneficial
-            effects.
-          </p>
-        </div>
-        <div class="dropdown">
-          <button class="drop-button" type="button">How can I access the workshop?</button>
-          <p class="drop-text">
-            We help you create a company culture of support, listening, and awareness that helps your
-            employees &ndash; and your business &ndash; thrive. Through breathwork, bodywork, meditation and mindset
-            coaching tools, we go to the employees&rsquo; core to build the rock solid foundation they will
-            need to succeed mentally, spiritually, and professionally. Set in secluded and inspirational
-            locations, our bespoke retreats are a holiday with deep purpose and long-lasting beneficial
-            effects.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+          </div>
+        </section>
+      <?php }
+    endwhile;
+  endif;
+  ?>
+
+
+
 
 
 <?php get_footer();

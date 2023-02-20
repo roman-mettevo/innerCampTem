@@ -8,8 +8,6 @@ get_header(); ?>
 <!--R-->
 
 <?php $product = wc_get_product( $post->ID ); // Works for any product type ?>
-             
-             
     <?php // check if the flexible content field has rows of data
     if( have_rows('product_tantra_level_three') ):
          // loop through the rows of data
@@ -32,8 +30,6 @@ get_header(); ?>
      
       <div class="box__content">
 
-           
-           
       <?php if( have_rows('box_list') ): ?>
         <div class="row-links">
             <?php while( have_rows('box_list') ): the_row();
@@ -188,7 +184,7 @@ get_header(); ?>
             </div>
             <div class="bottom-content">
 
-               <?php if( get_sub_field('footer_text')): ?><!-- if under__the -->
+              <?php if( get_sub_field('footer_text')): ?><!-- if under__the -->
                   <div class="bottom-content-descriptions">
                     <p><?php the_sub_field('footer_text'); ?></p>
                   </div>

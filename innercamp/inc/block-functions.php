@@ -181,7 +181,7 @@ function register_acf_block_types()
   );
 
 
-  //VR govnocode
+  //  Team
   acf_register_block_type(
     array(
       'name' => 'Team section 1',
@@ -246,15 +246,7 @@ function register_acf_block_types()
       'keywords' => array('App-5'),
     )
   );
-  acf_register_block_type(
-    array(
-      'name' => 'App section 6',
-      'title' => __('App section 6'),
-      'render_template' => 'ACF/app-page/app_6.php',
-      'icon' => 'block-default',
-      'keywords' => array('App-6'),
-    )
-  );
+  
   acf_register_block_type(
     array(
       'supports' => array( 'anchor' => true ),
