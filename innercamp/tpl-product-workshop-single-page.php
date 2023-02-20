@@ -33,8 +33,6 @@ get_header(); ?>
       <?php endif;
     endwhile;
   endif; ?>
-
-
     <div class="left__menu__scroll">
       <div class="container">
         <div class="row">
@@ -72,7 +70,6 @@ get_header(); ?>
         </div>
       </div>
     </div>
-    
   <section class="workshop__2">
     <div class="container">
       <div class="row">  
@@ -198,8 +195,6 @@ get_header(); ?>
               </div>
             </div>
           </section>
-          
-      
 <?php 
   if(have_rows('workshop')):
   while(have_rows('workshop')) : the_row(); 
@@ -276,12 +271,9 @@ get_header(); ?>
       </div>
     </section>
   <?php }
-
 endwhile;
 endif;
 ?>
-
-
 <section class="workshop__4">
   <div class="container"></div>
 </section>
@@ -377,7 +369,6 @@ endif;
                   if(get_sub_field('title')) { ?>
                     <h3 class="heading"><?php the_sub_field('title'); ?></h3>
                   <?php }
-
                   if ( have_rows( 'box_list' ) ) : ?>
                     <ul class="agreement-list">
                     <?php while ( have_rows( 'box_list' ) ) : the_row(); ?>
@@ -421,9 +412,4 @@ endif;
     endwhile;
   endif;
   ?>
-
-
-
-
-
 <?php get_footer();
