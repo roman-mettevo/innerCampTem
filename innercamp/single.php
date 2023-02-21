@@ -17,6 +17,35 @@ get_header(); ?>
    
 <!--   data-menuscroll-->
    
+
+   
+<section class="workshop__1" data-menuscroll
+<?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+  <div class="container">
+    <div class="row">
+      <div class="col m12 s12 l12 xl12">
+        <h2 class="title"> <?php the_title(); ?></h2>
+        
+        <p>Learn to keep your energies in check and well-balanced to feel harmony, ease, and bliss within.</p>
+
+          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" >Join now</a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+          </form>
+
+       
+       
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
    
     <div class="left__menu__scroll">
       <div class="container">
@@ -56,32 +85,8 @@ get_header(); ?>
       </div>
     </div>
 
-   
-<section class="workshop__1" data-menuscroll
-<?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl12">
-        <h2 class="title"> <?php the_title(); ?></h2>
-        
-        <p>Learn to keep your energies in check and well-balanced to feel harmony, ease, and bliss within.</p>
 
-          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-              <input type="hidden" name="action" value="addcart_prod">
 
-                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" >Join now</a>
-              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-          </form>
-
-       
-       
-        
-      </div>
-    </div>
-  </div>
-</section>
 <section class="workshop__2">
   <div class="container">
     <div class="row">
@@ -400,7 +405,6 @@ get_header(); ?>
                           
                           }
 		?>
-          
           </div>
         </div>
       </div>
@@ -544,6 +548,9 @@ wp_reset_postdata(); ?>
             <a class="bundle" href="/category/all/">See all posts</a>
           </div>
         </div>
+        <span class="post__back-to-top">
+            <img src="<?= get_template_directory_uri();?>/img/back-to-top.svg" alt="">    
+        <span>
       </div>
     </section>
     

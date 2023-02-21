@@ -246,7 +246,7 @@ function register_acf_block_types()
       'keywords' => array('App-5'),
     )
   );
-  
+
   acf_register_block_type(
     array(
       'supports' => array( 'anchor' => true ),
@@ -527,6 +527,44 @@ function register_acf_block_types()
           'mode' => 'preview',
           'data' => array(
             'image' => '<img src="' . get_template_directory_uri() . '/ACF/other-block/text_image_with_icons.jpg" style="width:100%;display: block; margin: 0 auto;">'
+          ),
+        ),
+      ),
+    )
+  );
+  acf_register_block_type(
+    array(
+      'supports' => array( 'anchor' => true ),
+      'name' => 'Slider Block',
+      'title' => __('Slider Block'),
+      'render_callback' => 'block_render',
+      'render_template' => 'ACF/other-block/slider_block.php',
+      'icon' => 'block-default',
+      'keywords' => array('Slider Block'),
+      'example' => array(
+        'attributes' => array(
+          'mode' => 'preview',
+          'data' => array(
+            'image' => '<img src="' . get_template_directory_uri() . '/ACF/other-block/slider_block.jpg" style="width:100%;display: block; margin: 0 auto;">'
+          ),
+        ),
+      ),
+    )
+  );
+  acf_register_block_type(
+    array(
+      'supports' => array( 'anchor' => true ),
+      'name' => 'Feedback Form',
+      'title' => __('Feedback Form'),
+      'render_callback' => 'block_render',
+      'render_template' => 'ACF/other-block/feedback_form.php',
+      'icon' => 'block-default',
+      'keywords' => array('Feedback Form'),
+      'example' => array(
+        'attributes' => array(
+          'mode' => 'preview',
+          'data' => array(
+            'image' => '<img src="' . get_template_directory_uri() . '/ACF/other-block/feedback_form.jpg" style="width:100%;display: block; margin: 0 auto;">'
           ),
         ),
       ),

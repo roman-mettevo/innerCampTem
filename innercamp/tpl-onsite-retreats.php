@@ -4,34 +4,8 @@
 */
 get_header(); 
 ?>
-<div class="mobile-experience-filter-nav">
-    <button class="close"><img src="<?= get_template_directory_uri(); ?>/img/team/close-img.svg" alt=""></button>
-    <div class="mobile-experience-filter-wrap">
-                     <nav class="experience-filter-nav">
-                        <h2 class="experience-filter-title">Filter by</h2>
-                        <ul>
-                            <li><a href="#">All courses <span>(40)</span></a></li>
-                            <li><a href="/product-category/online/">Online <span>(146)</span></a></li>
-                            <li><a href="/product-category/onsite/">On-site <span>(2)</span></a></li>
-                        </ul>
-                    </nav>
-                    <nav class="experience-event-nav">
-                        <h3 class="experience-event-title">Event Type</h3>
-                        <ul>
-                            <li><a href="/product-category/breathwork/">Breathwork <span>(81)</span></a></li>
-                            <li><a href="/product-category/tantra/">Tantra <span>(86)</span></a></li>
-                            <li><a href="/product-category/bodywork/">Bodywork <span>(12)</span></a></li>
-                            <li><a href="/product-category/cacao/">Cacao ceremonies <span>(8)</span></a></li>
-                        </ul>
-                    </nav>
-        <nav class="experience-lang-nav">
-            <h3 class="experience-lang-title">language</h3>
-            <ul>
-                <li><a href="#">English <span>(1)</span></a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
+
+
 
 
 <?php if ( have_rows( 'trainings_pages' ) ): ?>

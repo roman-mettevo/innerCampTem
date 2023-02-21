@@ -67,7 +67,7 @@
           <?php } ?>
            
         <?php if ( is_user_logged_in() ) {  ?>
-      <a class="affiliate" href="/my-account/#">Affiliate Program</a>
+      <a class="affiliate" href="/affiliate/">Affiliate Program</a>
         <?php }else{ ?>
       <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
         <?php } ?>
@@ -262,7 +262,7 @@
                   <?php } ?>
   
                  <?php if ( is_user_logged_in() ) {  ?>
-                <a class="affiliate" href="/my-account/orders/#">Affiliate Program</a>
+                <a class="affiliate" href="/affiliate/">Affiliate Program</a>
                   <?php }else{ ?>
                 <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
                   <?php } ?>

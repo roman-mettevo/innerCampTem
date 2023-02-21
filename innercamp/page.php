@@ -84,45 +84,59 @@ get_header();
                 <div class="experience-nav-wrap">
                     <nav class="experience-filter-nav">
                         <h2 class="experience-filter-title">Filter by</h2>
-                        
-                        
-                        <?php 
-                      
-                                
-                    // since wordpress 4.5.0
-$args = array(
-    'taxonomy'   => "product_cat",
 
-// 'fields' => 'ids',
- 'include' => array( 142, 146 ),
-  
-);
-$product_categories = get_terms($args);  
-                      
-                  //  print_r($product_categories);  
-                      ?>
-                       
-<!--   term_id   -->
+                        <?php  // since wordpress 4.5.0
+                          $args = array(
+                              'taxonomy'   => "product_cat",
+                            // 'fields' => 'ids',
+                             'include' => array( 164,142, 146 ),
+                          );
+                          $product_categories = get_terms('product_cat', $args);  
+                          // print_r($product_categories);   ?>
+
                         <ul>
                           <?php	foreach( $product_categories as $subcategory ) { ?>
-                              <li><a href="/product-category/online/">Online <span>(146)</span></a></li>
+                               <li><a href="<?php echo get_term_link($subcategory); ?>"> <?php echo esc_attr($subcategory->name); ?> <span>(<?php echo esc_attr($subcategory->count); ?>)</span></a></li>  
                           <?php	} ?>
                         </ul>
                     </nav>
                     <nav class="experience-event-nav">
                         <h3 class="experience-event-title">Event Type</h3>
+                        
+                        <?php  // since wordpress 4.5.0
+                          $args_next = array(
+                              'taxonomy'   => "product_cat",
+                            // 'fields' => 'ids',
+                             'include' => array( 140, 151, 161, 166 ),
+                          );
+                          $product_categories_next = get_terms('product_cat', $args_next);  
+                          // print_r($product_categories);   ?>
+
                         <ul>
-                            <li><a href="/product-category/breathwork/">Breathwork <span>(81)</span></a></li>
-                            <li><a href="/product-category/tantra/">Tantra <span>(86)</span></a></li>
-                            <li><a href="/product-category/bodywork/">Bodywork <span>(12)</span></a></li>
-                            <li><a href="/product-category/cacao/">Cacao ceremonies <span>(8)</span></a></li>
+                          <?php	foreach( $product_categories_next as $subcategory_next ) { ?>
+                               <li><a href="<?php echo get_term_link($subcategory_next); ?>"> <?php echo esc_attr($subcategory_next->name); ?> <span>(<?php echo esc_attr($subcategory_next->count); ?>)</span></a></li>  
+                          <?php	} ?>
                         </ul>
+
                     </nav>
                     <nav class="experience-lang-nav">
                         <h3 class="experience-lang-title">Language</h3>
+                        
+                        <?php  // since wordpress 4.5.0
+                          $args_next_next = array(
+                              'taxonomy'   => "product_cat",
+                            // 'fields' => 'ids',
+                             'include' => array(217,250,251,252),
+                          );
+                          $product_categories_next_next = get_terms('product_cat', $args_next_next);  
+                          // print_r($product_categories);   ?>
+
                         <ul>
-                            <li><a href="#">English <span>(4)</span></a></li>
+                          <?php	foreach( $product_categories_next_next as $subcategory_next_next ) { ?>
+                               <li><a href="<?php echo get_term_link($subcategory_next_next); ?>"> <?php echo esc_attr($subcategory_next_next->name); ?> <span>(<?php echo esc_attr($subcategory_next_next->count); ?>)</span></a></li>  
+                          <?php	} ?>
                         </ul>
+                        
                     </nav>
                 </div>
             </div>
@@ -131,10 +145,45 @@ $product_categories = get_terms($args);
                 <div class="experience-list">
                  
      <?php  
+                                
+               if ( isset( $_GET['number'] ) ) {
+              $pagesnamber = (int) $_GET['number'];
+          }else{
+               $pagesnamber = 1;                   
+          }   
+                      
+                        
+       $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : $pagesnamber;                      
+                                
        $args = array(
             'order' => 'DESC', // order filter  last post
             'post_type'  => 'product', // Post type category BLOG
             'posts_per_page' => 5, // echo show three post 
+         
+              'paged'         => $paged,
+         
+         
+                'taxonomy' => 'product_cat',
+                'hide_empty' => 0,
+               
+                     'product_cat' => $current_cat->slug,
+//                'cat' => $tocat,
+//                        'product_cat' => $term->slag,
+//               'category__in' => $cat;
+//               'category__in' => array( $cat), 
+                            'paged'         => $paged,
+               
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'product_cat',
+                            'field' => 'term_id',
+                            'terms' => $current_cat,
+                            'operator' => 'IN'
+                        )
+                    )
+         
+         
+         
         );
         // The Query
         $the_query = new WP_Query( $args );
@@ -156,7 +205,17 @@ $product_categories = get_terms($args);
                                       <a class="video" href="#">Zoom meeting in English</a>
                                   </div>
                                   <h3 class="item-title"><?php echo get_the_title(); ?></h3>
-                                  <div class="item-excerpt">Bring back the power to create inner strength and joy.</div>
+                                  
+                                      
+                               <?php 
+                                        $rtitlett = get_the_content(); 
+
+                                        $tmt = substr(strip_tags($rtitlett), 0, 180 ); ?>
+                                        <?php if($tmt){ ?>
+                                         <div class="item-excerpt"><?php echo $tmt .'...'; ?></div>
+                                        <?php } ?>
+            
+                               
                                   <div class="author-info">
                                       <img src="<?= get_template_directory_uri(); ?>/img/testimonials/user.png" alt="" class="author-photo">
                                       <span class="author-name">Marjolein Van Ommeren</span>
@@ -166,7 +225,8 @@ $product_categories = get_terms($args);
                                  
                <?php while (have_rows('fotter_social_network', 'option')) : the_row();  ?>
              
-								<?php if (get_row_layout() == 'ios_1') : ?>
+								<?php // if (get_row_layout() == 'ios_1') : ?>
+								<?php if (0) : ?>
 										<a target="_blank" class="download" href="<?php the_sub_field('ios'); ?>">Download App</a>
 								<?php endif; ?>             
 
@@ -187,6 +247,31 @@ $product_categories = get_terms($args);
       ?>
 
                 </div>
+                
+            <div class="row">
+              <div class="col m12 s12 l10 offset-l2 xl10 offset-lx2">
+               
+                           <div class="pagination__"> 
+  
+             <?php $big = 999999999; // need an unlikely integer
+              echo paginate_links( array(
+                  'format' => '?number=%#%',
+                  'current' => $paged,
+    'mid_size' => 1, 
+
+                  'total' => $the_query->max_num_pages,
+                  'prev_text'    => __('«'),
+                  'next_text'    => __('»'), 
+//                  'type' => 'list'
+              ) );  ?>
+
+ 
+            </div>
+                
+              </div>
+            </div>
+                
+                
           </div>
 
         </div>
@@ -303,18 +388,6 @@ $product_categories = get_terms($args);
             <?php endif; ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
                   <div class="experience-content">
 
        <?php if( get_sub_field('title')): ?><!-- if under__the -->
@@ -325,14 +398,7 @@ $product_categories = get_terms($args);
 
            <?php $cat = get_sub_field( 'cat' ); ?>
            
-             <?php // var_dump($cat);
-                      
-//                      if ($cat) {
-//    if (!is_array($cat)) {
-//      $tocat = array($cat);
-//  }
-//}
- ?>
+             <?php // var_dump($cat); ?>
 
            <?php  
                       
@@ -390,7 +456,15 @@ $product_categories = get_terms($args);
                                             <a class="video" href="#">Zoom meeting in English</a>
                                         </div>
                                         <h3 class="item-title"><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title();  ?></a></h3>
-                                        <div class="item-excerpt">Bring back the power to create inner strength and joy.</div>
+                                        
+                               <?php 
+                                        $rtitlett = get_the_content(); 
+
+                                        $tmt = substr(strip_tags($rtitlett), 0, 180 ); ?>
+                                        <?php if($tmt){ ?>
+                                         <div class="item-excerpt"><?php echo $tmt .'...'; ?></div>
+                                        <?php } ?>
+            
                                         <div class="author-info">
                                             <img src="<?= get_template_directory_uri(); ?>/img/testimonials/user.png" alt="" class="author-photo">
                                             <span class="author-name">Marjolein Van Ommeren</span>
@@ -399,7 +473,8 @@ $product_categories = get_terms($args);
                                    <div class="right-side">
                                       <?php while (have_rows('fotter_social_network', 'option')) : the_row(); ?>
 
-                                        <?php if (get_row_layout() == 'ios_1') : ?>
+                                        <?php // if (get_row_layout() == 'ios_1') : ?>
+                                        <?php if (0) : ?>
                                           <a target="_blank" class="download" href="<?php the_sub_field('ios'); ?>">Download App</a>
                                         <?php endif; ?>
 

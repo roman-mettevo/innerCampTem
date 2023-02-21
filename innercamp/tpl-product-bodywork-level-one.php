@@ -4,354 +4,619 @@
  * Template Post Type: product, page, post
  */
 get_header(); ?>
+<?php
+if (have_rows('product_bodywork_level_one')): ?>
+  <?php
+  while (have_rows('product_bodywork_level_one')) : the_row(); ?>
+    <?php
+    if (get_row_layout() == 'section_1') : ?>
+      <section class="bodywork-first__1">
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l12 xl12">
+              <p class="sub"><?php the_sub_field('sub_title'); ?></p>
+              <h2 class="title"><?php the_sub_field('title'); ?></h2>
 
-  <section class="bodywork-first__1">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl12">
-          <p class="sub">Level 1</p>
-          <h2 class="title">Bodywork &amp; Somatic Therapies for Trauma Healing</h2>
-          <ul class="short-info-list">
-            <li class="short-info-item name-item">Bodywork</li>
-            <li class="short-info-item level-item">Level 1</li>
-            <li class="short-info-item calendar-item">Feb 4, 2023 - Apr 15, 2023</li>
-            <li class="short-info-item check-item">online course</li>
-          </ul>
-          <p class="description">
-            The InnerCamp Bodywork &amp; Somatic Therapies for Healing Trauma &reg; training will
-            help you assist the
-            body in releasing deep patterns of stress, anxiety and trauma.
-          </p><a class="bundle" href="#">Book now</a>
-        </div>
-      </div>
-    </div>
-  </section>
+              <?php
 
-  <section class="bodywork-first__2" data-menuscroll>
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="basic-course-card">
-            <div class="couse-img"></div>
-            <div class="course-info">
-              <div class="course-price-wrapper">
-                <div class="course-price"><span class="price-label">Price:</span><span
-                      class="price-quantity">1200&euro;</span></div>
-                <a class="bundle" href="#">Start my journey</a>
-              </div>
-              <ul class="course-short-info">
-                <li class="course-short-info-item course-duration">3 months</li>
-                <li class="course-short-info-item course-video">100+ videos</li>
-                <li class="course-short-info-item course-hours">125 hours in total</li>
-                <!-- <li class="course-short-info-item course-status">online course</li>-->
-              </ul>
-              <span class="course-status">online course</span>
+              if (have_rows('list_icon_and_text')) : ?>
+                <ul class="short-info-list">
+                  <?php
+                  $arr_bg = [];
+                  $i = 0;
+                  while (have_rows('list_icon_and_text')) : the_row();
+                    $icon = get_sub_field('icon');
+                    $arr_bg[$i] = esc_url($icon['url']);
+                    echo ' <style>
+                        .short-info-item.bg_' . $i . ':before {
+                            background: url(' . esc_url($icon['url']) . ');
+                        }
+                    </style>'
+                    ?>
+                    <li class="short-info-item bg_<?php echo $i ?>"><?php the_sub_field('text'); ?></li>
+
+                    <?php
+                    $i++;
+                  endwhile; ?>
+                </ul>
+              <?php
+              endif; ?>
+              <p class="description"><?php the_sub_field('pararaph'); ?></p>
+
+              <a class="bundle" href="#">Book now</a>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bodywork-first__3">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="text-wrapper">
-            <p class="small-description">
-              Your body remembers what the mind forgets, thus through Bodywork
-              and Breathwork techniques you can let go of stored negative energies and achieve physical
-              and emotional healing.
-            </p>
-            <p class="big-description">
-              Our Bodywork Method is backed by science and is based on a large body
-              of psychological research findings.
-            </p>
-          </div>
-          <div class="banner-wrapper">
-            <h3 class="heading">Discover the four components of our Method:</h3>
-            <ul class="keywords-list">
-              <li class="keywords-item">breathwork</li>
-              <li class="keywords-item">movement</li>
-              <li class="keywords-item">sound</li>
-              <li class="keywords-item">touch</li>
-            </ul>
+      </section>
+    <?php
+    elseif (get_row_layout() == 'section_2') : ?>
+      <section class="bodywork-first__2" data-menuscroll>
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l12 xl9 offset-xl3">
+              <div class="basic-course-card">
+                <div class="couse-img"></div>
+                <div class="course-info">
+                  <div class="course-price-wrapper">
+                    <div class="course-price"><span
+                          class="price-label"><?php the_sub_field('price_label'); ?></span><span
+                          class="price-quantity"><?php the_sub_field('price'); ?>&euro;</span></div>
+                    <a class="bundle" href="#">Start my journey</a>
+                  </div>
+                  <?php
+                  if (have_rows('icon_and_text_list')) : ?>
+                    <ul class="course-short-info">
+                      <?php
+                      $arr_bg = [];
+                      $i = 0;
+                      while (have_rows('icon_and_text_list')) : the_row();
+                        $icon = get_sub_field('icon');
+                        $arr_bg[$i] = esc_url($icon['url']);
+                        echo '<style>
+                        section.bodywork-first__2 .bg_' . $i . ':before {
+                            background: url(' . esc_url($icon['url']) . ');
+                        }
+                    </style>'
+                        ?>
+                        <?php $icon = get_sub_field('icon'); ?>
+                        <li class="course-short-info-item  bg_<?php echo $i ?>"><?php the_sub_field('text'); ?></li>
+                        <?php
+                        $i++;
+                      endwhile; ?>
+                    </ul>
+                  <?php
+                  endif; ?>
+                  <span class="course-status"><?php the_sub_field('online_course'); ?></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  <section class="bodywork-first__4">
-    <div class="container">
+      </section>
+    <?php
+    elseif (get_row_layout() == 'section_3') :
+      $background_image = get_sub_field('background_image');
+      $background_image_url = esc_url($background_image['url']);
+      ?>
+      <section style="background-image: url(<?php echo $background_image_url ?>);" class="bodywork-first__3">
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l12 xl9 offset-xl3">
+              <div class="text-wrapper">
+                <p class="small-description"><?php the_sub_field('left_text_block_1'); ?></p>
+                <p class="big-description"><?php the_sub_field('left_text_block_2'); ?></p>
+              </div>
+              <div class="banner-wrapper">
+                <h3 class="heading"><?php the_sub_field('banner_title'); ?></h3>
+                <?php
+                if (have_rows('banner_labels')) : ?>
+                  <ul class="keywords-list">
+                    <?php
+                    while (have_rows('banner_labels')) : the_row(); ?>
+                      <li class="keywords-item"><?php the_sub_field('label'); ?></li>
+                    <?php
+                    endwhile; ?>
+                  </ul>
+                <?php
+                endif; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <?php
+    elseif (get_row_layout() == 'section_4') : ?>
+      <section class="bodywork-first__4">
+      <div class="container">
       <div class="row">
         <div class="col m12 s12 l12 xl9 offset-xl3">
           <div class="accreditation">
             <div class="first-text-part grid-text-item">
-              <p class="sub">INNERCAMP IS AN ACCREDITED SCHOOL</p>
-              <p>InnerCamp is registered and accredited by the <strong>
-                  Complementary Medical
-                  Association.</strong> It is also a member school of <strong>the International Breathwork
-                  Foundation.</strong></p>
+              <p class="sub"><?php the_sub_field('sub_title'); ?></p>
+              <?php the_sub_field('text'); ?>
             </div>
-            <div class="sec-text-part grid-text-item">
-              <p>Our courses are accredited by the leading independent <strong>
-                  CPD accreditation
-                  institution.</strong></p>
+            <?php $company_logo_1 = get_sub_field('company_logo_1'); ?>
+            <?php $company_logo_2 = get_sub_field('company_logo_2'); ?>
+            <?php $company_logo_3 = get_sub_field('company_logo_3'); ?>
+            <div class="cma-logo-wrapper grid-img-item">
+              <?php if ($company_logo_1) : ?>
+                <img src="<?php echo esc_url($company_logo_1['url']); ?>"
+                     alt="<?php echo esc_attr($company_logo_1['alt']); ?>"/>
+              <?php endif; ?>
             </div>
-            <div class="cma-logo-wrapper grid-img-item"><img
-                  src="<?= get_template_directory_uri(); ?>/img/bodywork-1/cma.jpg" alt=""></div>
-            <div class="ibf-logo-wrapper grid-img-item"><img
-                  src="<?= get_template_directory_uri(); ?>/img/bodywork-1/ibf.jpg" alt=""></div>
-            <div class="cpd-logo-wrapper grid-img-item"><img
-                  src="<?= get_template_directory_uri(); ?>/img/bodywork-1/cpd.jpg" alt=""></div>
+            <div class="ibf-logo-wrapper grid-img-item">
+              <?php if ($company_logo_2) : ?>
+                <img src="<?php echo esc_url($company_logo_2['url']); ?>"
+                     alt="<?php echo esc_attr($company_logo_2['alt']); ?>"/>
+              <?php endif; ?>
+            </div>
+            <div class="cpd-logo-wrapper grid-img-item">
+              <?php if ($company_logo_3) : ?>
+                <img src="<?php echo esc_url($company_logo_3['url']); ?>"
+                     alt="<?php echo esc_attr($company_logo_3['alt']); ?>"/>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       </div>
+
+
+    <?php
+    elseif (get_row_layout() == 'section_5') : ?>
       <div class="row">
         <div class="col m12 s12 l12 xl9 offset-xl3">
-          <h2 class="title">Trauma recovery exercises help to:</h2>
+          <h2 class="title"><?php the_sub_field('title'); ?></h2>
           <div class="tahuma-recovery">
-            <ul class="tahuma-recovery-list">
-              <li class="tahuma-recovery-item">
-                Evoke and release repressed trauma, physical, emotional and
-                energetic blockages.
-              </li>
-              <li class="tahuma-recovery-item">
-                Calm the nervous system and rewire the brain for inner
-                peace.
-              </li>
-              <li class="tahuma-recovery-item">Manage anxiety, stress, and depression.</li>
-              <li class="tahuma-recovery-item">Promote relaxation, a sense of peace, and self-awareness.</li>
-              <li class="tahuma-recovery-item">Find your way towards vitality and ease.</li>
-            </ul>
-            <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/tahuma-recovery.jpg" alt="">
+            <?php
+            if (have_rows('checkboxes_list')) : ?>
+              <ul class="tahuma-recovery-list">
+                <?php
+                while (have_rows('checkboxes_list')) : the_row(); ?>
+                  <li class="tahuma-recovery-item"><?php the_sub_field('list_item_text'); ?></li>
+                <?php
+                endwhile; ?>
+              </ul>
+            <?php
+            endif; ?>
+            <div class="img">
+              <?php
+              $image = get_sub_field('image');
+              if ($image) : ?>
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"/>
+              <?php
+              endif; ?>
             </div>
           </div>
         </div>
       </div>
+    <?php elseif (get_row_layout() == 'section_6') : ?>
       <div class="row">
         <div class="col m12 s12 l12 xl9 offset-xl3">
-          <h2 class="title">About the Course</h2>
+          <h2 class="title"><?php the_sub_field('title'); ?></h2>
           <div class="about">
-            <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/about-section-4.jpg" alt="">
+            <div class="img">
+              <?php
+              $image = get_sub_field('image');
+              if ($image) : ?>
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"/>
+              <?php
+              endif; ?>
             </div>
             <div class="about-description">
-              <h3 class="heading">Are you ready to help others master their stress and move beyond trauma?</h3>
-              <p>
-                Our online training program is designed by trauma experts who will show you how to master
-                your own emotions first in order to liberate others from their stress and suffering.
-              </p><a class="download-button" href="#">Download Brochure</a>
+              <h3 class="heading"><?php the_sub_field('dotted_box_title'); ?></h3>
+              <p><?php the_sub_field('dotted_box_text'); ?></p>
+              <?php
+              $dotted_box_download_button = get_sub_field('dotted_box_download_button');
+              if ($dotted_box_download_button) : ?>
+                <a class="download-button" href="<?php echo esc_url($dotted_box_download_button['url']); ?>"
+                   target="<?php echo esc_attr($dotted_box_download_button['target']); ?>"><?php echo esc_html($dotted_box_download_button['title']); ?></a>
+              <?php
+              endif; ?>
             </div>
           </div>
         </div>
       </div>
+    <?php elseif (get_row_layout() == 'section_7') : ?>
       <div class="row">
         <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="level-1 level">
-            <h3 class="level-label">Level 1</h3>
-            <p>
-              The level 1 will help you in your own self journey to release trauma. In Level 1, you also
-              gain skills to become a trauma-informed facilitator in case you are already working with
-              clients.
-            </p>
-          </div>
-          <div class="level-2 level">
-            <h3 class="level-label">Level 2</h3><span class="published-soon">*will be published soon</span>
-            <p>
-              In Level 2, you learn how to facilitate bodywork, breathwork, de-armouring and movement
-              techniques to heal others. With Level 2, you learn all the skills you need to facilitate the
-              InnerCamp Bodywork Method.
-            </p>
-          </div>
-          <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/section-4-lvls.jpg" alt="">
+          <?php
+          if (have_rows('level_blocks')) :
+            $i = 1;
+            while (have_rows('level_blocks')) : the_row(); ?>
+              <div class="level-<?php echo $i ?> level">
+                <h3 class="level-label"><?php the_sub_field('level_title'); ?></h3>
+                <?php
+                $level_notice = get_sub_field('level_notice');
+                echo ($level_notice) ? '<span class="published-soon">' . $level_notice . '</span>' : '';
+                ?>
+                <p><?php the_sub_field('level_text'); ?></p>
+              </div>
+              <?php
+              $i++;
+            endwhile; ?>
+          <?php
+          endif; ?>
+          <div class="img">
+            <?php
+            $image = get_sub_field('image');
+            if ($image) : ?>
+              <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"/><?php
+            endif; ?>
           </div>
           <div class="about-dropdown">
             <div class="dropdown">
-              <p>
-                You will learn how to combine bodywork techniques, breathing patterns, movement and voice
-                to release trauma and remove emotional and energetic blockages.
-                With more than 160 videos, quizzes, articles, 6 live sessions and assignments, you will
-                be able to master the tools needed to help yourself and other people heal.
-                This program is suitable for everyone who is interested in changing themselves and the
-                world by becoming a trauma-informed facilitator:
-              </p>
+              <p><?php the_sub_field('read_more_text'); ?></p>
               <button class="read-more">Read more<img
                     src="<?= get_template_directory_uri(); ?>/img/corporate/bottom-arrow.svg" alt=""></button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="bodywork-first__5">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="header">
-            <h2 class="title">The Program</h2>
-            <div class="faciliated-by"><span>Facilitated by</span>
-              <ul class="faciliated-users-list">
-                <li class="faciliated-users-item"><img
-                      src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-1.jpg" alt=""></li>
-                <li class="faciliated-users-item"><img
-                      src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-2.jpg" alt=""></li>
-                <li class="faciliated-users-item"><img
-                      src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-3.jpg" alt=""></li>
-                <li class="faciliated-users-item"><img
-                      src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-4.jpg" alt=""></li>
-              </ul>
+      </div>
+      </section>
+    <?php elseif (get_row_layout() == 'section_8') : ?>
+      <section class="bodywork-first__5">
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l12 xl9 offset-xl3">
+              <div class="header">
+                <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                <?php
+                if (have_rows('facilitated')) :
+                  while (have_rows('facilitated')) : the_row(); ?>
+                    <div class="faciliated-by"><span><?php the_sub_field('title'); ?></span>
+                      <?php
+                      if (have_rows('images_list')) : ?>
+                        <ul class="faciliated-users-list">
+                          <?php
+                          while (have_rows('images_list')) : the_row(); ?>
+                            <li class="faciliated-users-item">
+                              <?php
+                              $image = get_sub_field('image');
+                              if ($image) : ?>
+                                <img src="<?php echo esc_url($image['url']); ?>"
+                                     alt="<?php echo esc_attr($image['alt']); ?>"/>
+                              <?php
+                              endif; ?>
+                            </li>
+                          <?php
+                          endwhile; ?>
+                        </ul>
+                      <?php
+                      endif; ?>
+                    </div>
+                  <?php
+                  endwhile; ?>
+                <?php
+                endif; ?>
+              </div>
+              <div class="tab-nav">
+                <?php
+                if (have_rows('tabs_nav_list')) :
+                  $i = 0;
+                  while (have_rows('tabs_nav_list')) : the_row(); ?>
+                    <span
+                        class="tab-nav-item <?php echo ($i == 0) ? 'active' : '' ?>"><?php the_sub_field('tab_name'); ?></span>
+                    <?php
+                    $i++;
+                  endwhile;
+                endif;
+                ?>
+              </div>
+              <div class="tab-all-content">
+                <?php
+                if (have_rows('tabs_content')) :
+                  $j = 0;
+                  while (have_rows('tabs_content')) : the_row(); ?>
+                    <div class="tab-content <?php echo ($j === 0) ? 'active' : '' ?>">
+                      <h3 class="tab-title"><?php the_sub_field('tab_title'); ?></h3>
+
+                      <?php
+                      if (have_rows('module_parts')) : ?>
+                        <ul class="module-list">
+                          <?php
+                          while (have_rows('module_parts')) : the_row(); ?>
+                            <li class="module-item">
+                              <div class="module-item-header">
+                                <p><?php the_sub_field('part_name'); ?></p>
+                                <span><?php the_sub_field('hours_quantity'); ?></span>
+                              </div>
+                              <?php the_sub_field('module_content'); ?>
+                            </li>
+                          <?php
+                          endwhile; ?>
+                        </ul>
+                      <?php
+                      endif; ?>
+                    </div>
+                  <?php
+                  endwhile; ?>
+                <?php
+                endif; ?>
+              </div>
             </div>
           </div>
-          <div class="tab-nav"><span class="tab-nav-item active">Module 1</span><span
-                class="tab-nav-item">Module 2</span></div>
-          <div class="tab-all-content">
-            <div class="tab-content active">
-              <h3 class="tab-title">Module 1: Trauma Recovery Science &amp; Practices</h3>
-              <ul class="module-list">
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Introduction to trauma</p><span>10 hours</span>
+        </div>
+      </section>
+    <?php elseif (get_row_layout() == 'section_9') : ?>
+      <section class="bodywork-first__6">
+        <div class="container">
+          <div class="row bodywork-trainers">
+            <div class="col m12 s12 l12 xl9 offset-xl3">
+              <div class="trainers-header">
+                <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                <div class="arrows">
+                  <a class="left_a previous-button" href="javascript:;">
+                    <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M0.292892 7.2929C-0.0976296 7.68342 -0.0976295 8.31659 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928935C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM45 7L1 7L1 9L45 9L45 7Z"
+                          fill="#B9B9B9"></path>
+                    </svg>
+                  </a>
+                  <a class="right_a next-button" href="javascript:;">
+                    <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z"
+                          fill="#B68742"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <?php
+              if (have_rows('slider')) : ?>
+                <div class="splide trainers-slider" id="bodywork-trainers-slider">
+                  <div class="splide__track">
+                    <div class="splide__list">
+                      <?php
+                      while (have_rows('slider')) : the_row(); ?>
+                        <div class="splide__slide trainers-item">
+                          <div class="trainer-photo">
+                            <?php
+                            $image = get_sub_field('image');
+                            if ($image) : ?>
+                              <img src="<?php echo esc_url($image['url']); ?>"
+                                   alt="<?php echo esc_attr($image['alt']); ?>"/>
+                            <?php
+                            endif; ?>
+                            <span class="trainer-skills-item">InnerCamp founder</span></div>
+                          <div class="trainer-about">
+                            <h3 class="trainer-name"><?php the_sub_field('name'); ?></h3>
+                            <?php
+                            if (have_rows('labels_about_me')) : ?>
+                              <ul class="trainer-skills-list">
+                                <?php
+                                while (have_rows('labels_about_me')) : the_row(); ?>
+                                  <li class="trainer-skills-item"><?php the_sub_field('label'); ?></li>
+                                <?php
+                                endwhile; ?>
+                              </ul>
+                            <?php
+                            endif; ?>
+                            <div class="trainer-description">
+                              <p><?php the_sub_field('about_me'); ?></p>
+                            </div>
+                          </div>
+                        </div>
+                      <?php
+                      endwhile; ?>
+                    </div>
                   </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Science of Trauma</li>
-                    <li class="module-part-item">Symptoms of Trauma</li>
-                    <li class="module-part-item">Types of Trauma</li>
-                    <li class="module-part-item">Trauma, stress &amp; resilience</li>
-                    <li class="module-part-item">Trauma-Informed Approach</li>
-                    <li class="module-part-item">Importance of the Language</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>The Nervous system</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">
-                      How Trauma Affects the Brain, Nervous System and
-                      Behaviour
-                    </li>
-                    <li class="module-part-item">Common Bodily Responses to Trauma</li>
-                    <li class="module-part-item">Emotional Regulation and Dysregulation</li>
-                    <li class="module-part-item">Window of Tolerance</li>
-                    <li class="module-part-item">Post-Traumatic Growth and Resilience</li>
-                    <li class="module-part-item">Safety, Love and Belonging</li>
-                    <li class="module-part-item">The Polyvagal Theory</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Approaches to trauma</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Therapies for traumas</li>
-                    <li class="module-part-item">Re-traumatization</li>
-                    <li class="module-part-item">Managing Flashbacks</li>
-                    <li class="module-part-item">The 4F Trauma Personality Types Continuum</li>
-                    <li class="module-part-item">Intergenerational Trauma</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Bodywork basics</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Bodywork basics</li>
-                    <li class="module-part-item">Introducing the armour</li>
-                    <li class="module-part-item">Introduction to the Reichian theory</li>
-                    <li class="module-part-item">Introduction to Bioenergetics- Lowen&rsquo;s work</li>
-                    <li class="module-part-item">
-                      Introduction to Bioenergetics Somatic Experiencing
-                      &ndash; Peter Levine&rsquo;s work
-                    </li>
-                    <li class="module-part-item">Self-dearmouring tools</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Project</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Project</li>
-                  </ul>
-                </li>
-              </ul>
+                </div>
+              <?php
+              endif; ?>
             </div>
-            <div class="tab-content">
-              <h3 class="tab-title">Module 2: Trauma Recovery Science &amp; Practices</h3>
-              <ul class="module-list">
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Introduction to trauma</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Science of Trauma</li>
-                    <li class="module-part-item">Symptoms of Trauma</li>
-                    <li class="module-part-item">Types of Trauma</li>
-                    <li class="module-part-item">Trauma, stress &amp; resilience</li>
-                    <li class="module-part-item">Trauma-Informed Approach</li>
-                    <li class="module-part-item">Importance of the Language</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>The Nervous system</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">
-                      How Trauma Affects the Brain, Nervous System and
-                      Behaviour
-                    </li>
-                    <li class="module-part-item">Common Bodily Responses to Trauma</li>
-                    <li class="module-part-item">Emotional Regulation and Dysregulation</li>
-                    <li class="module-part-item">Window of Tolerance</li>
-                    <li class="module-part-item">Post-Traumatic Growth and Resilience</li>
-                    <li class="module-part-item">Safety, Love and Belonging</li>
-                    <li class="module-part-item">The Polyvagal Theory</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Approaches to trauma</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Therapies for traumas</li>
-                    <li class="module-part-item">Re-traumatization</li>
-                    <li class="module-part-item">Managing Flashbacks</li>
-                    <li class="module-part-item">The 4F Trauma Personality Types Continuum</li>
-                    <li class="module-part-item">Intergenerational Trauma</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Bodywork basics</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Bodywork basics</li>
-                    <li class="module-part-item">Introducing the armour</li>
-                    <li class="module-part-item">Introduction to the Reichian theory</li>
-                    <li class="module-part-item">Introduction to Bioenergetics- Lowen&rsquo;s work</li>
-                    <li class="module-part-item">
-                      Introduction to Bioenergetics Somatic Experiencing
-                      &ndash; Peter Levine&rsquo;s work
-                    </li>
-                    <li class="module-part-item">Self-dearmouring tools</li>
-                  </ul>
-                </li>
-                <li class="module-item">
-                  <div class="module-item-header">
-                    <p>Project</p><span>10 hours</span>
-                  </div>
-                  <ul class="module-part-list">
-                    <li class="module-part-item">Project</li>
-                  </ul>
-                </li>
-              </ul>
+          </div>
+
+
+
+
+    <?php elseif (get_row_layout() == 'section_10') : ?>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="certificate">
+            <div class="certificate-img">
+              <?php
+              $image = get_sub_field('image');
+              if ($image) : ?>
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"/>
+              <?php
+              endif; ?>
+            </div>
+            <div class="certificate-text">
+              <?php the_sub_field('title'); ?>
+              <?php $button = get_sub_field('button'); ?>
+              <?php if ($button) : ?>
+                <a class="bundle" href="<?php echo esc_url($button['url']); ?>"
+                   target="<?php echo esc_attr($button['target']); ?>"><?php echo esc_html($button['title']); ?></a>
+              <?php endif; ?>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+
+    <?php elseif (get_row_layout() == 'section_11') : ?>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title"><?php the_sub_field('title'); ?></h2>
+          <div class="brouchure">
+            <div class="brouchure-img">
+              <?php
+              $image_1 = get_sub_field('image_1');
+              if ($image_1) : ?>
+                <img src="<?php echo esc_url($image_1['url']); ?>" alt="<?php echo esc_attr($image_1['alt']); ?>"/>
+              <?php endif; ?>
+            </div>
+            <div class="brouchure-text">
+              <h5 class="download-title"><?php the_sub_field('text_before_download_button'); ?></h5>
+              <?php
+              $download_button = get_sub_field('download_button');
+              if ($download_button) : ?>
+                <a class="download-button" href="<?php echo esc_url($download_button['url']); ?>"
+                   target="<?php echo esc_attr($download_button['target']); ?>"><?php echo esc_html($download_button['title']); ?></a>
+              <?php
+              endif; ?>
+            </div>
+            <div class="brouchure-text">
+              <?php the_sub_field('text_in_dotted_block'); ?>
+            </div>
+            <div class="brouchure-img">
+              <?php $image_2 = get_sub_field('image_2');
+              if ($image_2) : ?>
+                <img src="<?php echo esc_url($image_2['url']); ?>" alt="<?php echo esc_attr($image_2['alt']); ?>"/>
+              <?php
+              endif; ?>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <?php
+    elseif (get_row_layout() == 'section_12') : ?>
+      <?php
+      if (have_rows('icons_and_text_list')) : ?>
+        <?php
+        while (have_rows('icons_and_text_list')) : the_row(); ?>
+          <?php $icon = get_sub_field('icon'); ?>
+          <?php
+          if ($icon) : ?>
+            <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($icon['alt']); ?>"/>
+          <?php
+          endif; ?>
+          <?php the_sub_field('text'); ?>
+          <?php the_sub_field('notice'); ?>
+        <?php
+        endwhile; ?>
+      <?php
+      endif; ?>
+      <?php $earth_button = get_sub_field('earth_button'); ?>
+      <?php
+      if ($earth_button) : ?>
+        <a href="<?php echo esc_url($earth_button['url']); ?>"
+           target="<?php echo esc_attr($earth_button['target']); ?>"><?php echo esc_html($earth_button['title']); ?></a>
+      <?php
+      endif; ?>
+      <?php
+      if (have_rows('checkbox_list')) : ?>
+        <?php
+        while (have_rows('checkbox_list')) : the_row(); ?>
+          <?php the_sub_field('text'); ?>
+        <?php
+        endwhile; ?>
+      <?php
+      endif; ?>
+      <?php $download_button = get_sub_field('download_button'); ?>
+      <?php
+      if ($download_button) : ?>
+        <a href="<?php echo esc_url($download_button['url']); ?>"
+           target="<?php echo esc_attr($download_button['target']); ?>"><?php echo esc_html($download_button['title']); ?></a>
+      <?php
+      endif; ?>
+
+
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title"><?php the_sub_field('title'); ?></h2>
+          <div class="live-sessions">
+            <div class="live-sessions-body">
+              <div class="live-sessions-text">
+                <ul class="schedule-list">
+                  <li class="schedule-item schedule-time">
+                    <p>10:30 am &mdash; 12:30 pm CET</p><span>*Amsterdam / Paris time zone</span>
+                  </li>
+                  <li class="schedule-item schedule-date">
+                    <p>Saturdays (biweekly)</p><span>Feb 4, Feb 18, Mar 4, Mar 18, Apr 1, Apr 15 (2023)</span>
+                  </li>
+                </ul>
+                <a data-begin="" class="check-time check-time_js" href="#">Check my local
+                  time
+                  here</a>
+                <ul class="about-schedule-list">
+                  <li class="about-schedule-item">6 live sessions</li>
+                  <li class="about-schedule-item">Biweekly sessions via Zoom</li>
+                  <li class="about-schedule-item">All live sessions are recorded</li>
+                </ul>
+              </div>
+              <?php
+              $image = get_sub_field('image');
+              $image_url = '';
+              if ($image) :
+                $image_url = esc_url($image['url']);
+              endif;
+              ?>
+              <div style="background-image: url(<?php echo $image_url ?>);" class="live-sessions-img">
+                <a class="download-button" href="#">Download the Timetable</a>
+              </div>
+            </div>
+            <div class="live-sessions-footer"><?php the_sub_field('footer_text'); ?></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </section>
+    <?php elseif (get_row_layout() == 'section_13') : ?>
+      <?php the_sub_field('title'); ?>
+      <?php the_sub_field('text_after_title'); ?>
+    <?php elseif (get_row_layout() == 'section_14') : ?>
+      <?php the_sub_field('title'); ?>
+      <?php
+      if (have_rows('video_slider')) : ?>
+        <?php
+        while (have_rows('video_slider')) : the_row(); ?>
+          <?php $placeholder_photo = get_sub_field('placeholder_photo'); ?>
+          <?php
+          if ($placeholder_photo) : ?>
+            <img src="<?php echo esc_url($placeholder_photo['url']); ?>"
+                 alt="<?php echo esc_attr($placeholder_photo['alt']); ?>"/>
+          <?php
+          endif; ?>
+          <?php the_sub_field('video_url'); ?>
+        <?php
+        endwhile; ?>
+      <?php
+      endif; ?>
+    <?php elseif (get_row_layout() == 'section_15') : ?>
+      <?php the_sub_field('title'); ?>
+      <?php
+      if (have_rows('checkbox_list')) : ?>
+        <?php
+        while (have_rows('checkbox_list')) : the_row(); ?>
+          <?php the_sub_field('text'); ?>
+        <?php
+        endwhile; ?>
+      <?php
+      endif; ?>
+      <?php the_sub_field('small_title'); ?>
+      <?php the_sub_field('text'); ?>
+      <?php $image = get_sub_field('image'); ?>
+      <?php
+      if ($image) : ?>
+        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"/>
+      <?php
+      endif; ?>
+    <?php elseif (get_row_layout() == 'section_16') : ?>
+      <?php the_sub_field('title'); ?>
+    <?php elseif (get_row_layout() == 'section_17') : ?>
+      <?php the_sub_field('title'); ?>
+    <?php elseif (get_row_layout() == 'section_18') : ?>
+      <?php the_sub_field('title'); ?>
+      <?php
+      if (have_rows('accordions_list')) : ?>
+        <?php
+        while (have_rows('accordions_list')) : the_row(); ?>
+          <?php the_sub_field('accordion_title'); ?>
+          <?php the_sub_field('accordion_text'); ?>
+        <?php
+        endwhile; ?>
+      <?php
+      endif; ?>
+    <?php
+    endif; ?>
+  <?php
+  endwhile; ?>
+<?php
+endif; ?>
+
+
   <section class="bodywork-first__6">
     <div class="container">
       <div class="row bodywork-trainers">
@@ -596,87 +861,12 @@ get_header(); ?>
                 </ul>
                 <a data-begin="convertToUserTimezone()" class="check-time check-time_js" href="#">Check my local time
                   here</a>
-                <script>
-                  // Получаем таймзону пользователя
-                  var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-                  // Отправляем значение таймзоны на сервер с помощью AJAX запроса
-                  var xhr = new XMLHttpRequest();
-                  xhr.open('POST', 'process.php');
-                  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                  xhr.send('timezone=' + encodeURIComponent(timezone));
-                </script>
-                <?php
-                //                $date = new DateTime('2023-02-4 10:30:00', new DateTimeZone('Europe/Amsterdam'));
-                //                echo $date->format('Y-m-d H:i:sP') . '<br>';
-                //
-                //                $date->setTimezone(new DateTimeZone('Europe/Kiev'));
-                //                echo $date->format('Y-m-d H:i:sP');
-                //                echo "The time is " . date("h:i:sa");
-                //                $now_date = new DateTime('now');
-                $userTimezone = $_SERVER['HTTP_TIMEZONE'];
-                echo '$userTimezone';
-                if (isset($_SERVER['HTTP_TIMEZONE'])) {
-                  $userTimezone = $_SERVER['HTTP_TIMEZONE'];
-                } else {
-                  // Если заголовок HTTP_TIMEZONE не был передан, можно использовать часовой пояс по умолчанию
-                  $userTimezone = date_default_timezone_get();
-                }
-                echo $userTimezone;
-
-                ?>
                 <ul class="about-schedule-list">
                   <li class="about-schedule-item">6 live sessions</li>
                   <li class="about-schedule-item">Biweekly sessions via Zoom</li>
                   <li class="about-schedule-item">All live sessions are recorded</li>
                 </ul>
-                <script>
-                  function convertToUserTimezone(date) {
-                    let el = document.querySelectorAll('.check-time_js')
-                    userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-                    // Создать объект даты с заданным временем
-                    let datetime = new Date(date);
-
-                    // Получить смещение часового пояса пользователя
-                    let timezoneOffset = datetime.getTimezoneOffset() * 60000;
-
-                    // Преобразовать время в часовой пояс пользователя
-                    let userDatetime = new Date(datetime.getTime() - timezoneOffset);
-
-                    // Отформатировать дату и время в соответствии с часовым поясом пользователя
-                    let userFormattedDatetime = new Intl.DateTimeFormat(undefined, {
-                      dateStyle: 'full',
-                      timeStyle: 'full',
-                      timeZone: userTimezone
-                    }).format(userDatetime);
-                    console.log(userFormattedDatetime)
-                    return userFormattedDatetime;
-                  }
-
-                  convertToUserTimezone('2023-02-18T10:30:00')
-
-                  // let day = 'Feb 4';
-                  // let year = '2023';
-                  // var dtBegin = new timezoneJS.Date("2023/02/04 10:30:30 +0000", 'Europe/Amsterdam');
-                  // var dtEnd = new timezoneJS.Date("2023/02/04 12:30:30 +0000", 'Europe/Amsterdam');
-                  //
-                  // function convertDateToNewTimezone(date, offset)
-                  // {
-                  //   // Получисаем переданное время и дату в милисекундах
-                  //   var utc = date.getTime() + (date.getTimezoneOffset() * 60000);
-                  //
-                  //   // Создаём новую временную метку, с учетом смещения
-                  //   var newDate = new Date(utc + (3600000*offset));
-                  //
-                  //   // return time as a string
-                  //   return newDate;
-                  // }
-                  //
-                  // console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
-                  //
-                  // console.debug('ssфффффф'+dt); //return formatted date-time in asia/jakarta
-                </script>
               </div>
               <div class="live-sessions-img"><a class="download-button" href="#">Download the Timetable</a></div>
             </div>
@@ -694,6 +884,7 @@ get_header(); ?>
       </div>
     </div>
   </section>
+
   <section class="bodywork-first__7">
     <div class="container">
       <div class="row">

@@ -1,7 +1,60 @@
 .testimonial__2 .testimonial__2-top-slider .splide__slide .images img,
 .testimonial__2 .testimonial__2-bottom-slider .splide__slide .images img,
-.home__8 .row .splide__slide .images img{
-	object-fit: cover;
-	width: 100%;
-	height: 100%;
+.home__8 .row .splide__slide .images img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+/* * {
+  background: red;
+} */
+.post__back-to-top {
+  display: block;
+  width: 58px;
+  height: 58px;
+  position: absolute;
+  right: 15px;
+  bottom: -100px;
+}
+
+.post__back-to-top img {
+  width: 100%;
+  margin: 0 !important;
+}
+section.workshop__1 .bundle {
+  max-width: 350px !important;
+}
+section.workshop__2 #workshop_details .info-data {
+  margin-top: 0 !important;
+}
+section.workshop__2 .col:nth-child(3) .heading::before {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+}
+section.workshop__3 .row:first-child .bundle {
+  max-width: 350px !important;
+}
+section.workshop__8 .agreement-readmore {
+  background: transparent;
+}
+
+/* @media (max-width: 1200px) {
+  .certified__2 .experience-content .experience-item.trainings img {
+    max-height: 130px;
+    object-fit: cover;
+  }
+} */
+
+@media (max-width: 992px) {
+  section.careers__2 .careers__2-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  section.careers__2 .careers__2-img {
+    width: 100%;
+  }
+  section.careers__2 .careers__2-img img {
+    width: auto;
+  }
 }

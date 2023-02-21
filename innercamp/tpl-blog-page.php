@@ -83,19 +83,25 @@ get_header(); ?>
                       <?php } ?>
 
                    <?php   // GET TAGS BY POST_ID
-                      $tags = get_the_tags($post->ID);  ?>
- 
+                      $tags = get_the_tags(get_the_id());  
+                      // print_r($tags);?>
                   <ul>
-                   <?php foreach($tags as $tag) :  ?>
-                        <li><a class="tag" href="<?php bloginfo('url');?>/tag/<?php print_r($tag->slug);?>"><?php print_r($tag->name); ?></a></li>
-                    <?php endforeach; ?>
+                  <?php if ($tags) { ?>
+                   <?php foreach($tags as $tag) { ?>
+                        <li><a class="tag" href="<?php echo get_tag_link($tag->term_id); ?>"><?php echo $tag->name; ?></a></li>
+                    <?php } ?>
+                    <?php } ?>
                   </ul>
                 </div>
                 
                 <div class="box__content">
                    <?php if(get_the_permalink()){ ?><a class="title__" href="<?php echo get_the_permalink(); ?>"><?php } ?>  <?php echo get_the_title(); ?>  <?php if(get_the_permalink()){ ?></a><?php } ?>  
                   
-                  <p>Somatic psychology studies the link between physical matter and energy, the association of bodily structures and mental processes.</p>
+                  <?php 
+                  $rtitlett = get_the_content(); 
+               
+                  $tmt = substr(strip_tags($rtitlett), 0, 280 ); ?>
+                  <p><?php echo $tmt .'...'; ?></p>
                   <div class="box__"><img src="<?= get_template_directory_uri(); ?>/img/blog_inercamp.svg" alt="#"><span class="data">
                   <?php $post_date = get_the_date( 'F j, Y' ); echo $post_date; ?></span></div>
                 </div>
