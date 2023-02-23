@@ -20,7 +20,8 @@
 
                     
                        <?php if( get_sub_field('sub_title')): ?><!-- if under__the -->
-                          <li class="<?php if($esr == '1'){ echo 'active'; } ?>"><a href="#list_<?php echo $esr++; ?>_<?php echo get_row_index(); ?>"><?php the_sub_field('sub_title'); ?></a></li>
+                          <li class="<?php if($esr == '1'){ echo 'active'; } ?>">
+                          <a href="#list_<?php echo $esr++; ?>_<?php echo get_row_index(); ?>"><?php the_sub_field('sub_title'); ?></a></li>
                        <?php endif; ?>
                      
 
