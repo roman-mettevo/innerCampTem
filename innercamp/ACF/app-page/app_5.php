@@ -56,6 +56,7 @@
             <?php }
           ?>
         </div>
+        
       </div>
       <div class="col m9 s12 l4 xl4"><span></span>
       <?php 

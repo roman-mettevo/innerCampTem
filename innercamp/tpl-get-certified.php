@@ -245,8 +245,8 @@ get_header();
                                     </div>
                                     <div class="col">
                                         <div class="clock">400 hours</div>
-                                        <?php if( get_field('where') ): ?>  
-                                          <div class="status online"><?php the_field( 'where' ); ?></div>
+                                        <?php if( get_field('format') ): ?>  
+                                          <div class="status online"><?php the_field( 'format' ); ?></div>
                                         <?php endif; ?> 
                                     </div>
                                 </div>

@@ -23,10 +23,12 @@ get_header(); ?>
                     echo the_sub_field('content');
                   endif;             
                   $link = get_sub_field( 'link' ); ?>
-                  <?php if ( $link ) : ?>
+                  <?php 
+                  if ( $link ) : ?>
                     <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
-                  <?php endif; 
-                ?>                   
+                  <?php 
+                  endif; 
+                ?> 
               </div>
             </div>
           </div>
@@ -35,30 +37,75 @@ get_header(); ?>
       <?php endif;
     endwhile;
   endif; ?>
-    <div class="left__menu__scroll">
+    <div class="left__menu__scroll" data-scroll>
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
             <div class="box__">
-             
-           <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-              <input type="hidden" name="action" value="addcart_prod">
+            <?php if ( have_rows( 'workshop' ) ): ?>
+              <?php while ( have_rows( 'workshop' ) ) : the_row(); ?>
+                <?php if ( get_row_layout() == 'section_1' ) : ?>
+                  <?php 
+                    $nav_link = get_sub_field( 'button_navigation' ); ?>
+                    <?php 
+                    if ( $nav_link ) : ?>
+                      <a class="bundle" href="<?php echo esc_url( $nav_link['url'] ); ?>"><?php echo esc_html( $nav_link['title'] ); ?></a>
+                    <?php endif; 
+                endif;
+              endwhile;
+            endif; ?>
 
-                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Join now'); ?></a>
-                
-              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-          </form>
-
-          <ul>
-              <li class="active"><a href="#workshop_details">Workshop details</a></li>
-              <li><a href="#course-basics">Course basics</a></li>
-              <li><a href="#facilitators">Facilitators</a></li>
-              <li><a href="#membership">InnerCamp membership</a></li>
-              <li><a href="#how-to-get-ready">How to get ready?</a></li>
-              <li><a href="#workshop-participant-consent">Workshop participant consent</a></li>
-              <li><a href="#faq">FAQ</a></li>
+          <ul >
+          <?php 
+            if(have_rows('workshop')):
+              while(have_rows('workshop')) : the_row(); 
+                if( get_row_layout() == 'section_2' ){ 
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } else if(get_row_layout() == 'section_3') {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } elseif( get_row_layout() == 'section_4' ) {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } elseif( get_row_layout() == 'section_5' ) {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } elseif(get_row_layout() == 'section_7') {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } elseif (get_row_layout() == 'section_9') {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                } elseif (get_row_layout() == 'section_10') {
+                  if ( have_rows( 'navigation_menu' ) ) : 
+                    while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
+                      <li><a href="#<?php the_sub_field( 'menu_scroll' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                    <?php endwhile;
+                  endif;
+                }
+            endwhile;
+            endif;
+          ?>
+              
             </ul>
             </div>
           </div>
@@ -76,8 +123,6 @@ get_header(); ?>
                   while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
                     <div id="<?php the_sub_field( 'menu_scroll' ); ?>" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                   <?php endwhile; ?>
-                <?php else :  ?>
-                  <div id="workshop_details" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                 <?php endif; 
                 if ( have_rows( 'content_layout' ) ) : 
                   while ( have_rows( 'content_layout' ) ) : the_row(); ?>
@@ -98,22 +143,21 @@ get_header(); ?>
                             <?php endif; ?>
                             <ul class="info-list">
                               <?php 
-                                if(get_sub_field('data_time__to')) { ?>
-                                  <li class="info-item info-data"><?php the_sub_field( 'data_time__to' ); ?></li>
-                                <?php }
-                                if ( have_rows( 'icons_list' ) ) : 
-                                  while ( have_rows( 'icons_list' ) ) : the_row(); 
-                                  if(!empty(get_sub_field('list_title')) && !empty(get_sub_field('after_title_text'))) { ?>
+                                if(get_sub_field('data_time')) { ?>
+                                  <li class="info-item info-data"><?php the_sub_field( 'data_time' ); ?></li>
+                                <?php }?>
+                                
+                                  
                                     <li class="info-item info-time">
-                                      <div class="text-item"><?php the_sub_field( 'list_title' ); ?><span><?php the_sub_field( 'after_title_text' ); ?></span>
+                                      <div class="text-item">
+                                        <?php the_sub_field( 'start_time' ); ?> - 
+                                        <?php the_sub_field( 'end_time' ); ?>
+                                        <span><?php the_sub_field( 'after_title_text' ); ?></span>
                                       </div>
                                     </li>
-                                  <?php }
-                                endwhile; 
-                              endif; 
-                              if(get_sub_field('earth_button')) { ?>
-                                <li class="info-item check-time"><?php the_sub_field( 'earth_button' ); ?></li>
-                              <?php }
+                                  <li data-start="<?php the_sub_field( 'data_time__to' ); ?>" data-end="<?php the_sub_field( 'data_time__do' ); ?>"class="info-item check-time get-time_js" ><?php echo __('Check my local time here'); ?></li>
+                                    
+                              <?php 
                               if(get_sub_field('status')) { ?>
                                 <li class="info-item virtual-workshop"><?php the_sub_field( 'status' ); ?></li>
                               <?php }?>
@@ -137,8 +181,6 @@ get_header(); ?>
                     while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
                       <div id="<?php the_sub_field( 'menu_scroll' ); ?>" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                     <?php endwhile; ?>
-                  <?php else :  ?>
-                    <div id="course_basics" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                   <?php endif; 
                   ?>
                     <div class="img">
@@ -162,9 +204,7 @@ get_header(); ?>
                   if ( have_rows( 'navigation_menu' ) ) : 
                     while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
                       <div id="<?php the_sub_field( 'menu_scroll' ); ?>" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
-                    <?php endwhile; ?>
-                  <?php else :  ?>
-                    <div id="facilitators" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
+                    <?php endwhile; ?>                  
                   <?php endif; 
                     if(get_sub_field('title')) { ?>
                       <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
@@ -196,7 +236,10 @@ get_header(); ?>
                             }
                           ?>
                         </ul>
-                        <?php the_content(); ?>
+                        <div class="coach-description">
+                          <?php the_content(); ?>
+                        </div>
+                        
                       </div>
                     </div>
                     <?php wp_reset_postdata(); ?>
@@ -249,6 +292,7 @@ get_header(); ?>
                   <?php if ( $link ) : ?>
                     <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
                   <?php endif; 
+                  
                 ?>
               </div>
               <div class="join-now-arrow"></div>
@@ -278,9 +322,9 @@ get_header(); ?>
                   ?>              
                 </div>
                 <?php 
-                  $button= get_sub_field( 'button' ); ?>
-                  <?php if ( $button ) : ?>
-                    <a class="bundle" href="<?php echo esc_url($button['url'] ); ?>"><?php echo esc_html( $button['title'] ); ?></a>
+                  $second_link = get_sub_field( 'second_link' ); ?>
+                  <?php if ( $second_link ) : ?>
+                    <a class="bundle" href="<?php echo esc_url( $second_link['url'] ); ?>"><?php echo esc_html( $second_link['title'] ); ?></a>
                   <?php endif; 
                 ?>
               </div>
@@ -333,8 +377,6 @@ endif;
           while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
             <section id="<?php the_sub_field( 'menu_scroll' ); ?>" class="workshop__6 scroll__init">
           <?php endwhile; ?>
-        <?php else :  ?>
-          <section id="how-to-get-ready" class="workshop__6 scroll__init">
         <?php endif; 
         ?>       
           <div class="container">
@@ -379,7 +421,7 @@ endif;
 
                   $link = get_sub_field( 'link' );
                   if ( $link ) : ?>
-                    <a class="bundle" href="<?php echo esc_url( $link['url'] ); ?>"><?php echo esc_html( $link['title'] ); ?></a>
+                    <div class="bundle" data-fancybox data-src="#modal-3" ><?php echo esc_html( $link['title'] ); ?></div>
                   <?php endif; 
                 ?>
               </div>
@@ -395,8 +437,6 @@ endif;
                   while ( have_rows( 'navigation_menu' ) ) : the_row(); ?>
                     <div id="<?php the_sub_field( 'menu_scroll' ); ?>" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                   <?php endwhile; ?>
-                <?php else :  ?>
-                  <div id="workshop-participant-consent" class="col m12 s12 l12 xl9 offset-xl3 scroll__init">
                 <?php endif; 
               
                   if(get_sub_field('title')) { ?>
@@ -451,4 +491,161 @@ endif;
     endwhile;
   endif;
   ?>
+  <style>
+    .left__menu__scroll .bundle {
+      font: 700 14px/33px var(--ob);
+    }
+    @media (min-width: 1200px){
+      .left__menu__scroll .bundle:after {
+        width: 30px;
+      }
+    }
+    
+    @media (min-width: 320px) and (max-width: 1199px) {
+      .teacher .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+      
+  section.workshop__8 {
+    padding-bottom: 0;
+  }
+  section.workshop__8 .col:first-child {
+    margin-bottom: 171px;
+  }
+  @media(max-width: 600px) {
+    section.workshop__8 .col:first-child {
+      margin-bottom: 121px;
+    }
+  }
+
+  .workshop__9 {
+    margin-left: 15px;
+    padding-bottom: 183px;
+  }
+  @media(max-width: 1800px) {
+    .workshop__9 {
+      margin-left: 0;
+    }
+    
+  }
+
+  #faq .title {
+    margin-bottom: 49px;
+  }
+  @media(max-width: 600px) {
+    .workshop__9 {
+      padding-bottom: 117px;
+    }
+
+    #faq .title {
+      margin-bottom: 28px;
+      font: 400 28px/38px var(--p);
+    }
+  }
+
+  .dropdown {
+    background: #FFFFFF;
+    border-radius: 80px;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 40px 51px;
+    position: relative;
+  }
+
+  .dropdown::after {
+    position: absolute;
+    border: 1px solid #B68742;
+    border-radius: 17px;
+    width: 66px;
+    height: 66px;
+    content: '';
+    right: 51px;
+    top: 29px;
+    background: url(<?php echo get_template_directory_uri(); ?>/img/faq/chevron-down.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+    @media(max-width: 600px) {
+      .dropdown::after {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        top: 16px;
+        right: 14px;
+      }
+      
+    }
+
+    .dropdown.active::after {
+      transform: rotate(180deg);
+    }
+    .dropdown:last-child {
+      margin-bottom: 0;
+    }
+
+    @media(max-width: 600px) {
+      .dropdown {
+        border-radius: 14px;
+        padding: 23px 15px;
+        margin-bottom: 23px;
+      }
+
+      .row #faq.col {
+        padding: 0 31px;
+      }
+    }
+
+    .drop-button {
+      background: transparent;
+      outline: none;
+      font: 700 24px/40px var(--ob);
+      letter-spacing: 0.005em;
+      color: #424F44;
+      width: 100%;
+      text-align: left;
+    }
+
+    @media(max-width: 600px) {
+      .drop-button {
+        font-size: 14px;
+        line-height: 22px;
+        padding-left: 1px;
+        padding-right: 40px;
+      }
+    }
+
+    .dropdown .drop-text {
+      display: none;
+    }
+
+    .dropdown.active .drop-text {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding-left: 3px;
+      padding-right: 70px;
+      font: 400 24px/40px var(--o);
+      letter-spacing: 0.005em;
+      color: #424F44;
+    }
+
+    @media(max-width: 600px) {
+      .dropdown.active .drop-text {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+  </style>
+  <!-- //// MODAL ////-->
+    <div class="modal__style modal" id="modal-3" style="display: none;">
+      <div class="content_modal">
+          <!-- Calendly inline widget begin -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/d/dpg-9q6-b4v/call-with-innercamp" style="min-width:550px;height:850px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <!-- Calendly inline widget end -->
+      </div>
+    </div>
 <?php get_footer();

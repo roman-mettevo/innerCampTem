@@ -39,13 +39,26 @@ section.workshop__8 .agreement-readmore {
   background: transparent;
 }
 
-/* @media (max-width: 1200px) {
-  .certified__2 .experience-content .experience-item.trainings img {
-    max-height: 130px;
-    object-fit: cover;
+/*-----trainings-----*/
+section.certified__2 .experience-item.trainings .man {
+  font-weight: 700;
+}
+.careers__4 .career-form select option {
+  background: #fff;
+}
+section.careers__4 .career-form select:focus {
+  color: #9f9f9f !important;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  section.certified__2 .experience-item.trainings img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
   }
-} */
-
+  section.certified__2 .experience-item.trainings .item-title {
+    min-height: 130px;
+  }
+}
 @media (max-width: 992px) {
   section.careers__2 .careers__2-content {
     margin-left: 0;
@@ -56,5 +69,294 @@ section.workshop__8 .agreement-readmore {
   }
   section.careers__2 .careers__2-img img {
     width: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .experience-item .box__content .left-side .event-content .date {
+    height: 25px;
+  }
+  .experience-item.trainings .item-title {
+    min-height: 78px;
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.certified__2 .experience-item.trainings img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
+@media (min-width: 401px) and (max-width: 600px) {
+  section.certified__2 .experience-item.trainings img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  section.certified__2 .experience-item.trainings img {
+    object-position: 100% 20%;
+    max-height: 250px;
+    min-height: 250px;
+    height: unset !important;
+  }
+}
+
+/*-----Retreats-----*/
+@media (min-width: 992px) and (max-width: 1199px) {
+  section.retreats__2 .experience-item.retreats img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
+  }
+  section.retreats__2 .experience-item.retreats .item-title {
+    min-height: 86px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  section.retreats__2 .experience-item.retreats .item-title {
+    min-height: 58px;
+  }
+}
+@media (min-width: 601px) and (max-width: 767px) {
+  section.retreats__2 .experience-item.retreats {
+    width: 100%;
+  }
+  section.retreats__2 .experience-item.retreats .box__content::before {
+    top: -61px;
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.retreats__2 .experience-item.retreats img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
+@media (min-width: 401px) and (max-width: 600px) {
+  section.retreats__2 .experience-item.retreats img {
+    object-position: 100% 20%;
+    max-height: 300px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 400px) {
+  section.retreats__2 .experience-item.retreats img {
+    object-position: 100% 20%;
+    max-height: 250px;
+    min-height: 250px;
+    height: unset !important;
+  }
+}
+
+/*-----Workshops-----*/
+section.workshops__2 .experience-item .box__content .right-side .bundle {
+  white-space: nowrap;
+}
+@media (min-width: 992px) {
+  section.workshops__2 .experience-item .box__content .right-side .bundle {
+    max-width: 200px;
+    min-width: 200px;
+    width: 100%;
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.workshops__2 .experience-item.v-workshops {
+    max-width: unset;
+  }
+  section.workshops__2 .experience-item.v-workshops .right-side {
+    padding: 10px 0 0;
+  }
+}
+
+/*-----Home Page-----*/
+section.home__4 .trainings__ .box__content .bundle {
+  margin-top: 30px;
+}
+@media (min-width: 1200px) and (max-width: 1500px) {
+  section.home__2 .block__elips .images {
+    width: 400px;
+    min-width: 400px;
+    height: 400px;
+  }
+  section.home__2 .block__elips {
+    width: 700px;
+    height: 700px;
+  }
+  section.home__2 .block__elips .right__ > li:nth-child(1),
+  section.home__2 .block__elips .right__ > li:nth-child(4) {
+    margin-left: -120px;
+  }
+  section.home__2 .block__elips .right__ > li:nth-child(2),
+  section.home__2 .block__elips .right__ > li:nth-child(3) {
+    margin-left: 90px;
+  }
+}
+@media (max-width: 1200px) {
+  section.home__2 > .container:nth-child(4) > .row:first-child .arrows {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  section.home__4 .trainings__ .top__img {
+    height: unset !important;
+  }
+  section.home__4 .trainings__ .top__img img {
+    max-height: 250px;
+    min-height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+  section.home__4 .trainings__ {
+    height: unset;
+  }
+}
+
+@media (max-width: 991px) {
+  section.home__2 .splide__slide .bundle {
+    margin-top: 20px;
+    display: flex !important;
+  }
+  section.home__4 .trainings__ .top__img {
+    height: unset !important;
+  }
+  section.home__4 .trainings__ .top__img img {
+    max-height: 150px;
+    min-height: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+  section.home__4 .box__content .title__ {
+    height: 94px;
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.home__4 .trainings__ {
+    width: unset;
+  }
+}
+@media (max-width: 600px) {
+  section.home__2 .block__elips {
+    margin-left: 70px;
+  }
+  section.home__2 #slider__post .box__ {
+    border-radius: 17px;
+  }
+  section.home__2 #slider__post .box__::before {
+    border-radius: 17px;
+  }
+  section.home__2 .splide__slide .cont {
+    position: relative;
+  }
+  section.home__2 .splide__slide .bundle {
+    display: flex !important;
+    background: none;
+    white-space: nowrap;
+    position: absolute;
+    left: 18px;
+    bottom: 11px;
+    padding: 0;
+    height: auto;
+    width: auto;
+  }
+  section.home__4 #trainings .splide__slide {
+    padding: 50px 0px !important;
+  }
+  section.home__4 .box__content .title__ {
+    height: 65px;
+  }
+  section.home__4 .trainings__ {
+    width: unset;
+  }
+  section.home__4 #brand_logo .splide__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*----- Team-----*/
+@media (min-width: 1200px) and (max-width: 1500px) {
+  section.team__2 .team-nav-title {
+    font: 700 26px/36px var(--ob);
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  section.team__1 .title {
+    font: 400 52px/58px var(--p);
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.team__1 .title {
+    font: 400 40px/48px var(--p);
+  }
+}
+
+/*----- Download the app-----*/
+section.app__5 .block__ {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+section.app__3 .free_treal .box__ .bottom__ a {
+  box-shadow: none;
+}
+section.app__3 .free_treal .box__ .bottom__ a img {
+  box-shadow: 18px 22px 37px rgba(0, 0, 0, 0.14),
+    inset 5px 6px 14px rgba(0, 0, 0, 0.12);
+  padding: 0 !important;
+}
+section.app__3 .box__list .top > span:nth-child(2) {
+  align-items: center;
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  section.app__3 .box__list ul li p span {
+    margin: 0 !important;
+  }
+}
+@media (max-width: 600px) {
+  section.app__3 .box__list ul li p span {
+    margin: 0 !important;
+  }
+}
+/*-----About-----*/
+@media (min-width: 601px) and (max-width: 991px) {
+  section.about-us__1 .founder .autor {
+    margin: 0 15px 15px 0;
+  }
+  section.about-us__1 .founder .name {
+    padding: 15px 5px;
+  }
+}
+@media (max-width: 992px) {
+  section.about-us__1 .founder .name {
+    position: relative;
+    font-size: 24px;
+  }
+  section.about-us__1 .founder .name:before {
+    background: center / contain no-repeat url(../img/about_mark.svg);
+    width: 20px;
+    height: 45px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  section.about-us__1 .founder .name {
+    font-size: 24px;
+  }
+}
+
+/*-----corporate-----*/
+section.corporate__9 .col:nth-child(2) {
+  margin-bottom: 0;
+}
+
+/*-----Footer-----*/
+@media (max-width: 600px) {
+  body > footer[main] form [type='checkbox'],
+  body > footer form [type='checkbox'] {
+    min-width: 21px;
   }
 }

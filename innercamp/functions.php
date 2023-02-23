@@ -146,21 +146,21 @@ function innercamp_scripts() {
 	wp_enqueue_style( 'innercamp-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'innercamp-style', 'rtl', 'replace' );
   wp_enqueue_style('min-css', get_template_directory_uri() . '/css/min.css' );
-  
+
   wp_enqueue_style('naz-css', get_template_directory_uri() . '/css/naz.css' );
   wp_enqueue_style('ser-css', get_template_directory_uri() . '/css/ser.css' );
   wp_enqueue_style('sta-css', get_template_directory_uri() . '/css/sta.css' );
   wp_enqueue_style('iho-css', get_template_directory_uri() . '/css/iho.css' );
-  
-  
+
+
   wp_enqueue_script( 'main-min-js', get_stylesheet_directory_uri() .'/js/main.min.js', array(), '1.0', true );
     wp_enqueue_script( 'main-ajax-js', get_stylesheet_directory_uri() .'/js/main-ajax.js', array(), '1.0', true );
     wp_enqueue_script( 'common-js', get_stylesheet_directory_uri() .'/js/common.js', array(), '1.0', true );
-  
+
   wp_localize_script( 'main-ajax-js', 'php_vars', array('ajax_url' => admin_url("admin-ajax.php"), 'nonce' => wp_create_nonce('ajax-nonce'), 'idpages' => get_the_ID() ));
 
 	wp_enqueue_script( 'innercamp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-  
+
 	wp_enqueue_script( 'naz-js', get_template_directory_uri() . '/js/naz.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'ser-js', get_template_directory_uri() . '/js/ser.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'sta-js', get_template_directory_uri() . '/js/sta.js', array(), _S_VERSION, true );
@@ -259,19 +259,19 @@ add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
 		'redirect'		=> false,
 		'post_id' 		=> 'option'
  	));
-   
+
 //	acf_add_options_sub_page(array(
 //		'page_title' 	=> 'Theme Header Settings',
 //		'menu_title'	=> 'Header',
 //		'parent_slug'	=> 'general-settings',
 //	));
-//	
+//
 //	acf_add_options_sub_page(array(
 //		'page_title' 	=> 'Theme Footer Settings',
 //		'menu_title'	=> 'Footer',
 //		'parent_slug'	=> 'general-settings',
 //	));
-   
+
  }
 
 
@@ -297,16 +297,16 @@ function code_config($atts)
 // address
 		case "address":
 		   // add_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
-            
-            $address_phone = get_field('code_address', 'options'); 
- 
-            if( $address_phone ): 
+
+            $address_phone = get_field('code_address', 'options');
+
+            if( $address_phone ):
                   $address_phone_url = $address_phone['url'];
                   $address_phone_title = $address_phone['title'];
-                  $address_phone_target = $address_phone['target'] ? $address_phone['target'] : '_self'; 
+                  $address_phone_target = $address_phone['target'] ? $address_phone['target'] : '_self';
 
                return ' <a class="address" href="' .  esc_url( $address_phone_url ) . '"   target="' . esc_attr( $address_phone_target ) . '">' .   esc_html( $address_phone_title ) . '</a>';
-            endif; 
+            endif;
 			//remove_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
 			break;
 // email
@@ -331,9 +331,9 @@ function code_config($atts)
 // tel
 		case "tel":
 		//add_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
-            
-            
-            
+
+
+
 			$code_phone = get_field('code_phone', 'options');
 			$title_phone = get_field('title_phone', 'options');
 			if (!empty($atts['title'])) {
@@ -348,31 +348,31 @@ function code_config($atts)
 		case "phone_link":
 		//add_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
 
-            $set_phone = get_field('set_phone', 'options'); 
+            $set_phone = get_field('set_phone', 'options');
 
-            if( $set_phone ): 
+            if( $set_phone ):
 //                  $set_phone_url = $set_phone['url'];
 //                  $set_phone_title = $set_phone['title'];
-//                  $set_phone_target = $set_phone['target'] ? $set_phone_link['target'] : '_self'; 
+//                  $set_phone_target = $set_phone['target'] ? $set_phone_link['target'] : '_self';
 
                return ' <a href="tel:' .  preg_replace('![^0-9+]+!', '', $set_phone)  . '">' .    $set_phone  . '</a>';
-            endif; 
-           
+            endif;
+
 			// remove_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
 			break;
 		case "next_phone_link":
 		//add_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
 
-            $set_phone = get_field('next_set_phone', 'options'); 
- 
-            if( $set_phone ): 
+            $set_phone = get_field('next_set_phone', 'options');
+
+            if( $set_phone ):
 //                  $set_phone_url = $set_phone['url'];
 //                  $set_phone_title = $set_phone['title'];
-//                  $set_phone_target = $set_phone['target'] ? $set_phone_link['target'] : '_self'; 
+//                  $set_phone_target = $set_phone['target'] ? $set_phone_link['target'] : '_self';
 
               return ' <a href="tel:' .  preg_replace('![^0-9+]+!', '', $set_phone)  . '">' .    $set_phone  . '</a>';
-            endif; 
-           
+            endif;
+
 			// remove_filter('acf/settings/current_language', 'cl_acf_set_language', 100);
 			break;
 
@@ -400,13 +400,13 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 add_action( 'wp_enqueue_scripts', '_remove_styler', PHP_INT_MAX );
 function _remove_styler() {
     wp_dequeue_style( 'select2' );
-    wp_dequeue_style('select2.css'); 
-  
-    wp_dequeue_style('wc-blocks-style'); 
-    wp_dequeue_style('wc-blocks-style.css');  
-  
-    wp_dequeue_style('style.min'); 
-    wp_dequeue_style('style.min.css'); 
+    wp_dequeue_style('select2.css');
+
+    wp_dequeue_style('wc-blocks-style');
+    wp_dequeue_style('wc-blocks-style.css');
+
+    wp_dequeue_style('style.min');
+    wp_dequeue_style('style.min.css');
 
 }
 
@@ -416,9 +416,8 @@ add_image_size( 'blog', 675, 529, true );
 add_image_size( 'prevblog', 149, 179, true );
 add_image_size( 'workshop', 400, 550, true );
 
-add_image_size( 'team', 66, 66, true ); 
+add_image_size( 'team', 66, 66, true );
 
 
 
 //add_theme_support( 'post-thumbnails', array( 'post', 'page', 'team_member' ) );
-

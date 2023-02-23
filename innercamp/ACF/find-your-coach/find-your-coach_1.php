@@ -1,16 +1,16 @@
-<?php
-/**
- * Template Name: Find Your Coach Page*
- */
-get_header(); ?>
-
-
+<?php // check if the flexible content field has rows of data
+if( have_rows('find_your_coach') ):
+     // loop through the rows of data
+    while ( have_rows('find_your_coach') ) : the_row(); ?>
+    <?php if( get_row_layout() == 'section_1' ): ?>
+    
+    
 <section class="find-your-coach">
   <div class="header-bg"></div>
   <div class="container">
     <div class="row">
       <div class="col m12 s12 l12 xl12">
-        <h2 class="title">Find your coach</h2>
+        <h2 class="title"><?php echo the_title(); ?></h2>
         <div class="find-your-coach__columns">
           <div class="find-your-coach__filter-wrapper">
             <div class="find-your-coach__filter">
@@ -137,8 +137,11 @@ get_header(); ?>
   </div>
 </section>
 
+    
+    
+    <?php // elseif( get_row_layout() == 'section_2' ): ?>
+    
 
-
-
-<?php
-get_footer();
+    <?php endif;
+    endwhile;
+endif; ?>

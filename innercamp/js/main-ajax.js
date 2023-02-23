@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function(){
                                        
 //                                    console.log(success);
 
-                                  console.log('success add');
+//                                  console.log('success add');
                                     
                                   window.location.reload(function(){
                                        setTimeout(function(){ 

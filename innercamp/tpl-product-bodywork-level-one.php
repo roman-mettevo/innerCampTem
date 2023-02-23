@@ -1163,6 +1163,7 @@ endif; ?>
       </div>
     </div>
   </section>
+  
   <div class="modal bodywork-first__11" id="modal__update" style="display: none;">
     <div class="bodywork-modal-header">
       <h3 class="heading">Upgrade your experience with a retreat?</h3><span>June 2023</span>

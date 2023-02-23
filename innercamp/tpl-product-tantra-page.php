@@ -3,16 +3,160 @@
  * Template Name:  -- PRODUCT --  2.5 Tantra Page* 
  * Template Post Type: product, page, post
  */
-get_header(); ?>
-    
+get_header(); 
+$product = wc_get_product( $post->ID );
+?>    
+
+<?php if ( have_rows( 'product_tantra' ) ): ?>
+	<?php while ( have_rows( 'product_tantra' ) ) : the_row(); ?>
+		<?php if ( get_row_layout() == 'section_1' ) : ?>
+    <section class="tantra__1" data-menuscroll <?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+      <div class="container">
+        <div class="row">
+          <?php 
+            if(get_sub_field('sup_title')) { ?>
+              <div class="sub"><?php the_sub_field( 'sup_title'); ?></div>
+            <?php }
+            if(get_sub_field('title')) { ?>
+              <h1 class="title"><?php the_sub_field('title'); ?></h1>
+            <?php }
+
+            if ( have_rows( 'box_list' ) ) : ?>
+              <div class="box__content">
+              <?php while ( have_rows( 'box_list' ) ) : the_row(); ?>
+              <p class="<?php if(get_row_index() == '1'){ ?>breathwork 
+                <?php } else if(get_row_index() == '2'){ ?> level
+                <?php } else if(get_row_index() == '3'){ ?>  date
+                <?php } else if(get_row_index() == '4'){ ?> status
+                <?php } ?>"><?php the_sub_field('item_title'); ?></p>
+              <?php endwhile; ?>?
+              </div>
+            <?php endif; ?>
+          
+          <div class="tantra-description">
+            <?php 
+              if(get_sub_field('content')) { ?>
+                <?php the_sub_field( 'content' ); ?>
+              <?php }
+            ?>
+          </div>
+          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+            </form>  
+        </div>
+      </div>
+    </section>
+    <?php endif; ?>
+    <?php endwhile; ?>
+  <?php endif; ?>
 
     <div class="left__menu__scroll">
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
-            <div class="box__"><a class="bundle" href="javascript:;">Book now</a>
+            <div class="box__">
+              <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                <input type="hidden" name="action" value="addcart_prod">
+                  <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+                <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+              </form>  
               <ul>
-                <li class="course-basics active"><a href="#course-basics">Course basics</a></li>
+              <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): 
+                while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row();
+                  if( get_row_layout() == 'section_2' ){  
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif; 
+                  }  elseif( get_row_layout() == 'section_3' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_4' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_5' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_7' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_8' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_9' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_10' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_14' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_15' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_16' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_17' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_19' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_20' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } ?>
+                <?php endwhile;
+              endif; ?>
+                <!-- <li class="course-basics active"><a href="#course-basics">Course basics</a></li>
                 <li class="accreditations"><a href="#accreditations">Accreditations</a></li>
                 <li class="benefits"><a href="#benefits">Benefits</a></li>
                 <li class="about-course"><a href="#about-course">About the course</a></li>
@@ -25,7 +169,7 @@ get_header(); ?>
                 <li class="testimonials"><a href="#testimonials">Testimonials</a></li>
                 <li class="why-we"><a href="#why-we">Why we are loved</a></li>
                 <li class="book-now"><a href="#">Book now</a></li>
-                <li class="faq"><a href="#">FAQ</a></li>
+                <li class="faq"><a href="#">FAQ</a></li> -->
               </ul>
             </div>
           </div>
@@ -33,837 +177,1009 @@ get_header(); ?>
       </div>
     </div>
     
+  <section class="tantra__2">
+    <?php if ( have_rows( 'product_tantra' ) ): ?>
+      <?php while ( have_rows( 'product_tantra' ) ) : the_row(); ?>
+        <?php if ( get_row_layout() == 'section_2' ) : ?>
+          <div class="tantra__2-1">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="course-basics scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="course-basics">
+                  <?php endif; ?>
+                    <div class="top-content">
+                      <div class="basics-img">
+                      <?php $post_image = get_sub_field( 'post_image' ); ?>
+                      <?php if ( $post_image ) : ?>
+                        <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                      <?php endif; ?>
+                          <?php if(get_sub_field('label_on_image')) { ?>
+                            <p class="level"><?php the_sub_field( 'label_on_image' ); ?></p>
+                          <?php } 
+                        ?>
+                      </div>
+                      <div class="basics-content">
+                        <div class="top-row">
+                          <div class="training-price">
+                            <span><?php echo __('Price:'); ?> </span>
+                            <span><?= $product->get_price_html(); ?></span>
+                          </div>
+                        <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                            <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                              <input type="hidden" name="action" value="addcart_prod">
+                                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Start my journey'); ?></a>
+                                <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button> 
+                          </form>
+                        </div>
+                        
+                        <div class="bottom-row">
+                        <?php if ( have_rows( 'list_of_parameters' ) ) : ?>
+                          <div class="bottom-row">
+                            <?php while ( have_rows( 'list_of_parameters' ) ) : the_row();
+                              if(get_sub_field('period')) { ?>
+                                <div class="date"><?php the_sub_field( 'period' ); ?></div>
+                              <?php }
+                              if(get_sub_field('video_quantity')) { ?>
+                                <div class="video-qty"><?php the_sub_field( 'video_quantity' ); ?></div>
+                              <?php }
+                              if(get_sub_field('course_total_hours')) { ?>
+                                <div class="clock"><?php the_sub_field( 'course_total_hours' ); ?></div>
+                              <?php }
+                              if(get_sub_field('status')) { ?>
+                                <div class="status online"><?php the_sub_field( 'status' ); ?></div>
+                              <?php }
+                              endwhile; ?>
+                          </div>
+                        <?php endif; ?>
+                      </div>
+                    </div></div>
+                    <div class="bottom-content">
+                      <div class="bottom-content-descriptions">
+                        <?php if ( have_rows( 'bottom_block' ) ) : ?>
+                          <?php while ( have_rows( 'bottom_block' ) ) : the_row(); ?>
+                            <?php the_sub_field( 'bottom_text' ); ?>
+                          <?php endwhile; ?>
+                        <?php endif; ?>                    
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      
-    <section class="tantra__1" style="background: url('<?= get_template_directory_uri(); ?>/img/tantra/tantra-1.png') no-repeat top/cover" data-menuscroll>
-      <div class="container">
-        <div class="row">
-          <div class="sub">Levels 1 + 2</div>
-          <h1 class="title">Tantric Embodiment Teacher Training</h1>
-          <div class="box__content"><a class="breathwork" href="#">Tantra</a><a class="level" href="#">levels 1 + 2</a><a class="date" href="#">Jan 10, 2023 - Nov 28, 2023</a><a class="status" href="#">online course</a></div>
-          <div class="tantra-description">
-            <p>Learn how to the InnerCamp Tantric Embodiment Method &reg; can help you and your clients awaken, move and direct their dormant energy for the flourishing of love on all levels.</p>
-          </div><a class="bundle" href="#">Book now</a>
-        </div>
-      </div>
-    </section>
-    
-    <section class="tantra__2">
-      <div class="tantra__2-1">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="course-basics" id="course-basics">
-                <div class="top-content">
-                  <div class="basics-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-2.png" alt=""><a class="level" href="#">Levels 1 + 2</a></div>
-                  <div class="basics-content">
-                    <div class="top-row">
-                      <div class="training-price"><span>Price: </span><span>2200&euro;</span></div><a class="bundle" href="#">Start my journey</a>
+        <?php elseif( get_row_layout() == 'section_3' ) : ?>
+          <div class="tantra__2-2">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="accreditations scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="accreditations">
+                  <?php endif; ?>
+                    <div class="accreditations-content">
+                    <?php 
+                      if(get_sub_field('sub_title')) { ?>
+                        <h3 class="sub"><?php the_sub_field( 'sub_title' ); ?></h3>
+                      <?php } 
+                      if(get_sub_field('text_top')) {
+                        the_sub_field( 'text_top' );
+                      }                  
+                    ?>
                     </div>
-                    <div class="bottom-row">
-                      <div class="date">9 months</div>
-                      <div class="video-qty">50+ videos</div>
-                      <div class="clock">500 hours in total</div>
-                      <div class="status online">online course</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="bottom-content">
-                  <div class="bottom-content-descriptions">
-                    <p>You have the option to purchase the levels <strong>separately</strong>. <a href="#">See details</a></p>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-2">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="accreditations" id="accreditations">
-                <div class="accreditations-content">
-                  <h3 class="sub">INNERCAMP IS AN ACCREDITED SCHOOL</h3>
-                  <p>InnerCamp and its <strong>Tantric Embodiment Method</strong> are registered and accredited by <strong>The Complementary Medical Association.</strong></p>
-                  <p>Our courses are accredited by the leading independent <strong>CPD accreditation institution.</strong></p>
-                </div>
-                <ul class="list_img">
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/brand_1.svg" alt=""></li>
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/brand_3.svg" alt=""></li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-3">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <h2 class="title">Tantric Embodiment helps to:</h2>
-              <article class="benefits" id="benefits">
-                <div class="benefits-content">
-                  <ul class="benefits-list">
-                    <li>Release both emotional and physical toxins from the body.</li>
-                    <li>Reduce stress, anxiety and depression.</li>
-                    <li>Enhance love, intimacy and sexuality.</li>
-                    <li>Improve sleep quality and quality of life.</li>
-                    <li>Release physical, emotional and energetic blockages.</li>
-                    <li>Accept yourself for who you are, feel confident and whole.</li>
-                    <li>Heal your inner child.</li>
-                    <li>Awaken your Kundalini energy.</li>
-                  </ul>
-                </div>
-                <div class="benefits-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-3.png" alt=""></div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-4">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="breathwork-about" id="about-course">
-                <h2 class="title">About the Course</h2>
-                <div class="about-wrap">
-                  <div class="about-img"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/about_course_2.png" alt=""></div>
-                  <div class="about-content">
-                    <h3>Our course is based on a scientific and spiritual approach to Tantra.</h3>
-                    <p>It is a blend of Kashmir Shaivism, non-dual Tantra, Tibetan Tantric Buddhism, Taoist Tantrism, together with modern psychology and holistic practices. <strong>The InnerCamp Tantric Embodiment Method</strong>  is structured so that it engages, encourages and compels you to put theory into practice in your own customised way. Our system gives you the time for integration, to embody the theory, along with the concepts and practices we teach.</p><a class="bundle-download" href="#">Download Brochure</a>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-5">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="tantra-about-program">
-                <div class="top-row">
-                  <div class="tantra-about-program-content">
-                    <div class="tantra-about-program-post">
-                      <h3 class="title">Level 1</h3>
-                      <p>It is a blend of classical tantra (Kashmir Shaivism, non-dual Tantra, Tibetan Buddhist Tantra, Taoist Tantra), together with modern psychology and holistic practices. Upon successful completion of Level 1, students will be presented with the Tantra Practitioner Certificate proving their active participation in the course. These newly acquired skills are for personal use only.</p>
-                    </div>
-                    <div class="tantra-about-program-post">
-                      <h3 class="title">Level 2</h3>
-                      <p>Level 2 focuses on learning more advanced tantric embodiment tools, how to guide one-on-one and group sessions, holistic coaching, techniques to hold the space, the art of teaching and how to organise Tantra workshops and retreats.</p>
-                    </div>
-                  </div>
-                  <div class="tantra-about-program-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-3a.png" alt=""></div>
-                </div>
-                <div class="full-width-row">
-                  <p>In order to receive the Tantric Embodiment Certificate and be able to facilitate your own events and work with clients, you will need to successfully complete both levels.</p>
-                </div>
-                <div class="bottom-row">
-                  <h2 class="title">What this course is NOT:</h2>
-                  <ul class="list">
-                    <li>Our Tantric Embodiment training is not a Tantra-Yoga course and we will not practice asanas.</li>
-                    <li>Our Tantra Method is not a sex training course and no sex will be performed during class.</li>
-                    <li>We don&apos;t follow any religion or sect.</li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-6">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="program" id="program">
-                <div class="top-program-row">
-                  <h2 class="title">The Program</h2>
-                  <div class="coaches-img-list"><span>Facilitated by </span>
-                    <ul>
-                      <li><img src="<?= get_template_directory_uri(); ?>/img/team/coach_1.webp" alt=""></li>
-                      <li><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt=""></li>
-                      <li><img src="<?= get_template_directory_uri(); ?>/img/team/coach_11.webp" alt=""></li>
-                      <li><img src="<?= get_template_directory_uri(); ?>/img/team/coach_12.webp" alt=""></li>
+                    <ul class="list_img">
+                    <?php 
+                        $logo_1 = get_sub_field( 'logo_1' ); 
+                        $logo_2 = get_sub_field( 'logo_2' ); 
+                      ?>
+                      <?php if ( $logo_1 ) : ?>
+                        <li><img src="<?php echo esc_url( $logo_1['url'] ); ?>" alt="<?php echo esc_attr( $logo_1['alt'] ); ?>" /></li>
+                      <?php endif;     
+                      if ( $logo_2 ) : ?>
+                        <img src="<?php echo esc_url( $logo_2['url'] ); ?>" alt="<?php echo esc_attr( $logo_2['alt'] ); ?>" />
+                      <?php endif; ?>
                     </ul>
-                  </div>
+                  </article>
                 </div>
-                <div class="tabs-row">
-                  <div class="tabs-list">
-                    <button class="tab-item" name="tab-1">Level 1</button>
-                    <button class="tab-item" name="tab-2">Level 2</button>
-                  </div>
-                  <div class="event-date">
-                    <div class="clock">250 hours</div>
-                    <div class="date">Jan 10, 2023 - May 9, 2023</div>
-                  </div>
-                </div>
-                <div class="program-content-wrap">
-                  <div class="program-content active" id="tab-1">
-                    <h3 class="content-title">Level 1: Practitioner Certificate</h3>
-                    <ul class="program-list">
-                      <li class="program-item">
-                        <h4 class="item-title">Tantra Fundamentals</h4><span class="item-time">75 hours</span>
-                        <ul class="subitem-list">
-                          <li>History of Tantra</li>
-                          <li>Tantra and boundaries</li>
-                          <li>Tantric core principles</li>
-                          <li>Tantric tools</li>
-                          <li>Compassionate sharing</li>
-                          <li>Mindfulness in intimacy</li>
-                          <li>Cultivating and trusting your intuition</li>
-                          <li>The Feminine Principle in Tantra</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Tantra and Breathwork</h4><span class="item-time">15 hours</span>
-                        <ul class="subitem-list">
-                          <li>Pranayama</li>
-                          <li>Connected breathwork</li>
-                          <li>Breathing practices to achieve Oneness</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Tantric Tools</h4><span class="item-time">15 hours</span>
-                        <ul class="subitem-list">
-                          <li>Grounding practices</li>
-                          <li>Transfiguration</li>
-                          <li>Consecration</li>
-                          <li>Desire as a Tantric path</li>
-                          <li>Heart expansion</li>
-                          <li>Polarity</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Healing Practices</h4><span class="item-time">50 hours</span>
-                        <ul class="subitem-list">
-                          <li>Awaken the three centers</li>
-                          <li>Healing trauma</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Energy Work</h4><span class="item-time">70 hours</span>
-                        <ul class="subitem-list">
-                          <li>Polarity work</li>
-                          <li>Chakras</li>
-                          <li>Energy work</li>
-                          <li>Healing Masculine distortions</li>
-                          <li>Healing Feminine distortions</li>
-                          <li>Healing sexual energy</li>
-                          <li>Awakening sexual energy</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Physical Touch</h4><span class="item-time">15 hours</span>
-                        <ul class="subitem-list">
-                          <li>Physical touch</li>
-                          <li>Boundaries and physical touch</li>
-                        </ul>
-                      </li>
-                      <li class="program-item">
-                        <h4 class="item-title">Tantra and Death</h4><span class="item-time">10 hours</span>
-                        <ul class="subitem-list">
-                          <li>Death Awareness</li>
-                          <li>Tantra and Death</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="program-content" id="tab-2">
-                    <h3 class="content-title">Part 2</h3>
-                  </div>
-                </div>
-              </article>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="tantra__2-7">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="facilitators" id="facilitators">
-                <div class="container">
-                  <div class="row">
-                    <div class="col m12 s12 l9 xl9">
-                      <h2 class="title">The training is facilitated by</h2>
+        <?php elseif( get_row_layout() == 'section_4' ) : ?>
+          <div class="tantra__2-3">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php 
+                    if(get_sub_field('title')) { ?>
+                      <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                    <?php } ?>
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="benefits scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="benefits">
+                    <?php endif; ?>
+                    <div class="benefits-content">
+                    <?php 
+                      if ( have_rows( 'checkboxes_list' ) ) : ?>
+                        <ul class="benefits-list">
+                          <?php while ( have_rows( 'checkboxes_list' ) ) : the_row(); ?>
+                            <li><?php the_sub_field( 'text_item' ); ?></li>
+                          <?php endwhile; ?>
+                        </ul>
+                    <?php endif; ?>
                     </div>
-                    <div class="col m12 s12 l3 xl3 facilitator-arrow-nav">
-                      <div class="arrows"><a class="left_a previous-button" href="javascript:;">
-                          <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.292892 7.2929C-0.0976296 7.68342 -0.0976295 8.31659 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928935C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM45 7L1 7L1 9L45 9L45 7Z" fill="#B9B9B9"></path>
-                          </svg></a><a class="right_a next-button" href="javascript:;">
-                          <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#B68742"></path>
-                          </svg></a></div>
+                    <div class="benefits-img"><?php $images = get_sub_field( 'image' ); ?>
+                      <?php if ( $images ) : ?>
+                        <img src="<?php echo esc_url( $images['url'] ); ?>" alt="<?php echo esc_attr( $images['alt'] ); ?>" />
+                      <?php endif; ?>
                     </div>
-                  </div>
+                  </article>
                 </div>
-                <div class="facilitators-slider">
-                  <div class="splide" id="facilitator-slider" aria-roledescription="carousel">
-                    <div class="splide__track">
-                      <ul class="splide__list">
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_1.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute; 1</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute;</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute;</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute;</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute;</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li class="splide__slide">
-                          <div class="coach-item">
-                            <div class="coach-photo"><img src="<?= get_template_directory_uri(); ?>/img/team/coach_5.webp" alt="">
-                              <div class="single-category">InnerCamp founder</div>
-                            </div>
-                            <div class="coach-content">
-                              <h2 class="coach-name">Alexis Alcal&aacute;</h2>
-                              <div class="categories"><a href="#">InnerCamp founder</a><a href="#">Holistic coach</a><a href="#">Breathwork master</a><a href="#">Tantra teacher</a></div>
-                              <div class="coach-description">
-                                <p>Certified executive and personal coach, breathwork master and tantra teacher who intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash that power into their lives and the world. Alexis&rsquo; work revolves around people coaching in different spheres of life. He has worked with different companies across Europe, Africa and Asia as a trainer, mentor, manager and coach. He is someone whose life graph took an astounding turnaround when he changed his own life with the method he created.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="tantra__2-8">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="certificate" id="certificate">
-                <div class="certificate-photo"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/Certificate.png" alt=""></div>
-                <div class="certificate-content">
-                  <h2>Become <strong>
-                      a Tantric Embodiment
-                      Facilitator</strong> from the comfort of your
-                                                    home and be accredited to facilitate in
-                                                    any part of the world.
-                  </h2><a class="bundle" href="#">Enroll now</a>
+        <?php elseif( get_row_layout() == 'section_5' ) : ?>
+          <div class="tantra__2-4">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 s12 l12 xl9 offset-xl3">
+                  <article class="breathwork-about" id="about-course">
+                  <?php 
+                          if(get_sub_field('title')) { ?>
+                            <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                          <?php }
+                        ?>
+                    <div class="about-wrap">
+                      <div class="about-img">
+                        <?php $image = get_sub_field( 'image' ); 
+                        if ( $image ) : ?>
+                          <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+                        <?php endif; ?>
+                      </div>
+                      <div class="about-content">
+                        <?php
+                          if(get_sub_field('text')) { ?>
+                            <h3><?php the_sub_field( 'text' ); ?></h3>
+                          <?php }?>
+                          <?php $download_button = get_sub_field( 'download_button' ); 
+                              if ( $download_button ) : ?>
+                                <a  class="bundle-download" href="<?php echo esc_url( $download_button['url'] ); ?>"><?php echo __('Download Brochure'); ?></a>
+                            <?php endif; ?>
+                      </div>
+                    </div>
+                  </article>
                 </div>
-              </article>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="tantra__2-9">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="tantra-optional-retreat" id="optional-retreat">
-                <h2 class="title">Exotic International Tantra Retreat</h2>
-                <div class="content-wrap">
-                  <div class="tantra-optional-post">
-                    <div class="tantra-optional-post-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-6.png" alt=""></div>
-                    <div class="tantra-optional-post-content">
-                      <div class="location">Spain</div>
-                      <div class="description">
-                        <p>Upgrade your InnerCamp Bodywork experience with our one-of-a-kind retreat that blends 3 holistic dominants &ndash; Breathwork, Tantra, and Bodywork.</p>
-                      </div><a class="bundle-download" href="#">Download our Retreat Brochure</a>
-                    </div>
-                  </div>
-                  <div class="tantra-optional-post">
-                    <div class="tantra-optional-post-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-4.png" alt=""></div>
-                    <div class="tantra-optional-post-content">
-                      <p>Over the course of four days, InnerCamp will gently guide you along your own healing journey.</p>
-                      <p>Each day will unlock new tools and techniques to help you free your body and mind from toxic patterns and limiting beliefs, tap into your inherent wisdom, and connect more authentically with the people who matter.</p>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-10">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <div class="session-wrap">
-                <h2 class="title">Live Sessions</h2>
-                <article class="session" id="session">
+      <?php elseif( get_row_layout() == 'section_6' ) : ?>
+        <div class="tantra__2-5">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <article class="tantra-about-program">
                   <div class="top-row">
-                    <div class="session-content-wrap">
-                      <div class="session-schedule">
-                        <div class="clock">6:30 pm &mdash; 8:30 pm CET</div><span>*Rest break every 3 weeks approx.</span><span>*Amsterdam / Paris time zone</span>
-                        <div class="calen">Thursdays (biweekly)</div><a class="bundle-check" href="#">Check my local time here</a>
-                        <div class="schedule-date">
-                          <h4 class="year">2023:</h4>
-                          <ul class="month">
-                            <li>Jan 10, Jan 17, Jan 31 </li>
-                            <li>Feb 7, Feb 21, Feb 28</li>
-                            <li>Mar 7, Mar 21</li>
-                            <li>Apr 11, Apr 18</li>
-                            <li>May 2, May 9</li>
-                            <li>Jun 6, Jun 13</li>
-                            <li>Jul 4, Jul 11 </li>
-                            <li>Aug 1, Aug 8, Aug 15</li>
-                            <li>Sep 5, Sep 12, Sep 26</li>
-                            <li>Oct 3, Oct 17, Oct  24, Oct 31</li>
-                            <li>Nov 21, Nov 28</li>
+                    <div class="tantra-about-program-content">
+                      <?php if ( have_rows( 'levels' ) ) : ?>
+                        <div class="breathwork-about-program-post">
+                          <?php while ( have_rows( 'levels' ) ) : the_row();
+                            if(get_sub_field('level_title')) { ?>
+                              <h3 class="title"><?php the_sub_field( 'level_title' ); ?></h3>
+                            <?php }
+
+                            if(get_sub_field('level_text')) {
+                              the_sub_field( 'level_text' );
+                            }
+                          endwhile; ?>
+                        </div>
+                      <?php endif; ?>
+                    </div>
+                    <div class="tantra-about-program-img">
+                      <?php $image_post = get_sub_field( 'image_post' ); ?>
+                      <?php if ( $image_post ) : ?>
+                        <img src="<?php echo esc_url( $image_post['url'] ); ?>" alt="<?php echo esc_attr( $image_post['alt'] ); ?>" />
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="full-width-row">
+                    <?php 
+                      if(get_sub_field('full_width_text')) {
+                        the_sub_field( 'full_width_text' ); 
+                      }
+                    ?>
+                  </div>
+                  <?php if ( have_rows( 'bottom_text_block' ) ) : ?>
+                    <div class="bottom-row">
+                      <?php while ( have_rows( 'bottom_text_block' ) ) : the_row(); 
+                      if(get_sub_field('bottom_text_title')) { ?>
+                        <h2 class="title"><?php the_sub_field( 'bottom_text_title' ); ?></h2>
+                      <?php }
+
+                      if ( have_rows( 'bottom_text_list' ) ) : ?>
+                        <ul class="list">
+                          <?php while ( have_rows( 'bottom_text_list' ) ) : the_row(); ?>
+                            <li><?php the_sub_field( 'item' ); ?></li>
+                          <?php endwhile; ?>
+                        </ul>
+                      <?php endif; ?>
+                    <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php elseif( get_row_layout() == 'section_7' ) : ?>
+        <div class="tantra__2-6">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="program scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="program">
+                <?php endif; ?>
+                <div class="top-program-row">
+                  <?php if( get_sub_field('title')): ?><!-- if under__the -->
+                    <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                  <?php endif; ?>  
+                  <div class="coaches-img-list">
+                    <?php if( get_sub_field('faciliated_label')): ?>
+                      <span><?php the_sub_field('faciliated_label'); ?></span>
+                    <?php endif; ?>
+                    <?php
+                      $featured_posts = get_sub_field('faciliated_imgs');
+                      if( $featured_posts ): ?>
+                        <ul>
+                        <?php foreach( $featured_posts as $post ): 
+
+                                        // Setup this post for WP functions (variable must be named $post).
+                                        setup_postdata($post); ?>
+                                        <li>
+                                        <?php if(get_the_post_thumbnail_url()){ ?> 
+                                          <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> <?php } ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                    <?php 
+                                    // Reset the global post object so that the rest of the page works correctly.
+                                    wp_reset_postdata(); ?>
+                              <?php endif; ?>
+                            </div>
+                          </div>
+                          <div class="tabs-row">
+                            <?php if( have_rows('tabs') ): 
+                              $counter=1;
+                              ?>
+                              <div class="tabs-list">
+                              <?php while( have_rows('tabs') ): the_row(); ?>
+                                <button class="tab-item" name="tab-<?php echo $counter; ?>"><?php echo get_sub_field('tab_name'); ?></button>
+                              <?php
+                              $counter++;
+                              endwhile; ?>
+                              </div>
+                            <?php endif; ?>
+                            <div class="event-date">
+                            <?php if( get_sub_field('course_hours')): ?>
+                              <div class="clock"><?php the_sub_field('course_hours'); ?></div>
+                            <?php endif; ?>
+
+                            <?php if( have_rows('calendar') ): ?>
+
+                            <?php while( have_rows('calendar') ): the_row();
+                                // vars  ?>
+
+                                <div class="date"><?php the_sub_field('to_data'); ?> - <?php the_sub_field('do_data'); ?></div>
+
+                              <?php endwhile; ?>
+
+                            <?php endif; ?>
+                            </div>
+                          </div>
+                          <div class="program-content-wrap">
+                          <?php if ( have_rows( 'tabs' ) ) :
+                            $counter=1;
+                            ?>
+                            <?php while ( have_rows( 'tabs' ) ) : the_row(); ?>
+
+
+                            <div class="program-content" id="tab-<?php echo $counter; ?>">
+                              <?php 
+                              if(get_sub_field('tab_title')) { ?>
+                                <h3 class="content-title"><?php the_sub_field( 'tab_title' ); ?></h3>
+                              <?php }
+                              ?>
+                              <?php if ( have_rows( 'progtam_list' ) ) : ?>
+                                <ul class="program-list">
+                                  <?php while ( have_rows( 'progtam_list' ) ) : the_row(); ?>
+                                  <?php 
+                                    if(get_sub_field('program_item_title')) { ?>
+                                      <li class="program-item">
+                                        <h4 class="item-title"><?php the_sub_field( 'program_item_title' ); ?></h4>
+                                        <span class="item-time"><?php the_sub_field( 'hours' ); ?></span>
+                                        <?php if ( have_rows( 'program_item_list' ) ) : ?>
+                                          <ul class="subitem-list">
+                                            <?php while ( have_rows( 'program_item_list' ) ) : the_row(); ?>
+                                              <li><?php the_sub_field( 'item' ); ?></li>
+                                              <?php endwhile; ?>
+                                          </ul> 
+                                        
+                                        <?php endif; ?>
+                                      </li>
+                                    <?php }
+                                  ?>
+                                <?php endwhile; ?>
+                                </ul>
+                              <?php endif; ?>
+                            </div>
+                            <?php 
+                          $counter++;
+                          endwhile; ?>
+                            <?php endif; ?>
+                          </div>
+                        </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php elseif( get_row_layout() == 'section_8' ) : ?>
+        <div class="tantra__2-7">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="facilitators scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                  <article class="facilitators">
+                <?php endif; ?>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col m12 s12 l9 xl9">
+                      <?php 
+                        if(get_sub_field('title')) { ?>
+                          <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                        <?php }
+                      ?>
+                      </div>
+                      <div class="col m12 s12 l3 xl3 facilitator-arrow-nav">
+                        <div class="arrows"><a class="left_a previous-button" href="javascript:;">
+                            <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0.292892 7.2929C-0.0976296 7.68342 -0.0976295 8.31659 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928935C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM45 7L1 7L1 9L45 9L45 7Z" fill="#B9B9B9"></path>
+                            </svg></a><a class="right_a next-button" href="javascript:;">
+                            <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#B68742"></path>
+                            </svg></a></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="facilitators-slider">
+                    <?php $facilitators_slider = get_sub_field( 'facilitators_slider' ); ?>
+                    <?php if ( $facilitators_slider ) : ?>
+                      <div class="splide" id="facilitator-slider" aria-roledescription="carousel">
+                        <div class="splide__track">
+                          <ul class="splide__list">				
+                          <?php foreach ( $facilitators_slider as $post ) :  ?>
+                            <?php setup_postdata( $post ); ?>
+                            <li class="splide__slide">
+                              <div class="coach-item">
+                                <div class="coach-photo">
+                                  <?php
+                                  if(get_the_post_thumbnail_url(get_the_ID())){ ?>
+                                    <img src="<?= get_the_post_thumbnail_url( get_the_ID() ); ?>" alt=''>
+                                  <?php } 
+                                  $posttags = get_the_tags();
+                                    if ($posttags) {
+                                      $count = 1;
+                                        foreach($posttags as $tag) {
+                                          echo'<div class="single-category">' . $tag->name . '</div>';
+                                          $count++;
+                                          if($count >1 ) {
+                                            break;
+                                          } 
+                                        }
+                                      }
+                                    ?>
+                                </div>
+                                <div class="coach-content">
+                                  <h2 class="coach-name"><?php the_title(); ?></h2>
+                                  <div class="categories">
+                                  <?php
+                                    $posttags = get_the_tags();
+                                    if ($posttags) {
+                                      foreach($posttags as $tag) {
+                                        echo'<div>' . $tag->name . '</div>'; 
+                                      }
+                                    }
+                                  ?>
+                                  </div>
+                                  <div class="coach-description">
+                                    <?php the_content(); ?>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <?php endforeach; ?>
+                            <?php wp_reset_postdata(); ?>
                           </ul>
                         </div>
                       </div>
-                      <ul class="session-benefit">
-                        <li>Live sessions via Zoom</li>
-                        <li>Q&amp;A calls with master facilitators</li>
-                        <li>All live sessions are recorded</li>
-                      </ul>
-                    </div>
-                    <div class="session-img"><img src="<?= get_template_directory_uri(); ?>/img/tantra/tantra-sessions.png" alt=""><a class="bundle-download" href="#">Download the Timetable</a></div>
-                  </div>
-                  <div class="bottom-row">
-                    <p>Sessions are conducted live <strong>via Zoom</strong>. The program includes monthly group <strong>Q&amp;A calls with trained facilitators</strong>. The rest of the content is available on our educational platform.</p>
+                      <?php endif; ?>
                   </div>
                 </article>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tantra__2-11">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="book-call" id="book-call">
-                <h2 class="title">Got questions?</h2>
-                <div class="subtitle">
-                  <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p>
-                </div><a class="bundle" href="#">Schedule now</a>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-12">
-        <div class="container">
-          <div class="row bodywork-testimonials">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <div class="testimonials-header">
-                <h2 class="title">Testimonials</h2>
-                <div class="arrows"><a class="left_a previous-button" href="javascript:;">
-                    <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.292892 7.2929C-0.0976296 7.68342 -0.0976295 8.31659 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928935C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM45 7L1 7L1 9L45 9L45 7Z" fill="#B9B9B9"></path>
-                    </svg></a><a class="right_a next-button" href="javascript:;">
-                    <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#B68742"></path>
-                    </svg></a></div>
-              </div>
-              <div class="testimonials-slider splide" id="bodywork-testimonials-slider">
-                <div class="splide__track">
-                  <div class="splide__list">
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
-                    <div class="splide__slide testimonials-item"><a class="testimonials-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/testimonials.jpg" alt=""></a></div>
+      <?php elseif( get_row_layout() == 'section_9' ) : ?>
+        <div class="tantra__2-8">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="certificate scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                    <article class="certificate">
+                  <?php endif; ?>
+                  <div class="certificate-photo">
+                    <?php $certificate_photo = get_sub_field( 'certificate_photo' ); ?>
+                    <?php if ( $certificate_photo ) : ?>
+                      <img src="<?php echo esc_url( $certificate_photo['url'] ); ?>" alt="<?php echo esc_attr( $certificate_photo['alt'] ); ?>" />
+                    <?php endif; ?>
+                    <!-- <img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/Certificate.png" alt=""> -->
                   </div>
-                </div>
+                  <div class="certificate-content">
+                  <?php 
+                      if(get_sub_field('text')) { ?>
+                        <h2> <?php the_sub_field( 'text' ); ?></h2>
+                      <?php }
+                      $button_link = get_sub_field( 'button_link' ); ?>
+                      <?php if ( $button_link ) : ?>
+                        <a class="bundle" href="<?php echo esc_url( $button_link['url'] ); ?>" target="<?php echo esc_attr( $button_link['target'] ); ?>"><?php echo esc_html( $button_link['title'] ); ?></a>
+                      <?php endif; ?>
+                    <!-- <h2>Become <strong>
+                        a Tantric Embodiment
+                        Facilitator</strong> from the comfort of your
+                                                      home and be accredited to facilitate in
+                                                      any part of the world.
+                    </h2><a class="bundle" href="#">Enroll now</a> -->
+                  </div>
+                </article>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tantra__2-13">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="why-us" id="why-us">
-                <h2 class="title">Why students like InnerCamp</h2>
-                <div class="feature-list">
-                  <ul class="left-list">
-                    <li>Access to the InnerCamp App.</li>
-                    <li>Flexibility to complete the course at your own pace.</li>
-                    <li>Live Zoom sessions.</li>
-                    <li>&quot;Study buddy&quot; during the course.</li>
-                    <li>Lifelong membership in our global community.</li>
-                    <li>Individual feedback on assessments.</li>
-                  </ul>
-                  <div class="read-more">Read more</div>
-                  <ul class="right-list">
-                    <li>Exclusive downloadable materials.</li>
-                    <li>Free access to our regular online sessions.</li>
-                    <li>Unlimited video replays on our eLearning platform.</li>
-                    <li>Discount for your future InnerCamp experiences.</li>
-                    <li>Study on your laptop or mobile with the InnerCamp App.</li>
-                  </ul>
-                </div>
-                <div class="why-us-content-wrap">
-                  <div class="why-us-content">
-                    <h3>The moment you enroll, you connect with our fast-growing community of conscious people worldwide.</h3>
-                    <p>We show you the way to self-transformation through psychological, emotional and spiritual <strong> growth and fulfillment.</strong></p>
-                    <p>We equally honor modern and classical lineages of Tantra, and teach you how <strong>to implement them in your life.</strong></p>
-                    <div class="read-more">Read more</div>
-                    <div class="why-us-bottom-content">
-                      <p>Our assignments are thoughtfully designed to initiate introspection, personal development and growth as <strong>an individual.</strong></p>
-                      <p>We help you enhance the intimacy and connection first and foremost with <strong>yourself and then with others.</strong></p>
-                      <p><strong>We guide you to find your natural sexual essence in order to attract or maintain meaningful and compatible relationships.</strong></p>
-                    </div>
+      <?php elseif( get_row_layout() == 'section_10' ) : ?>
+        <div class="tantra__2-9">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3"><?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="tantra-optional-retreat scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="tantra-optional-retreat">
+                  <?php endif; ?>
+                  <?php 
+                    if(get_sub_field('title')) { ?>
+                      <h2 class="title"><?php the_sub_field('title') ?></h2>
+                    <?php }
+                  ?>
+                  <div class="content-wrap">
+                  <?php if ( have_rows( 'post' ) ) : ?>
+                    
+                      <?php while ( have_rows( 'post' ) ) : the_row(); ?>
+                      <div class="tantra-optional-post">
+                        <div class="tantra-optional-post-img">
+                          <?php $post_image = get_sub_field( 'post_image' ); ?>
+                          <?php if ( $post_image ) : ?>
+                            <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                          <?php endif; ?>
+                        </div>
+                        <div class="tantra-optional-post-content">
+                          <?php 
+                            if(get_sub_field('location')) { ?>
+                              <div class="location">
+                                <?php the_sub_field( 'location' ); ?></div>
+                            <?php }
+                          ?>
+                          <?php the_sub_field( 'post_content' ); ?>
+                          <?php $download_link = get_sub_field( 'download_link' ); ?>
+                          <?php if ( $download_link ) : ?>
+                            <a href="<?php echo esc_url( $download_link['url'] ); ?>"><?php echo esc_html( $download_link['filename'] ); ?></a>
+                          <?php endif; ?>
+                        </div>
+                        </div>
+                      <?php endwhile; ?>
+                  <?php endif; ?>
                   </div>
-                  <div class="why-us-img"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/why-we.png" alt=""></div>
-                </div>
-              </article>
+                </article>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tantra__2-14">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="level-exposition">
-                <div class="exposition-top-row">
-                  <h2 class="title">Tantric Embodiment Teacher Training</h2>
-                  <div class="calen">Jan 10, 2023 - Nov 28, 2023</div>
-                </div>
-                <ul class="exposition-list">
-                  <li class="header-item">
-                    <div class="first-item"></div>
-                    <div class="level-item">
-                      <h3>Level 1</h3>
-                      <div class="list-description">
-                        <p>Self-journey diploma (Self-healing journey)</p>
-                      </div>
-                    </div>
-                    <div class="level-item full-program">
-                      <h3>Levels 1 + 2</h3>
-                      <div class="list-description">
-                        <p>InnerCamp Tantric Embodiment Facilitator Diploma</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Duration</div>
-                    <div class="level-item">200 hours, 4 months</div>
-                    <div class="level-item full-program">500 hours, 9 months</div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">LIVE Group sessions with Master Trainers</div>
-                    <div class="level-item">12 weekly sessions</div>
-                    <div class="level-item full-program">28 weekly sessions</div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Access to biweekly Tantric circles</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">High-quality curated videos, access forever</div>
-                    <div class="level-item">25+ videos</div>
-                    <div class="level-item full-program">50+ videos</div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Tantra articles</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Weekly assignments</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Personal counselling</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Access to all InnerCamp virtual workshops</div>
-                    <div class="level-item">for 4 months</div>
-                    <div class="level-item full-program">for 9 months</div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Enrolment In Our Affiliate system</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Discounts to Our Events, Retreats, and New Products</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Lifetime Access to All Online Training Materials</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Access to Tantra Music Playlists</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/tantra/red-circle.svg" alt=""><span>no</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Monthly Mentoring calls forever</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/tantra/red-circle.svg" alt=""><span>no</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Study Buddy meetings</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/tantra/red-circle.svg" alt=""><span>no</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">Unlimited Access To Our Private InnerCamp Community</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/tantra/red-circle.svg" alt=""><span>no</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                  <li class="exposition-item-row">
-                    <div class="first-item">License to Guide InnerCamp Tantra Sessions</div>
-                    <div class="level-item"><img src="<?= get_template_directory_uri(); ?>/img/tantra/red-circle.svg" alt=""><span>no</span></div>
-                    <div class="level-item full-program"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span></div>
-                  </li>
-                </ul>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tantra__2-15">
-        <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="book-training" id="book-now">
-                <h2 class="title">Book your training</h2>
-                <div class="book-training-wrap">
-                  <div class="left-small-block">
-                    <h3><strong>Level 1:</strong> Self-healing journey</h3>
+      <?php elseif( get_row_layout() == 'section_11' ) : ?>
+        <div class="tantra__2-10">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <div class="session-wrap">
+                  <?php 
+                    if(get_sub_field('title')) : ?>
+                      <h2 class="title"><?php the_sub_field( 'title'); ?></h2>
+                    <?php endif; 
+                  ?>
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="session scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="session">
+                  <?php endif; ?>
                     <div class="top-row">
-                      <ul class="training-list">
-                        <li>200 hours, 4 months</li>
-                        <li>12 weekly sessions</li>
-                        <li>25+ videos</li>
-                        <li>Members Hub</li>
-                      </ul>
-                    </div>
-                    <div class="choose-price">
-                      <div class="price-item"><span class="price">425&euro;</span><span class="price-type">3 instalments</span></div>
-                      <div class="price-item active"><span class="price">1200&euro;</span><span class="price-type">full price</span></div>
-                      <div class="price-item"><span class="price">500&euro;</span><span class="price-type">deposit</span></div>
-                    </div><a class="bundle" href="#">Enroll now</a>
-                  </div>
-                  <div class="middle-small-block">
-                    <h3><strong>Level 1 + 2:</strong> Facilitator diploma</h3>
-                    <div class="top-row">
-                      <ul class="training-list">
-                        <li>500 hours, 9 months</li>
-                        <li>50+ videos</li>
-                        <li>Monthly Mentoring calls forever</li>
-                        <li>Study Buddy meetings</li>
-                      </ul>
-                    </div>
-                    <div class="choose-price">
-                      <div class="price-item"><span class="price">600&euro;</span><span class="price-type">4 instalments</span></div>
-                      <div class="price-item active"><span class="price">2200&euro;</span><span class="price-type">full price</span></div>
-                      <div class="price-item"><span class="price">500&euro;</span><span class="price-type">deposit</span></div>
-                    </div><a class="bundle" href="#">Enroll now</a>
-                  </div>
-                  <div class="right-small-block" style="background: url('../img/breathwork-teacher/book-now.png') no-repeat top/cover;">
-                    <div class="top-block">
-                      <h3>Join the InnerCamp Retreat</h3>
-                      <div class="calen">Jun 24, 2023 - Jun 27, 2023</div>
-                      <div class="add-feature">
-                        <p>Upgrade your experience with a retreat</p>
+                      <div class="session-content-wrap">
+                        <div class="session-schedule">
+                          <?php 
+                            if(get_sub_field('course_period')) { ?>
+                              <div class="clock"><?php the_sub_field( 'course_period' ); ?></div>
+                            <?php }
+                          if ( have_rows( 'course_period_description' ) ) : ?>
+                            <?php while ( have_rows( 'course_period_description' ) ) : the_row(); ?>
+                            <span><?php the_sub_field( 'text_item' ); ?></span>
+                            <?php endwhile; ?>			
+                          <?php endif; 
+                          if(get_sub_field('day')) { ?>
+                            <div class="calen"><?php the_sub_field( 'day' ); ?></div>
+                          <?php } ?>
+                          <a class="bundle-check" href="#"><?php echo __('Check my local time here'); ?></a>
+                          <div class="schedule-date">
+                            <?php if ( have_rows( 'course_date_list' ) ) : ?>
+                              <?php while ( have_rows( 'course_date_list' ) ) : the_row(); 
+                              if(get_sub_field('year')) { ?>
+                                <h4 class="year"><?php the_sub_field( 'year' ); ?></h4>
+                              <?php }
+                              if ( have_rows( 'dates_per_month' ) ) : ?>
+                                <ul class="month">
+                                  <?php while ( have_rows( 'dates_per_month' ) ) : the_row(); ?>
+                                  <li><?php the_sub_field( 'month_item' ); ?></li>
+                                  <?php endwhile; ?>					
+                                <?php endif; ?>
+                              <?php endwhile; ?>
+                              </ul>
+                            <?php endif; ?>
+                          </div>
+                        </div>
+                        <?php if ( have_rows( 'benefit' ) ) : ?>
+                          <ul class="session-benefit">
+                          <?php while ( have_rows( 'benefit' ) ) : the_row(); ?>
+                            <li><?php the_sub_field( 'benefit_item' ); ?></li>
+                          <?php endwhile; ?>		
+                          </ul>
+                        <?php endif; ?>
+                      </div>
+                      <div class="session-img">
+                        <?php $post_image = get_sub_field( 'post_image' ); ?>
+                        <?php if ( $post_image ) : ?>
+                          <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                        <?php endif; ?>
+                        <?php $download_time_table = get_sub_field( 'download_time_table' ); ?>
+                        <?php if ( $download_time_table ) : ?>
+                          <a class="bundle-download" href="<?php echo esc_url( $download_time_table['url'] ); ?>"><?php echo esc_html( $download_time_table['filename'] ); ?></a>
+                        <?php endif; ?>
                       </div>
                     </div>
-                    <div class="upgrade">Upgrade +</div>
-                  </div>
+                    <div class="bottom-row">
+                      <?php 
+                        if(get_sub_field('bottom_content')) {
+                          the_sub_field( 'bottom_content' );
+                        } 
+                      ?>
+                    </div>
+                  </article>
                 </div>
-              </article>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="tantra__2-16">
+      <?php elseif( get_row_layout() == 'section_12' ) : ?>
+        <div class="tantra__2-11">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="book-call scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="book-call">
+                <?php endif; ?>
+                  <?php 
+                    if(get_sub_field('title')) { ?>
+                            <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                          <?php }
+                        ?>
+                        
+                        <div class="subtitle">
+                          <?php 
+                          if(get_sub_field('text')) {
+                            the_sub_field( 'text' );
+                          }
+                          ?>
+                        </div>
+                        <?php $link_button = get_sub_field( 'link_button' ); ?>
+                        <?php if ( $link_button ) : ?>
+                          <a class="bundle" href="<?php echo esc_url( $link_button['url'] ); ?>"><?php echo esc_html( $link_button['title'] ); ?></a>
+                        <?php endif; ?>                      
+                      </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php elseif( get_row_layout() == 'section_13' ) : ?>
+        <?php if ( have_rows( 'navigation' ) ) : 
+          while ( have_rows( 'navigation' ) ) : the_row(); ?>
+            <article class="tantra__2-12 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+          <?php endwhile; ?>
+          <?php else : ?>
+            <div class="tantra__2-12">
+        <?php endif; ?>
         <div class="container">
-          <div class="row">
-            <div class="col m12 s12 l12 xl9 offset-xl3">
-              <article class="breathwork-faq" id="faq">
-                <h2 class="title">Frequently asked questions</h2>
-                <div class="faq-item">
-                  <button class="faq-questions">How does the pricing work?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
+                  <div class="row bodywork-testimonials">
+                    <div class="col m12 s12 l12 xl9 offset-xl3">
+                      <div class="testimonials-header">
+                        <?php 
+                          if(get_sub_field('title')) { ?>
+                            <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                          <?php  }
+                        ?>
+                        <div class="arrows"><a class="left_a previous-button" href="javascript:;">
+                            <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M0.292892 7.2929C-0.0976296 7.68342 -0.0976295 8.31659 0.292893 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928935C7.68054 0.538411 7.04738 0.538411 6.65685 0.928936L0.292892 7.2929ZM45 7L1 7L1 9L45 9L45 7Z" fill="#B9B9B9"></path>
+                            </svg></a><a class="right_a next-button" href="javascript:;">
+                            <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#B68742"></path>
+                            </svg></a></div>
+                      </div>
+                      <div class="testimonials-slider splide" id="bodywork-testimonials-slider">
+                        <div class="splide__track">
+                          <div class="splide__list">
+                            <?php if ( have_rows( 'testimonials_slider' ) ) : ?>
+                              <?php while ( have_rows( 'testimonials_slider' ) ) : the_row(); ?>
+                              <div class="splide__slide testimonials-item">
+                              <?php 
+                                $placeholder_image = get_sub_field( 'placeholder_image' );
+                                if($placeholder_image && get_sub_field('testimonials_url')) { ?>
+                                  <a class="testimonials-link" data-fancybox="" href="<?php the_sub_field( 'testimonials_url' ); ?>">
+                                  <img src="<?php echo esc_url( $placeholder_image['url'] ); ?>" alt="<?php echo esc_attr( $placeholder_image['alt'] ); ?>">
+                                </a>
+                                <?php }
+                              ?>
+                                </div>
+                              <?php endwhile; ?>
+                            <?php endif; ?>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Can I have more flexibility with the payment plan?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">What happens if I cannot come to the optional retreat (as part of TTC) due to COVID-19 restrictions?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">My training program has not started yet; can I cancel and get a refund?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">My training program has started; can I cancel and get a refund?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">My training program has finished but I didn&apos;t participate; can I get a refund?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">I have booked a retreat together with the online program, until when can I use that credit?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">How does the pricing work?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">In the past, I confirmed my participation in a retreat. Can I still cancel?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">How much effort is required per week?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Should I attend all live sessions?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Who is a study buddy?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">What happens if I fail the quizzes and exams?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Will I continue to have access to the course even after I complete it?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Will I receive a certification?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">Will I be able to run workshops and retreats after I am certified?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">What will you find when you join one of our programs?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-                <div class="faq-item">
-                  <button class="faq-questions">How do the live sessions work? What is the difference between the program live sessions and the InnerCamp workshops?</button>
-                  <div class="faq-panel">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
-                  </div>
-                </div>
-              </article>
+        </div>
+      <?php elseif( get_row_layout() == 'section_14' ) : ?>
+        <div class="tantra__2-13">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="why-us scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="why-us">
+                  <?php endif; ?> 
+                        <?php 
+                          if(get_sub_field('title')) { ?>
+                            <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                          <?php }
+                        ?>
+                          <div class="feature-list">
+                            <?php if ( have_rows( 'checkbox_list' ) ) : ?>
+                              <?php while ( have_rows( 'checkbox_list' ) ) : the_row(); ?>
+                                <?php if ( have_rows( 'left_list' ) ) : ?>
+                                  <ul class="left-list">
+                                    <?php while ( have_rows( 'left_list' ) ) : the_row(); ?>
+                                      <li><?php the_sub_field( 'left_item' ); ?></li>
+                                    <?php endwhile; ?>
+                                  </ul>
+                                <?php endif; ?>
+                                <div class="read-more"><?php echo __('Read more'); ?></div>
+                                <?php if ( have_rows( 'right_list' ) ) : ?>
+                                  <ul class="right-list">
+                                    <?php while ( have_rows( 'right_list' ) ) : the_row(); ?>
+                                    <li><?php the_sub_field( 'right_item' ); ?></li>
+                                    <?php endwhile; ?>
+                                  </ul>
+                                <?php endif; ?>
+                              <?php endwhile; ?>
+                            <?php endif; ?>
+                          </div>
+                          <div class="why-us-content-wrap">
+                            <?php if ( have_rows( 'bottom_block' ) ) : ?>
+                              <?php while ( have_rows( 'bottom_block' ) ) : the_row(); ?>
+                                <div class="why-us-content">
+                                  <?php 
+                                    if(get_sub_field('small_title')) { ?>
+                                      <h3><?php the_sub_field( 'small_title' ); ?></h3>
+                                    <?php }
+
+                                  if(get_sub_field('content')) { 
+                                    the_sub_field( 'content' ); 
+                                  } ?>
+                                </div>
+                                <div class="why-us-img">
+                                  <?php $bottom_image = get_sub_field( 'bottom_image' ); ?>
+                                  <?php if ( $bottom_image ) : ?>
+                                    <img src="<?php echo esc_url( $bottom_image['url'] ); ?>" alt="<?php echo esc_attr( $bottom_image['alt'] ); ?>" />
+                                  <?php endif; ?>
+                                </div>
+                              <?php endwhile; ?>
+                            <?php endif; ?>
+                          </div>
+                        </article>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      <?php elseif( get_row_layout() == 'section_15' ) : ?>
+        <div class="tantra__2-14">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <article class="level-exposition">
+                  <div class="exposition-top-row">
+                    <?php 
+                      if(get_sub_field('title')) { ?>
+                        <h2 class="title"><?php the_sub_field('title') ?></h2>
+                      <?php }
+                    if ( have_rows( 'calendar' ) ) : ?>
+                      <div class="calen">
+                        <?php while ( have_rows( 'calendar' ) ) : the_row(); ?>
+                          <?php the_sub_field( 'start_date' ); ?> - 
+                          <?php the_sub_field( 'end_date' ); ?>
+                        <?php endwhile; ?>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                  
+                  <?php if ( have_rows( 'levels' ) ) : ?>
+                    <ul class="exposition-list">
+                    <?php while ( have_rows( 'levels' ) ) : the_row(); ?>
+                      <?php if ( have_rows( 'top_row' ) ) : ?>
+                        <?php while ( have_rows( 'top_row' ) ) : the_row(); ?>
+                          <li class="header-item">
+                            <div class="first-item"></div>
+                            <div class="level-item"> 
+                              <h3><?php the_sub_field( 'first_top_item' ); ?></h3>
+                              <div class="list-description">
+                                <p><?php the_sub_field( 'first_item_subtitle' ); ?></p>
+                              </div>
+                            </div>
+                            <div class="level-item full-program">
+                              <h3><?php the_sub_field( 'second_top_item' ); ?></h3>
+                              <div class="list-description">
+                                <p><?php the_sub_field( 'second_item_subtitle' ); ?></p>
+                              </div>
+                            </div>
+                          </li> 
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+
+                      <?php if ( have_rows( 'main_list' ) ) : ?>
+                        <?php while ( have_rows( 'main_list' ) ) : the_row(); ?>
+                          <li class="exposition-item-row">
+                            <div class="first-item"><?php the_sub_field( 'first_item' ); ?></div>
+                            <div class="level-item"><?php the_sub_field( 'second_item' ); ?></div>
+                            <div class="level-item full-program"><?php the_sub_field( 'last_item' ); ?></div>
+                          </li>
+                        <?php endwhile; ?>
+                      <?php endif; ?>
+                    <?php endwhile; ?>
+                    </ul>
+                  <?php endif; ?>   
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php elseif( get_row_layout() == 'section_16' ) : ?>  
+        <div class="tantra__2-15">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="book-training scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                      <article class="book-training">
+                  <?php endif; ?>
+                  <?php 
+                    if(get_sub_field('title')) { ?>
+                      <h2 class="title"><?php the_sub_field('title') ?></h2> 
+                    <?php }
+                  ?>
+                  <div class="book-training-wrap">
+                  <?php if ( have_rows( 'left_block' ) ) : ?>
+                    <div class="left-small-block">
+                      <?php while ( have_rows( 'left_block' ) ) : the_row(); ?>
+                      <?php 
+                        if(get_sub_field('left_block_title')) { ?>
+                          <h3><?php the_sub_field( 'left_block_title' ); ?></h3>
+                        <?php }
+                      ?>
+                      <!-- <h3><strong>Level 1:</strong> Self-healing journey</h3> -->
+                      <div class="top-row">
+                        <?php if ( have_rows( 'left_block_list' ) ) : ?>
+                          <ul class="training-list">
+                            <?php while ( have_rows( 'left_block_list' ) ) : the_row(); ?>
+                              <li><?php the_sub_field( 'left_item' ); ?></li>
+                            <?php endwhile; ?>
+                          </ul>
+                        <?php endif; ?>
+                      </div>
+                      <?php if ( have_rows( 'price_block' ) ) : ?>
+                        <div class="choose-price">
+                        <?php while ( have_rows( 'price_block' ) ) : the_row(); ?>
+                          <div class="price-item">
+                            <span class="price"> <?php the_sub_field( 'first_price_value' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'first_price_name' ); ?></span>
+                          </div>
+                          <div class="price-item active">
+                            <span class="price"><?php the_sub_field( 'second_price_value' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'second_price_name' ); ?></span>
+                          </div>
+                          <div class="price-item">
+                            <span class="price"><?php the_sub_field( 'last_price_name' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'last_price_value' ); ?></span>
+                          </div>
+                        <?php endwhile; ?>
+                        </div>
+                      <?php endif; ?>
+                      <?php $action_link = get_sub_field( 'action_link' ); ?>
+                      <?php if ( $action_link ) : ?>
+                        <a class="bundle" href="<?php echo esc_url( $action_link['url'] ); ?>" target="<?php echo esc_attr( $action_link['target'] ); ?>"><?php echo esc_html( $action_link['title'] ); ?></a>
+                      <?php endif; ?>
+                      <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+
+
+                  <?php if ( have_rows( 'middle_block' ) ) : ?>
+                    <div class="middle-small-block">
+                      <?php while ( have_rows( 'middle_block' ) ) : the_row(); ?>
+                        <h3><?php the_sub_field( 'middle_block_title' ); ?></h3>
+                      <div class="top-row">
+                      <?php if ( have_rows( 'middle_block_list' ) ) : ?>
+                        <ul class="training-list">
+                          <?php while ( have_rows( 'middle_block_list' ) ) : the_row(); ?>
+                            <li><?php the_sub_field( 'middle_item' ); ?></li>
+                          <?php endwhile; ?>
+                        </ul>
+                      <?php endif; ?>    
+                      </div>
+                      <?php if ( have_rows( 'price_block' ) ) : ?>
+                        <div class="choose-price">
+                        <?php while ( have_rows( 'price_block' ) ) : the_row(); ?>
+                          <div class="price-item">
+                            <span class="price"><?php the_sub_field( 'middle_first_price_value' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'middle_first_price_name' ); ?></span>
+                          </div>
+                          <div class="price-item active">
+                            <span class="price"><?php the_sub_field( 'middle_second_price_value' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'middle_second_price_name' ); ?></span>
+                          </div>
+                          <div class="price-item">
+                            <span class="price"><?php the_sub_field( 'middle_last_price_name' ); ?></span>
+                            <span class="price-type"><?php the_sub_field( 'middle_last_price_value' ); ?></span>
+                          </div>
+                        <?php endwhile; ?>
+                        </div>
+                      <?php endif; ?>
+                      <?php $middle_action_link = get_sub_field( 'middle_action_link' ); ?>
+                      <?php if ( $middle_action_link ) : ?>
+                        <a class="bundle" href="<?php echo esc_url( $middle_action_link['url'] ); ?>" target="<?php echo esc_attr( $middle_action_link['target'] ); ?>"><?php echo esc_html( $middle_action_link['title'] ); ?></a>
+                      <?php endif; ?>
+                    <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+
+                  <?php if ( have_rows( 'right_block' ) ) : 
+                    $background_image = get_sub_field( 'background_image' ); 
+                    if ( $background_image ) { ?>
+                      <div class="right-small-block" style="background: url('<?php echo $background_image['url']; ?>') no-repeat top/cover;">
+                    <?php } else { ?>
+                      <div class="right-small-block" style="background: url('<?= get_template_directory_uri(); ?>/img/breathwork-teacher/book-now.png') no-repeat top/cover;">
+                      <?php } 
+                    while ( have_rows( 'right_block' ) ) : the_row(); ?>
+                      <div class="top-block">
+                        <h3><?php the_sub_field( 'right_block_title' ); ?></h3>
+                        <?php if ( have_rows( 'calendar' ) ) : ?>
+                          <div class="calen">
+                          <?php while ( have_rows( 'calendar' ) ) : the_row(); ?>
+                            <?php the_sub_field( 'start_date' ); ?> -
+                            <?php the_sub_field( 'end_date' ); ?>
+                          <?php endwhile; ?>
+                          </div>
+                        <?php endif; ?>
+                        
+                        <div class="add-feature">
+                        <?php the_sub_field( 'text' ); ?>
+                        </div>
+                      </div>
+                      <div class="upgrade"><?php echo __('Upgrade +'); ?></div>
+                    <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php elseif( get_row_layout() == 'section_17' ) : ?>
+        <div class="tantra__2-16">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="breathwork-faq scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="breathwork-faq">
+                <?php endif; ?>
+                <?php
+                  if(get_sub_field('title')) { ?>
+                    <h2 class="title"><?php the_sub_field('title');?></h2>
+                    <?php }
+                      if ( have_rows( 'accordion_list' ) ) : ?>
+                        <?php while ( have_rows( 'accordion_list' ) ) : the_row(); 
+                          if(get_sub_field('accordion_title') && get_sub_field('accordion_content')) { ?>
+                            <div class="faq-item">
+                              <button class="faq-questions"><?php the_sub_field( 'accordion_title' ); ?></button>
+                              <div class="faq-panel">
+                                <?php the_sub_field( 'accordion_content' ); ?>
+                              </div>
+                            </div>
+                          <?php }
+                        endwhile; ?>
+                      <?php endif; ?>
+                    </article>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php endif; ?>
+    <?php endwhile; ?>
+  <?php endif; ?>
+  </section>
+
     <div class="modal-wrap">
       <div class="shadow"></div>
       <div class="modal-upgrade-block">

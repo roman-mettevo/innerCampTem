@@ -38,7 +38,13 @@ $product = wc_get_product( $post->ID );
               <?php the_sub_field( 'content' ); ?>
             </div>
             <?php } ?>          
-            <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Book now'); ?></a>
+            <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+            </form>  
           </div>
         </div>
       </section>
@@ -47,32 +53,114 @@ $product = wc_get_product( $post->ID );
     endwhile;
   endif;
   ?>
-      <!-- <div class="left__menu__scroll">
+      <div class="left__menu__scroll" data-scroll>
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
-            <div class="box__"><a class="bundle" href="javascript:;">Book now</a>
+            <div class="box__">
+            <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+            </form>         
               <ul>
-                <li class="course-basics active"><a href="#course-basics">Course basics</a></li>
-                <li class="accreditations"><a href="#accreditations">Accreditations</a></li>
-                <li class="benefits"><a href="#benefits">Benefits</a></li>
-                <li class="about-course"><a href="#about-course">About the course</a></li>
-                <li class="program"><a href="#program">The program</a></li>
-                <li class="facilitators"><a href="#facilitators">Facilitators</a></li>
-                <li class="certificate"><a href="#certificate">Certification</a></li>
-                <li class="optional-retreat"><a href="#optional-retreat">Optional retreat</a></li>
-                <li class="session"><a href="#session">Live sessions</a></li>
-                <li class="book-call"><a href="#book-call">Book a free call</a></li>
-                <li class="testimonials"><a href="#testimonials">Testimonials</a></li>
-                <li class="why-we"><a href="#why-we">Why we are loved</a></li>
-                <li class="book-now"><a href="#">Book now</a></li>
-                <li class="faq"><a href="#">FAQ</a></li>
+                <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): 
+                  while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row();
+                    if( get_row_layout() == 'section_2' ){  
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif; 
+                    }  elseif( get_row_layout() == 'section_3' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_4' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_5' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_7' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_8' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_9' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_10' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_14' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_15' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_16' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_17' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_19' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_20' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } ?>
+                  <?php endwhile;
+                endif; ?>
               </ul>
             </div>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
   <section class="breathwork__2">
     <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : 
       while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row(); 
@@ -81,7 +169,13 @@ $product = wc_get_product( $post->ID );
           <div class="container">
             <div class="row">
               <div class="col m12 s12 l12 xl9 offset-xl3">
-                <article class="course-basics" id="course-basics">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="course-basics scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="course-basics">
+                <?php endif; ?>
                   <div class="basics-img">
                     <?php $image = get_sub_field( 'image' );
                     if ( $image ) : ?>
@@ -119,8 +213,8 @@ $product = wc_get_product( $post->ID );
                           <?php }
                           if(get_sub_field('status')) { ?>
                             <div class="status online"><?php the_sub_field( 'status' ); ?></div>
-                          <?php } ?>
-                        <?php endwhile; ?>
+                          <?php } 
+                        endwhile; ?>
                       </div>
                     <?php endif; ?>
                   </div>
@@ -129,12 +223,19 @@ $product = wc_get_product( $post->ID );
             </div>
           </div>
         </div>
-        <?php elseif( get_row_layout() == 'section_3' ) : ?>
-          <div class="breathwork__2-2">
+      <?php elseif( get_row_layout() == 'section_3' ) : ?>
+        <div class="breathwork__2-2">
           <div class="container">
             <div class="row">
               <div class="col m12 s12 l12 xl9 offset-xl3">
-                <article class="accreditations" id="accreditations">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="accreditations scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="accreditations">
+                <?php endif; ?>
+                
                   <div class="accreditations-content">
                     <?php 
                       if(get_sub_field('sub_title')) { ?>
@@ -184,14 +285,20 @@ $product = wc_get_product( $post->ID );
             </div>
           </div>
         </div>
-        <?php elseif( get_row_layout() == 'section_4' ) : ?>
-          <div class="breathwork__2-3">
-            <div class="container">
-              <div class="row">
-                <div class="col m12 s12 l12 xl9 offset-xl3">
-                  <article class="benefits" id="benefits">
-                    <div class="benefits-content">
-                      <?php 
+      <?php elseif( get_row_layout() == 'section_4' ) : ?>
+        <div class="breathwork__2-3">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <article class="benefits scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                  <?php else : ?>
+                    <article class="benefits">
+                <?php endif; ?>
+                  <div class="benefits-content">
+                    <?php 
                       if(get_sub_field('title')) { ?>
                         <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                       <?php } 
@@ -213,13 +320,19 @@ $product = wc_get_product( $post->ID );
                 </div>
               </div>
             </div>
-          </div>
-        <?php elseif( get_row_layout() == 'section_5' ) : ?>
+        </div>
+      <?php elseif( get_row_layout() == 'section_5' ) : ?>
             <div class="breathwork__2-4">
               <div class="container">
                 <div class="row">
                   <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <article class="breathwork-about" id="about-course">
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="breathwork-about scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="breathwork-about">
+                  <?php endif; ?>
                       <?php 
                         if(get_sub_field('title')) { ?>
                           <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
@@ -236,7 +349,7 @@ $product = wc_get_product( $post->ID );
                           <?php
                           if(get_sub_field('text')) { ?>
                             <h3><?php the_sub_field( 'text' ); ?></h3>
-                          <?php }?>
+                          <?php } ?>
                           <?php $download_button = get_sub_field( 'download_button' ); 
                             if ( $download_button ) : ?>
                               <a  class="bundle-download" href="<?php echo esc_url( $download_button['url'] ); ?>"><?php echo __('Download Brochure'); ?></a>
@@ -248,7 +361,7 @@ $product = wc_get_product( $post->ID );
                 </div>
               </div>
             </div>
-        <?php elseif( get_row_layout() == 'section_6' ) : ?>
+      <?php elseif( get_row_layout() == 'section_6' ) : ?>
               <div class="breathwork__2-5">
                 <div class="container">
                   <div class="row">
@@ -282,52 +395,54 @@ $product = wc_get_product( $post->ID );
                   </div>
                 </div>
               </div>
-        <?php elseif( get_row_layout() == 'section_7' ) : ?>
-                <div class="breathwork__2-6">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col m12 s12 l12 xl9 offset-xl3">
-                        <article class="program" id="program">
-                          <div class="top-program-row">
-                            <?php if( get_sub_field('title')): ?><!-- if under__the -->
-                              <h2 class="title"><?php the_sub_field('title'); ?></h2>
-                            <?php endif; ?>  
-                            <div class="coaches-img-list">
-                              <?php if( get_sub_field('faciliated_label')): ?>
-                                <span><?php the_sub_field('faciliated_label'); ?></span>
-                              <?php endif; ?>
-                              <?php
-                                $featured_posts = get_sub_field('faciliated_imgs');
-                                if( $featured_posts ): ?>
-                                    <ul>
-                                    <?php foreach( $featured_posts as $post ): 
-
-                                        // Setup this post for WP functions (variable must be named $post).
-                                        setup_postdata($post); ?>
-                                        <li>
-                                        <?php if(get_the_post_thumbnail_url()){ ?> 
-                                          <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> <?php } ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                    </ul>
-                                    <?php 
-                                    // Reset the global post object so that the rest of the page works correctly.
-                                    wp_reset_postdata(); ?>
-                              <?php endif; ?>
-                            </div>
+      <?php elseif( get_row_layout() == 'section_7' ) : ?>
+          <div class="breathwork__2-6">
+            <div class="container">
+              <div class="row">
+                <div class="col m12 s12 l12 xl9 offset-xl3">
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="program scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="program">
+                  <?php endif; ?>
+                  <div class="top-program-row">
+                    <?php if( get_sub_field('title')): ?><!-- if under__the -->
+                      <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                    <?php endif; ?>  
+                    <div class="coaches-img-list">
+                      <?php if( get_sub_field('faciliated_label')): ?>
+                        <span><?php the_sub_field('faciliated_label'); ?></span>
+                      <?php endif; ?>
+                      <?php
+                        $featured_posts = get_sub_field('faciliated_imgs');
+                        if( $featured_posts ): ?>
+                          <ul>
+                            <?php foreach( $featured_posts as $post ): 
+                              setup_postdata($post); ?>
+                              <li>
+                                <?php if(get_the_post_thumbnail_url()){ ?> 
+                                  <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> 
+                                <?php } ?>
+                              </li>
+                            <?php endforeach; ?>
+                          </ul>
+                          <?php 
+                            wp_reset_postdata(); ?>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                    <div class="tabs-row">
+                      <?php if( have_rows('tabs') ): 
+                        $counter=1; ?>
+                          <div class="tabs-list">
+                            <?php while( have_rows('tabs') ): the_row(); ?>
+                              <button class="tab-item" name="tab-<?php echo $counter; ?>"><?php echo get_sub_field('tab_name'); ?></button>
+                              <?php $counter++;
+                            endwhile; ?>
                           </div>
-                          <div class="tabs-row">
-                            <?php if( have_rows('tabs') ): 
-                              $counter=1;
-                              ?>
-                              <div class="tabs-list">
-                              <?php while( have_rows('tabs') ): the_row(); ?>
-                                <button class="tab-item" name="tab-<?php echo $counter; ?>"><?php echo get_sub_field('tab_name'); ?></button>
-                              <?php
-                              $counter++;
-                              endwhile; ?>
-                              </div>
-                            <?php endif; ?>
+                        <?php endif; ?>
                             <div class="event-date">
                             <?php if( get_sub_field('course_hours')): ?>
                               <div class="clock"><?php the_sub_field('course_hours'); ?></div>
@@ -390,14 +505,19 @@ $product = wc_get_product( $post->ID );
                       </div>
                     </div>
                   </div>
-                </div>
-
-        <?php elseif( get_row_layout() == 'section_8' ) : ?>  
-                  <div class="breathwork__2-7">
+          </div>
+      <?php elseif( get_row_layout() == 'section_8' ) : ?>  
+        <div class="breathwork__2-7">
           <div class="container">
             <div class="row">
               <div class="col m12 s12 l12 xl9 offset-xl3">
-                <article class="facilitators" id="facilitators">
+              <?php if ( have_rows( 'navigation' ) ) : 
+                while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                  <article class="facilitators scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                <?php endwhile; ?>
+                <?php else : ?>
+                  <article class="facilitators">
+                <?php endif; ?>
                   <div class="container">
                     <div class="row">
                       <div class="col m12 s12 l9 xl9">
@@ -476,12 +596,18 @@ $product = wc_get_product( $post->ID );
             </div>
           </div>
         </div>
-        <?php elseif( get_row_layout() == 'section_9' ) : ?>
+      <?php elseif( get_row_layout() == 'section_9' ) : ?>
           <div class="breathwork__2-8">
             <div class="container">
               <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
-                  <article class="certificate" id="certificate">
+                  <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="certificate scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                    <article class="certificate">
+                  <?php endif; ?>
                     <div class="certificate-photo">
                       <?php $certificate_photo = get_sub_field( 'certificate_photo' ); ?>
                       <?php if ( $certificate_photo ) : ?>
@@ -493,10 +619,18 @@ $product = wc_get_product( $post->ID );
                       if(get_sub_field('text')) { ?>
                         <h2> <?php the_sub_field( 'text' ); ?></h2>
                       <?php }
-                      $button_link = get_sub_field( 'button_link' ); ?>
-                      <?php if ( $button_link ) : ?>
-                        <a class="bundle" href="<?php echo esc_url( $button_link['url'] ); ?>" target="<?php echo esc_attr( $button_link['target'] ); ?>"><?php echo esc_html( $button_link['title'] ); ?></a>
-                      <?php endif; ?>
+                      // $button_link = get_sub_field( 'button_link' ); ?>
+                      <?php //if ( $button_link ) : ?>
+                        <!-- <a class="bundle" href="<?php //echo esc_url( $button_link['url'] ); ?>" target="<?php //echo esc_attr( $button_link['target'] ); ?>"><?php echo esc_html( $button_link['title'] ); ?></a> -->
+                      <?php //endif;
+                       ?>
+                      <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Enroll now'); ?></a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+            </form>  
                     </div>
                   </article>
                 </div>
@@ -514,7 +648,13 @@ $product = wc_get_product( $post->ID );
           <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): ?>
             <?php while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row(); ?>
               <?php if ( get_row_layout() == 'section_10' ) : ?>
-                    <article class="optional-retreat" id="optional-retreat">
+                <?php if ( have_rows( 'navigation' ) ) : 
+                    while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                      <article class="optional-retreat scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                    <?php endwhile; ?>
+                    <?php else : ?>
+                      <article class="optional-retreat">
+                  <?php endif; ?>
                       <div class="content-wrap">
                         <?php 
                           if(get_sub_field('title')) { ?>
@@ -587,8 +727,7 @@ $product = wc_get_product( $post->ID );
                           </svg></a></div>
                     </div>
                   </div>
-              </article>
-
+                </article>
               <?php elseif ( get_row_layout() == 'section_12' ) : ?>
                 <article class="onsite-training">
                   <?php 
@@ -619,7 +758,6 @@ $product = wc_get_product( $post->ID );
                       </div>
                   </div>
                 </article>
-
               <?php elseif ( get_row_layout() == 'section_13' ) : ?>
                 <article class="follow-up">
                   <?php 
@@ -681,7 +819,13 @@ $product = wc_get_product( $post->ID );
                         <h2 class="title"></h2>
                       <?php }
                     ?>
-                    <article class="session" id="session">
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="session scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="session">
+                    <?php endif; ?>
                       <div class="session-content-wrap">
                       <?php 
                         if(get_sub_field('text')) {
@@ -705,18 +849,23 @@ $product = wc_get_product( $post->ID );
               </div>
             </div>
           </div>
-          <?php elseif ( get_row_layout() == 'section_15' ) : ?>
+        <?php elseif ( get_row_layout() == 'section_15' ) : ?>
             <div class="breathwork__2-11">
               <div class="container">
                 <div class="row">
                   <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <article class="book-call" id="book-call">
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="book-call scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="book-call">
+                    <?php endif; ?>
                       <?php 
                         if(get_sub_field('title')) { ?>
                           <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                         <?php }
                       ?>
-                      
                       <div class="subtitle">
                         <?php 
                         if(get_sub_field('text')) {
@@ -726,15 +875,21 @@ $product = wc_get_product( $post->ID );
                       </div>
                       <?php $link_button = get_sub_field( 'link_button' ); ?>
                       <?php if ( $link_button ) : ?>
-                        <a class="bundle" href="<?php echo esc_url( $link_button['url'] ); ?>"><?php echo esc_html( $link_button['title'] ); ?></a>
+                        <a class="bundle" data-fancybox data-src="#modal-3"><?php echo esc_html( $link_button['title'] ); ?></a>
                       <?php endif; ?>                      
                     </article>
                   </div>
                 </div>
               </div>
             </div>
-            <?php elseif ( get_row_layout() == 'section_16' ) : ?>
+        <?php elseif ( get_row_layout() == 'section_16' ) : ?>
+          <?php if ( have_rows( 'navigation' ) ) : 
+            while ( have_rows( 'navigation' ) ) : the_row(); ?>
+              <article class="breathwork__2-12 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+            <?php endwhile; ?>
+            <?php else : ?>
               <div class="breathwork__2-12">
+          <?php endif; ?>
                 <div class="container">
                   <div class="row bodywork-testimonials">
                     <div class="col m12 s12 l12 xl9 offset-xl3">
@@ -776,12 +931,18 @@ $product = wc_get_product( $post->ID );
                   </div>
                 </div>
               </div>
-            <?php elseif ( get_row_layout() == 'section_17' ) : ?>  
+        <?php elseif ( get_row_layout() == 'section_17' ) : ?>  
               <div class="breathwork__2-13">
                 <div class="container">
                   <div class="row">
                     <div class="col m12 s12 l12 xl9 offset-xl3">
-                      <article class="why-us" id="why-us">
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="why-us scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="why-us">
+                    <?php endif; ?>                      
                       <?php 
                         if(get_sub_field('title')) { ?>
                           <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
@@ -835,7 +996,7 @@ $product = wc_get_product( $post->ID );
                   </div>
                 </div>
               </div>
-            <?php elseif ( get_row_layout() == 'section_18' ) : ?>
+        <?php elseif ( get_row_layout() == 'section_18' ) : ?>
               <div class="breathwork__2-14">
                 <div class="container">
                   <div class="row">
@@ -905,12 +1066,18 @@ $product = wc_get_product( $post->ID );
                   </div>
                 </div>
               </div>
-          <?php elseif ( get_row_layout() == 'section_19' ) : ?>
+        <?php elseif ( get_row_layout() == 'section_19' ) : ?>
             <div class="breathwork__2-15">
               <div class="container">
                 <div class="row">
                   <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <article class="book-training" id="book-now">
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="book-training scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="book-training">
+                    <?php endif; ?> 
                       <?php 
                         if(get_sub_field('title')) { ?>
                           <h2 class="title"><?php the_sub_field('title') ?></h2> 
@@ -960,16 +1127,21 @@ $product = wc_get_product( $post->ID );
                                     <?php endwhile; ?>
                                   </div>
                                 <?php endif; ?>
-                                <?php $action_link = get_sub_field( 'action_link' ); ?>
-                                <?php if ( $action_link ) : ?>
-                                  <a class="bundle" href="<?php echo esc_url( $action_link['url'] ); ?>"><?php echo esc_html( $action_link['title'] ); ?></a>
-                                <?php endif; ?>
+                                <?php //$action_link = get_sub_field( 'action_link' ); ?>
+                                <?php // if ( $action_link ) : ?>
+                                  <!-- <a class="bundle" href="<?php // echo esc_url( $action_link['url'] ); ?>"><?php // echo esc_html( $action_link['title'] ); ?></a> -->
+                                <?php // endif; ?>
+                                <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                                  <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                                  <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                                  <input type="hidden" name="action" value="addcart_prod">
+                                    <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Enroll now'); ?></a>
+                                  <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+                                </form>
                               </div>
                             <?php endwhile; ?>
                           </div>
                         <?php endif; ?>
-
-
                         <?php if ( have_rows( 'right_block' ) ) : 
                           $background_image = get_sub_field( 'background_image' ); 
                           if ( $background_image ) { ?>
@@ -1001,10 +1173,10 @@ $product = wc_get_product( $post->ID );
                               ?>
                             </div>
                           </div>
+                          <div class="upgrade" data-fancybox="" data-src="#modal__update"><?php echo __('Upgrade +'); ?></div>
                         <?php endwhile; ?>
-                      <?php endif; ?>
-                          <div class="upgrade"><?php echo __('Upgrade +'); ?></div>
                         </div>
+                      <?php endif; ?>
                       </div>
                     </article>
                   </div>
@@ -1016,7 +1188,13 @@ $product = wc_get_product( $post->ID );
                 <div class="container">
                   <div class="row">
                     <div class="col m12 s12 l12 xl9 offset-xl3">
-                      <article class="breathwork-faq" id="faq">
+                    <?php if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <article class="breathwork-faq scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                      <?php endwhile; ?>
+                      <?php else : ?>
+                        <article class="breathwork-faq">
+                    <?php endif; ?> 
                         <?php
                           if(get_sub_field('title')) { ?>
                             <h2 class="title"><?php the_sub_field('title');?></h2>
@@ -1042,63 +1220,171 @@ $product = wc_get_product( $post->ID );
       <?php endwhile;
     endif; ?>
     </section>
-    <div class="modal-wrap">
-      <div class="shadow"></div>
-      <div class="modal-upgrade-block">
-        <button class="upgrade-close"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/x-circle.svg" alt=""></button>
-        <div class="upgrade-top-row">
-          <h2 class="title">Upgrade your experience with a retreat?</h2>
-          <div class="calen">June 2023</div>
-        </div>
-        <div class="modal-upgrade-content">
-          <div class="left-side">
-            <h3 class="block-title">Choose Date</h3>
-            <div class="choose-calen">Jun 24, 2023 - Jun 27, 2023</div>
+    
+    <?php if(0){ ?>
+  <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): ?>
+    <?php while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row(); ?>
+      <?php if ( get_row_layout() == 'modal_window' ) : ?>
+        <div class="modal-wrap">
+          <div class="shadow"></div>
+          <div class="modal-upgrade-block">
+            <button class="upgrade-close"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/x-circle.svg" alt=""></button>
+            <div class="upgrade-top-row">
+              <?php 
+                if(get_sub_field('title')) { ?>
+                  <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                <?php } 
+                if(get_sub_field('month')) {?>
+                  <div class="calen"><?php the_sub_field( 'month' ); ?></div>
+                <?php }
+              ?>
+            </div>
+            <div class="modal-upgrade-content">
+              <div class="left-side">
+                <h3 class="block-title"><?php echo __('Choose Date'); ?></h3>
+                <?php if ( have_rows( 'calendar' ) ) : ?>
+                  <div class="choose-calen">
+                  <?php while ( have_rows( 'calendar' ) ) : the_row(); ?>
+                    <?php the_sub_field( 'start_date' ); ?> - 
+                    <?php the_sub_field( 'end_date' ); ?>
+                  <?php endwhile; ?>
+                  </div>
+                <?php endif; ?>
+              </div>
+              <div class="right-side">
+                <h3 class="block-title"><?php echo __('Choose Type of Accommodation'); ?></h3>
+                <ul class="apartments-list">
+                  <li class="apartment-item">
+                    <ul class="img-list">
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                    </ul>
+                    <h3><?php echo __('Single room'); ?></h3>
+                    <div class="apartment-item-bottom-row">
+                      <div class="actual"><?php echo __('Available'); ?></div>
+                      <?php 
+                        if(get_sub_field('single_room_price')) { ?>
+                          <div class="price"><?php the_sub_field( 'single room_price' ); ?></div>
+                        <?php }
+                      ?>
+                    </div>
+                  </li>
+                  <li class="apartment-item">
+                    <ul class="img-list">
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                    </ul>
+                    <h3><?php echo __('Shared double room'); ?></h3>
+                    <div class="apartment-item-bottom-row">
+                      <div class="actual"><?php echo __('Available'); ?></div>
+                      <?php 
+                      if(get_sub_field('double_room_price')) { ?>
+                        <div class="price"><?php the_sub_field( 'double_room_price' ); ?></div>
+                      <?php }
+                      ?>
+                    </div>
+                  </li>
+                  <li class="apartment-item">
+                    <ul class="img-list">
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                      <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
+                    </ul>
+                    <h3><?php echo __('Shared glamping'); ?></h3>
+                    <div class="apartment-item-bottom-row">
+                      <div class="actual"><?php echo __('Available'); ?></div>
+                      <?php 
+                      if(get_sub_field('glamping')) { ?>
+                        <div class="price"><?php the_sub_field( 'glamping' ); ?></div>
+                      <?php }
+                      ?>
+                    </div>
+                  </li>
+                </ul>
+                <div class="modal-bottom-row">
+                <?php $action_link = get_sub_field( 'action__link' ); ?>
+                <?php if ( $action_link ) : ?>
+                  <a class="bundle" href="<?php echo esc_url( $action_link['url'] ); ?>" target="<?php echo esc_attr( $action_link['target'] ); ?>"><?php echo esc_html( $action_link['title'] ); ?></a>
+                <?php endif; 
+                $disclaimer_link = get_sub_field( 'disclaimer_link' ); ?>
+                <?php if ( $disclaimer_link ) : ?>
+                  <a class="disclaimer" href="<?php echo esc_url( $disclaimer_link['url'] ); ?>" target="<?php echo esc_attr( $disclaimer_link['target'] ); ?>"><?php echo esc_html( $disclaimer_link['title'] ); ?></a>
+                <?php endif; ?>
+                  
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="right-side">
-            <h3 class="block-title">Choose Type of Accommodation</h3>
-            <ul class="apartments-list">
-              <li class="apartment-item">
-                <ul class="img-list">
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                </ul>
-                <h3>Single room</h3>
-                <div class="apartment-item-bottom-row">
-                  <div class="actual">Available</div>
-                  <div class="price">1200&euro;</div>
-                </div>
-              </li>
-              <li class="apartment-item">
-                <ul class="img-list">
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                </ul>
-                <h3>Shared double room</h3>
-                <div class="apartment-item-bottom-row">
-                  <div class="actual">Available</div>
-                  <div class="price">800&euro;</div>
-                </div>
-              </li>
-              <li class="apartment-item">
-                <ul class="img-list">
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                  <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                </ul>
-                <h3>Shared glamping</h3>
-                <div class="apartment-item-bottom-row">
-                  <div class="actual">Available</div>
-                  <div class="price">600&euro;</div>
-                </div>
-              </li>
+        </div>
+      <?php endif; ?>
+    <?php endwhile;
+  endif; ?>
+    <?php } ?>
+    
+  <style>
+    article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-content .coach-description {
+      height: 340px;
+    }
+  </style>
+  
+  
+  
+    <div class="modal bodywork-first__11" id="modal__update" style="display: none;">
+    <div class="bodywork-modal-header">
+      <h3 class="heading">Upgrade your experience with a retreat?</h3><span>June 2023</span>
+    </div>
+    <div class="bodywork-modal-content">
+      <div class="choose-date">
+        <h4 class="choose-title">Choose Date</h4>
+        <ul class="chose-date-list">
+          <li class="chose-date-item">
+            <input type="radio" name="chose-date" id=""> Jun 24, 2023 - Jun 27, 2023
+          </li>
+        </ul>
+      </div>
+      <div class="choose-type">
+        <h4 class="choose-title">Choose Type of Accommodation</h4>
+        <ul class="choose-appartaments-list">
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
             </ul>
-            <div class="modal-bottom-row"><a class="bundle" href="#">Yes, upgrade with a Retreat</a><a class="disclaimer" href="#">No, thanks</a></div>
-          </div>
-        </div>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
+            </ul>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
+            </ul>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+        </ul>
+        <div class="choose-type-buttons"><a class="bundle" href="#">Yes, upgrade with a Retreat</a><a class="cancel"
+                                                                                                      href="#">No,
+            thanks</a></div>
       </div>
     </div>
-    
-    
-  
+  </div>
+
+
+  <!-- //// MODAL ////-->
+  <div class="modal__style modal" id="modal-3" style="display: none;">
+      <div class="content_modal">
+          <!-- Calendly inline widget begin -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/d/dpg-9q6-b4v/call-with-innercamp" style="min-width:550px;height:850px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <!-- Calendly inline widget end -->
+      </div>
+    </div>
 <?php
 get_footer();

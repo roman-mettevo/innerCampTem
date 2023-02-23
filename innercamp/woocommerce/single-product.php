@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header( 'shop' ); ?>
-  
+
 <!--  yourtheme/woocommerce/single-product.php  -->
 
 	<?php
@@ -35,9 +35,41 @@ get_header( 'shop' ); ?>
 
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
-
+sssss
 			<?php wc_get_template_part( 'content', 'single-product' ); ?>
+  <section class="breathwork-tt__1"
+           data-menuscroll <?php if (get_the_post_thumbnail_url()) { ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+    <div class="container">
+      <div class="row">
+        <?php
+        if (get_sub_field('sub_text')) { ?>
+          <p class="sub"><?php the_sub_field('sub_text'); ?></p>
+        <?php }
+        if (get_sub_field('title')) { ?>
+          <h1 class="title"><?php the_sub_field('title'); ?></h1>
+        <?php }
 
+        if (have_rows('box_list')) : ?>
+          <div class="box__content">
+            <?php while (have_rows('box_list')) : the_row(); ?>
+              <p class="<?php if (get_row_index() == '1') { ?>breathwork
+                <?php } else if (get_row_index() == '2') { ?> level
+                <?php } else if (get_row_index() == '3') { ?> location
+                <?php } else if (get_row_index() == '4') { ?> date
+                <?php } ?>"><?php the_sub_field('item_title'); ?></p>
+            <?php endwhile; ?>?
+          </div>
+        <?php endif; ?>
+        <?php
+        if (get_sub_field('content')) { ?>
+          <div class="retreats__1-description">
+            <?php the_sub_field('content'); ?>
+          </div>
+        <?php } ?>
+        <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add"><?php echo __('Book now'); ?></a>
+      </div>
+    </div>
+  </section>
 		<?php endwhile; // end of the loop. ?>
 
 	<?php

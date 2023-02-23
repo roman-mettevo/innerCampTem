@@ -3,23 +3,21 @@
   <div class="container">
     <div class="row">
       <div class="col m12 s12 l12 xl12">
-        <?php 
-          $sup_title = get_field("home_5_sup_title");
-          $title = get_field("home_5_title");
-          $text = get_field("home_5_sub_title_text");
 
-          if(!empty($sup_title)) {?>
-            <p class="sub"><?php echo $sup_title; ?></p>
-          <?php }
+  <?php if( get_field('home_5_sup_title')): ?><!-- if under__the -->
+    <p class="sub"><?php the_field('home_5_sup_title'); ?></p>
+  <?php endif; ?>
+        
 
-          if(!empty($title)) { ?>
-            <h2 class="title"><?php echo $title; ?></h2>
-          <?php }
+  <?php if( get_field('home_5_title')): ?><!-- if under__the -->
+    <h2 class="title"><?php the_field('home_5_title'); ?></h2>
+  <?php endif; ?>
+      
 
-          if(!empty($text)) {
-            echo $text;
-          }
-        ?> 
+  <?php if( get_field('home_5_sub_title_text')): ?><!-- if under__the -->
+    <?php the_field('home_5_sub_title_text'); ?>
+  <?php endif; ?>
+ 
       </div>
     </div>
   </div>

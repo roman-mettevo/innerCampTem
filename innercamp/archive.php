@@ -19,8 +19,8 @@ get_header(); ?>
             <h1 class="title"><?php 
               $catID = $cat->term_id;
              $current_cat = get_queried_object($catID);
-             if($current_cat->name == 'All'){
-              echo 'InnerCamp Blog';
+             if($current_cat->name == 'All Innercamp'){
+              echo 'InnerCamp';
              }else{
               echo $current_cat->name;
              }?></h1>

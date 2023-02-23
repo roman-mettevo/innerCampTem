@@ -1,4 +1,6 @@
 <!-- Block 4 -->
+
+
 <section class="home__4">
   <div class="container">
     <div class="row">
@@ -87,7 +89,7 @@
             'order' => 'DESC', // order filter  last post
             'post_type'  => 'product', // Post type category BLOG
 //             'slug' => 'trainings',
-                   'orderby'        => 'rand',
+                  //  'orderby'        => 'rand',
                     'product_cat' => 'trainings',
 //            'posts_per_page' => 3, // echo show three post 
         );
@@ -98,14 +100,19 @@
         if ( $the_category->have_posts() ) {
 
             while ( $the_category->have_posts() ) {
-                $the_category->the_post(); ?>
+                $the_category->the_post(); 
+                $acf_cat = get_field('category', get_the_ID());
+                ?>
                 
                 <?php $product = wc_get_product( get_the_ID()); // Works for any product type ?>
                 
               <li class="splide__slide">
                 <div class="trainings__">
-                  <div class="top__img"><a class="element tantra" href="javascript:;">Tantra</a>
-                   
+                  <div class="top__img"><a class="element <?php if($acf_cat == 'Breathwork'){echo 'breathwork';}if($acf_cat == 'Bodywork'){echo 'bodywork';}if($acf_cat == 'Tantra'){echo 'tantra';}?>" href="javascript:;">
+                    <?php
+                      echo $acf_cat;
+                    ?>
+                  </a>
                     <?php if(get_the_post_thumbnail_url()){ ?>
            
               <img src="<?= get_the_post_thumbnail_url( get_the_ID()); ?>" alt=''>

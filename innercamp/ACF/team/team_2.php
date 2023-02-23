@@ -47,7 +47,7 @@ if ($query->have_posts()) {
     <div class="row">
       <div class="team-nav">
         <div class="team-nav-wrap">
-          <nav>
+          <nav data-scroll>
             <?php 
               $nav_title = get_field('team_navigation_title');
 
@@ -84,20 +84,20 @@ if ($query->have_posts()) {
             $query->the_post();
             $coach_id = get_the_id();
             ?>
-            <div class="coach-item" id="team-member-<?php echo $counter; ?>">
+            <div class="coach-item scroll__init" id="team-member-<?php echo $counter; ?>">
               <div class="coach-content">
                 <h2 class="coach-name"><?php the_title(); ?></h2>
                 <div class="categories">
-                  <?php
-                  if (have_rows('tags_list', $coach_id)) {
-                    while (have_rows('tags_list', $coach_id)) {
-                      the_row();
-                      ?>
-                      <a href="#"><?php the_sub_field('single_tag'); ?></a>
-                      <?php
-                    }
-                  }
-                  ?>
+                 
+                    <?php  $tags = get_the_tags(get_the_id());  ?>
+                                          <?php if ($tags) { ?>
+                                           <?php foreach($tags as $tag) { ?>
+                                                <span class="tag"><?php echo $tag->name; ?></span>
+                                            <?php } ?>
+                                            <?php } ?>
+                      
+  
+           
                 </div>
                 <div class="coach-description">
                   <?php the_content(); ?>

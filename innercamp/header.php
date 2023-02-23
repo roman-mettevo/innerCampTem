@@ -25,7 +25,13 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-    <div class="bar-long OK"></div>
+   
+   <?php if (is_page('cart') || is_page('shop')){ 
+           echo '<script> window.location.href = "/virtual-workshops/"; </script>';
+   } ?>
+           
+           
+    <div class="bar-long"></div>
     
     <div class="right__menu">
       <div class="bock__top"><a class="close__" href="javascript:;"></a></div>

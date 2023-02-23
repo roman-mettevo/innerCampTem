@@ -570,6 +570,17 @@ function register_acf_block_types()
       ),
     )
   );
+  
+  acf_register_block_type(
+    array(
+      'name' => 'Find your coach',
+      'title' => __('Find your coach'),
+      'render_template' => 'ACF/find-your-coach/find-your-coach_1.php',
+      'icon' => 'block-default',
+      'keywords' => array('Find your coach'),
+    )
+  );
+  
 }
 
 /**

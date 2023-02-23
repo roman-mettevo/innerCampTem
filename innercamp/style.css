@@ -82,8 +82,14 @@ body > section[class*='__1'],
 body > section.descry {
   /* 	display:block; */
 }
+@media (min-width: 600px) {
+  body>footer>.container>.row:first-child>div:nth-child(5){
+    display: none;
+  }
+}
 
 body.page-id-403 header[main],
+body.page-id-63743 header[main],
 body.page-template-tpl-affiliate-page header[main],
 body.error404 header[main],
 body.page-template-tpl-profile-page header[main],
@@ -209,4 +215,22 @@ section.careers__4 textarea {
 .vacancy-description-block .item-content-wrapper {
   height: 100%;
   overflow-y: scroll;
+}
+
+.about__left li.active a{
+  color: #fff;
+  opacity: 1 !important;
+  transition: all .1s ease !important;
+}
+@media (max-width: 850px) {
+  .calendly-inline-widget{
+    position: relative !important;
+    min-width: 100% !important;
+    height: 850px !important;
+  }
+}
+
+.tantra3__2-6 .session-wrap .session .top-row .session-content-wrap .session-schedule span.get-time_js{
+  margin-left: 0;
+  cursor: pointer;
 }
