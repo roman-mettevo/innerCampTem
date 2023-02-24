@@ -427,5 +427,60 @@ add_image_size( 'team', 66, 66, true );
 add_image_size( 'team_user', 411, 508, true ); 
 
 
-
 //add_theme_support( 'post-thumbnails', array( 'post', 'page', 'team_member' ) );
+
+   
+// WooCommerce Checkout Fields add placeholder
+function add_placeholder_checkout_fields( $fields ) {
+   foreach ( $fields as $section => $section_fields ) {
+      foreach ( $section_fields as $section_field => $section_field_settings ) {
+		 $fields[$section][$section_field]['placeholder'] = $fields[$section][$section_field]['label'];
+      }
+   }
+   $fields['billing']['billing_email']['priority'] = 1;
+   $fields['billing']['billing_email']['placeholder'] = "Your email";
+   $fields['billing']['billing_first_name']['placeholder'] = "Your first name";
+   $fields['billing']['billing_last_name']['placeholder'] = "Your last name";
+   $fields['billing']['billing_address_1']['placeholder'] = "Adress (ex: 12 Main Street)";
+   $fields['billing']['billing_postcode']['placeholder'] = "Postal code (7 digits)";
+
+   return $fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'add_placeholder_checkout_fields', 20 );
+
+
+//Change the string on woocommerce
+function change_field_strings( $translated_text, $text, $domain ) {
+	switch ( $translated_text ) {
+		case 'Billing details' :
+			$translated_text = __( 'Contact information', 'woocommerce' );
+			break;
+		case 'Returning customer?' :
+			$translated_text = __( 'Already have an account?', 'woocommerce' );
+			break;
+		case 'Click here to login' :
+			$translated_text = __( 'Log in', 'woocommerce' );
+			break;
+	}
+	return $translated_text;
+}
+add_filter( 'gettext', 'change_field_strings', 20, 3 );
+
+
+//Create field type to WooCommerce form field 
+add_filter( 'woocommerce_form_field_heading','create_title_checkout_field', 10, 4 );
+function create_title_checkout_field($field, $key, $args, $value) {
+    $output = '<h3 class="form-row form-row-wide billing_heading_field">'.__( $args['label'], 'woocommerce' ).'</h3>';
+    echo $output;
+}
+
+// Add field type to WooCommerce form field 
+add_filter( 'woocommerce_checkout_fields','add_title_checkout_field' );
+function add_title_checkout_field( $fields ) {
+    $fields['billing']['billing_heading_name'] = array(
+        'type'      => 'heading',
+        'label'     => 'Please fill in your contact details',
+		'priority' => 2
+    );
+	return $fields;
+}
