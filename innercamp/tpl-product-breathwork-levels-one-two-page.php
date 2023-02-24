@@ -1142,17 +1142,7 @@ do_action('woocommerce_before_main_content');
 
     // document.addEventListener("DOMContentLoaded", function (event) {
     function changeRoom(number) {
-      let ul = document.querySelectorAll('.tmcp-ul-wrap');
-      // ul.forEach(function (el, ind, arr) {
-      //   let li = el.querySelectorAll('.tmcp-field-wrap')
-      //   console.log('length' + li.length)
-      //   if (li.length === 3) {
-      //     let input = li[number].querySelector('input')
-      //     const event = new Event('change', { bubbles: true });
-      //     input.dispatchEvent(event);
-      //   }
-      // })
-      const radioInputs = document.querySelectorAll('input[type=radio][name="tmcp_radio_0"]');
+      const radioInputs = document.querySelectorAll('input[type=checkbox][name="tmcp_checkbox_1_0"]');
       radioInputs[number].checked = true;
       const event = new Event('change', { bubbles: true });
       radioInputs[number].dispatchEvent(event);
