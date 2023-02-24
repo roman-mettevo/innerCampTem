@@ -84,3 +84,71 @@
 .iti__country {
 	padding: 5px 25px;
 }
+.woocommerce-checkout .form-row label {
+	display: none;
+}
+#billing_email_field,
+.billing_heading_field {
+	width: 100% !important;
+}
+.billing_heading_field {
+	padding-top: 60px;
+}
+.next__menu {
+	padding-top: 70px;
+}
+#ship-to-different-address {
+	padding-top: 18px;
+}
+.woocommerce-form-login-toggle,
+.woocommerce-form-login p {
+	font-size: 14px;
+}
+.woocommerce-form-login-toggle {
+	margin-bottom: 10px;
+}
+.woocommerce-form-login > p {
+	padding-top: 10px;
+	width: 100%;
+}
+.showlogin {
+	color: #b68742;
+	font-weight: 700;
+}
+.lost_password a {
+	color: #b68742;
+}
+@media (min-width: 992px) {
+	#ship-to-different-address span {
+		font-size: 18px;
+	}
+
+	section.checkout__1
+		.cont__
+		.tab__check
+		.tab__
+		.woocommerce-shipping-fields__field-wrapper
+		.form-row,
+	.woocommerce-form-login .form-row {
+		width: calc(50% - 16px);
+	}
+	.woocommerce-form-login .clear {
+		display: none;
+	}
+	section.checkout__1
+		.cont__
+		.tab__check
+		.tab__
+		.woocommerce-shipping-fields__field-wrapper,
+	.woocommerce-form-login {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		gap: 0 32px;
+	}
+}

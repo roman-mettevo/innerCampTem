@@ -29,106 +29,118 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 ?>
 <!--  yourtheme/woocommerce/checkout/form-checkout.php  -->
-<form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
-  
+<form name="checkout" method="post" class="checkout woocommerce-checkout"
+    action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
-             
-              <div class="tab__check">
-               
-                <div class="tab__ active">
-                 
-                 
-            <div class="box__pay"><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_pa.svg" alt="paypal"></span><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_p.svg" alt="pay"></span></div>
+
+
+    <div class="tab__check">
+
+        <div class="tab__ active">
+
+
+            <div class="box__pay"><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_pa.svg"
+                        alt="paypal"></span><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_p.svg"
+                        alt="pay"></span></div>
             <div class="or">OR</div>
-                  
-                  
-
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
-
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
 
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
 
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+            <?php if ( $checkout->get_checkout_fields() ) : ?>
 
-
-		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
-
-	<?php endif; ?>
-          
-                  
-                  <div class="next__menu"><a class="back" href="javascript:;" data-num="1">
-                      <svg width="8" height="11" viewbox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6.25 1L1.75 5.5L6.25 10" stroke="#C6C1B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>Go back</a><a class="bundle" href="javascript:;" data-num="2">Continue to payment method </a></div>
-                </div>
-                
-                
-                <div class="tab__">
-                
-                       <h3>Contact information</h3>
-                      <div class="box__email"> <span class="info">Contact</span><span class="email__"> </span><a href="#billing_email" data-num="1">Change</a></div>
-       
-                  
-	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-	
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-	
-	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+            <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
 
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
+            <?php do_action( 'woocommerce_checkout_billing' ); ?>
 
-                  
-                  
+            <?php do_action( 'woocommerce_checkout_shipping' ); ?>
 
-                                
-                      	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>  
-                      
 
-                </div>
-                
-              
-                
-              </div>
-              
-              
-              
-  
-<?php if(0){ ?>
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
+            <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+            <?php endif; ?>
 
-		<div class="col2-set" id="customer_details">
-			<div class="col-1">
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			</div>
 
-			<div class="col-2">
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-			</div>
-		</div>
+            <div class="next__menu">
+                <button class="back" onclick="history.back()">
+                    <svg width="8" height="11" viewbox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.25 1L1.75 5.5L6.25 10" stroke="#C6C1B3" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                    Go back
+                </button>
+                <a class="bundle" href="javascript:;" data-num="2">
+                    Continue to payment method
+                </a>
+            </div>
+        </div>
 
-		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
-	<?php endif; ?>
-	
-	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-	
-	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-	
-	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+        <div class="tab__">
 
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-	</div>
+            <h3>Contact information</h3>
+            <div class="box__email"> <span class="info">Contact</span><span class="email__"> </span><a
+                    href="#billing_email" data-num="1">Change</a></div>
 
-	<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
-	
-	
-	<?php } ?>
+
+            <?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+
+            <h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
+
+            <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+
+
+            <?php do_action( 'woocommerce_checkout_order_review' ); ?>
+
+
+
+
+
+            <?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+    <?php if(0){ ?>
+    <?php if ( $checkout->get_checkout_fields() ) : ?>
+
+    <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+
+    <div class="col2-set" id="customer_details">
+        <div class="col-1">
+            <?php do_action( 'woocommerce_checkout_billing' ); ?>
+        </div>
+
+        <div class="col-2">
+            <?php do_action( 'woocommerce_checkout_shipping' ); ?>
+        </div>
+    </div>
+
+    <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+
+    <?php endif; ?>
+
+    <?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
+
+    <h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
+
+    <?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+
+    <div id="order_review" class="woocommerce-checkout-review-order">
+        <?php do_action( 'woocommerce_checkout_order_review' ); ?>
+    </div>
+
+    <?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+
+
+    <?php } ?>
 
 </form>
 
