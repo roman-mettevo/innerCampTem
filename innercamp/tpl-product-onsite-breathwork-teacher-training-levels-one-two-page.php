@@ -54,17 +54,17 @@ $product = wc_get_product( $post->ID );
   endif;
   ?>
       <div class="left__menu__scroll" data-scroll>
-      <div class="container">
-        <div class="row">
-          <div class="col m12 s12 l3 xl3">
-            <div class="box__">
-            <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-              <input type="hidden" name="action" value="addcart_prod">
-                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
-              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-            </form>         
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l3 xl3">
+              <div class="box__">
+                <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                  <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                  <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                  <input type="hidden" name="action" value="addcart_prod">
+                    <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+                  <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+                </form>         
               <ul>
                 <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): 
                   while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row();

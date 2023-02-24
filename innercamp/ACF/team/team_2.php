@@ -104,7 +104,14 @@ if ($query->have_posts()) {
                 </div>
               </div>
               <div class="coach-photo">
-                <?php echo get_the_post_thumbnail(); ?>
+                <?php // echo get_the_post_thumbnail(); ?>
+                
+                
+         <?php if(get_the_post_thumbnail_url(get_the_id())){ ?>
+           
+              <img src="<?= get_the_post_thumbnail_url(get_the_id(), 'team_user' ); ?>" alt=''>
+
+            <?php }?>
 
                 <?php
                   if (have_rows('tags_list', $coach_id)) {

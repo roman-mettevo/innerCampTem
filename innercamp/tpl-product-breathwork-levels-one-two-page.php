@@ -5,14 +5,41 @@
  *
  */
 
-function tm_epo_js_loader(){
-  do_action( 'woocommerce_tm_epo_enqueue_scripts');
-}
-add_action( 'wp_enqueue_scripts', 'tm_epo_js_loader' );
 get_header(); ?>
 
 
-  <!--  <div class="left__menu__scroll">-->
+<?php
+/**
+ * woocommerce_before_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ */
+do_action('woocommerce_before_main_content');
+?>
+
+<?php while (have_posts()) : ?>
+  <?php the_post();
+
+  global $product;
+
+  /**
+   * Hook: woocommerce_before_single_product.
+   *
+   * @hooked woocommerce_output_all_notices - 10
+   */
+  do_action('woocommerce_before_single_product');
+
+  if (post_password_required()) {
+    echo get_the_password_form(); // WPCS: XSS ok.
+    return;
+  }
+  ?>
+
+
+  <!--   yourtheme/woocommerce/content-single-product.php  -->
+
+
   <!--    <div class="container">-->
   <!--      <div class="row">-->
   <!--        <div class="col m12 s12 l3 xl3">-->
@@ -68,7 +95,7 @@ get_header(); ?>
   <!--        <div class="col m12 s12 l12 xl9 offset-xl3">-->
   <!--          <div class="block__top scroll__init">-->
   <!--            <div class="box__img"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_1.png" alt="logo">-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_1.png" alt="logo">-->
   <!--              <div class="info">Levels 1 + 2</div>-->
   <!--            </div>-->
   <!--            <div class="box__content">-->
@@ -95,17 +122,17 @@ get_header(); ?>
   <!--              <p>InnerCamp is registered and accredited by the Complementary Medical Association. </p>-->
   <!--              <p>It is also a member school of the International Breathwork Foundation.</p>-->
   <!--              <ul class="list-img-mobile">-->
-  <!--                <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/brand_1.svg" alt="logo"></li>-->
-  <!--                <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/brand_2.svg" alt="logo"></li>-->
+  <!--                <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/brand_1.svg" alt="logo"></li>-->
+  <!--                <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/brand_2.svg" alt="logo"></li>-->
   <!--              </ul>-->
   <!--              <div class="bottom-row">-->
   <!--                <p>Our courses are accredited by the leading independent CPD accreditation institution.</p><img-->
-  <!--                    src="--><?//= get_template_directory_uri(); ?><!--/img/brand__03.svg" alt="logo">-->
+  <!--                    src="--><? //= get_template_directory_uri(); ?><!--/img/brand__03.svg" alt="logo">-->
   <!--              </div>-->
   <!--            </div>-->
-  <!--            <div class="img__"><img src="--><?//= get_template_directory_uri(); ?><!--/img/brand__01.svg" alt="logo"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/brand__02.svg" alt="logo"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/brand__03.svg" alt="logo"></div>-->
+  <!--            <div class="img__"><img src="--><? //= get_template_directory_uri(); ?><!--/img/brand__01.svg" alt="logo"><img-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/brand__02.svg" alt="logo"><img-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/brand__03.svg" alt="logo"></div>-->
   <!--          </div>-->
   <!--        </div>-->
   <!--      </div>-->
@@ -127,7 +154,7 @@ get_header(); ?>
   <!--              </ul>-->
   <!--            </div>-->
   <!--            <div class="img__"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_2.png" alt="logo">-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_2.png" alt="logo">-->
   <!--            </div>-->
   <!--          </div>-->
   <!--        </div>-->
@@ -137,7 +164,7 @@ get_header(); ?>
   <!--          <h2 class="title scroll__init">About the Course</h2>-->
   <!--          <div class="block__next">-->
   <!--            <div class="img__"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_3.png" alt="logo">-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-levels-one-two__2_img_3.png" alt="logo">-->
   <!--            </div>-->
   <!--            <div class="cont__">-->
   <!--              <div class="box__">-->
@@ -169,7 +196,7 @@ get_header(); ?>
   <!--                home. The final assignment will be to record a video of yourself facilitating an in-person breathwork-->
   <!--                session with your volunteer.</p>-->
   <!--            </div>-->
-  <!--            <div class="img__"><img src="--><?//= get_template_directory_uri(); ?><!--/img/immgg.png" alt="logo"></div>-->
+  <!--            <div class="img__"><img src="--><? //= get_template_directory_uri(); ?><!--/img/immgg.png" alt="logo"></div>-->
   <!--          </div>-->
   <!--        </div>-->
   <!--      </div>-->
@@ -184,10 +211,10 @@ get_header(); ?>
   <!--              <h2 class="title">The Program</h2>-->
   <!--              <div class="coaches-img-list"><span>Facilitated by </span>-->
   <!--                <ul>-->
-  <!--                  <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_1.webp" alt=""></li>-->
-  <!--                  <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_5.webp" alt=""></li>-->
-  <!--                  <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_11.webp" alt=""></li>-->
-  <!--                  <li><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_12.webp" alt=""></li>-->
+  <!--                  <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_1.webp" alt=""></li>-->
+  <!--                  <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_5.webp" alt=""></li>-->
+  <!--                  <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_11.webp" alt=""></li>-->
+  <!--                  <li><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_12.webp" alt=""></li>-->
   <!--                </ul>-->
   <!--              </div>-->
   <!--            </div>-->
@@ -288,7 +315,7 @@ get_header(); ?>
   <!--                  <ul class="splide__list">-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_1.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_1.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -309,7 +336,7 @@ get_header(); ?>
   <!--                    </li>-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_5.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_5.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -330,7 +357,7 @@ get_header(); ?>
   <!--                    </li>-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -351,7 +378,7 @@ get_header(); ?>
   <!--                    </li>-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -372,7 +399,7 @@ get_header(); ?>
   <!--                    </li>-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -393,7 +420,7 @@ get_header(); ?>
   <!--                    </li>-->
   <!--                    <li class="splide__slide">-->
   <!--                      <div class="coach-item">-->
-  <!--                        <div class="coach-photo"><img src="--><?//= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
+  <!--                        <div class="coach-photo"><img src="--><? //= get_template_directory_uri(); ?><!--/img/team/coach_2.webp"-->
   <!--                                                      alt="">-->
   <!--                          <div class="single-category">InnerCamp founder</div>-->
   <!--                        </div>-->
@@ -427,7 +454,7 @@ get_header(); ?>
   <!--        <div class="col m12 s12 l12 xl9 offset-xl3">-->
   <!--          <article class="certificate" id="certificate">-->
   <!--            <div class="certificate-photo"><img-->
-  <!--                  src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/certificate-without-shadow1.png"-->
+  <!--                  src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/certificate-without-shadow1.png"-->
   <!--                  alt=""></div>-->
   <!--            <div class="certificate-content">-->
   <!--              <h2>Become <strong>a Breathwork Teacher</strong> that utilises a holistic approach to change people&apos;s-->
@@ -447,7 +474,7 @@ get_header(); ?>
   <!--            <div class="content-wrap">-->
   <!--              <div class="tantra-optional-post">-->
   <!--                <div class="tantra-optional-post-img"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/tantra-6.png" alt=""></div>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/tantra-6.png" alt=""></div>-->
   <!--                <div class="tantra-optional-post-content">-->
   <!--                  <div class="location">Spain</div>-->
   <!--                  <div class="description">-->
@@ -459,7 +486,7 @@ get_header(); ?>
   <!--              </div>-->
   <!--              <div class="tantra-optional-post">-->
   <!--                <div class="tantra-optional-post-img"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/tantra-4.png" alt=""></div>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/tantra-4.png" alt=""></div>-->
   <!--                <div class="tantra-optional-post-content">-->
   <!--                  <p>Over the course of four days, InnerCamp will gently guide you along your own healing journey.</p>-->
   <!--                  <p>Each day will unlock new tools and techniques to help you free your body and mind from toxic-->
@@ -495,7 +522,7 @@ get_header(); ?>
   <!--                    <li>Q&A calls with master facilitators</li>-->
   <!--                  </ul>-->
   <!--                </div>-->
-  <!--                <div class="session-img"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/tantra-sessions.png"-->
+  <!--                <div class="session-img"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/tantra-sessions.png"-->
   <!--                                              alt=""><a class="bundle-download" href="#">Download the Timetable</a>-->
   <!--                </div>-->
   <!--              </div>-->
@@ -617,7 +644,7 @@ get_header(); ?>
   <!--                      and compatible relationships.</strong></p>-->
   <!--                </div>-->
   <!--              </div>-->
-  <!--              <div class="why-us-img"><img src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/why-we.png"-->
+  <!--              <div class="why-us-img"><img src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/why-we.png"-->
   <!--                                           alt=""></div>-->
   <!--            </div>-->
   <!--          </article>-->
@@ -673,19 +700,19 @@ get_header(); ?>
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Weekly assignments</div>-->
   <!--                <div class="level-item"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Personal counselling</div>-->
   <!--                <div class="level-item"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
@@ -696,92 +723,92 @@ get_header(); ?>
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Essential and recommended reading list</div>-->
   <!--                <div class="level-item"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Members Hub</div>-->
   <!--                <div class="level-item"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Enrolment In Our Affiliate system</div>-->
   <!--                <div class="level-item"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Discounts to Our Events, Retreats, and New Products</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Lifetime Access to All Online Training Materials</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Access to 100 Breathwork Music Playlists</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Contracts & Legal Documents to launch your Breathwork business</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Monthly Mentoring calls forever</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Study Buddy meetings</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Unlimited Access To Our Private InnerCamp Community</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--              <li class="exposition-item-row">-->
   <!--                <div class="first-item">Diploma & License to Guide InnerCamp Breathwork Sessions</div>-->
-  <!--                <div class="level-item"><img src="--><?//= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
+  <!--                <div class="level-item"><img src="--><? //= get_template_directory_uri(); ?><!--/img/tantra/red-circle.svg"-->
   <!--                                             alt=""><span>no</span></div>-->
   <!--                <div class="level-item full-program"><img-->
-  <!--                      src="--><?//= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
+  <!--                      src="--><? //= get_template_directory_uri(); ?><!--/img/breathwork-teacher/check-circle-2.svg" alt=""><span>yes</span>-->
   <!--                </div>-->
   <!--              </li>-->
   <!--            </ul>-->
@@ -791,93 +818,46 @@ get_header(); ?>
   <!--    </div>-->
   <!--  </section>-->
 
-<?php
-global $product;
-$product = wc_get_product();
-$product_id = $product->get_id();
-$product = wc_get_product($product_id);
-$variations = $product->get_available_variations();
-$variations_id = wp_list_pluck($variations, 'variation_id');
-$arr_first = $arr_second = $arr_variations = [];
-$i = 0;
-$temp_description = '';
-foreach ($variations as $item) {
-  $arr_variations[$i]['id'] = $item['variation_id'];
-  $arr_variations[$i]['name'] = $item['attributes']['attribute_level'];
-  $arr_variations[$i]['description'] = $item['variation_description'];
-  $arr_variations[$i]['display_price'] = $item['display_price'];
-  $arr_variations[$i]['regular_price'] = $item['display_regular_price'];
-  $temp_description = $item['variation_description'];
-  $i++;
-}
+  <?php
+  global $product;
+  $product = wc_get_product();
+  $product_id = $product->get_id();
+  $product = wc_get_product($product_id);
+  $variations = $product->get_available_variations();
+  $variations_id = wp_list_pluck($variations, 'variation_id');
+  $arr_first = $arr_second = $arr_variations = [];
+  $i = 0;
+  $number = 1;
+  $temp_description = '';
+  foreach ($variations as $item) {
+    $arr_variations[$i]['number'] = $number;
+    $arr_variations[$i]['id'] = $item['variation_id'];
+    $arr_variations[$i]['name'] = $item['attributes']['attribute_level'];
+    $arr_variations[$i]['description'] = $item['variation_description'];
+    $arr_variations[$i]['display_price'] = $item['display_price'];
+    $arr_variations[$i]['regular_price'] = $item['display_regular_price'];
+    $temp_description = $item['variation_description'];
+    $i++;
+    $number++;
+  }
 
 // Новий масив, де ключами будуть значення з поля "description"
-$arr_variations_items = array();
-foreach ($arr_variations as $item) {
-  $description = $item["description"];
+  $arr_variations_items = array();
+  foreach ($arr_variations as $item) {
+    $description = $item["description"];
 //  unset($item["description"]);
-  $arr_variations_items[$description][] = $item;
-}
-$content_for_variation = [];
-if (have_rows('content_for_variation')) :
-  while (have_rows('content_for_variation')) : the_row();
-    $content_for_variation[] .= get_sub_field('content');
-  endwhile;
-endif;
-//var_dump($arr_variations_items);
-//$test =
-//[
-//  ["attributes"]=>  [
-//    ["attribute_level"]=>  "3 instalments"
-//  ],
-//  ["availability_html"]=>  "",
-//  ["backorders_allowed"]=> false,
-//  ["dimensions"]=>  [
-//    ["length"]=>  "",
-//    ["width"]=>  "",
-//    ["height"]=>  "",
-//  ],
-//  ["dimensions_html"]=>  "N/A",
-//  ["display_price"]=> 400,
-//  ["display_regular_price"]=> 425,
-//  ["image"]=>  [
-//    ["title"]=>  "",
-//    ["caption"]=>  "",
-//    ["url"]=>  "",
-//    ["alt"]=>  "",
-//    ["src"]=>  "",
-//    ["srcset"]=> false,
-//    ["sizes"]=> false,
-//  ],
-//  ["image_id"]=> '0',
-//  ["is_downloadable"]=> 'false',
-//  ["is_in_stock"]=> 'true',
-//  ["is_purchasable"]=> 'true',
-//  ["is_sold_individually"]=>  "no",
-//  ["is_virtual"]=> 'true',
-//  ["max_qty"]=>  "" ,
-//  ["min_qty"]=> 1 ,
-//  ["price_html"]=>  "€425 €400",
-//  ["sku"]=>  "",
-//  ["variation_description"]=>  "Level 1=> Self-healing journey",
-//  ["variation_id"]=> 65631,
-//  ["variation_is_active"]=> 'true',
-//  ["variation_is_visible"]=> 'true',
-//  ["weight"]=>  "",
-//  ["weight_html"]=>  "N/A",
-//  ["tc_tax_rate"]=> '0',
-//  ["tc_is_taxable"]=> 'false',
-//  ["tc_base_tax_rate"]=> '0',
-//  ["tc_base_taxes_of_one"]=> '0',
-//  ["tc_taxes_of_one"]=> '0',
-//  ["tc_modded_taxes_of_one"]=> '0',
-//  ["tc_non_base_location_prices"]=> '0',
-//  ["tc_is_on_sale"]=> 'true',
-//  ["variation_image_id"]=> '0',
-//]
-?>
+    $arr_variations_items[$description][] = $item;
+  }
+  $content_for_variation = [];
+  if (have_rows('content_for_variation')) :
+    while (have_rows('content_for_variation')) : the_row();
+      $content_for_variation[] .= get_sub_field('content');
+    endwhile;
+  endif;
+  ?>
   <!--  <pre>--><?php //var_dump($variations_id); ?><!--</pre>-->
   <section data-product-id="<?php echo $product_id ?>" class="breathwork-levels-one-two__12">
+
     <div class="container">
       <div class="row">
         <div class="col m12 s12 l12 xl9 offset-xl3">
@@ -908,7 +888,8 @@ endif;
                         $current_variation_id = $el['id'];
                       }
                       ?>
-                      <div class="price-item <?php echo ($j === 1) ? 'active' : '' ?>">
+                      <div onclick="changeSelectValue(<?php echo $el['number'] ?>)"
+                           class="price-item <?php echo ($j === 1) ? 'active' : '' ?>">
                         <span
                             data-price-variation="<?php echo $el['regular_price'] ?>"
                             class="price"><?php echo $el['regular_price'] ?>&euro;</span>
@@ -928,64 +909,27 @@ endif;
                 <?php
                 $i++;
               } ?>
-<!--              <div class="left-small-block">-->
-<!--                <h3><strong>Level 1:</strong> Self-healing journey</h3>-->
-<!--                <div class="top-row">-->
-<!--                  <ul class="training-list">-->
-<!--                    <li>150 hours, 2 months</li>-->
-<!--                    <li>6 weekly sessions</li>-->
-<!--                    <li>40+ videos</li>-->
-<!--                    <li>Members Hub</li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--                <div class="choose-price">-->
-<!--                  <div class="price-item">-->
-<!--                    <span class="price">425&euro;</span>-->
-<!--                    <span class="price-type">3 instalments</span>-->
-<!--                  </div>-->
-<!--                  <div class="price-item active">-->
-<!--                    <span class="price">1200&euro;</span>-->
-<!--                    <span class="price-type">full price</span>-->
-<!--                  </div>-->
-<!--                  <div class="price-item">-->
-<!--                    <span class="price">500&euro;</span>-->
-<!--                    <span class="price-type">deposit</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <a class="bundle" href="#">Enroll now</a>-->
-<!--              </div>-->
-<!---->
-<!--              <div class="middle-small-block">-->
-<!--                <h3><strong>Level 1 + 2:</strong> Teacher Training</h3>-->
-<!--                <div class="top-row">-->
-<!--                  <ul class="training-list">-->
-<!--                    <li>300 hours, 4 months</li>-->
-<!--                    <li>12 weekly sessions</li>-->
-<!--                    <li>Monthly Mentoring calls forever</li>-->
-<!--                    <li>Study Buddy meetings</li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--                <div class="choose-price">-->
-<!--                  <div class="price-item">-->
-<!--                    <span class="price">550&euro;</span>-->
-<!--                    <span class="price-type">4 instalments</span>-->
-<!--                  </div>-->
-<!--                  <div class="price-item active">-->
-<!--                    <span class="price">2200&euro;</span>-->
-<!--                    <span class="price-type">full price</span>-->
-<!--                  </div>-->
-<!--                  <div class="price-item">-->
-<!--                    <span class="price">500&euro;</span>-->
-<!--                    <span class="price-type">deposit</span>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--                <a class="bundle" href="#">Enroll now</a>-->
-<!--              </div>-->
-<?php
-echo $product_id;
-if (isset($post) && is_object($post) && ($post instanceof WP_Post )){
-  do_action("woocommerce_tm_epo",$product_id);
-} ?>
+
+
+              <?php
+              echo $product_id;
+
+
+              /**
+               * Hook: woocommerce_single_product_summary.
+               *
+               * @hooked woocommerce_template_single_price - 10
+               * @hooked woocommerce_template_single_add_to_cart - 30
+               * @hooked WC_Structured_Data::generate_product_data() - 60
+               */
+              do_action('woocommerce_single_product_summary');
+              ?>
+
+              <!--              --><?php
+              //
+              //              if (isset($post) && is_object($post) && ($post instanceof WP_Post)) {
+              //                do_action("woocommerce_tm_epo", $product_id);
+              //              } ?>
 
               <div class="right-small-block"
                    style="background: url('../img/breathwork-teacher/book-now.png') no-repeat top/cover;">
@@ -1152,7 +1096,7 @@ if (isset($post) && is_object($post) && ($post instanceof WP_Post )){
         <div class="right-side">
           <h3 class="block-title">Choose Type of Accommodation</h3>
           <ul class="apartments-list">
-            <li class="apartment-item">
+            <li class="apartment-item" onclick="changeRoom(0)">
               <ul class="img-list">
                 <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
               </ul>
@@ -1162,7 +1106,7 @@ if (isset($post) && is_object($post) && ($post instanceof WP_Post )){
                 <div class="price">1200&euro;</div>
               </div>
             </li>
-            <li class="apartment-item">
+            <li class="apartment-item" onclick="changeRoom(1)">
               <ul class="img-list">
                 <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
                 <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
@@ -1173,7 +1117,7 @@ if (isset($post) && is_object($post) && ($post instanceof WP_Post )){
                 <div class="price">800&euro;</div>
               </div>
             </li>
-            <li class="apartment-item">
+            <li class="apartment-item" onclick="changeRoom(2)">
               <ul class="img-list">
                 <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
                 <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
@@ -1193,6 +1137,48 @@ if (isset($post) && is_object($post) && ($post instanceof WP_Post )){
       </div>
     </div>
   </div>
+  <script>
+
+
+    // document.addEventListener("DOMContentLoaded", function (event) {
+    function changeRoom(number) {
+      let ul = document.querySelectorAll('.tmcp-ul-wrap');
+      // ul.forEach(function (el, ind, arr) {
+      //   let li = el.querySelectorAll('.tmcp-field-wrap')
+      //   console.log('length' + li.length)
+      //   if (li.length === 3) {
+      //     let input = li[number].querySelector('input')
+      //     const event = new Event('change', { bubbles: true });
+      //     input.dispatchEvent(event);
+      //   }
+      // })
+      const radioInputs = document.querySelectorAll('input[type=radio][name="tmcp_radio_0"]');
+      radioInputs[number].checked = true;
+      const event = new Event('change', { bubbles: true });
+      radioInputs[number].dispatchEvent(event);
+      console.log(number)
+    }
+
+
+    // });
+
+    function changeSelectValue(index) {
+      const variationSelect = document.querySelector('#level');
+      variationSelect.selectedIndex = index;
+      const event = new Event('change', { bubbles: true });
+      variationSelect.dispatchEvent(event);
+    }
+  </script>
+<?php endwhile; // end of the loop. ?>
+
+<?php
+/**
+ * woocommerce_after_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+do_action('woocommerce_after_main_content');
+?>
 
 
 <?php get_footer();

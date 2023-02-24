@@ -17,7 +17,7 @@
               <?php endif; ?>
               
               <?php if( get_sub_field('home_3_slide_text')): ?><!-- if under__the -->
-               <h3 class="sub"> <?php the_sub_field('home_3_slide_text'); ?></h3>
+               <h3 class=""> <?php the_sub_field('home_3_slide_text'); ?></h3>
               <?php endif; ?>
 
                 <ul class="list_img">
@@ -41,7 +41,7 @@
                 </ul>
                 
               <?php if( get_sub_field('home_3_text_after_img')): ?><!-- if under__the -->
-               <h3 class="sub"> <?php the_sub_field('home_3_text_after_img'); ?></h3>
+               <h3 class=""> <?php the_sub_field('home_3_text_after_img'); ?></h3>
               <?php endif; ?>
 
               </div>

@@ -44,20 +44,30 @@
 </div>
           
         </div>
+        
+    <?php if( have_rows('testimonial_2_achievements') ): ?>
         <ul class="achievements-list">
+        <?php while( have_rows('testimonial_2_achievements') ): the_row();
+            // vars  ?>
+
           <li class="achievements-item">
-            <h3 class="heading">800+</h3>
-            <p class="achievements-description">InnerCamp members are building their new holistic career</p>
+            
+  <?php if( get_sub_field('testimonial_2_number')): ?><!-- if under__the -->
+     <h3 class="heading"><?php the_sub_field('testimonial_2_number'); ?></h3>
+  <?php endif; ?>
+            
+  <?php if( get_sub_field('testimonial_2_achievement_description')): ?><!-- if under__the -->
+     <p class="achievements-description"><?php the_sub_field('testimonial_2_achievement_description'); ?></p>
+  <?php endif; ?>        
+
           </li>
-          <li class="achievements-item">
-            <h3 class="heading">400+</h3>
-            <p class="achievements-description">events organized worldwide</p>
-          </li>
-          <li class="achievements-item">
-            <h3 class="heading">2000+</h3>
-            <p class="achievements-description">students were trained by InnerCamp</p>
-          </li>
+          
+          <?php endwhile; ?>
         </ul>
+      <?php endif; ?>
+        
+ 
+        
       </div>
     </div>
   </div>

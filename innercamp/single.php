@@ -14,83 +14,9 @@ get_header(); ?>
     
     
  <?php if( is_product() ){  ?>
-        <?php if(0){ ?>  
+   
 <!--   data-menuscroll-->
    
-  <?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-
-				the_content(); 
-
-			endwhile;
-
-// the_content(); ?>
-
-
-	<main id="primary" class="site-main">
-
-		<?php
-		while ( have_posts() ) :
-			the_post();
-
-			get_template_part( 'template-parts/content', get_post_type() );
-
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'innercamp' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'innercamp' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
-
-	</main><!-- #main -->
-
-       <?php } ?>  
-    
-
- 
-    
-<section class="workshop__1" data-menuscroll
-<?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
-  <div class="container">
-    <div class="row">
-      <div class="col m12 s12 l12 xl12">
-        <h2 class="title"> <?php the_title(); ?></h2>
-        
-        <p>Learn to keep your energies in check and well-balanced to feel harmony, ease, and bliss within.</p>
-
-          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-              <input type="hidden" name="action" value="addcart_prod">
-
-                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" >Join now</a>
-              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-          </form>
-
-       
-       
-        
-      </div>
-    </div>
-  </div>
-</section>
-
    
     <div class="left__menu__scroll">
       <div class="container">
@@ -130,6 +56,32 @@ get_header(); ?>
       </div>
     </div>
 
+   
+<section class="workshop__1" data-menuscroll
+<?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+  <div class="container">
+    <div class="row">
+      <div class="col m12 s12 l12 xl12">
+        <h2 class="title"> <?php the_title(); ?></h2>
+        
+        <p>Learn to keep your energies in check and well-balanced to feel harmony, ease, and bliss within.</p>
+
+          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+              <input type="hidden" name="action" value="addcart_prod">
+
+                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" >Join now</a>
+              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+          </form>
+
+       
+       
+        
+      </div>
+    </div>
+  </div>
+</section>
 <section class="workshop__2">
   <div class="container">
     <div class="row">
@@ -303,7 +255,7 @@ get_header(); ?>
     <div class="row">
       <div class="col m12 s12 l12 xl9 offset-xl3">
         <h2 class="title">Got questions?</h2>
-        <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p><a class="bundle" href="#">Schedule now</a>
+        <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p><a target="_blank" class="bundle" href="#">Schedule now</a>
       </div>
     </div>
   </div>
@@ -389,7 +341,13 @@ get_header(); ?>
   </div>
 </section>
 
-     <?php if(0){ ?>  
+   
+   
+   
+   
+   
+   
+   <?php if(0){ ?>
     <section class="blog-single__1">
       <div class="container">
         <div class="row">     
@@ -446,7 +404,8 @@ get_header(); ?>
         </div>
       </div>
     </section>
- 
+    
+    
        <?php } ?>
    
   <?php }else{ ?> 

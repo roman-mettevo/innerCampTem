@@ -98,8 +98,15 @@
       <div class="col m12 s12 l12 xl12">
         <div class="review-header-wrapper">
           <div class="review-header">
-            <p class="sub">TESTIMONIALS</p>
-            <h2 class="title">About retreats &amp; sessions</h2>
+           
+  <?php if( get_sub_field('testimonial_4_sup_title')): ?><!-- if under__the -->
+    <p class="sub"><?php the_sub_field('testimonial_4_sup_title'); ?></p>
+  <?php endif; ?>
+   
+   <?php if( get_sub_field('testimonial_4_title')): ?><!-- if under__the -->
+    <h2 class="title"><?php the_sub_field('testimonial_4_title'); ?></h2>
+  <?php endif; ?>       
+            
           </div>
           <div class="arrows"><a class="left_a previous-button" href="javascript:;">
               <svg width="45" height="16" viewbox="0 0 45 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,16 +116,61 @@
                 <path d="M44.7071 8.7071C45.0976 8.31658 45.0976 7.68341 44.7071 7.29289L38.3431 0.928929C37.9526 0.538404 37.3195 0.538405 36.9289 0.928929C36.5384 1.31945 36.5384 1.95262 36.9289 2.34314L42.5858 8L36.9289 13.6569C36.5384 14.0474 36.5384 14.6805 36.9289 15.0711C37.3195 15.4616 37.9526 15.4616 38.3431 15.0711L44.7071 8.7071ZM8.74228e-08 9L44 9L44 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#B68742"></path>
               </svg></a></div>
         </div>
+        
+ 
+
         <div class="splide-wrapper">
           <div class="video-review-slider splide">
             <div class="splide__track">
               <div class="splide__list">
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
-                <div class="splide__slide video-review-slide"><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a><a class="video-review-slide-link" data-fancybox="" href="https://www.youtube.com/watch?v=2xeEKF8O0Ek&amp;list=PLIPLVbRO-ESui8w3ZiW817_ITWg6psx5u&amp;ab_channel=innercamp"><img src="<?= get_template_directory_uri(); ?>/img/testimonials_n/user-rev.jpg" alt=""></a></div>
+              
+   <?php if( have_rows('testimonial_4_video_top_slider') ): ?>
+
+        <?php while( have_rows('testimonial_4_video_top_slider') ): the_row();
+            // vars  ?>
+               
+                <div class="splide__slide video-review-slide">
+                
+                
+                
+
+          
+  <?php if( get_sub_field('testimonial_4_top_slider_video_link')): ?><!-- if under__the -->
+        <a class="video-review-slide-link" data-fancybox="" href="<?php the_sub_field('testimonial_4_top_slider_video_link'); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+    
+    <?php $image_video_background = get_sub_field('testimonial_4_top_slider_video_background'); ?>
+
+    <?php if( !empty( $image_video_background ) ): ?>
+        <img src="<?php echo esc_url($image_video_background['url']); ?>"  alt="<?php echo esc_attr($image_video_background['alt']); ?>">
+    <?php endif; ?>    
+        
+         </a>
+  <?php endif; ?>
+
+
+                
+                
+  <?php if( get_sub_field('testimonial_4_bottom_slider_video_link')): ?><!-- if under__the -->
+        <a class="video-review-slide-link" data-fancybox="" href="<?php the_sub_field('testimonial_4_bottom_slider_video_link'); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+        
+    <?php $image = get_sub_field('testimonial_4_bottom_slider_video_background'); ?>
+
+    <?php if( !empty( $image ) ): ?>
+        <img src="<?php echo esc_url($image['url']); ?>"  alt="<?php echo esc_attr($image['alt']); ?>">
+    <?php endif; ?>    
+        
+         </a>
+  <?php endif; ?>
+     
+
+
+                
+                </div>
+                
+          <?php endwhile; ?>
+
+      <?php endif; ?>
+                
               </div>
             </div>
           </div>
@@ -126,6 +178,11 @@
             <button class="see-more-button" type="button">See more</button>
           </div>
         </div>
+        
+
+
+        
+        
       </div>
     </div>
   </div>

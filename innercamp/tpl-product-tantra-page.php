@@ -54,7 +54,7 @@ $product = wc_get_product( $post->ID );
     <?php endwhile; ?>
   <?php endif; ?>
 
-    <div class="left__menu__scroll">
+    <div class="left__menu__scroll" data-scroll>
       <div class="container">
         <div class="row">
           <div class="col m12 s12 l3 xl3">
@@ -67,8 +67,8 @@ $product = wc_get_product( $post->ID );
                 <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
               </form>  
               <ul>
-              <?php if ( have_rows( 'onsite_breathwork_teacher_pages' ) ): 
-                while ( have_rows( 'onsite_breathwork_teacher_pages' ) ) : the_row();
+              <?php if ( have_rows( 'product_tantra' ) ): 
+                while ( have_rows( 'product_tantra' ) ) : the_row();
                   if( get_row_layout() == 'section_2' ){  
                     if ( have_rows( 'navigation' ) ) : 
                       while ( have_rows( 'navigation' ) ) : the_row(); ?>
@@ -117,13 +117,25 @@ $product = wc_get_product( $post->ID );
                         <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                       <?php endwhile;
                     endif;
-                  } elseif( get_row_layout() == 'section_14' ) {
+                  } elseif( get_row_layout() == 'section_11' ) {
                     if ( have_rows( 'navigation' ) ) : 
                       while ( have_rows( 'navigation' ) ) : the_row(); ?>
                         <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                       <?php endwhile;
                     endif;
-                  } elseif( get_row_layout() == 'section_15' ) {
+                  } elseif( get_row_layout() == 'section_12' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_13' ) {
+                    if ( have_rows( 'navigation' ) ) : 
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_14' ) {
                     if ( have_rows( 'navigation' ) ) : 
                       while ( have_rows( 'navigation' ) ) : the_row(); ?>
                         <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
@@ -141,35 +153,9 @@ $product = wc_get_product( $post->ID );
                         <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                       <?php endwhile;
                     endif;
-                  } elseif( get_row_layout() == 'section_19' ) {
-                    if ( have_rows( 'navigation' ) ) : 
-                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
-                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
-                      <?php endwhile;
-                    endif;
-                  } elseif( get_row_layout() == 'section_20' ) {
-                    if ( have_rows( 'navigation' ) ) : 
-                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
-                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
-                      <?php endwhile;
-                    endif;
                   } ?>
                 <?php endwhile;
               endif; ?>
-                <!-- <li class="course-basics active"><a href="#course-basics">Course basics</a></li>
-                <li class="accreditations"><a href="#accreditations">Accreditations</a></li>
-                <li class="benefits"><a href="#benefits">Benefits</a></li>
-                <li class="about-course"><a href="#about-course">About the course</a></li>
-                <li class="program"><a href="#program">The program</a></li>
-                <li class="facilitators"><a href="#facilitators">Facilitators</a></li>
-                <li class="certificate"><a href="#certificate">Certification</a></li>
-                <li class="optional-retreat"><a href="#optional-retreat">Optional retreat</a></li>
-                <li class="session"><a href="#session">Live sessions</a></li>
-                <li class="book-call"><a href="#book-call">Book a free call</a></li>
-                <li class="testimonials"><a href="#testimonials">Testimonials</a></li>
-                <li class="why-we"><a href="#why-we">Why we are loved</a></li>
-                <li class="book-now"><a href="#">Book now</a></li>
-                <li class="faq"><a href="#">FAQ</a></li> -->
               </ul>
             </div>
           </div>
@@ -209,7 +195,7 @@ $product = wc_get_product( $post->ID );
                             <span><?php echo __('Price:'); ?> </span>
                             <span><?= $product->get_price_html(); ?></span>
                           </div>
-                        <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
                             <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
                               <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
                               <input type="hidden" name="action" value="addcart_prod">
@@ -445,23 +431,19 @@ $product = wc_get_product( $post->ID );
                       $featured_posts = get_sub_field('faciliated_imgs');
                       if( $featured_posts ): ?>
                         <ul>
-                        <?php foreach( $featured_posts as $post ): 
-
-                                        // Setup this post for WP functions (variable must be named $post).
-                                        setup_postdata($post); ?>
-                                        <li>
-                                        <?php if(get_the_post_thumbnail_url()){ ?> 
-                                          <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> <?php } ?>
-                                        </li>
-                                    <?php endforeach; ?>
-                                    </ul>
-                                    <?php 
-                                    // Reset the global post object so that the rest of the page works correctly.
-                                    wp_reset_postdata(); ?>
-                              <?php endif; ?>
-                            </div>
-                          </div>
-                          <div class="tabs-row">
+                          <?php foreach( $featured_posts as $post ): 
+                            setup_postdata($post); ?>
+                            <li>
+                              <?php if(get_the_post_thumbnail_url()){ ?> 
+                                <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> <?php } ?>
+                            </li>
+                          <?php endforeach; ?>
+                        </ul>
+                        <?php wp_reset_postdata(); ?>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="tabs-row">
                             <?php if( have_rows('tabs') ): 
                               $counter=1;
                               ?>
@@ -649,17 +631,19 @@ $product = wc_get_product( $post->ID );
                   <?php 
                       if(get_sub_field('text')) { ?>
                         <h2> <?php the_sub_field( 'text' ); ?></h2>
-                      <?php }
-                      $button_link = get_sub_field( 'button_link' ); ?>
-                      <?php if ( $button_link ) : ?>
-                        <a class="bundle" href="<?php echo esc_url( $button_link['url'] ); ?>" target="<?php echo esc_attr( $button_link['target'] ); ?>"><?php echo esc_html( $button_link['title'] ); ?></a>
-                      <?php endif; ?>
-                    <!-- <h2>Become <strong>
-                        a Tantric Embodiment
-                        Facilitator</strong> from the comfort of your
-                                                      home and be accredited to facilitate in
-                                                      any part of the world.
-                    </h2><a class="bundle" href="#">Enroll now</a> -->
+                      <?php } ?>
+                      <!-- $button_link = get_sub_field( 'button_link' ); ?> -->
+                      <?php //if ( $button_link ) : ?>
+                        <!-- <a class="bundle" href="<?php // echo esc_url( $button_link['url'] ); ?>" target="<?php // echo esc_attr( $button_link['target'] ); ?>"><?php // echo esc_html( $button_link['title'] ); ?></a> -->
+                      <?php //endif; ?>
+                      <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                            <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                              <input type="hidden" name="action" value="addcart_prod">
+                                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Enroll now'); ?></a>
+                                <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button> 
+                          </form>
+                    
                   </div>
                 </article>
               </div>
@@ -825,7 +809,7 @@ $product = wc_get_product( $post->ID );
                         </div>
                         <?php $link_button = get_sub_field( 'link_button' ); ?>
                         <?php if ( $link_button ) : ?>
-                          <a class="bundle" href="<?php echo esc_url( $link_button['url'] ); ?>"><?php echo esc_html( $link_button['title'] ); ?></a>
+                          <a class="bundle" data-fancybox data-src="#modal-3"><?php echo esc_html( $link_button['title'] ); ?></a>
                         <?php endif; ?>                      
                       </article>
               </div>
@@ -1180,7 +1164,55 @@ $product = wc_get_product( $post->ID );
   <?php endif; ?>
   </section>
 
-    <div class="modal-wrap">
+  <div class="modal bodywork-first__11" id="modal__update" style="display: none;">
+    <div class="bodywork-modal-header">
+      <h3 class="heading">Upgrade your experience with a retreat?</h3><span>June 2023</span>
+    </div>
+    <div class="bodywork-modal-content">
+      <div class="choose-date">
+        <h4 class="choose-title">Choose Date</h4>
+        <ul class="chose-date-list">
+          <li class="chose-date-item">
+            <input type="radio" name="chose-date" id=""> Jun 24, 2023 - Jun 27, 2023
+          </li>
+        </ul>
+      </div>
+      <div class="choose-type">
+        <h4 class="choose-title">Choose Type of Accommodation</h4>
+        <ul class="choose-appartaments-list">
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
+            </ul>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
+            </ul>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+          <li class="choose-appartaments-item">
+            <ul class="bags-list">
+              <li class="bags-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/bag.svg" alt=""></li>
+            </ul>
+            <p class="room-name">Single room</p>
+            <div class="room-footer"><span class="room-available">Available</span><span
+                  class="room-price">1200&euro;</span></div>
+          </li>
+        </ul>
+        <div class="choose-type-buttons"><a class="bundle" href="#">Yes, upgrade with a Retreat</a><a class="cancel" href="#">No, thanks</a></div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- <div class="modal-wrap">
       <div class="shadow"></div>
       <div class="modal-upgrade-block">
         <button class="upgrade-close"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/x-circle.svg" alt=""></button>
@@ -1235,8 +1267,22 @@ $product = wc_get_product( $post->ID );
         </div>
       </div>
 
-    </div>
+    </div> -->
     
-  
+    <!-- //// MODAL ////-->
+  <div class="modal__style modal" id="modal-3" style="display: none;">
+      <div class="content_modal">
+          <!-- Calendly inline widget begin -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/d/dpg-9q6-b4v/call-with-innercamp" style="min-width:550px;height:850px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+          <!-- Calendly inline widget end -->
+      </div>
+    </div>
+  <style>
+    article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-content .coach-description {
+      height: 340px;
+      padding-right: 0;
+    }
+  </style>
 <?php
 get_footer();

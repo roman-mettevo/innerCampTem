@@ -35,7 +35,7 @@ get_header();
               <ul> 
                 <li> <a class="order" href="/my-account/orders/">Orders</a></li>
                 <li> <a class="profile" href="/my-account/edit-account/">Profile</a></li>
-                <li> <a class="affilate" href="#">Affilate</a></li>
+                <li> <a class="affilate" href="/affiliate/">Affilate</a></li>
               </ul>
             </div>
           </div>

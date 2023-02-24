@@ -43,7 +43,7 @@ endif;
         <?php the_field('content'); ?>
         <?php $button = get_field( 'button' ); ?>
         <?php if ( $button ) : ?>
-          <a  class="bundle" href="<?php echo esc_url( $button['url'] ); ?>" target="<?php echo esc_attr( $button['target'] ); ?>"><?php echo esc_html( $button['title'] ); ?></a>
+          <a class="bundle" href="<?php echo esc_url( $button['url'] ); ?>" target="<?php echo esc_attr( $button['target'] ); ?>"><?php echo esc_html( $button['title'] ); ?></a>
         <?php endif; ?>
       </div>
     </div>

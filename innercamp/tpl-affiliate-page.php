@@ -7,7 +7,15 @@ get_header(); ?>
 <section class="profile-affiliate__1">
   <div class="container">
     <div class="row">
-      <div class="col m12 s12 l12 xl2"></div>
+      <div class="col m12 s12 l12 xl2">
+            <div class="menu__">
+              <ul> 
+                <li> <a class="order" href="/my-account/orders/">Orders</a></li>
+                <li> <a class="profile" href="/my-account/edit-account/">Profile</a></li>
+                <li> <a class="affilate" href="/affiliate/">Affilate</a></li>
+              </ul>
+            </div>
+      </div>
       <div class="col m12 s12 l12 xl10">
         <h2 class="title">Affiliate</h2>
         <div class="stats-wrapper splide" id="profile-affiliate-stats">
@@ -211,12 +219,11 @@ get_header(); ?>
   </div>
 </div>
 
-
-    <?php if (!is_user_logged_in()){ ?>
-        <script>
-            location.href = '/';
-        </script>
-    <?php } ?>
+  <?php if (!is_user_logged_in()){ ?>
+      <script>
+          location.href = '/';
+      </script>
+  <?php } ?>
 
 <?php
 get_footer();

@@ -1,46 +1,92 @@
 {
-  "name": "underscores",
-  "version": "1.0.0",
-  "description": "Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.",
-  "author": "Automattic Theme Team",
-  "license": "GPL-2.0-or-later",
-  "keywords": [
-    "WordPress",
-    "Theme"
+  "name": "WebPackLayout",
+  "version": "1.0.1",
+  "description": "demo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config ./build/webpack.dev.conf.js",
+    "goo": "webpack --config ./build/webpack.build.conf.js"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 3 version",
+    "Firefox >= 20",
+    "iOS >= 7",
+    "Android >= 4",
+    "Firefox ESR",
+    "ie >= 7",
+    "IE >= 10",
+    "Edge >= 10",
+    "and_chr 67",
+    "and_ff 60",
+    "and_qq 1.2",
+    "and_uc 11.8",
+    "android 4.4.3-4.4.4",
+    "baidu 7.12",
+    "chrome 69",
+    "chrome 68",
+    "edge 17",
+    "edge 16",
+    "firefox 62",
+    "firefox 61",
+    "ios_saf 11.3-11.4",
+    "ios_saf 11.0-11.2",
+    "opera 55",
+    "opera 54",
+    "safari 11.1",
+    "safari 11",
+    "samsung 7.2",
+    "samsung 6.2"
   ],
-  "homepage": "https://github.com/Automattic/_s#readme",
+  "author": "Fobiya",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Automattic/_s.git"
+    "url": ""
   },
   "bugs": {
-    "url": "https://github.com/Automattic/_s/issues"
+    "url": ""
   },
+  "keywords": [
+    "webpack",
+    "webpack4",
+    "merge",
+    "bable",
+    "bable7",
+    "scss"
+  ],
+  "license": "MIT",
   "devDependencies": {
-    "@wordpress/scripts": "^19.2.2",
-    "dir-archiver": "^1.1.1",
-    "node-sass": "^7.0.1",
-    "rtlcss": "^3.5.0"
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@splidejs/splide": "^4.1.4",
+    "autoprefixer": "^9.4.4",
+    "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.8",
+    "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "npm-install-webpack-plugin": "^4.0.5",
+    "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
+    "pug": "^2.0.4",
+    "pug-html-loader": "^1.1.5",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
   },
-  "rtlcssConfig": {
-    "options": {
-      "autoRename": false,
-      "autoRenameStrict": false,
-      "blacklist": {},
-      "clean": true,
-      "greedy": false,
-      "processUrls": false,
-      "stringMap": []
-    },
-    "plugins": [],
-    "map": false
-  },
-  "scripts": {
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-    "compile:rtl": "rtlcss style.css style-rtl.css",
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock"
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
+    "jquery": "^3.6.1"
   }
 }

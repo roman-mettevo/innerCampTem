@@ -5,22 +5,17 @@
   width: 100%;
   height: 100%;
 }
+@media (max-width: 400px) {
+  .testimonial__5 .title a:first-child:after {
+    bottom: 64%;
+    /* left: 100%; */
+    right: 0;
+    transform: unset;
+  }
+}
 /* * {
   background: red;
 } */
-.post__back-to-top {
-  display: block;
-  width: 58px;
-  height: 58px;
-  position: absolute;
-  right: 15px;
-  bottom: -100px;
-}
-
-.post__back-to-top img {
-  width: 100%;
-  margin: 0 !important;
-}
 section.workshop__1 .bundle {
   max-width: 350px !important;
 }
@@ -172,6 +167,9 @@ section.workshops__2 .experience-item .box__content .right-side .bundle {
 }
 
 /*-----Home Page-----*/
+section.home__3 h3 p strong {
+  font-family: var(--p);
+}
 section.home__4 .trainings__ .box__content .bundle {
   margin-top: 30px;
 }
@@ -215,6 +213,12 @@ section.home__4 .trainings__ .box__content .bundle {
 }
 
 @media (max-width: 991px) {
+  section.home__1
+    > .container:first-child
+    > .row:first-child
+    > div:nth-child(3):before {
+    display: none !important;
+  }
   section.home__2 .splide__slide .bundle {
     margin-top: 20px;
     display: flex !important;
@@ -349,6 +353,9 @@ section.app__3 .box__list .top > span:nth-child(2) {
 }
 
 /*-----corporate-----*/
+section.corporate__6 .traning-wrapper .traning .title img {
+  display: none;
+}
 section.corporate__9 .col:nth-child(2) {
   margin-bottom: 0;
 }
@@ -358,5 +365,51 @@ section.corporate__9 .col:nth-child(2) {
   body > footer[main] form [type='checkbox'],
   body > footer form [type='checkbox'] {
     min-width: 21px;
+  }
+}
+
+/*-----Testimonials-----*/
+section.review__3 .video-review-slide img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+section.review__3 .video-review-slide-link {
+  height: 283px;
+}
+
+/*-----Blog-----*/
+.post__back-to-top {
+  display: block;
+  width: 58px;
+  height: 58px;
+  position: absolute;
+  right: 15px;
+  bottom: -100px;
+}
+
+.post__back-to-top img {
+  width: 100%;
+  margin: 0 !important;
+}
+
+.blog-single__2 .row ul {
+  padding-left: 20px;
+  margin-bottom: 27.5px;
+}
+
+.blog-single__2 .row ul li {
+  font: 200 18px/1.7em var(--o);
+  list-style-type: initial;
+  color: #404f42;
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  .blog-single__2 .row ul li {
+    font: 200 16px/1.7em var(--o);
+  }
+}
+@media (max-width: 600px) {
+  .blog-single__2 .row ul li {
+    font: 200 14px/1.7em var(--o);
   }
 }
