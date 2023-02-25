@@ -222,7 +222,7 @@ get_header('none'); ?>
                   <?php wp_nonce_field( 'coupon_post', 'coupon_post_nonce' ); ?>
 
                   <input type="hidden" name="action" value="couponcode_prod">
-                  <input type="hidden" name="hash" value="<?php echo $item; ?>">
+                  <input type="hidden" name="hash" value="<?php // echo $item; ?>">
 
                   <input type="text" name="coupon_code" value="" placeholder="Coupon code">
 
@@ -251,8 +251,8 @@ get_header('none'); ?>
                       $discount_type = $coupon->get_discount_type(); // Get coupon discount type
                       $coupon_amount = $coupon->get_amount(); // Get coupon amount ?>
                        <div class="box__total">
-                    <div class="subtotal"><?php echo 'Coupon: '. $coupon_code;	?></div>
-                    <div class="pricesubtotal"><?php echo  '- €'. $coupon_amount;      ?></div>
+                    <div class="subtotal"><?php  echo 'Coupon: '. $coupon_code;	?></div>
+                    <div class="pricesubtotal"><?php  echo  '-'. $coupon_amount;      ?></div>
                                     </div>
                   <?php } ?>
 
@@ -276,18 +276,7 @@ get_header('none'); ?>
       </div>
     </section>
 
-        <!-- //// MODAL THANK YOU ////-->
-    <div class="thank modal" id="modal-thank" style="display: none;">
-      <div class="content_modal">
-        <div class="box__">
-          <div class="box__img"><img src="<?= get_template_directory_uri(); ?>/img/thenk__modal.png" alt="logo_brand_1"></div>
-          <div class="box__content">
-            <h5 class="title">Thank you!</h5>
-            <p>You will receive <span>soon an email with further instructions.</span>Thank you for choosing us.</p><a class="bundle" href="/">Go to the home page</a>
-          </div>
-        </div>
-      </div>
-    </div>
+
     
   
 <?php

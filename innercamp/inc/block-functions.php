@@ -581,6 +581,48 @@ function register_acf_block_types()
     )
   );
   
+  acf_register_block_type(
+    array(
+      'name' => 'Careers 1',
+      'title' => __('Careers 1'),
+      'render_template' => 'ACF/careers/careers_1.php',
+      'icon' => 'block-default',
+      'keywords' => array('careers-1'),
+    )
+  );
+  
+  acf_register_block_type(
+    array(
+      'name' => 'Careers 2',
+      'title' => __('Careers 2'),
+      'render_template' => 'ACF/careers/careers_2.php',
+      'icon' => 'block-default',
+      'keywords' => array('careers-2'),
+    )
+  );
+
+  
+  acf_register_block_type(
+    array(
+      'name' => 'Careers 3',
+      'title' => __('Careers 3'),
+      'render_template' => 'ACF/careers/careers_3.php',
+      'icon' => 'block-default',
+      'keywords' => array('careers-3'),
+    )
+  );
+  
+  acf_register_block_type(
+    array(
+      'name' => 'Careers 4',
+      'title' => __('Careers 4'),
+      'render_template' => 'ACF/careers/careers_4.php',
+      'icon' => 'block-default',
+      'keywords' => array('careers-4'),
+    )
+  );
+
+  
 }
 
 /**

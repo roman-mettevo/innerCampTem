@@ -88,6 +88,7 @@ body > section.descry {
   }
 }
 
+body.page-template-tpl-page-clear-conent header[main],
 body.page-id-403 header[main],
 body.page-id-63743 header[main],
 body.page-template-tpl-affiliate-page header[main],
@@ -117,6 +118,10 @@ body.page-template-tpl-app-page header[main] {
 
 
 
+
+.select2-selection.select2-selection--single{
+  display: none !important;
+}
 
 /*-----Nazar style-----*/
 section.blog-single__2 .col p {
@@ -233,4 +238,18 @@ section.careers__4 textarea {
 .tantra3__2-6 .session-wrap .session .top-row .session-content-wrap .session-schedule span.get-time_js{
   margin-left: 0;
   cursor: pointer;
+}
+
+span#check-terms.wpcf7-checkbox.wpcf7-not-valid{
+  
+  border: none !important;
+  background: none !important;
+
+}
+
+
+span.wpcf7-checkbox.wpcf7-not-valid input[type=checkbox]{
+  
+    background: #e5514f !important;
+  
 }

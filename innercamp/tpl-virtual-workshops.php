@@ -5,6 +5,8 @@
 */
 get_header(); 
 ?>
+
+<?php if ( wp_is_mobile() ) { ?>
 <div class="mobile-experience-filter-nav">
     <button class="close"><img src="<?= get_template_directory_uri(); ?>/img/team/close-img.svg" alt=""></button>
     <div class="mobile-experience-filter-wrap">
@@ -33,7 +35,7 @@ get_header();
         </nav>
     </div>
 </div>
-
+<?php } ?>
  
 <?php if ( have_rows( 'trainings_pages' ) ): ?>
 	<?php while ( have_rows( 'trainings_pages' ) ) : the_row(); ?>
@@ -97,7 +99,7 @@ get_header();
 						
 							<?php foreach ( $terms as $term ) : ?>
 							
-							         <li><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?> <span>(146)</span></a></li>
+							         <li><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?>  <span>(<?php echo esc_html( $term->count ); ?>)</span></a></li>
 							
 							<?php endforeach; ?>
 							

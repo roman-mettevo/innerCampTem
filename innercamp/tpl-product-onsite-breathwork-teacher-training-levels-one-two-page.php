@@ -885,7 +885,7 @@ $product = wc_get_product( $post->ID );
         <?php elseif ( get_row_layout() == 'section_16' ) : ?>
           <?php if ( have_rows( 'navigation' ) ) : 
             while ( have_rows( 'navigation' ) ) : the_row(); ?>
-              <article class="breathwork__2-12 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+              <div class="breathwork__2-12 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
             <?php endwhile; ?>
             <?php else : ?>
               <div class="breathwork__2-12">

@@ -59,7 +59,7 @@
                 <a href="<?php echo get_the_permalink(); ?>" class="title__"><?php the_title(); ?></a>
                 <p><?php echo  substr(wp_strip_all_tags(get_the_content()), 0, 143).'...'; ?></p>
                 <div class="box__img">
-                  <div class="images"><img src="<?= get_template_directory_uri(); ?>/img/home__6_user.png" alt=""><span class="name">Marjolein Van Ommeren</span></div><a class="join" href="<?php echo get_the_permalink(); ?>">Join for free</a>
+                  <div class="images"><img src="<?= get_template_directory_uri(); ?>/img/home__6_user.png" alt=""><span class="name">Marjolein Van Ommeren</span></div><a class="join" href="<?php echo get_the_permalink(); ?>">Join</a>
                 </div>
               </div>
             </li>

@@ -151,15 +151,22 @@ function innercamp_scripts() {
   wp_enqueue_style('ser-css', get_template_directory_uri() . '/css/ser.css' );
   wp_enqueue_style('sta-css', get_template_directory_uri() . '/css/sta.css' );
   wp_enqueue_style('iho-css', get_template_directory_uri() . '/css/iho.css' );
+  
+  	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' );
+  
   if(is_page_template('tpl-checkout-page.php')){
 	wp_enqueue_style('intlTelInput-css', get_template_directory_uri() . '/css/intlTelInput.min.css' );
 	wp_enqueue_script( 'intlTelInput-js', get_template_directory_uri() . '/js/intlTelInput.min.js', array(), _S_VERSION, true );
-	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' );
+
 	wp_enqueue_script( 'checkout-js', get_template_directory_uri() . '/js/checkout.js', array(), _S_VERSION, true );
   }
+  
+  
   wp_enqueue_script( 'main-min-js', get_stylesheet_directory_uri() .'/js/main.min.js', array(), '1.0', true );
     wp_enqueue_script( 'main-ajax-js', get_stylesheet_directory_uri() .'/js/main-ajax.js', array(), '1.0', true );
-    wp_enqueue_script( 'common-js', get_stylesheet_directory_uri() .'/js/common.js', array(), '1.0', true );
+
+  wp_enqueue_script( 'splide', 'https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js' );
+  
   
   wp_localize_script( 'main-ajax-js', 'php_vars', array('ajax_url' => admin_url("admin-ajax.php"), 'nonce' => wp_create_nonce('ajax-nonce'), 'idpages' => get_the_ID() ));
 
@@ -169,6 +176,9 @@ function innercamp_scripts() {
 	wp_enqueue_script( 'ser-js', get_template_directory_uri() . '/js/ser.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'sta-js', get_template_directory_uri() . '/js/sta.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'iho-js', get_template_directory_uri() . '/js/iho.js', array(), _S_VERSION, true );
+  
+    wp_enqueue_script( 'common-js', get_stylesheet_directory_uri() .'/js/common.js', array(), '1.0', true );
+    wp_enqueue_script( 'slider-wp', get_stylesheet_directory_uri() .'/js/slider-wp.js', array(), '1.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -403,10 +413,8 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 add_action( 'wp_enqueue_scripts', '_remove_styler', PHP_INT_MAX );
 function _remove_styler() {
-	if(!is_page_template( 'tpl-checkout-page.php' )){
-		wp_dequeue_style( 'select2' );
-		wp_dequeue_style('select2.css'); 
-	}
+    wp_dequeue_style( 'select2' );
+    wp_dequeue_style('select2.css'); 
   
     wp_dequeue_style('wc-blocks-style'); 
     wp_dequeue_style('wc-blocks-style.css');  
@@ -426,10 +434,11 @@ add_image_size( 'team', 66, 66, true );
 
 add_image_size( 'team_user', 411, 508, true ); 
 
+add_image_size( 'team_user_smoll', 70, 70, true ); 
 
 //add_theme_support( 'post-thumbnails', array( 'post', 'page', 'team_member' ) );
 
-   
+
 // WooCommerce Checkout Fields add placeholder
 function add_placeholder_checkout_fields( $fields ) {
    foreach ( $fields as $section => $section_fields ) {

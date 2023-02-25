@@ -2,8 +2,8 @@ function convertToUserTimezone(date) {
   const amsterdamTime = new Date(date).toLocaleString('en-US', { timeZone: 'Europe/Amsterdam' }); // получить время в часовом поясе Europe/Amsterdam
   const localTime = new Date(amsterdamTime); // сконвертировать время в объект Date
   const utcTime = new Date(localTime.getTime() + localTime.getTimezoneOffset() * 60 * 1000).toUTCString(); // добавить смещение часового пояса и сконвертировать в UTC
-  console.log(`Время в часовом поясе Europe/Amsterdam: ${amsterdamTime}`);
-  console.log(`Время в локальном часовом поясе: ${localTime}`);
+//  console.log(`Время в часовом поясе Europe/Amsterdam: ${amsterdamTime}`);
+//  console.log(`Время в локальном часовом поясе: ${localTime}`);
   // return localTime.getHours() + ':' + localTime.getMinutes();
   const outputDate = new Date(localTime).getTime();
   const tzOffset = new Date().getTimezoneOffset() * 60 * 1000;
@@ -34,8 +34,8 @@ document.querySelectorAll('.get-time_js').forEach(function (item, idx) {
     let endTime = item.getAttribute('data-end')
     let startTimeUser = convertToUserTimezone(convertDateToFormat(startTime));
     let endTimeUser = convertToUserTimezone(convertDateToFormat(endTime));
-    console.log('start-new' + startTimeUser)
-    console.log('end-new' + endTimeUser)
+//    console.log('start-new' + startTimeUser)
+//    console.log('end-new' + endTimeUser)
     item.innerHTML = startTimeUser + ' - ' + endTimeUser
   });
 });

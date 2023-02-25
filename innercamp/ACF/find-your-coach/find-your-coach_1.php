@@ -5,6 +5,10 @@ if( have_rows('find_your_coach') ):
     <?php if( get_row_layout() == 'section_1' ): ?>
     
     
+    <?php  $urlall = ((!empty($_SERVER['HTTPS'])) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
+    
+
+    
 <section class="find-your-coach">
   <div class="header-bg"></div>
   <div class="container">
@@ -15,19 +19,52 @@ if( have_rows('find_your_coach') ):
           <div class="find-your-coach__filter-wrapper">
             <div class="find-your-coach__filter">
               <h3 class="heading">Filter by</h3>
-              <ul class="coach-filter-list">
-                <li class="coach-filter-item">All coaches <span>(30)</span></li>
-                <li class="coach-filter-item">Breathwork <span>(1)</span></li>
-                <li class="coach-filter-item">Tantra <span>(4)</span></li>
-                <li class="coach-filter-item">Bodywork <span>(4)</span></li>
+              
+              
+         <?php  $yterms = get_sub_field('member_team');  ?> 
+         
+          <?php $filter_by = get_sub_field( 'filter_by' ); ?>
+					
+					<?php if ( $filter_by ) : ?>
+					
+						<?php $get_terms_args = array(
+//							'taxonomy' => 'product_cat',
+              'post__in'          => $yterms,
+              'post_type'  => 'team_member', // Post type category BLOG
+
+							'hide_empty' => 0,
+							'include' => $filter_by,
+						); ?>
+						<?php $terms = get_terms( $get_terms_args ); ?>             
+             
+             <ul class="coach-filter-list">
+						
+						<?php if ( $terms ) : ?>
+						
+							<?php foreach ( $terms as $term ) : ?>
+							
+							         <li class="coach-filter-item"><a href="<?php // echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?>  <span>(<?php echo esc_html( $term->count ); ?>)</span></a></li>
+							
+							<?php endforeach; ?>
+							
+						<?php endif; ?>
+						
               </ul>
+              
+					<?php endif; ?>
+ 
+              
             </div>
             <div class="find-your-coach__track"></div>
           </div>
           <div class="find-your-coach__content">
             <div class="find-your-coach__setings">
               <div class="find-your-coach__search">
-                <input type="search" placeholder="Search">
+              
+          <form  action="<?php echo add_query_arg( array( 'search' => $_GET['search'] ), $urlall ); ?>">
+                <input  type="text" name="search" placeholder="Search" value="<?php echo $_GET['search']; ?>">
+               
+                </form>
               </div>
               <div class="find-your-coach__mob-filter">Filter by</div>
               <ul class="find-your-coach__grid-map-switch">
@@ -54,11 +91,26 @@ if( have_rows('find_your_coach') ):
             <div class="find-your-coach__list">
 
 
+        <?php  $terms = get_sub_field('member_team');  ?>
      <?php
        $args = array(
-            'order' => 'DESC', // order filter  last post
+//            'order' => 'DESC', // order filter  last post
             'post_type'  => 'team_member', // Post type category BLOG
-            'posts_per_page' => -1, // echo show three post
+
+//            'posts_per_page'    => -1,
+            'post__in'          => $terms,
+            'post_status'       => 'any',
+            'orderby'           => 'title',
+         
+                 'title' => $_GET['search'],        
+        
+
+//            'posts_per_page'    => -1,
+            'post__in'          => $terms,
+     
+
+
+
         );
         // The Query
         $the_query = new WP_Query( $args );
@@ -89,8 +141,8 @@ if( have_rows('find_your_coach') ):
                   <div class="find-your-coach__card-info">
                     <div class="find-your-coach__card-name"><?php the_title(); ?></div>
                    
-                        <?php if( get_sub_field('tag_coach_location')): ?><!-- if under__the -->
-                          <div class="find-your-coach__card-address"><?php the_sub_field('tag_coach_location'); ?></div>
+                        <?php if( get_field('tag_coach_location', get_the_ID())): ?><!-- if under__the -->
+                          <div class="find-your-coach__card-address"><?php the_field('tag_coach_location', get_the_ID()); ?></div>
                         <?php endif; ?>
    
                   </div>
@@ -98,21 +150,21 @@ if( have_rows('find_your_coach') ):
                 <div class="find-your-coach__card-links">
                    
                    
-                   
-    <?php if( get_field('tag_coach_instagram_link')): ?><!-- if under__the -->
-      <a class="find-your-coach__instagram" href="<?php the_field('tag_coach_instagram_link'); ?>"></a>
-    <?php endif; ?>
-                  
-                   
-    <?php if( get_field('tag_coach_facebook_link')): ?><!-- if under__the -->
-      <a class="find-your-coach__facebook" href="<?php the_field('tag_coach_facebook_link'); ?>"></a>
-    <?php endif; ?>
-                   
-                  
-                   
-    <?php if( get_field('tag_coach_email')): ?><!-- if under__the -->
-      <a class="find-your-coach__email" href="mailto:<?php the_field('tag_coach_email'); ?>"><?php the_field('tag_coach_email'); ?></a>
-    <?php endif; ?>
+
+                <?php if( get_field('tag_coach_instagram_link', get_the_ID())): ?><!-- if under__the -->
+                  <a class="find-your-coach__instagram" href="<?php the_field('tag_coach_instagram_link', get_the_ID()); ?>"></a>
+                <?php endif; ?>
+
+
+                <?php if( get_field('tag_coach_facebook_link', get_the_ID())): ?><!-- if under__the -->
+                  <a class="find-your-coach__facebook" href="<?php the_field('tag_coach_facebook_link', get_the_ID()); ?>"></a>
+                <?php endif; ?>
+
+
+
+                <?php if( get_field('tag_coach_email', get_the_ID())): ?><!-- if under__the -->
+                  <a class="find-your-coach__email" href="mailto:<?php the_field('tag_coach_email', get_the_ID()); ?>"><?php the_field('tag_coach_email', get_the_ID()); ?></a>
+                <?php endif; ?>
                    
 
                 </div>

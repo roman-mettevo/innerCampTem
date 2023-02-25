@@ -319,7 +319,7 @@
             <input type="hidden" name="action" value="custom_register">
             <div id="register_response"></div>
 
-            <a class="accent_btn bundle" id="custom_register_btn" href="javascript:;">Log in</a>
+            <a class="accent_btn bundle" id="custom_register_btn" href="javascript:;">Create Account</a>
           </form>
 
 
@@ -330,25 +330,41 @@
           <div class="box__soseal"><a class="facebook" href="javascript:;">Facebook</a><a class="google" href="javascript:;">Google</a></div>
         </div>
       </div>
+      
+      
+    <!-- //// MODAL THANK YOU ////-->
+    <div class="thank modal" id="modal-thank" style="display: none;">
+      <div class="content_modal">
+        <div class="box__">
+          <div class="box__img"><img src="<?= get_template_directory_uri(); ?>/img/thenk__modal.png" alt="logo_brand_1"></div>
+          <div class="box__content">
+            <h5 class="title">Thank you!</h5>
+            <p>You will receive <span>soon an email with further instructions.</span>Thank you for choosing us.</p><a class="bundle" href="/">Go to the home page</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+      
+      
 
-        <?php if (0) { ?>
-          <footer id="colophon" class="site-footer">
-            <div class="site-info">
-              <a href="<?php echo esc_url(__('https://wordpress.org/', 'innercamp')); ?>">
-                <?php
-                /* translators: %s: CMS name, i.e. WordPress. */
-                printf(esc_html__('Proudly powered by %s', 'innercamp'), 'WordPress');
-                ?>
-              </a>
-              <span class="sep"> | </span>
-              <?php
-              /* translators: 1: Theme name, 2: Theme author. */
-              printf(esc_html__('Theme: %1$s by %2$s.', 'innercamp'), 'innercamp', '<a href="http://underscores.me/">Underscores.me</a>');
-              ?>
-            </div><!-- .site-info -->
-          </footer><!-- #colophon -->
-          </div><!-- #page -->
-        <?php } ?>
+    <?php if (0) { ?>
+      <footer id="colophon" class="site-footer">
+        <div class="site-info">
+          <a href="<?php echo esc_url(__('https://wordpress.org/', 'innercamp')); ?>">
+            <?php
+            /* translators: %s: CMS name, i.e. WordPress. */
+            printf(esc_html__('Proudly powered by %s', 'innercamp'), 'WordPress');
+            ?>
+          </a>
+          <span class="sep"> | </span>
+          <?php
+          /* translators: 1: Theme name, 2: Theme author. */
+          printf(esc_html__('Theme: %1$s by %2$s.', 'innercamp'), 'innercamp', '<a href="http://underscores.me/">Underscores.me</a>');
+          ?>
+        </div><!-- .site-info -->
+      </footer><!-- #colophon -->
+      </div><!-- #page -->
+    <?php } ?>
         
 <?php wp_footer(); ?>
 

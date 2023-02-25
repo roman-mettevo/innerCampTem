@@ -11,31 +11,39 @@ if ($query->have_posts()) {
     $query->the_post();
     $coach_id = get_the_id();
     ?>
-    <div class="mobile-coach-item left-menu-1" id="mobile-coach-item-<?php echo $counter; ?>">
-      <button class="close"><img src="<?= get_template_directory_uri(); ?>/img/team/close-img.svg" alt=""></button>
-      <div class="mobile-coach-item-wrap">
-        <div class="coach-info-mobile">
-          <?php echo get_the_post_thumbnail(); ?>
-          <h2 class="title-mobile"><?php the_title(); ?></h2>
+    
+    <div class="user__menu__info" id="<?php echo get_the_id(); ?>">
+      <div class="bock__top">
+        <a class="close__" href="javascript:;"></a>
+      </div>
+      <div class="box__user">
+        <div class="box__img">
+        
+        <?php if(get_the_post_thumbnail_url(get_the_id())){ ?>
+          <img src="<?= get_the_post_thumbnail_url(get_the_id(), 'team_user_smoll' ); ?>" alt='menu_user_<?php echo get_the_id(); ?>'>
+        <?php }?>
+        
         </div>
-        <div class="categories-mobile">
-          <?php
-          if (have_rows('tags_list', $coach_id)) {
-            while (have_rows('tags_list', $coach_id)) {
-              the_row();
-              ?>
-              <a href="#" class="tag"><?php the_sub_field('single_tag'); ?></a>
-              <?php
-            }
-          }
-          ?>
-        </div>
-
-        <div class="mobile-coach-content">
-          <?php the_content(); ?>
+        <div class="box__content">
+          <h3 class="title__"><?php echo the_title(); ?></h3>
         </div>
       </div>
+      
+
+      <?php  $tags = get_the_tags(get_the_id());  ?>
+      <?php if ($tags) { ?>
+        <ul class="tag">
+           <?php foreach($tags as $tag) { ?>
+              <li><span><?php echo $tag->name; ?></span></li>
+           <?php } ?>
+        </ul>
+      <?php } ?>
+
+      <div class="block__">
+          <?php the_content(); ?>
+      </div>
     </div>
+
     <?php
     $counter++;
   }
@@ -89,13 +97,13 @@ if ($query->have_posts()) {
                 <h2 class="coach-name"><?php the_title(); ?></h2>
                 <div class="categories">
                  
-                    <?php  $tags = get_the_tags(get_the_id());  ?>
-                                          <?php if ($tags) { ?>
-                                           <?php foreach($tags as $tag) { ?>
-                                                <span class="tag"><?php echo $tag->name; ?></span>
-                                            <?php } ?>
-                                            <?php } ?>
-                      
+                 <?php  $tags = get_the_tags(get_the_id());  ?>
+                 <?php if ($tags) { ?>
+                    <?php foreach($tags as $tag) { ?>
+                        <span class="tag"><?php echo $tag->name; ?></span>
+                    <?php } ?>
+                 <?php } ?>
+
   
            
                 </div>
@@ -107,9 +115,9 @@ if ($query->have_posts()) {
                 <?php // echo get_the_post_thumbnail(); ?>
                 
                 
-         <?php if(get_the_post_thumbnail_url(get_the_id())){ ?>
+             <?php if(get_the_post_thumbnail_url(get_the_id())){ ?>
            
-              <img src="<?= get_the_post_thumbnail_url(get_the_id(), 'team_user' ); ?>" alt=''>
+              <a href="javascript:;" class="open__us" data-open="<?php echo get_the_id(); ?>"><img src="<?= get_the_post_thumbnail_url(get_the_id(), 'team_user' ); ?>" alt=''></a> 
 
             <?php }?>
 

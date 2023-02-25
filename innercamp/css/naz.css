@@ -173,6 +173,7 @@ section.home__3 h3 p strong {
 section.home__4 .trainings__ .box__content .bundle {
   margin-top: 30px;
 }
+
 @media (min-width: 1200px) and (max-width: 1500px) {
   section.home__2 .block__elips .images {
     width: 400px;
@@ -210,6 +211,9 @@ section.home__4 .trainings__ .box__content .bundle {
   section.home__4 .trainings__ {
     height: unset;
   }
+  section.home__6 .workshop__box .box__img .join {
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 991px) {
@@ -234,6 +238,9 @@ section.home__4 .trainings__ .box__content .bundle {
   }
   section.home__4 .box__content .title__ {
     height: 94px;
+  }
+  section.home__6 .workshop__box .box__img .join {
+    justify-content: flex-start;
   }
 }
 @media (min-width: 601px) and (max-width: 991px) {
@@ -350,6 +357,10 @@ section.app__3 .box__list .top > span:nth-child(2) {
   section.about-us__1 .founder .name {
     font-size: 24px;
   }
+  section.about-us__1 .founder .autor {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 /*-----corporate-----*/
@@ -411,5 +422,32 @@ section.review__3 .video-review-slide-link {
 @media (max-width: 600px) {
   .blog-single__2 .row ul li {
     font: 200 14px/1.7em var(--o);
+  }
+}
+
+/*-----Affiliate Program-----*/
+section.affiliate-program__4 .affiliate-form .form-checkbox .wpcf7-list-item {
+  margin-left: 0;
+}
+section.affiliate-program__4
+  .affiliate-form
+  .form-checkbox
+  .wpcf7-list-item
+  label {
+  display: flex;
+  align-items: center;
+}
+section.affiliate-program__4
+  .affiliate-form
+  .form-checkbox
+  .wpcf7-list-item
+  label
+  span {
+  padding: 0;
+}
+@media (max-width: 600px) {
+  section.affiliate-program__4 .affiliate-form .form-checkbox input {
+    min-width: 21px !important;
+    border: none;
   }
 }

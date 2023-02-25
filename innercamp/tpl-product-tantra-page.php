@@ -687,7 +687,7 @@ $product = wc_get_product( $post->ID );
                           <?php the_sub_field( 'post_content' ); ?>
                           <?php $download_link = get_sub_field( 'download_link' ); ?>
                           <?php if ( $download_link ) : ?>
-                            <a href="<?php echo esc_url( $download_link['url'] ); ?>"><?php echo esc_html( $download_link['filename'] ); ?></a>
+                            <a class="bundle-download" href="<?php echo esc_url( $download_link['url'] ); ?>"><?php echo esc_html( $download_link['title'] ); ?></a>
                           <?php endif; ?>
                         </div>
                         </div>
