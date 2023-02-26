@@ -97,12 +97,6 @@ endif; ?>
                           <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                         <?php endwhile;
                       endif;
-                    } elseif( get_row_layout() == 'section_7' ) {
-                      if ( have_rows( 'navigation' ) ) : 
-                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
-                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
-                        <?php endwhile;
-                      endif;
                     } elseif( get_row_layout() == 'section_8' ) {
                       if ( have_rows( 'navigation' ) ) : 
                         while ( have_rows( 'navigation' ) ) : the_row(); ?>
@@ -121,6 +115,24 @@ endif; ?>
                           <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                         <?php endwhile;
                       endif;
+                    } elseif( get_row_layout() == 'section_11' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_12' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
+                    } elseif( get_row_layout() == 'section_13' ) {
+                      if ( have_rows( 'navigation' ) ) : 
+                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                        <?php endwhile;
+                      endif;
                     } elseif( get_row_layout() == 'section_14' ) {
                       if ( have_rows( 'navigation' ) ) : 
                         while ( have_rows( 'navigation' ) ) : the_row(); ?>
@@ -133,25 +145,13 @@ endif; ?>
                           <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                         <?php endwhile;
                       endif;
-                    } elseif( get_row_layout() == 'section_16' ) {
-                      if ( have_rows( 'navigation' ) ) : 
-                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
-                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
-                        <?php endwhile;
-                      endif;
                     } elseif( get_row_layout() == 'section_17' ) {
                       if ( have_rows( 'navigation' ) ) : 
                         while ( have_rows( 'navigation' ) ) : the_row(); ?>
                           <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
                         <?php endwhile;
                       endif;
-                    } elseif( get_row_layout() == 'section_19' ) {
-                      if ( have_rows( 'navigation' ) ) : 
-                        while ( have_rows( 'navigation' ) ) : the_row(); ?>
-                          <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
-                        <?php endwhile;
-                      endif;
-                    } elseif( get_row_layout() == 'section_20' ) {
+                    } elseif( get_row_layout() == 'section_18' ) {
                       if ( have_rows( 'navigation' ) ) : 
                         while ( have_rows( 'navigation' ) ) : the_row(); ?>
                           <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
@@ -914,61 +914,68 @@ endif; ?>
           </div>
         </section>
       <?php elseif (get_row_layout() == 'section_16') : ?>  
-          <section class="bodywork-first__10">
-            <div class="container">
-              <div class="row">
-                <div class="col m12 s12 l12 xl9 offset-xl3">
-                  <h2 class="title"><?php the_sub_field('title'); ?></h2>
-                  <span class="date-range"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></span>
+        <section class="bodywork-first__10">
+          <div class="container">
+            <div class="row">
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <h2 class="title"><?php the_sub_field('title'); ?></h2>
+                <span class="date-range"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></span>
+                <?php if ( have_rows( 'levels' ) ) : ?>
                   <div class="bodywork-somatic-table">
-                    <div class="bodywork-somatic-column">
-                      <div class="bodywork-somatic-th"></div>
-                      <div class="bodywork-somatic-td">Duration</div>
-                      <div class="bodywork-somatic-td">LIVE Group sessions with Master Trainers</div>
-                      <div class="bodywork-somatic-td">High-quality curated videos, access forever</div>
-                      <div class="bodywork-somatic-td">Articles, access forever</div>
-                      <div class="bodywork-somatic-td">Weekly assignments</div>
-                      <div class="bodywork-somatic-td">Personal counselling</div>
-                      <div class="bodywork-somatic-td">Access to all InnerCamp workshops</div>
-                      <div class="bodywork-somatic-td">Essential and recommended reading list</div>
-                      <div class="bodywork-somatic-td">Members Hub</div>
-                      <div class="bodywork-somatic-td">Enrolment In Our Affiliate system</div>
-                      <div class="bodywork-somatic-td">Discounts to Our Events, Retreats, and New Products</div>
-                      <div class="bodywork-somatic-td">Lifetime Access to All Online Training Materials</div>
-                    </div>
-                    <div class="bodywork-somatic-column">
-                      <div class="bodywork-somatic-th">Level 1<span>Self-journey diploma</span></div>
-                      <div class="bodywork-somatic-td">125 hours, 3 months</div>
-                      <div class="bodywork-somatic-td">6 biweekly sessions</div>
-                      <div class="bodywork-somatic-td">100+ videos</div>
-                      <div class="bodywork-somatic-td">50+ articles</div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td">for 3 months</div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                      <div class="bodywork-somatic-td"><img
-                            src="<?= get_template_directory_uri(); ?>/img/bodywork-1/check-mark.svg" alt=""></div>
-                    </div>
-                    <div class="bodywork-somatic-column">
-                      <div class="bodywork-somatic-th gold-color">Levels 1 + 2<span>Bodywork &amp; Somatic therapies Facilitator</span></div>
-                      <div class="bodywork-somatic-td-column"><span>*will be published soon</span></div>
-                    </div>
+                    <?php while ( have_rows( 'levels' ) ) : the_row(); ?>
+                      <?php $add_level = get_sub_field( 'add_level_2' ); ?>
+                      <div class="bodywork-somatic-column">
+                        <?php if ( have_rows( 'top_row' ) ) : ?>
+                          <?php while ( have_rows( 'top_row' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-th"></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php if ( have_rows( 'main_list' ) ) : ?>
+                          <?php while ( have_rows( 'main_list' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-td"><?php the_sub_field( 'first_item' ); ?></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?> 
+                      </div>
+                      <div class="bodywork-somatic-column">
+                      <?php if ( have_rows( 'top_row' ) ) : ?>
+                          <?php while ( have_rows( 'top_row' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-th"><?php the_sub_field( 'first_top_item' ); ?><span><?php the_sub_field( 'first_item_subtitle' ); ?></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php if ( have_rows( 'main_list' ) ) : ?>
+                          <?php while ( have_rows( 'main_list' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-td"><?php the_sub_field( 'second_item' ); ?></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>    
+                      </div>
+                      <div class="bodywork-somatic-column">
+                        <?php if ( have_rows( 'top_row' ) ) : ?>
+                          <?php while ( have_rows( 'top_row' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-th gold-color"><?php the_sub_field( 'second_top_item' ); ?><span><?php the_sub_field( 'second_item_subtitle' ); ?></span></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php 
+                        if ( $add_level == true ) { 
+                          if ( have_rows( 'main_list' ) ) : ?>
+                            <?php while ( have_rows( 'main_list' ) ) : the_row(); ?>
+                            <div class="bodywork-somatic-td"><?php the_sub_field( 'last_item' ); ?></div>
+                            <?php endwhile; ?>
+                        <?php endif; 
+                        } else { ?>
+                          <div class="bodywork-somatic-td-column"><span><?php the_sub_field( 'empty_column_description' ); ?></span></div>
+                        <?php } ?>
+                        
+                        
+                      </div>
+                    <?php endwhile; ?>
                   </div>
-                </div>
+                <?php endif; ?>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
       <?php elseif (get_row_layout() == 'section_17') : ?>  
-        <section class="bodywork-first__10">
+        <section class="bodywork-first__10 booking">
           <div class="container">
             <div class="row">
               <div class="col m12 s12 l12 xl9 offset-xl3">
@@ -979,80 +986,57 @@ endif; ?>
                 <?php else : ?>
                   <div class="book-your-trading">
               <?php endif; ?>
-              <h3 class="heading"><?php the_sub_field( 'title' ); ?></h3>   
-                  <div class="book-your-trading-columns">
+                <h3 class="heading"><?php the_sub_field( 'title' ); ?></h3>   
+                <div class="book-your-trading-columns">
                   <?php if ( have_rows( 'left_block' ) ) : ?>  
                     <div class="book-your-trading-level-1 book-your-trading-item">
-                  <?php while ( have_rows( 'left_block' ) ) : the_row(); ?>
-                    
-                  
-                      <h4 class="column-heading"><?php the_sub_field( 'left_block_title' ); ?></h4>
-                      <?php if ( have_rows( 'left_block_list' ) ) : ?>
-                        <ul class="column-level-info-list">
-						<?php while ( have_rows( 'left_block_list' ) ) : the_row(); ?>
-            <li class="column-level-info-item"><?php the_sub_field( 'left_item' ); ?></li>
-						<?php endwhile; ?>
-            </ul>
-					<?php endif; ?>
-
-                      <?php if ( have_rows( 'price_block' ) ) : ?>
-                        <ul class="column-price-nav-list">
-                          <?php while ( have_rows( 'price_block' ) ) : the_row(); ?>
-                          <li class="column-price-nav-item"><?php the_sub_field( 'first_price_value' ); ?><span><?php the_sub_field( 'first_price_name' ); ?></span></li>
-                          <li class="column-price-nav-item active"><?php the_sub_field( 'second_price_value' ); ?><span><?php the_sub_field( 'second_price_name' ); ?></span></li>	
-                          <li class="column-price-nav-item"><?php the_sub_field( 'last_price_value' ); ?><span><?php the_sub_field( 'last_price_name' ); ?></span></li>	
-							
-						<?php endwhile; ?>
-            </ul>
-					<?php endif; ?>
-          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-                  <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-                  <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-                  <input type="hidden" name="action" value="addcart_prod">
-                    <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Enroll now'); ?></a>
-                  <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-                </form>           
-                       
-                       
-                        
-                      
-                    
-                    <?php endwhile; ?>
-                  </div>
-                <?php endif; ?>
-                <?php if ( have_rows( 'middle_block' ) ) : ?>
-                  <div class="book-your-trading-level-2 book-your-trading-item">
-				<?php while ( have_rows( 'middle_block' ) ) : the_row(); ?>
-                      <h4 class="column-heading"><?php the_sub_field( 'middle_block_title' ); ?></h4>
-                      <span><?php the_sub_field( 'centered_text' ); ?></span>
-                    
-                    <?php endwhile; ?>
+                      <?php while ( have_rows( 'left_block' ) ) : the_row(); ?>
+                        <h4 class="column-heading"><?php the_sub_field( 'left_block_title' ); ?></h4>
+                        <?php if ( have_rows( 'left_block_list' ) ) : ?>
+                          <ul class="column-level-info-list">
+                            <?php while ( have_rows( 'left_block_list' ) ) : the_row(); ?>
+                              <li class="column-level-info-item"><?php the_sub_field( 'left_item' ); ?></li>
+                            <?php endwhile; ?>
+                          </ul>
+                        <?php endif; ?>
+                        <?php if ( have_rows( 'price_block' ) ) : ?>
+                          <ul class="column-price-nav-list">
+                            <?php while ( have_rows( 'price_block' ) ) : the_row(); ?>
+                              <li class="column-price-nav-item"><?php the_sub_field( 'first_price_value' ); ?><span><?php the_sub_field( 'first_price_name' ); ?></span></li>
+                              <li class="column-price-nav-item active"><?php the_sub_field( 'second_price_value' ); ?><span><?php the_sub_field( 'second_price_name' ); ?></span></li>	
+                              <li class="column-price-nav-item"><?php the_sub_field( 'last_price_value' ); ?><span><?php the_sub_field( 'last_price_name' ); ?></span></li>
+                            <?php endwhile; ?>
+                          </ul>
+                        <?php endif; ?>
+                        <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                          <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                          <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                          <input type="hidden" name="action" value="addcart_prod">
+                            <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Enroll now'); ?></a>
+                          <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+                        </form>
+                      <?php endwhile; ?>
                     </div>
-			<?php endif; ?>
-      <?php if ( have_rows( 'right_block' ) ) : ?>
-        <?php $background_image = get_sub_field( 'background_image' ); ?>
-        <div class="book-your-trading-join book-your-trading-item" style="background: linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.5)),url(<?php echo esc_url( $background_image['url'] ); ?>); background-position: 50%; background-repeat: no-repeat; background-size: cover;">
-				<?php while ( have_rows( 'right_block' ) ) : the_row(); ?>
-					
-					
-
-          <h4 class="column-heading"><?php the_sub_field( 'right_block_title' ); ?></h4>
-                      <span class="column-calendar"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></span>
-                      <ul class="column-level-info-list">
-                        <li class="column-level-info-item"><?php the_sub_field( 'text' ); ?></li>
-                      </ul>
-					
-					
-          <button class="book-your-trading-update" data-fancybox="" data-src="#modal__update" type="button">
-                        Upgrade
-                      </button>
-				<?php endwhile; ?>
-        </div>
-			<?php endif; ?>
-                    
-                      
-                      
-                    
+                  <?php endif; ?>
+                  <?php if ( have_rows( 'middle_block' ) ) : ?>
+                    <div class="book-your-trading-level-2 book-your-trading-item">
+                      <?php while ( have_rows( 'middle_block' ) ) : the_row(); ?>
+                        <h4 class="column-heading"><?php the_sub_field( 'middle_block_title' ); ?></h4>
+                        <div class="center-text"><?php the_sub_field( 'centered_text' ); ?></div>
+                      <?php endwhile; ?>
+                    </div>
+                  <?php endif; ?>
+                  <?php if ( have_rows( 'right_block' ) ) : ?>
+                    <?php while ( have_rows( 'right_block' ) ) : the_row(); ?>
+                      <?php $background_image = get_sub_field( 'background_image' ); ?>
+                      <div class="book-your-trading-join book-your-trading-item" style="background: linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.5)),url(<?php echo $background_image['url']; ?>); background-position: 50%; background-repeat: no-repeat; background-size: cover;">
+                        <h4 class="column-heading"><?php the_sub_field( 'right_block_title' ); ?></h4>
+                        <span class="column-calendar"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></span>
+                        <div class="column-level-info-item"><?php the_sub_field( 'text' ); ?></div>
+                        <button button class="book-your-trading-update" data-fancybox="" data-src="#modal__update" type="button">Upgrade + </button>
+                      </div>
+                    <?php endwhile; ?>
+                  <?php endif; ?>
                   </div>
                 </div>
               </div>
@@ -1183,12 +1167,49 @@ endif; ?>
     margin-bottom: 57px;
   }
 
+  section.bodywork-first__4 .row:nth-child(4) {
+    margin-bottom: 208px;
+  }
+
+  @media(max-width: 768px) {
+    section.bodywork-first__4 .row:first-child {
+      margin-bottom: 93px;
+    }
+    section.bodywork-first__4 .row:nth-child(2) .title {
+      margin-bottom: 33px;
+    }
+    section.bodywork-first__4 .row:nth-child(4) {
+        margin-bottom: 82px;
+    }
+    .bodywork-first__5 .program  {
+      padding: 0;
+    }
+  }
   article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-content .coach-description {
     height: 340px;
     padding-right: 0;
 }
 .product-template-tpl-product-bodywork-level-one article.facilitators {
   padding: 180px 0 86px;
+}
+article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-photo img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media(max-width: 992px) {
+  article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-photo {
+    height: 480px;
+    margin-right: 0;
+  }
+}
+
+@media(max-width: 576px) {
+  article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-photo {
+    height: 170px!important;
+    max-width: 146px;
+    align-self: center;
+  }
 }
 .product-template-tpl-product-bodywork-level-one article.certificate {
   margin-bottom: 173px;
@@ -1197,7 +1218,19 @@ endif; ?>
 .product-template-tpl-product-bodywork-level-one .tantra-optional-post-content p strong {
   font: 700 18px/32px var(--ob);
 }
-
+@media(max-width: 1800px) {
+  .product-template-tpl-product-bodywork-level-one article.facilitators {
+    margin-left: 0;
+  }
+}
+@media(max-width: 768px) {
+  .product-template-tpl-product-bodywork-level-one article.facilitators {
+    padding: 103px 0 86px;
+  }
+  .product-template-tpl-product-bodywork-level-one article.certificate {
+  margin-bottom: 120px;
+}
+}
 section.bodywork-first__6 {
   padding: 0;
 }
@@ -1206,7 +1239,23 @@ section.bodywork-first__6 .title {
   margin-bottom: 60px;
 }
 
-
+@media(max-width: 600px) {
+  .product-template-tpl-product-bodywork-level-one .breathwork__2-8 {
+    padding: 0 15px;
+  }
+  .product-template-tpl-product-bodywork-level-one .tantra-optional-retreat {
+    padding: 0 18px;
+  }
+  .product-template-tpl-product-bodywork-level-one .tantra-optional-retreat .tantra-optional-post .tantra-optional-post-content p {
+    font: 400 14px/23px var(--o);
+  }
+  .product-template-tpl-product-bodywork-level-one .tantra-optional-retreat .tantra-optional-post .tantra-optional-post-content p strong {
+    font: 700 14px/23px var(--ob);
+  }
+  section.bodywork-first__6 .title {
+    margin-bottom: 28px;
+  }
+}
 
 .bodywork-first__6 .session-top {
   display: flex;
@@ -1355,10 +1404,10 @@ section.bodywork-first__6 .title {
   }
 }
 
-.about-schedule-list {
+.live-sessions-text .about-schedule-list {
   border: 1px dashed #424F44;
   border-radius: 17px;
-  padding: 22px!important;
+  padding: 22px;
   width: 100%;
   max-width: 421px;
 }
@@ -1370,7 +1419,7 @@ section.bodywork-first__6 .title {
 } 
 
 @media(max-width: 768px) {
-  .about-schedule-list {
+  .live-sessions-text .about-schedule-list {
     padding: 17px;
   }
 }
@@ -1388,6 +1437,7 @@ section.bodywork-first__6 .title {
   .about-schedule-list li {
     font: 400 14px/23px var(--ob);
     margin-bottom: 32px;
+    padding-left: 37px;
   }
 }
 
@@ -1452,6 +1502,7 @@ section.bodywork-first__6 .title {
   border-radius: 0px 34px 0px 0px;
   height: 100%;
   object-fit: cover;
+  width: 100%;
 }
 
 @media(max-width: 992px) {
@@ -1476,6 +1527,29 @@ section.bodywork-first__6 .download-button {
 @media(max-width: 600px) {
   section.bodywork-first__6 .download-button {
     max-width: 235px!important;
+  }
+  .schedule-list {
+    margin-bottom: 26px;
+  }
+  .schedule-item {
+    padding-left: 31px;
+    margin-bottom: 1px;
+  }
+  .schedule-item span {
+    font: 400 10px/15px var(--o);
+  }
+  .schedule-item span strong {
+    font: 700 10px/15px var(--ob);
+  }
+
+  .schedule-item.schedule-time::before,
+  .schedule-item.schedule-date::before {
+    width: 20px;
+    height: 20px;
+    top: 0;
+  }
+  .live-sessions-text .bundle-check {
+    margin-bottom: 30px;
   }
 }
 
@@ -1504,7 +1578,21 @@ section.bodywork-first__6 .download-button::after {
 .live-sessions-footer p strong {
   font: 700 20px/33px var(--ob);
 }
-
+@media(max-width: 600px) {
+  .live-sessions-footer {
+    padding: 15px 22px;
+  }
+  .live-sessions-footer p {
+    font: 400 12px/20px var(--o);
+    text-align: left;
+  }
+  .live-sessions-footer p strong {
+    font: 700 12px/20px var(--ob);
+  }
+  section.bodywork-first__6 .row:first-child {
+    margin-bottom: 86px;
+  }
+}
 .product-template-tpl-product-bodywork-level-one .testimonials-link {
   height: 365px;
 }
@@ -1514,19 +1602,54 @@ section.bodywork-first__6 .download-button::after {
   object-fit: cover;
 }
 @media(max-width: 600px) {
+  .product-template-tpl-product-bodywork-level-one .breathwork__2-12 .testimonials-header .title {
+    margin-bottom: 0;
+  }
   .product-template-tpl-product-bodywork-level-one .testimonials-link {
     height: 223px;
   }
+  .breathwork__2-12 {
+    padding-bottom: 164px;
+  }
+
+  .tantra__2-13 .why-us {
+    padding: 32px 18px 30px;
+  }
 }
+.bodywork-first__10.booking {
+  padding-top: 0;
+}
+@media(max-width: 991px) {
+  section.bodywork-first__10 {
+    padding: 0;
+  }
+  .bodywork-first__10.booking .row:first-child {
+    display: block;
+    padding-top: 25px;
+  }
+  .book-your-trading {
+    border: none;
+    box-shadow: none;
+  }
+}
+
 
 @media(max-width: 768px) {
   .product-template-tpl-product-bodywork-level-one .book-call .bundle {
     margin: 0 auto;
   }
+  .bodywork-first__10.booking .title {
+    font: 400 28px/38px var(--p);
+  }
 }
 
 section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
   margin-bottom: 0;
+}
+
+.bodywork-somatic-td p img {
+  width: 34px;
+  height: 34px;
 }
 
 .book-your-trading {
@@ -1535,7 +1658,16 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
   border-radius: 34px;
   padding: 34px 33px;
 }
-
+@media(max-width: 991px) {
+  .book-your-trading {    
+    box-shadow: none;
+  }
+}
+@media(max-width: 768px) {
+  .book-your-trading {    
+    padding: 34px 2px;
+  }
+}
 .book-your-trading  .heading {
   letter-spacing: -0.035em;
   color: #424F44;
@@ -1543,7 +1675,16 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
 }
 .book-your-trading-columns {
   display: flex;
+  justify-content: space-between;
 }
+
+@media(max-width: 1750px) {
+  .book-your-trading-columns {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+
 .book-your-trading-level-1 {
   max-width: 363px;
     background: #fff;
@@ -1557,7 +1698,8 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
 }
 @media(max-width: 992px) {
   .book-your-trading-level-1 { 
-    max-width: 100%;
+    max-width: 550px;
+    width: 100%;
   }
 }
 
@@ -1579,6 +1721,21 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
   }
 }      
 
+.column-level-info-list {
+  position: relative;
+}
+
+.column-level-info-list::after {
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    content: "";
+    background: url("<?= get_template_directory_uri(); ?>/img/legal/subtitle-line-mobile.svg")
+}
 .column-level-info-item {
   font: 700 14px/23px var(--ob);
   align-items: center;
@@ -1586,15 +1743,186 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
   color: #424f44;
   position: relative;
   margin-bottom: 3px;
+  position: relative;
+  display: flex;
+}
+
+.column-level-info-item::before {
+  position: relative;
+  display: block;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background: url("<?= get_template_directory_uri(); ?>/img/breathwork-teacher/check-brown.svg");
+}
+
+.column-price-nav-list {
+  display: flex;
+  background: #F1EFE8;
+  border-radius: 17px;
+  width: fit-content;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+@media(max-width: 400px) {
+  .column-price-nav-list {
+    margin-bottom: 31px;
+  }
+}
+
+.column-price-nav-item {
+  padding: 12px 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: #424F44;
+  font: 700 24px/39px var(--ob);
+}
+
+.column-price-nav-item span {
+  font: 700 10px/16px var(--ob);
+}
+
+@media(max-width: 400px) {
+  .column-price-nav-item {
+    padding: 10px;
+  }
+}
+.column-price-nav-item.active {
+  border-radius: 17px;          
+  background: #556558;
+  box-shadow: 9px 21px 29px rgba(0, 0, 0, 0.19), inset 1px 2px 9px rgba(0, 0, 0, 0.19);
+}
+
+.column-price-nav-item.active {
+  color: #fff;
+}
+
+.book-your-trading-level-2 {
+  background: #9F9F9F;
+  border-radius: 17px;
+  max-width: 363px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 35px 40px;
+  position: relative;
+  width: 100%;
+}
+@media(max-width: 992px) {
+  .book-your-trading-level-2 {
+    margin: 0 0 30px;
+    max-width: 550px;
+    width: 100%;
+    min-height: 479px;
+  }
+}
+.book-your-trading-level-2 .column-heading {
+  color: #fff;
+}
+.book-your-trading-level-2 .center-text {
+  position: relative;
+  top: 40%;
+  display: block;
+  margin: 0 auto;
+  background: #C1C1C1;
+  box-shadow: 18px 41px 71px rgba(0, 0, 0, 0.25), inset 5px 6px 14px rgba(0, 0, 0, 0.12);
+  border-radius: 59px;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  color: #fff;
+  padding: 14px 25px;
+  letter-spacing: 0.005em;
+  font:400 18px/24px var(--p);
+}
+
+.book-your-trading-join {
+  max-width: 343px;
+    border-radius: 17px;
+    position: relative;
+    padding: 35px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 479px;
+    margin-bottom: 30px;
+}
+
+@media(max-width: 992px) {
+  .book-your-trading-join {
+    max-width: 550px;
+    width: 100%;
+  }
+}
+
+@media(max-width: 600px) {
+  .book-your-trading-join {
+    padding: 25px 27px;
+  }
+}
+
+@media(max-width: 400px) {
+  .book-your-trading-join {
+    min-height: 350px;
+  }
+}
+
+.book-your-trading-join .column-heading {
+  color: #fff;
+}
+
+.book-your-trading-join .column-calendar {
+  background: #fff;
+  border-radius: 23px;
+  font: 600 14px/24px var(--osb);
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.005em;
+  color: #444F43;
+  position: relative;
+  letter-spacing: 0.005em;
+  padding: 8px 21px;
+  margin-bottom: 25px;
+}
+.book-your-trading-join .column-calendar::before {
+  background: url("<?= get_template_directory_uri(); ?>/img/calendar.svg") no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 11px;
+  position: relative;
+  content: '';
+  display: block;
+  background-size: cover;
+}
+.book-your-trading-join .column-level-info-item p {
+  color: #F1EFE8;
+  letter-spacing: 0.005em;
+  font: 700 14px/23px var(--ob);
+}
+
+.book-your-trading-join .book-your-trading-update {
+  background: transparent;
+  color: #fff;
+  font: 700 20px/33px var(--ob );
 }
 
 
+.product-template-tpl-product-bodywork-level-one .faq-item.open .faq-panel p {
+  font: 400 24px/40px var(--o);
+}
+@media(max-width: 600px) {
+  .product-template-tpl-product-bodywork-level-one .faq-item.open .faq-panel p {
+  font: 400 14px/22px var(--o);
+}
+}
 /* В кінці видалити */
-@media only screen and (min-width: 1201px){
+/* @media only screen and (min-width: 1201px){
   .row .col.offset-xl3 {
     margin-left: 25.5%;
   }
-}
+} */
 </style>
 
 <?php

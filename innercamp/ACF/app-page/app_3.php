@@ -33,7 +33,7 @@
         if(have_rows('table_items')){
         ?>
         <div class="box__list"> 
-          <div class="top"><span><?php echo __("What is included:"); ?></span><span><?php echo __("Value"); ?></span></div>
+          <div class="top"><span><?php echo __("What is included:"); ?></span><span>V<?php echo __("Value"); ?></span></div>
           <ul>
           <?php 
             while(have_rows('table_items')){
