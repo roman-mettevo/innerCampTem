@@ -8,7 +8,7 @@
 	border: 1px solid #eaebf2;
 	border-radius: 0;
 	padding: 16px 25px;
-	display: block;
+	display: block !important;
 	height: 62px;
 }
 .selection {
@@ -84,8 +84,44 @@
 .iti__country {
 	padding: 5px 25px;
 }
-.woocommerce-checkout .form-row label {
+.woocommerce-checkout .form-row:not(#vat_field_field) label,
+.woocommerce-checkout .form-row label .optional {
 	display: none;
+}
+#vat_field_field {
+	position: relative;
+}
+.woocommerce-checkout #vat_field_field label {
+	font-size: 0;
+	position: absolute;
+	right: 25px;
+	top: 31px;
+	z-index: 1;
+	width: 24px;
+	height: 24px;
+	background: url(../img/help-circle.svg) center no-repeat;
+	background-size: contain;
+	transform: translateY(-50%);
+}
+.woocommerce-checkout #vat_field_field label::before {
+	content: 'For European companies only';
+	font-size: 14px;
+	line-height: 129.2%;
+	color: #424f44;
+	background: rgba(255, 255, 255, 0.16);
+	box-shadow: inset -4px -2px 15px rgba(190, 190, 190, 0.25),
+		inset 9px 8px 13px rgba(0, 0, 0, 0.12);
+	backdrop-filter: blur(14px);
+	border-radius: 8px;
+	padding: 6px 11px;
+	display: block;
+	width: max-content;
+	transform: translate(-50%, -100%);
+	bottom: 0;
+	position: absolute;
+}
+#vat_field {
+	padding-right: 60px;
 }
 #billing_email_field,
 .billing_heading_field {

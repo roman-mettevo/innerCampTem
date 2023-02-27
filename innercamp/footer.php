@@ -313,7 +313,7 @@
                 </span>
               </div>
 
-              <p>By registering I agree to recieve emails from InnerCamp and accept the <a class="sign-up" href="javascript:;">Terms of Service</a></p>
+              <p>By registering I agree to recieve emails from InnerCamp and accept the <a class="sign-up" href="/terms-of-service/">Terms of Service</a></p>
 
             <?php wp_nonce_field('custom_register','custom_register_nonce'); ?>
             <input type="hidden" name="action" value="custom_register">

@@ -34,175 +34,327 @@ do_action('woocommerce_before_main_content');
     echo get_the_password_form(); // WPCS: XSS ok.
     return;
   }
+
+  $product = wc_get_product();
+  $product_id = $product->get_id();
+
   ?>
 
-
-  <!--   yourtheme/woocommerce/content-single-product.php  -->
-
-
-  <div class="left__menu__scroll">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l3 xl3">
-          <div class="box__"><a class="bundle" href="javascript:;">Book now</a>
-            <ul>
-              <li class="active"><a href="javascript:;">Tantra</a></li>
-              <li><a href="javascript:;">Innercmp is an accredited school</a></li>
-              <li><a href="javascript:;">Tantra helps </a></li>
-              <li><a href="javascript:;">About the Course</a></li>
-              <li><a href="javascript:;">The Program</a></li>
-              <li><a href="javascript:;">The training is facilitated by</a></li>
-              <li><a href="javascript:;">Certificate</a></li>
-              <li><a href="javascript:;">One-of-a-kind retreat</a></li>
-              <li><a href="javascript:;">Live Sessions</a></li>
-              <li><a href="javascript:;">Got questions?</a></li>
-              <li><a href="javascript:;">Testimonials</a></li>
-              <li><a href="javascript:;">Why students like InnerCamp</a></li>
-              <li><a href="javascript:;">Book now</a></li>
-              <li><a href="javascript:;">Frequently asked questions</a></li>
-            </ul>
+<?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+	<?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+    <?php if ( get_row_layout() == 'section_1' ) : ?>
+      <section class="breathwork-levels-one-two__1" data-menuscroll <?php if(get_the_post_thumbnail_url()){ ?> style="background: url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+        <div class="container">
+          <div class="row">
+            <div class="col m12 s12 l12 xl12">
+              <p class="sub"><?php the_sub_field( 'sub_text' ); ?></p>
+              <h1 class="title scroll__init"><?php the_sub_field( 'title' ); ?></h1>
+              <div class="box__">
+                <ul>
+                  <li><span class="breathwork"><?php the_field( 'category', $product_id ); ?></span></li>
+                  <li><span class="level"><?php the_field( 'course_level', $product_id ); ?></span></li>
+                  <li><span class="calendar"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></span></li>
+                  <li><span class="check"><?php the_field( 'where', $product_id ); ?></span></li>
+                </ul>
+                <?php the_sub_field( 'content' ); ?>
+                <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                  <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                  <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                  <input type="hidden" name="action" value="addcart_prod">
+                    <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+                  <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>
+                </form>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+    <?php endif; ?>
+	<?php endwhile; ?>
+<?php endif; ?>
+
+<div class="left__menu__scroll" data-scroll>
+  <div class="container">
+    <div class="row">
+      <div class="col m12 s12 l3 xl3">
+        <div class="box__">
+          <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+            <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+            <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+            <input type="hidden" name="action" value="addcart_prod">
+            <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+            <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>
+          </form>
+          <ul>
+            <?php if ( have_rows( 'product__breathwork_levels_1' ) ):
+              while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row();
+                  if( get_row_layout() == 'section_2' ){
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  }  elseif( get_row_layout() == 'section_3' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_4' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_5' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_7' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_8' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_9' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_10' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_11' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_12' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_13' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_14' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_16' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } elseif( get_row_layout() == 'section_17' ) {
+                    if ( have_rows( 'navigation' ) ) :
+                      while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                        <li><a href="#<?php the_sub_field( 'navigation_id' ); ?>"><?php the_sub_field( 'navigation_item_title' ); ?></a></li>
+                      <?php endwhile;
+                    endif;
+                  } ?>
+              <?php endwhile;
+            endif; ?>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  <!---->
-  <!---->
-  <section class="breathwork-levels-one-two__1" data-menuscroll>
+</div>
+
+<section class="breathwork-levels-one-two__2">
     <div class="container">
       <div class="row">
-        <div class="col m12 s12 l12 xl12">
-          <p class="sub">Levels 1 + 2</p>
-          <h1 class="title scroll__init">Breathwork Teacher Training</h1>
-          <div class="box__">
-            <ul>
-              <li><span class="breathwork">Breathwork</span></li>
-              <li><span class="level">Levels 1+2</span></li>
-              <li><span class="calendar">Jan 12, 2023 - Apr 13, 2023</span></li>
-              <li><span class="check">online course</span></li>
-            </ul>
-            <p>The InnerCamp Breathwork Method ® gives you a professional advantage in assisting your clients to unleash
-              their true potential through a cutting-edge breathwork technology proven by science.</p><a class="bundle"
-                                                                                                         href="javascript:;">Book
-              now</a>
-          </div>
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+            <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+              <?php if ( get_row_layout() == 'section_2' ) : ?>
+                <?php if ( have_rows( 'navigation' ) ) :
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <div class="block__top scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                <?php else : ?>
+                  <div class="block__top">
+                <?php endif; ?>
+                  <div class="box__img">
+                    <?php $post_image = get_sub_field( 'post_image' ); ?>
+                    <?php if ( $post_image ) : ?>
+                      <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                    <?php endif; ?>
+                    <div class="info"><?php the_field( 'course_level', $product_id ); ?></div>
+                  </div>
+                  <div class="box__content">
+                    <div class="price__">
+                      <span class="top_price"><?php echo __('Price:'); ?></span>
+                      <span class="prise"><?= $product->get_price_html(); ?></span>
+                    </div>
+                    <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                      <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                      <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                      <input type="hidden" name="action" value="addcart_prod">
+                      <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php echo __('Start my journey'); ?></a>
+                      <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>
+                    </form>
+                    <hr>
+                    <span class="calendar"><?php the_sub_field( 'course_duration' ); ?></span>
+                    <span class="video"><?php the_sub_field( 'number_of_videos' ); ?></span>
+                    <span class="clock"><?php the_sub_field( 'course_total_hourse' ); ?></span>
+                    <span class="status online"><?php the_field( 'where', $product_id ); ?></span>
+                  </div>
+                  <div class="box__bottom">
+                    <?php the_sub_field( 'bottom_text' ); ?>
+                  </div>
+                </div>
+              <?php endif; ?>
+            <?php endwhile; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+            <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+              <?php if ( get_row_layout() == 'section_3' ) : ?>
+                <?php if ( have_rows( 'navigation' ) ) :
+                  while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <div class="block__green scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                <?php else : ?>
+                  <div class="block__green">
+                <?php endif; ?>
+                  <div class="box__">
+                    <p class="sub"><?php the_sub_field( 'sub_title' ); ?></p>
+                    <?php the_sub_field( 'text_top' ); ?>
+                    <ul class="list-img-mobile">
+                      <li>
+                        <?php $logo_image_1 = get_sub_field( 'logo_image_1' ); ?>
+                        <?php if ( $logo_image_1 ) : ?>
+                          <img src="<?php echo esc_url( $logo_image_1['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_1['alt'] ); ?>" />
+                        <?php endif; ?>
+                      </li>
+                      <li>
+                        <?php $logo_image_2 = get_sub_field( 'logo_image_2' ); ?>
+                        <?php if ( $logo_image_2 ) : ?>
+                          <img src="<?php echo esc_url( $logo_image_2['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_2['alt'] ); ?>" />
+                        <?php endif; ?>
+                      </li>
+                    </ul>
+                    <div class="bottom-row">
+                    <?php the_sub_field( 'text_bottom' ); ?>
+                    <?php $logo_image_3 = get_sub_field( 'logo_image_3' ); ?>
+                    <?php if ( $logo_image_3 ) : ?>
+                      <img src="<?php echo esc_url( $logo_image_3['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_3['alt'] ); ?>" />
+                    <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="img__">
+                    <?php $logo_image_1 = get_sub_field( 'logo_image_1' ); ?>
+                    <?php if ( $logo_image_1 ) : ?>
+                      <img src="<?php echo esc_url( $logo_image_1['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_1['alt'] ); ?>" />
+                    <?php endif; ?>
+                    <?php $logo_image_2 = get_sub_field( 'logo_image_2' ); ?>
+                    <?php if ( $logo_image_2 ) : ?>
+                      <img src="<?php echo esc_url( $logo_image_2['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_2['alt'] ); ?>" />
+                    <?php endif; ?>
+                    <?php $logo_image_3 = get_sub_field( 'logo_image_3' ); ?>
+                    <?php if ( $logo_image_3 ) : ?>
+                      <img src="<?php echo esc_url( $logo_image_3['url'] ); ?>" alt="<?php echo esc_attr( $logo_image_3['alt'] ); ?>" />
+                    <?php endif; ?>
+                  </div>
+                </div>
+            <?php endif; ?>
+          <?php endwhile; ?>
+        <?php endif; ?>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+            <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+              <?php if ( get_row_layout() == 'section_4' ) : ?>
+                <?php if ( have_rows( 'navigation' ) ) : ?>
+                  <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                  <div class="block__help scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                <?php else :?>
+                  <div class="block__help">
+                <?php endif; ?>
+                <div class="cont__">
+                  <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                  <?php if ( have_rows( 'checkboxes_list' ) ) : ?>
+                    <ul>
+                      <?php while ( have_rows( 'checkboxes_list' ) ) : the_row(); ?>
+                        <li class="cheked"><?php the_sub_field( 'text_item' ); ?></li>
+                      <?php endwhile; ?>
+                    </ul>
+                  <?php endif; ?>
+                </div>
+                <div class="img__">
+                  <?php $post_image = get_sub_field( 'post_image' ); ?>
+                  <?php if ( $post_image ) : ?>
+                    <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                  <?php endif; ?>
+                </div>
+                </div>
+              <?php endif; ?>
+            <?php endwhile; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+            <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+              <?php if ( get_row_layout() == 'section_5' ) : ?>
+                <h2 class="title scroll__init">About the Course</h2>
+              <?php endif; ?>
+            <?php endwhile; ?>
+          <?php endif; ?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
+            <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
+              <?php if ( get_row_layout() == 'section_5' ) : ?>
+                <div class="block__wrap scroll__init">
+                  
+                </div>
+              <?php endif; ?>
+            <?php endwhile; ?>
+          <?php endif; ?>
         </div>
       </div>
     </div>
   </section>
-  <section class="breathwork-levels-one-two__2">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="block__top scroll__init">
-            <div class="box__img"><img
-                  src="<?= get_template_directory_uri(); ?>/img/breathwork-levels-one-two__2_img_1.png" alt="logo">
-              <div class="info">Levels 1 + 2</div>
-            </div>
-            <div class="box__content">
-              <div class="price__"><span class="top_price">Price:</span><span class="prise">2200€</span></div>
-              <a class="bundle" href="#">Start my journey</a>
-              <hr>
-              <span class="calendar">4 months</span><span class="video">65+ videos</span><span class="clock">300 hours in total</span><span
-                  class="status online">onsite</span>
-            </div>
-            <div class="box__bottom">
-              <p>You have the option to purchase the levels <span>separately.</span><span> <a
-                      href="#">See details</a></span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="block__green scroll__init">
-            <div class="box__">
-              <p class="sub">INNERCAMP IS AN ACCREDITED SCHOOL</p>
-              <p>InnerCamp is registered and accredited by the Complementary Medical Association. </p>
-              <p>It is also a member school of the International Breathwork Foundation.</p>
-              <ul class="list-img-mobile">
-                <li><img src="<?= get_template_directory_uri(); ?>/img/brand_1.svg" alt="logo"></li>
-                <li><img src="<?= get_template_directory_uri(); ?>/img/brand_2.svg" alt="logo"></li>
-              </ul>
-              <div class="bottom-row">
-                <p>Our courses are accredited by the leading independent CPD accreditation institution.</p><img
-                    src="<?= get_template_directory_uri(); ?>/img/brand__03.svg" alt="logo">
-              </div>
-            </div>
-            <div class="img__"><img src="<?= get_template_directory_uri(); ?>/img/brand__01.svg" alt="logo"><img
-                  src="<?= get_template_directory_uri(); ?>/img/brand__02.svg" alt="logo"><img
-                  src="<?= get_template_directory_uri(); ?>/img/brand__03.svg" alt="logo"></div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="block__help scroll__init">
-            <div class="cont__">
-              <h2 class="title">Breathwork helps to:</h2>
-              <ul>
-                <li class="cheked">Remove physical, emotional and energetic tensions and blockages.</li>
-                <li class="cheked">Reduce anxiety and stress-related symptoms.</li>
-                <li class="cheked">Boost attention span and sharpen focus.</li>
-                <li class="cheked">Reduce the perception of chronic pain or help cope with physical discomfort.</li>
-                <li class="cheked">Open you to a rush of creativity while quieting your inner critic.</li>
-                <li class="cheked">Calm your nervous system, stave off insomnia, and prepare your body for rest.</li>
-                <li class="cheked">Strengthen the immune system by boosting antibodies and potentially reducing
-                  inflammation.
-                </li>
-              </ul>
-            </div>
-            <div class="img__"><img
-                  src="<?= get_template_directory_uri(); ?>/img/breathwork-levels-one-two__2_img_2.png" alt="logo">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <h2 class="title scroll__init">About the Course</h2>
-          <div class="block__next">
-            <div class="img__"><img
-                  src="<?= get_template_directory_uri(); ?>/img/breathwork-levels-one-two__2_img_3.png" alt="logo">
-            </div>
-            <div class="cont__">
-              <div class="box__">
-                <p>Our course is based on the main Conscious Connected Breathwork techniques and is split in two
-                  levels.</p><a class="download" href="#">Download Brochure</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <div class="block__wrap scroll__init">
-            <div class="cont__">
-              <h3 class="title__back">Level 1: Self-healing journey</h3>
-              <p>Level 1 (Specialist certificate) is a self-healing journey that focuses on providing a background on
-                breath science, psychology, inner child work, trauma healing, healing your breathing pattern and
-                learning the main breathwork techniques. Upon successful completion of Level 1, students will be
-                presented with the Breathwork Practitioner Certificate proving their active participation in the course.
-                Level 1 is for personal use only.</p>
-              <hr class="section__">
-              <h3 class="title__back">Level 1: Self-healing journey</h3>
-              <p>Level 2 (Teacher certificate) focuses on learning how to guide one-on-one sessions, group sessions and
-                couple sessions, bodywork, holistic coaching, techniques to hold the space, music composition and how to
-                organise breathwork workshops and retreats. In order to receive the Breathwork Teacher Certificate and
-                be able to facilitate your own events and work with clients, you will need to successfully complete both
-                levels. In order to get certified, you will need to demonstrate your facilitating skills during some
-                live sessions. We will encourage you to recruit volunteers to practice newly acquired techniques at
-                home. The final assignment will be to record a video of yourself facilitating an in-person breathwork
-                session with your volunteer.</p>
-            </div>
-            <div class="img__"><img src="<?= get_template_directory_uri(); ?>/img/immgg.png" alt="logo"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
+
+
+
+
+      <?php //if ( get_row_layout() == 'section_5' ) : ?>
   <section class="breathwork-levels-one-two__3">
     <div class="container">
       <div class="row">
@@ -818,127 +970,7 @@ do_action('woocommerce_before_main_content');
       </div>
     </div>
   </section>
-  <!---->
-  <?php
-  $product = wc_get_product();
-  $product_id = $product->get_id();
-  $product = wc_get_product($product_id);
-  $variations = $product->get_available_variations();
-  $variations_id = wp_list_pluck($variations, 'variation_id');
-  $arr_first = $arr_second = $arr_variations = [];
-  $i = 0;
-  $number = 1;
-  $temp_description = '';
-  foreach ($variations as $item) {
-    $arr_variations[$i]['number'] = $number;
-    $arr_variations[$i]['id'] = $item['variation_id'];
-    $arr_variations[$i]['name'] = $item['attributes']['attribute_level'];
-    $arr_variations[$i]['description'] = $item['variation_description'];
-    $arr_variations[$i]['display_price'] = $item['display_price'];
-    $arr_variations[$i]['regular_price'] = $item['display_regular_price'];
-    $temp_description = $item['variation_description'];
-    $i++;
-    $number++;
-  }
 
-// Новий масив, де ключами будуть значення з поля "description"
-  $arr_variations_items = array();
-  foreach ($arr_variations as $item) {
-    $description = $item["description"];
-//  unset($item["description"]);
-    $arr_variations_items[$description][] = $item;
-  }
-  $content_for_variation = [];
-  if (have_rows('content_for_variation')) :
-    while (have_rows('content_for_variation')) : the_row();
-      $content_for_variation[] .= get_sub_field('content');
-    endwhile;
-  endif;
-  ?>
-  <!--  <pre>--><?php //var_dump($variations_id); ?><!--</pre>-->
-  <section data-product-id="<?php echo $product_id ?>" class="breathwork-levels-one-two__12">
-
-    <div class="container">
-      <div class="row">
-        <div class="col m12 s12 l12 xl9 offset-xl3">
-          <article class="book-training" id="book-now">
-            <h2 class="title">Book your training</h2>
-            <div class="book-training-wrap">
-              <?php
-              $i = 0;
-
-              foreach ($arr_variations_items as $index => $item) { ?>
-                <div class="<?php echo ($i == 0) ? 'left-small-block' : 'middle-small-block' ?>">
-                  <h3><?php echo $index ?></h3>
-                  <div class="top-row">
-                    <?php echo $content_for_variation[$i]; ?>
-                    <!--                    <ul class="training-list">-->
-                    <!--                      <li>150 hours, 2 months</li>-->
-                    <!--                      <li>6 weekly sessions</li>-->
-                    <!--                      <li>40+ videos</li>-->
-                    <!--                      <li>Members Hub</li>-->
-                    <!--                    </ul>-->
-                  </div>
-                  <div class="choose-price">
-                    <?php
-                    $j = 0;
-                    $current_variation_id = '';
-                    foreach ($item as $el) {
-                      if ($j === 1) {
-                        $current_variation_id = $el['id'];
-                      }
-                      ?>
-                      <div onclick="changeSelectValue(<?php echo $el['number'] ?>)"
-                           class="price-item <?php echo ($j === 1 && $i === 0) ? 'active' : '' ?>">
-                        <span
-                            data-price-variation="<?php echo $el['regular_price'] ?>"
-                            class="price"><?php echo $el['regular_price'] ?>&euro;</span>
-                        <span class="price-type"><?php echo str_replace("1+2", "", $el['name']) ?></span>
-                      </div>
-                      <?php
-                      $j++;
-                    } ?>
-                  </div>
-                  <?php
-                  ?>
-                  <span
-                      data-add="<?php echo $current_variation_id ?>"
-                      class="add__ bundle add-custom-js"
-                  ><?php echo __('Enroll now'); ?></span>
-                </div>
-                <?php
-                $i++;
-              } ?>
-
-              <div class="hidden-block">
-                <?php
-                /**
-                 * Hook: woocommerce_single_product_summary.
-                 *
-                 * @hooked woocommerce_template_single_price - 10
-                 * @hooked woocommerce_template_single_add_to_cart - 30
-                 * @hooked WC_Structured_Data::generate_product_data() - 60
-                 */
-                do_action('woocommerce_single_product_summary');
-                ?>
-              </div>
-              <div class="right-small-block"
-                   style="background: url('../img/breathwork-teacher/book-now.png') no-repeat top/cover;">
-                <div class="top-block">
-                  <h3>Join the InnerCamp Retreat</h3>
-                  <div class="calen">Jun 24, 2023 - Jun 27, 2023</div>
-                  <div class="add-feature">
-                    <p>Upgrade your experience with a retreat</p>
-                  </div>
-                </div>
-                <div class="upgrade">Upgrade +</div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
   <section class="breathwork-levels-one-two__13">
     <div class="container">
       <div class="row">
@@ -1070,175 +1102,13 @@ do_action('woocommerce_before_main_content');
       </div>
     </div>
   </section>
-  <div class="modal-wrap">
-    <div class="shadow"></div>
-    <div class="modal-upgrade-block">
-      <button class="upgrade-close"><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/x-circle.svg"
-                                         alt=""></button>
-      <div class="upgrade-top-row">
-        <h2 class="title">Upgrade your experience with a retreat?</h2>
-        <div class="calen">June 2023</div>
-      </div>
-      <div class="modal-upgrade-content">
-        <div class="left-side">
-          <h3 class="block-title">Choose Date</h3>
-          <div class="choose-calen">Jun 24, 2023 - Jun 27, 2023</div>
-        </div>
-        <div class="right-side">
-          <h3 class="block-title">Choose Type of Accommodation</h3>
-          <ul class="apartments-list">
-            <li data-elem="0" class="apartment-item ">
-              <ul class="img-list">
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-              </ul>
-              <h3>Single room</h3>
-              <div class="apartment-item-bottom-row">
-                <div class="actual">Available</div>
-                <div class="price">1200&euro;</div>
-              </div>
-            </li>
-            <li data-elem="1" class="apartment-item">
-              <ul class="img-list">
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-              </ul>
-              <h3>Shared double room</h3>
-              <div class="apartment-item-bottom-row">
-                <div class="actual">Available</div>
-                <div class="price">800&euro;</div>
-              </div>
-            </li>
-            <li data-elem="2" class="apartment-item">
-              <ul class="img-list">
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-                <li><img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/bed-icon.svg" alt=""></li>
-              </ul>
-              <h3>Shared glamping</h3>
-              <div class="apartment-item-bottom-row">
-                <div class="actual">Available</div>
-                <div class="price">600&euro;</div>
-              </div>
-            </li>
-          </ul>
-          <div class="modal-bottom-row">
-            <span class="bundle add-custom-js">Yes, upgrade with a Retreat</span>
-            <span class="disclaimer clear-add-option-js">No, thanks</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <style>
-      .hidden-block {
-          position: absolute;
-          z-index: -100;
-          height: 1px;
-          width: 1px;
-          left: -10000px;
-      }
 
-      .apartment-item_active {
-          box-shadow: 6px 5px 8px 2px #424f44;
-      }
-  </style>
-  <script>
-    const listBlocks = document.querySelectorAll('.apartment-item');
-
-    const clearAddOptionJs = document.querySelectorAll('.clear-add-option-js');
-    clearAddOptionJs.forEach(function (item) {
-      item.addEventListener('click', () => {
-        changeRoom(-9)
-        listBlocks.forEach(function (block) {
-          if (block.classList.contains('apartment-item_active')) {
-            block.classList.remove('apartment-item_active');
-          }
-        })
-        let modalWrap = document.querySelectorAll('.modal-wrap')
-        modalWrap.forEach(function (el) {
-          if (el.classList.contains('active')) {
-            el.classList.remove('active')
-          }
-        })
-      });
-    })
-
-    const addCustomButton = document.querySelectorAll('.add-custom-js');
-    addCustomButton.forEach(function (button) {
-      button.addEventListener('click', () => {
-        const addToCartButton = document.querySelector('.single_add_to_cart_button');
-        addToCartButton.click();
-      });
-    })
-
-
-    function removeActiveClassExceptOne(exceptBlock) {
-      listBlocks.forEach((block) => {
-        if (block !== exceptBlock) {
-          block.classList.remove('apartment-item_active');
-        }
-      });
-    }
-
-    listBlocks.forEach((block) => {
-      block.addEventListener('click', () => {
-        let numberElem = block.getAttribute('data-elem');
-        if (block.classList.contains('apartment-item_active')) {
-          block.classList.remove('apartment-item_active');
-        } else {
-          removeActiveClassExceptOne(block);
-          block.classList.add('apartment-item_active');
-        }
-        changeRoom(numberElem)
-
-      });
-    });
-
-    function changeRoom(number) {
-      const checkboxInput = document.querySelectorAll('input.tmcp-field[type=checkbox]');
-      let event = new Event('change', { bubbles: true });
-      let eventOff = new Event('change', { bubbles: false });
-      if (number === -9) {
-        checkboxInput.forEach(function (el, ind) {
-          if (el.checked === true) {
-            el.checked = false
-            el.dispatchEvent(eventOff);
-          }
-        })
-        return
-      }
-      let activeIndex = -1;
-      checkboxInput.forEach(function (el, ind) {
-        if (el.checked === true) {
-          activeIndex = ind
-          el.checked = false
-        }
-      })
-
-      if (activeIndex !== number) {
-        checkboxInput[number].checked = true;
-        checkboxInput[number].dispatchEvent(event);
-      } else {
-        checkboxInput[number].checked = false;
-        checkboxInput[number].dispatchEvent(eventOff);
-        checkboxInput.forEach(function (el, ind) {
-          if (el.checked === true) {
-            el.checked = false
-            el.dispatchEvent(eventOff);
-          }
-        })
-      }
-
-    }
-
-    function changeSelectValue(index) {
-      const variationSelect = document.querySelector('#level');
-      variationSelect.selectedIndex = index;
-      const event = new Event('change', { bubbles: true });
-      variationSelect.dispatchEvent(event);
-    }
-  </script>
 <?php endwhile; // end of the loop. ?>
+<?php
+$params = [ 'param1' => $product_id, 'param2' => [ 1, 2 ] ];
+
+get_template_part( '/template-parts/variable-blok', null, $params );
+?>
 
 <?php
 /**

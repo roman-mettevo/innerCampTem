@@ -159,61 +159,67 @@
           </ul>
         </div>
 
-        <?php }else{ ?>
+        <?php }?>
+       
+        <?php if(0){  // oooo ?>
         
-          <div class="block__add">
-          <h5 class="top__">Suggestions:</h5>
-          
-               <?php  
-                 $args = array(
-                      'orderby' => 'rand', 
-                      'order' => 'DESC', // order filter  last post
-                      'post_type'  => 'product', // Post type category BLOG
-                      'posts_per_page' => 5, // echo show three post 
-                  );
-                  // The Query
-                  $the_query = new WP_Query( $args );
+          <?php // }else{ ?>
 
-                  // The Loop
-                  if ( $the_query->have_posts() ) {
+            <div class="block__add">
+            <h5 class="top__">Suggestions:</h5>
 
-                      while ( $the_query->have_posts() ) {
-                          $the_query->the_post(); ?>
-                          
-                           <?php $product = wc_get_product( $post->ID ); // Works for any product type ?>
+                 <?php  
+                   $args = array(
+                        'orderby' => 'rand', 
+                        'order' => 'DESC', // order filter  last post
+                        'post_type'  => 'product', // Post type category BLOG
+                        'posts_per_page' => 5, // echo show three post 
+                    );
+                    // The Query
+                    $the_query = new WP_Query( $args );
 
-                        <div class="box">
-                          <div class="block__img">
-                          
-                <?php if(get_the_post_thumbnail_url()){ ?>
-           
-              <img src="<?= get_the_post_thumbnail_url( get_the_ID(), 'checkout' ); ?>" alt=''>
+                    // The Loop
+                    if ( $the_query->have_posts() ) {
 
-            <?php }else{ ?>
-      
-                <img src="<?= get_template_directory_uri(); ?>/img/checkout__1_add_img.png" alt="">
-      
-               <?php }  ?>
+                        while ( $the_query->have_posts() ) {
+                            $the_query->the_post(); ?>
 
+                             <?php $product = wc_get_product( $post->ID ); // Works for any product type ?>
+
+                          <div class="box">
+                            <div class="block__img">
+
+                  <?php if(get_the_post_thumbnail_url()){ ?>
+
+                <img src="<?= get_the_post_thumbnail_url( get_the_ID(), 'checkout' ); ?>" alt=''>
+
+              <?php }else{ ?>
+
+                  <img src="<?= get_template_directory_uri(); ?>/img/checkout__1_add_img.png" alt="">
+
+                 <?php }  ?>
+
+                            </div>
+                            <div class="block__cont">
+                              <h3 class="title__"><?php echo get_the_title(); ?></h3>
+                              <div class="bottom"><span class="price"><?= $product->get_price_html(); ?></span><a class="here" href="<?php echo get_the_permalink(); ?>">Join here</a></div>
+                            </div>
                           </div>
-                          <div class="block__cont">
-                            <h3 class="title__"><?php echo get_the_title(); ?></h3>
-                            <div class="bottom"><span class="price"><?= $product->get_price_html(); ?></span><a class="here" href="<?php echo get_the_permalink(); ?>">Join here</a></div>
-                          </div>
-                        </div>
-          
-                     <?php }
 
-                  } else {
-                      // no posts found
-                  }
-                  /* Restore original Post Data */
-                  wp_reset_postdata();
-                ?>
+                       <?php }
 
-        </div>
+                    } else {
+                        // no posts found
+                    }
+                    /* Restore original Post Data */
+                    wp_reset_postdata();
+                  ?>
 
-        <?php } ?> 
+          </div>
+
+          <?php // } ?> 
+        
+        <?php }  // oooo ?>
 
       </div>
       <div class="bottom__">
@@ -229,7 +235,7 @@
           <div class="subtotal">You have no products in the cart.</div>
         </div>
         
-              <a class="bundle" href="/virtual-workshops/">Explore our trainings</a>
+              <a class="bundle" href="/trainings/">Explore our trainings</a>
         <?php } ?> 
         
   

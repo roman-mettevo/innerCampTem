@@ -7,27 +7,37 @@ get_header();
 $product = wc_get_product( $post->ID );
 $product_id = $post->ID;
 ?>
-
-
-    <section class="tantra-retreat__1" data-menuscroll>
-        <div class="container">
-            <div class="row">
-                <div class="col m12 s12 l12 xl12">
-                    <h2 class="title">Tantra Retreat</h2>
-                    <ul class="short-info-list">
-                        <li class="short-info-item name-item">Tantra</li>
-                        <li class="short-info-item calendar-item">Jan 10, 2023 - Nov 28, 2023</li>
-                        <li class="short-info-item check-item">Málaga, Spain</li>
-                    </ul>
-                    <p class="description">
-                        A sacred journey back to your heart to unlock your limitless potential. Discover Tantra in safe
-                        and fun way, unleash your spiritual potential with Tantra, Breathwork and Bodywork.
-                    </p><a class="bundle" href="#">Book now</a>
+<?php if ( have_rows( 'retreat_pages' ) ): ?>
+	<?php while ( have_rows( 'retreat_pages' ) ) : the_row(); ?>
+    <?php if(get_row_layout() == 'section_1') : ?>
+        <section class="tantra-retreat__1" data-menuscroll <?php if(get_the_post_thumbnail_url()){ ?> style="background: linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.5)), url(<?= get_the_post_thumbnail_url(); ?>) no-repeat center/cover;" <?php } ?>>
+            <div class="container">
+                <div class="row">
+                    <div class="col m12 s12 l12 xl12">
+                        <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                        <ul class="short-info-list">
+                            <li class="short-info-item name-item"><?php the_field( 'category', $product_id ); ?></li>
+                            <li class="short-info-item calendar-item"><?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?></li>
+                            <li class="short-info-item check-item"><?php the_field( 'location', $product_id ); ?></li>
+                        </ul>
+                        <p class="description">
+                          <?php the_sub_field( 'content' ); ?>
+                        </p>
+                        <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                          <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                          <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                          <input type="hidden" name="action" value="addcart_prod">
+                            <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+                          <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+                        </form>  
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
+        </section>
+    <?php endif ;?>
+  <?php endwhile;?>
+<?php endif;?>
+
 <div class="left__menu__scroll" data-scroll>
         <div class="container">
           <div class="row">
@@ -102,94 +112,147 @@ $product_id = $post->ID;
     </div>
 
     
+<?php if ( have_rows( 'retreat_pages' ) ): ?>
+	<?php while ( have_rows( 'retreat_pages' ) ) : the_row(); ?>
 
-    <section class="tantra-retreat__2">
-        <div class="container">
-            <div class="row">
-                <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <div class="retreat-product-card">
-                        <div class="img">
-                            <img src="<?= get_template_directory_uri(); ?>/img/retreat/product-img.jpg" alt="">
-                        </div>
-                        <div class="retreat-product-card-body">
-                            <a href="#" class="bundle">Start my journey</a>
-                            <ul class="icon-and-text-list">
-                                <li class="icon-and-text-item icon-and-text-date">
-                                    Dec 14, 2023 - Dec 17, 2023
-                                </li>
-                                <li class="icon-and-text-item icon-and-text-address">
-                                    Málaga, Spain
-                                </li>
-                            </ul>
-                            <span class="status">
-                                onsite
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <?php if ( get_row_layout() == 'section_2' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__2 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__2">
+      <?php endif; ?>
+        
+          <div class="container">
+              <div class="row">
+                  <div class="col m12 s12 l12 xl9 offset-xl3">
+                      <div class="retreat-product-card">
+                          <div class="img">
+                            <?php $image = get_sub_field( 'image' ); ?>
+                            <?php if ( $image ) : ?>
+                              <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+                            <?php endif; ?>
+                          </div>
+                          <div class="retreat-product-card-body">
+                            <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
+                              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+                              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+                              <input type="hidden" name="action" value="addcart_prod">
+                                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Start my journey'); ?></a>
+                              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+                            </form>  
+                              <!-- <a href="#" class="bundle">Start my journey</a> -->
+                              <ul class="icon-and-text-list">
+                                  <li class="icon-and-text-item icon-and-text-date">
+                                  <?php the_field( 'start_datetime', $product_id ); ?> - <?php the_field( 'end_datetime', $product_id ); ?>
+                                  </li>
+                                  <li class="icon-and-text-item icon-and-text-address">
+                                    <?php the_field( 'location', $product_id ); ?>
+                                  </li>
+                              </ul>
+                              <span class="status">
+                                <?php the_field( 'where', $product_id  ); ?>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
     </section>
 
-    <section class="tantra-retreat__3">
+    <?php elseif ( get_row_layout() == 'section_3' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__3 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__3">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/workshop/about-workshop.jpg" alt="" /></div>
+                    <div class="img">
+                      <?php $image = get_sub_field( 'image' ); ?>
+                      <?php if ( $image ) : ?>
+                        <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+                      <?php endif; ?>
+                    </div>
                     <div class="text">
-                        <h2 class="title">About the retreat</h2>
-                        <p>
-                            Live your life fully and fearlessly through mind, body and senses. This somatic experience
-                            is designed to restore your sacred connection with your true self and invigorate your whole
-                            being.
-                        </p>
-                        <p>
-                            Embodying your emotions will help you expand your consciousness, become more present, heal
-                            past traumas and reinvent yourself. This retreat will open up your heart to many blessings
-                            based on the physiology of emotions, energy work, breathing techniques, and active
-                            meditation.
-                        </p>
+                        <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                        <?php the_sub_field( 'content' ); ?>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__4">
+    <?php elseif ( get_row_layout() == 'section_4' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__4 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__4">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <h2 class="title">The retreat will help you:</h2>
+                    <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                     <div class="tahuma-recovery">
+                      <?php if ( have_rows( 'checkbox_list' ) ) : ?>
                         <ul class="tahuma-recovery-list">
+                          <?php while ( have_rows( 'checkbox_list' ) ) : the_row(); ?>
                             <li class="tahuma-recovery-item">
-                                Discharge unresolved energy from your body.
+                            <?php the_sub_field( 'row' ); ?>
                             </li>
-                            <li class="tahuma-recovery-item">
-                                Process deeply stored emotions.
-                            </li>
-                            <li class="tahuma-recovery-item">Embrace the awakened body and emotional awareness.</li>
-                            <li class="tahuma-recovery-item">Become more grounded and stable.
-                            </li>
-                            <li class="tahuma-recovery-item">Learn effective techniques for emotional regulation.</li>
-                            <li class="tahuma-recovery-item">Live in the flow.</li>
-                            <li class="tahuma-recovery-item">Cultivate presence.</li>
+                          <?php endwhile; ?>
                         </ul>
-                        <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/retreat/retreat-will-help-you.jpg" alt="" /></div>
+                      <?php endif; ?>
+                        <div class="img">
+                          <?php $image = get_sub_field( 'image' ); ?>
+                          <?php if ( $image ) : ?>
+                            <img src="<?php echo esc_url( $image['url'] ); ?>" alt="<?php echo esc_attr( $image['alt'] ); ?>" />
+                          <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__5">
+    <?php elseif ( get_row_layout() == 'section_5' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__5 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__5">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
                     <div class="section-header">
-                        <h2 class="title">The Program</h2>
-                        <div class="faciliated-by"><span>Facilitated by</span>
-                            <ul class="faciliated-users-list">
+                        <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                        <div class="faciliated-by">
+                          <span><?php the_sub_field( 'label' ); ?></span>
+                          <?php
+                            $featured_posts = get_sub_field('faciliated_imgs');
+                            if( $featured_posts ): ?>
+                              <ul class="faciliated-users-list">
+                                <?php foreach( $featured_posts as $post ): 
+                                  setup_postdata($post); ?>
+                                  <li class="faciliated-users-item">
+                                    <?php if(get_the_post_thumbnail_url()){ ?> 
+                                      <img src="<?= get_the_post_thumbnail_url(); ?>" alt="user_<?php echo get_row_index(); ?>"> 
+                                    <?php } ?>
+                                  </li>
+                                <?php endforeach; ?>
+                              </ul>
+                              <?php 
+                                wp_reset_postdata(); ?>
+                            <?php endif; ?>
+                            <!-- <ul class="faciliated-users-list">
                                 <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-1.jpg"
                                         alt="" /></li>
                                 <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-2.jpg"
@@ -198,209 +261,156 @@ $product_id = $post->ID;
                                         alt="" /></li>
                                 <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-4.jpg"
                                         alt="" /></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
-                    <div class="schedule-grid">
-                        <div class="schedule-grid-item">
-                            <div class="schedule-header">
-                                <img src="<?= get_template_directory_uri(); ?>/img/retreat/schedule-grid-header-1.jpg" alt="">
-                            </div>
-                            <div class="schedule-body">
-                                <h3 class="heading">Saturday</h3>
-                                <ul class="schedule-list">
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">15:00</div>
-                                        <div class="schedule-text">Check-in</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">17:00</div>
-                                        <div class="schedule-text">Opening ceremony
-                                            (dome Shala)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">18:00</div>
-                                        <div class="schedule-text">Tantric breathwork (dome Shala) or Active meditation
-                                            and Healing Breathwork (Shala 2)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">19:30</div>
-                                        <div class="schedule-text">Dinner</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">21:00</div>
-                                        <div class="schedule-text">Party</div>
-                                    </li>
-                                </ul>
-                            </div>
+                    <?php if ( have_rows( 'program_schedule' ) ) : ?>
+				              <?php while ( have_rows( 'program_schedule' ) ) : the_row(); ?>
+                        <div class="schedule-grid">
+                          <?php if ( have_rows( 'first_item' ) ) : ?>
+						                  <?php while ( have_rows( 'first_item' ) ) : the_row(); ?>
+                                <div class="schedule-grid-item">
+                                    <div class="schedule-header">
+                                    <?php $first_item_image = get_sub_field( 'first_item_image' ); ?>
+                                      <?php if ( $first_item_image ) : ?>
+                                        <img src="<?php echo esc_url( $first_item_image['url'] ); ?>" alt="<?php echo esc_attr( $first_item_image['alt'] ); ?>" />
+                                      <?php endif; ?>
+                                    </div>
+                                    <div class="schedule-body">
+                                        <h3 class="heading"><?php the_sub_field( 'first_day_title' ); ?></h3>
+                                        <ul class="schedule-list">
+                                          <?php if ( have_rows( 'first_schedule' ) ) : ?>
+                                            <?php while ( have_rows( 'first_schedule' ) ) : the_row(); ?>
+                                              <li class="schedule-list-item">
+                                                  <div class="schedule-time"><?php the_sub_field( 'first_item_time' ); ?></div>
+                                                  <div class="schedule-text"><?php the_sub_field( 'first_item_description' ); ?></div>
+                                              </li>
+                                            <?php endwhile; ?>
+                                          <?php endif; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                              <?php endwhile; ?>
+                          <?php endif;?>
+                          <?php if ( have_rows( 'second_item' ) ) : ?>
+						                <?php while ( have_rows( 'second_item' ) ) : the_row(); ?>
+                              <div class="schedule-grid-item">
+                                  <div class="schedule-header">
+                                    <?php $second_item_image = get_sub_field( 'second_item_image' ); ?>
+                                    <?php if ( $second_item_image ) : ?>
+                                      <img src="<?php echo esc_url( $second_item_image['url'] ); ?>" alt="<?php echo esc_attr( $second_item_image['alt'] ); ?>" />
+                                    <?php endif; ?>
+                                  </div>
+                                  <div class="schedule-body">
+                                      <h3 class="heading"><?php the_sub_field( 'second_item_day_title' ); ?></h3>
+                                      <ul class="schedule-list">
+                                        <?php if ( have_rows( 'second_item_schedule' ) ) : ?>
+                                          <?php while ( have_rows( 'second_item_schedule' ) ) : the_row(); ?>
+                                            <li class="schedule-list-item">
+                                                <div class="schedule-time"><?php the_sub_field( 'second_item_time' ); ?></div>
+                                                <div class="schedule-text">
+                                                  <?php the_sub_field( 'second_item_description' ); ?>
+                                                </div>
+                                            </li>
+                                            <?php endwhile; ?>
+                                        <?php endif; ?>
+                                      </ul>
+                                  </div>
+                              </div>
+                            <?php endwhile; ?>
+                          <?php endif;?>
+                          <?php if ( have_rows( 'third_item' ) ) : ?>
+						                <?php while ( have_rows( 'third_item' ) ) : the_row(); ?>
+                              <div class="schedule-grid-item">
+                                  <div class="schedule-header">
+                                    <?php $third_item_image = get_sub_field( 'third_item_image' ); ?>
+                                    <?php if ( $third_item_image ) : ?>
+                                      <img src="<?php echo esc_url( $third_item_image['url'] ); ?>" alt="<?php echo esc_attr( $third_item_image['alt'] ); ?>" />
+                                    <?php endif; ?>
+                                  </div>
+                                  <div class="schedule-body">
+                                      <h3 class="heading"><?php the_sub_field( 'third_item_day_title' ); ?></h3>
+                                      <ul class="schedule-list">
+                                        <?php if ( have_rows( 'third_item_schedule' ) ) : ?>
+                                          <?php while ( have_rows( 'third_item_schedule' ) ) : the_row(); ?>
+                                            <li class="schedule-list-item">
+                                                <div class="schedule-time"><?php the_sub_field( 'third_item_time' ); ?></div>
+                                                <div class="schedule-text">
+                                                  <?php the_sub_field( 'third_item_description' ); ?>
+                                                </div>
+                                            </li>
+                                          <?php endwhile; ?>
+                                        <?php endif; ?>
+                                      </ul>
+                                  </div>
+                              </div>
+                            <?php endwhile; ?> 
+                          <?php endif; ?>
+                          <?php if ( have_rows( 'fourth_item' ) ) : ?>
+						                <?php while ( have_rows( 'fourth_item' ) ) : the_row(); ?>
+                              <div class="schedule-grid-item">
+                                  <div class="schedule-header">
+                                    <?php $fourth_item_image = get_sub_field( 'fourth_item_image' ); ?>
+                                    <?php if ( $fourth_item_image ) : ?>
+                                      <img src="<?php echo esc_url( $fourth_item_image['url'] ); ?>" alt="<?php echo esc_attr( $fourth_item_image['alt'] ); ?>" />
+                                    <?php endif; ?>
+                                  </div>
+                                  <div class="schedule-body">
+                                      <h3 class="heading"><?php the_sub_field( 'fourth_item_day_title' ); ?></h3>
+                                      <ul class="schedule-list">
+                                        <?php if ( have_rows( 'fourth_item_schedule' ) ) : ?>
+                                          <?php while ( have_rows( 'fourth_item_schedule' ) ) : the_row(); ?>
+                                            <li class="schedule-list-item">
+                                                <div class="schedule-time"><?php the_sub_field( 'fourth_item_time' ); ?></div>
+                                                <div class="schedule-text"><?php the_sub_field( 'fourth_item_description' ); ?></div>
+                                            </li>
+                                            <?php endwhile; ?> 
+                                          <?php endif; ?>
+                                      </ul>
+                                  </div>
+                              </div>
+                            <?php endwhile; ?> 
+                          <?php endif; ?>
                         </div>
-                        <div class="schedule-grid-item">
-                            <div class="schedule-header">
-                                <img src="<?= get_template_directory_uri(); ?>/img/retreat/schedule-grid-header-2.jpg" alt="">
-                            </div>
-                            <div class="schedule-body">
-                                <h3 class="heading">Saturday</h3>
-                                <ul class="schedule-list">
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">08:00</div>
-                                        <div class="schedule-text">
-                                            Active meditation (dome Shala) or Breathwork (Shala 2)
-                                        </div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">09:30</div>
-                                        <div class="schedule-text">Breakfast</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">10:30</div>
-                                        <div class="schedule-text">Connect with your energy (dome Shala) or Meditation
-                                            (Shala 3)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">11:30</div>
-                                        <div class="schedule-text">Bodywork (dome Shala) or Integrating the unconscious
-                                            through polarity processing (Shala 2)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">12:30</div>
-                                        <div class="schedule-text">Healing breathwork session (dome Shala) or Circle to
-                                            activate the voice (Shala 2)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">13:30</div>
-                                        <div class="schedule-text">Lunch</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">15:30</div>
-                                        <div class="schedule-text">Active meditation (dome Shala) or Conscious Sharing +
-                                            Tunnel of Love (Shala 3)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">17:00</div>
-                                        <div class="schedule-text">Connected breathwork (dome Shala) or Shamanic journey
-                                            (Shala 3)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">19:30</div>
-                                        <div class="schedule-text">Dinner</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">21:00</div>
-                                        <div class="schedule-text">Tantric massage (dome Shala) or Party (Shala 3)</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="schedule-grid-item">
-                            <div class="schedule-header">
-                                <img src="<?= get_template_directory_uri(); ?>/img/retreat/schedule-grid-header-3.jpg" alt="">
-                            </div>
-                            <div class="schedule-body">
-                                <h3 class="heading">Monday</h3>
-                                <ul class="schedule-list">
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">08:00</div>
-                                        <div class="schedule-text">
-                                            Breathwork to heal the inner child (dome Shala) or Karunesh Heart Chakra
-                                            meditation (Shala 2)
-                                        </div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">09:00</div>
-                                        <div class="schedule-text">Breakfast</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">11:00</div>
-                                        <div class="schedule-text">Chakra breathing (dome Shala) or Tantric breathwork
-                                            (Shala 3)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">12:30</div>
-                                        <div class="schedule-text">Sharing Circle (dome Shala) or Body healing ceremony
-                                            (Shala 2)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">13:30</div>
-                                        <div class="schedule-text">Lunch</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">16:00</div>
-                                        <div class="schedule-text">Cacao + Breathwork for Ancestral Healing (dome Shala)
-                                        </div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">18:30</div>
-                                        <div class="schedule-text">Ecstatic Dance (dome Shala)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">19:30</div>
-                                        <div class="schedule-text">Dinner</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">21:30</div>
-                                        <div class="schedule-text">Party (dome Shala)</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="schedule-grid-item">
-                            <div class="schedule-header">
-                                <img src="<?= get_template_directory_uri(); ?>/img/retreat/schedule-grid-header-4.jpg" alt="">
-                            </div>
-                            <div class="schedule-body">
-                                <h3 class="heading">Tuesday</h3>
-                                <ul class="schedule-list">
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">07:30</div>
-                                        <div class="schedule-text">Breathwork for Warriors (dome Shala) or Ritual to
-                                            protect your Energy (Shala 2)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">09:00</div>
-                                        <div class="schedule-text">Closing ceremony (dome Shala)</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">09:30</div>
-                                        <div class="schedule-text">Breakfast</div>
-                                    </li>
-                                    <li class="schedule-list-item">
-                                        <div class="schedule-time">11:00</div>
-                                        <div class="schedule-text">Checkout</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                      <?php endwhile; ?>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__6">
+    <?php elseif ( get_row_layout() == 'section_6' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__6 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__6">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
                     <div class="cacao-ceremony">
                         <div class="cacao-text">
-                            <p>
-                                The Cacao Ceremony will be
-                                facilitated by our long-time friends
-                                <strong>Los Cosmiqueros.</strong>
-                            </p>
+                          <?php the_sub_field( 'title' ); ?>
                         </div>
                         <div class="img">
-                            <img src="<?= get_template_directory_uri(); ?>/img/retreat/cacao.jpg" alt="">
+                          <?php $top_image = get_sub_field( 'top_image' ); ?>
+                          <?php if ( $top_image ) : ?>
+                            <img src="<?php echo esc_url( $top_image['url'] ); ?>" alt="<?php echo esc_attr( $top_image['alt'] ); ?>" />
+                          <?php endif; ?>
                         </div>
                     </div>
                     <div class="arrow-gap"></div>
                     <div class="yogi-tea">
                         <div class="img">
-                            <img src="<?= get_template_directory_uri(); ?>/img/retreat/yogi-tea.jpg" alt="">
+                          <?php $bottom_image = get_sub_field( 'bottom_image' ); ?>
+                          <?php if ( $bottom_image ) : ?>
+                            <img src="<?php echo esc_url( $bottom_image['url'] ); ?>" alt="<?php echo esc_attr( $bottom_image['alt'] ); ?>" />
+                          <?php endif; ?>
                         </div>
                         <div class="yogi-text">
-                            <p>
-                                Take a moment to pause and enchant your senses with <strong>YogiTea.</strong>
-                            </p>
+                          <?php the_sub_field( 'text' ); ?>
                         </div>
                     </div>
                 </div>
@@ -408,41 +418,51 @@ $product_id = $post->ID;
         </div>
     </section>
 
-    <section class="tantra-retreat__7">
+    <?php elseif ( get_row_layout() == 'section_7' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__7 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__7">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <h2 class="title">The retreat is facilitated by</h2>
+                    <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                     <div class="coach-blocks">
-                        <div class="chach-item">
-                            <div class="img">
-                                <img src="<?= get_template_directory_uri(); ?>/img/retreat/alexis.jpg" alt="">
-                            </div>
-                            <div class="coach-text-box">
-                                <h3 class="name">Alexis Alcalá</h3>
-                                <ul class="about-labels">
-                                    <li class="about-label">InnerCamp founder</li>
-                                    <li class="about-label">Holistic coach</li>
-                                    <li class="about-label">Breathwork master</li>
-                                    <li class="about-label">Tantra teacher</li>
-                                </ul>
-                                <div class="about-text">
-                                    Certified executive and personal coach, breathwork master and tantra teacher who
-                                    intuitively uncovers peoples’ potential so that they feel empowered to unleash
-                                    that
-                                    power into their lives and the world. Alexis’ work revolves around people
-                                    coaching
-                                    in different spheres of life. He has worked with different companies across
-                                    Europe,
-                                    Africa and Asia as a trainer, mentor, manager and coach. He is someone whose
-                                    life
-                                    graph took an astounding turnaround when he changed his own life with the method
-                                    he
-                                    created.
+                      <?php $facilitators = get_sub_field( 'facilitators' ); ?>
+                      <?php if ( $facilitators ) : ?>
+                        <?php foreach ( $facilitators as $post ) :  ?>
+                            <?php setup_postdata( $post ); ?>
+                            <div class="chach-item">
+                                <div class="img">
+                                <?php if(get_the_post_thumbnail_url(get_the_ID())): ?>
+                                  <img src="<?= get_the_post_thumbnail_url( get_the_ID() ); ?>" alt=''>
+                                <?php endif; ?>
+
+                                </div>
+                                <div class="coach-text-box">
+                                    <h3 class="name"><?php the_title(); ?></h3>
+                                    <ul class="about-labels">
+                                      <?php
+                                      $posttags = get_the_tags();
+                                      if ($posttags) {
+                                        foreach($posttags as $tag) {
+                                          echo'<li class="about-label">' . $tag->name . '</li>'; 
+                                        }
+                                      }
+                                    ?>
+                                    </ul>
+                                    <div class="about-text">
+                                      <?php the_content(); ?>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="chach-item">
+                        <?php endforeach; ?>
+                        <?php wp_reset_postdata(); ?>
+                      <?php endif; ?>
+                        <!-- <div class="chach-item">
                             <div class="img">
                                 <img src="<?= get_template_directory_uri(); ?>/img/retreat/marjolein.jpg" alt="">
                             </div>
@@ -462,44 +482,46 @@ $product_id = $post->ID;
                                     world, helping people to reconnect to their true purpose and aligning their lives.
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__8">
+    <?php elseif ( get_row_layout() == 'section_8' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__8 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__8">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
                     <div class="text-column">
-                        <h2 class="title">Venue </h2>
+                        <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                         <h3 class="text-after-heading">
-                            (Santillan Yoga and Wellness Center)
+                          <?php the_sub_field( 'subfield_text' ); ?>
                         </h3>
                         <div class="dotted-text-block">
-                            <p>Authentic Andalusian farmhouse with gardens overlooking the sea. A farm of 50,000 sq,
-                                meters,
-                                it is located in the peace of the Spanish countryside, and yet is conveniently only 20
-                                minutes from Malaga airport.</p>
-                            <p>You can immerse yourself in the silence of nature in its lovely gardens and surrounding
-                                hills
-                                or enjoy stargazing under the dark night sky gathering around the bonfire.</p>
-                            <p>Centro Santillan was mentioned in The Times as one of Europe’s best yoga and wellness
-                                centers.</p>
-                            <p>The property features a newly built, beautiful state-of-the-art, and fully equipped yoga
-                                studio.</p>
+                          <?php the_sub_field( 'content' ); ?>
                         </div>
                         <address class="address-box">
-                            Suryalila Retreat Centre Cortijo La Fabrica, Pago del Pajarete 11650 Villamartin (Cadiz)
-                            Spain
+                          <?php the_sub_field( 'address' ); ?>
                         </address>
                     </div>
                     <div class="img-column">
                         <div class="images">
-                            <img src="<?= get_template_directory_uri(); ?>/img/retreat/venue-1.jpg" alt="">
-                            <img src="<?= get_template_directory_uri(); ?>/img/retreat/venue-2.jpg" alt="">
+                          <?php $top_image = get_sub_field( 'top_image' ); ?>
+                          <?php if ( $top_image ) : ?>
+                            <img src="<?php echo esc_url( $top_image['url'] ); ?>" alt="<?php echo esc_attr( $top_image['alt'] ); ?>" />
+                          <?php endif; ?>
+                          <?php $bottom_image = get_sub_field( 'bottom_image' ); ?>
+                          <?php if ( $bottom_image ) : ?>
+                            <img src="<?php echo esc_url( $bottom_image['url'] ); ?>" alt="<?php echo esc_attr( $bottom_image['alt'] ); ?>" />
+                          <?php endif; ?>
                         </div>
                         <div class="img-column-track"></div>
                     </div>
@@ -508,10 +530,18 @@ $product_id = $post->ID;
         </div>
     </section>
 
-    <section class="tantra-retreat__9">
+    <?php elseif ( get_row_layout() == 'section_9' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__9 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__9">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'image_and_map_slider' ) ) : ?>
                     <div id="maps-slider" class="photo-and-map-slider splide">
                         <div class="splide__track">
                             <div class="arrows">
@@ -533,42 +563,57 @@ $product_id = $post->ID;
                                 </a>
                             </div>
                             <div class="splide__list">
-                                <div class="photo-and-map-slide splide__slide">
+                              <?php while ( have_rows( 'image_and_map_slider' ) ) : the_row(); ?>
+                              <?php $slide_image = get_sub_field( 'slide_image' ); ?>
+                                <div class="photo-and-map-slide splide__slide" style="background: linear-gradient(169.67deg,rgba(0,0,0,0) 68.62%,rgba(0,0,0,.73) 92.29%), url(<?php echo esc_url( $slide_image['url'] ); ?>)">
                                     <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.9665395333914!2d30.52243375505082!3d50.441723910417636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ceff6225e3d7%3A0xe5ac3f7002b64b6!2sBelgium%20Anno%201445!5e0!3m2!1suk!2sus!4v1675422531320!5m2!1suk!2sus"
+                                        src="<?php the_sub_field( 'coordinates' ); ?>"
                                         width="347" height="190" style="border:0;border-radius:34px;" allowfullscreen=""
                                         loading="lazy"></iframe>
                                 </div>
-                                <div class="photo-and-map-slide splide__slide"></div>
-                                <div class="photo-and-map-slide splide__slide"></div>
-                                <div class="photo-and-map-slide splide__slide"></div>
+                              <?php endwhile; ?>
                             </div>
                         </div>
                     </div>
+                <?endif;?>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__10">
+    <?php elseif ( get_row_layout() == 'section_10' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__10 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__10">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
-                    <h2 class="title">Got questions?</h2>
-                    <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p>
-                    <a class="bundle" href="#">Schedule now</a>
+                    <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                    <?php the_sub_field( 'content' ); ?>
+                    <a class="bundle" data-fancybox data-src="#modal-3"><?php the_sub_field( 'link_name' ); ?></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tantra-retreat__11">
+    <?php elseif ( get_row_layout() == 'section_11' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__11 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__11">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
                     <div class="innercamp-retreat">
                         <div class="innercamp-retreat-header">
-                            <h2 class="title">InnerCamp Retreat</h2>
+                            <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
                             <span class="retreat-date">Jun 24, 2023 - Jun 27, 2023</span>
                         </div>
                         <div class="innercamp-retreat-body">
@@ -709,44 +754,57 @@ $product_id = $post->ID;
         </div>
     </section>
 
-    <section class="tantra-retreat__12">
+    <?php elseif ( get_row_layout() == 'section_12' ) : ?>
+      <?php if ( have_rows( 'navigation' ) ) : ?>
+        <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+          <section class="tantra-retreat__12 scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+        <?php endwhile; ?>
+      <?php else : ?>
+        <section class="tantra-retreat__12">
+      <?php endif; ?>
         <div class="container">
             <div class="row">
                 <div class="col m12 s12 l12 xl9 offset-xl3">
                     <div class="included-and-notincluded">
+                      <?php if ( !empty( 'check_column_heading' ) ) : ?>
                         <div class="included">
-                            <h3 class="heading">Included:</h3>
-                            <ul class="included-list">
-                                <li class="included-item">Accommodation.</li>
-                                <li class="included-item">All activities mentioned in the program.</li>
-                                <li class="included-item">Plant-based meals & snacks.</li>
-                                <li class="included-item">YogiTea & non-alcoholic beverages.</li>
-                                <li class="included-item">Goodie bag.</li>
-                            </ul>
+                            <h3 class="heading"><?php the_sub_field( 'check_column_heading' ); ?></h3>
+                            <?php if ( have_rows( 'check_column' ) ) : ?>
+                              <ul class="included-list">
+                                <?php while ( have_rows( 'check_column' ) ) : the_row(); ?>
+                                  <li class="included-item"><?php the_sub_field( 'row' ); ?></li>
+                                <?php endwhile; ?>
+                              </ul>
+                            <?php endif; ?>
                         </div>
-                        <div class="notincluded">
-                            <h3 class="heading">Not included:</h3>
-                            <ul class="notincluded-list">
-                                <li class="notincluded-item">Flight tickets.</li>
-                                <li class="notincluded-item">Transfers (available upon request).</li>
-                            </ul>
-                        </div>
+                      <?php endif; ?>
+                      <?php if ( !empty( 'error_column_heading' ) ) : ?>
+                          <div class="notincluded">
+                              <h3 class="heading"><?php the_sub_field( 'error_column_heading' ); ?></h3>
+                              <?php if ( have_rows( 'error_column' ) ) : ?>
+                                <ul class="notincluded-list">
+                                  <?php while ( have_rows( 'error_column' ) ) : the_row(); ?>
+                                    <li class="notincluded-item"><?php the_sub_field( 'row' ); ?></li>
+                                  <?php endwhile; ?>
+                                </ul>
+                              <?php endif; ?>  
+                          </div>
+                      <?php endif; ?>
                     </div>
-                    <div class="included-footer">
-
-                        In our retreats, we don't promote any nudity or sexual activities. We don't belong to any
-                        sect
-                        or follow any religion, and we welcome all beliefs and points of view. We foster diversity,
-                        we
-                        admire nature, trust each other and go through this journey with an open mind.
-
-                    </div>
+                    <?php if ( !empty( 'botttom_full_width_block' ) ) : ?>
+                      <div class="included-footer">
+                        <?php the_sub_field( 'botttom_full_width_block' ); ?>
+                      </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
 
+    <?php endif; ?>
 
+  <?php endwhile ;?>
+<?php endif ;?>
 
 <?php if(0){ ?>
 <?php 

@@ -734,7 +734,7 @@ endif; ?>
                             <?php endif; ?>
                           </li>
                         </ul>
-                        <div data-start="<?php the_sub_field( 'time_from', $product_id ); ?>" data-end="<?php the_sub_field( 'time_to', $product_id ); ?>" class="bundle-check get-time_js"><?php echo __('Check my local time here'); ?></div>
+                        <div data-start="<?php echo the_field( 'start_datetime', $product_id ); ?>" data-end="<?php echo the_field( 'end_datetime', $product_id ); ?>" class="bundle-check get-time_js"><?php echo __('Check my local time here'); ?></div>
                         <?php if ( have_rows( 'benefit' ) ) : ?>
                           <ul class="about-schedule-list">
                             <?php while ( have_rows( 'benefit' ) ) : the_row(); ?>

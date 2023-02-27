@@ -1,3 +1,7 @@
+select option {
+  background: #fff !important;
+}
+
 .testimonial__2 .testimonial__2-top-slider .splide__slide .images img,
 .testimonial__2 .testimonial__2-bottom-slider .splide__slide .images img,
 .home__8 .row .splide__slide .images img {
@@ -13,9 +17,6 @@
     transform: unset;
   }
 }
-/* * {
-  background: red;
-} */
 section.workshop__1 .bundle {
   max-width: 350px !important;
 }
@@ -37,9 +38,6 @@ section.workshop__8 .agreement-readmore {
 /*-----trainings-----*/
 section.certified__2 .experience-item.trainings .man {
   font-weight: 700;
-}
-.careers__4 .career-form select option {
-  background: #fff;
 }
 section.careers__4 .career-form select:focus {
   color: #9f9f9f !important;
@@ -210,6 +208,9 @@ section.home__4 .trainings__ .box__content .bundle {
   }
   section.home__4 .trainings__ {
     height: unset;
+  }
+  section.home__4 .trainings__ {
+    overflow: hidden;
   }
   section.home__6 .workshop__box .box__img .join {
     justify-content: flex-end;
@@ -445,9 +446,145 @@ section.affiliate-program__4
   span {
   padding: 0;
 }
+@media (max-width: 991px) {
+  body
+    section.affiliate-program__1
+    > .container
+    > .row:first-child
+    > div:first-child {
+    display: block !important;
+  }
+}
 @media (max-width: 600px) {
   section.affiliate-program__4 .affiliate-form .form-checkbox input {
     min-width: 21px !important;
     border: none;
+  }
+}
+
+/*-----Tantra Retreat-----*/
+section.tantra-retreat__1 {
+  position: relative;
+  z-index: 8;
+}
+section.tantra-retreat__6 .yogi-tea img {
+  display: block;
+}
+section.tantra-retreat__2 .retreat-product-card .img,
+section.tantra-retreat__2 .retreat-product-card .img img {
+  min-height: 404px;
+}
+
+section.tantra-retreat__9 .row .photo-and-map-slide {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+section.tantra-retreat__5 .section-header .faciliated-users-item img {
+  width: 66px;
+  height: 66px;
+  object-fit: cover;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+section.tantra-retreat__5 .section-header .faciliated-users-list {
+  padding-right: 15px;
+}
+section.tantra-retreat__7 .row .coach-text-box .about-text {
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+section.tantra-retreat__7 .row .coach-text-box .about-text::-webkit-scrollbar {
+  width: 3px;
+}
+
+section.tantra-retreat__7
+  .row
+  .coach-text-box
+  .about-text::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+section.tantra-retreat__7
+  .row
+  .coach-text-box
+  .about-text::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+section.tantra-retreat__7 .row .coach-text-box .about-text p {
+  color: #404f42;
+  font: 18px/1.65em var(--o);
+  letter-spacing: 0.005em;
+}
+section.tantra-retreat__7 .row .coach-text-box .about-text p:not(:last-child) {
+  margin-bottom: 16px;
+}
+@media (min-width: 601px) and (max-width: 992px) {
+  section.tantra-retreat__7 .row .coach-text-box .about-text p {
+    font: 16px/1.65em var(--o);
+  }
+}
+@media (max-width: 600px) {
+  section.tantra-retreat__7 .row .coach-text-box .about-text p {
+    font: 14px/1.65em var(--o);
+  }
+}
+section.tantra-retreat__7 .row .coach-text-box .about-text::-webkit-scrollbar {
+  background: #c1c1c1 !important;
+  background-color: #c1c1c1;
+  box-shadow: none;
+}
+
+section.tantra-retreat__7
+  .row
+  .coach-text-box
+  .about-text::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 63px;
+  height: 44px !important;
+}
+
+section.tantra-retreat__7 .row .coach-text-box .about-text::-webkit-scrollbar {
+  display: block !important;
+}
+
+section.tantra-retreat__7 .row .coach-text-box .about-text::-webkit-scrollbar {
+  width: 6px;
+  opacity: 1;
+  transition: all 0.7s ease;
+  background: #c1c1c1 !important;
+  background-color: #c1c1c1;
+}
+
+section.tantra-retreat__7
+  .row
+  .coach-text-box
+  .about-text::-webkit-scrollbar-track {
+  border-radius: 63px;
+  background: rgba(217, 217, 217, 0.51);
+}
+
+section.tantra-retreat__7
+  .row
+  .coach-text-box
+  .about-text::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+  border-radius: 63px;
+}
+
+/*-----FAQ-----*/
+section.faq__2 .faq-wrap .faq-item .faq-panel p {
+  font-family: var(--o) !important;
+  font-weight: 400;
+}
+
+/*-----Header-----*/
+@media (max-width: 1366px) {
+  #menu-item-62580 {
+    display: none;
   }
 }

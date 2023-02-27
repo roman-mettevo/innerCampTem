@@ -26,7 +26,7 @@ if ( ! empty( $block['align'] ) ) {
 }
 ?>
 
-<section <?php echo(!empty($id) ? 'id="'.esc_attr($id).'"' : '') ?> class="corporate__4 <?php echo esc_attr( $classes ); ?>">
+<section id='solution' class="corporate__4 <?php echo esc_attr( $classes ); ?>">
   <div class="container">
     <div class="row">
       <div class="col m12 s12 l6 xl6">

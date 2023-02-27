@@ -152,15 +152,18 @@ function innercamp_scripts() {
   wp_enqueue_style('sta-css', get_template_directory_uri() . '/css/sta.css' );
   wp_enqueue_style('iho-css', get_template_directory_uri() . '/css/iho.css' );
   
-  	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' );
+  	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' ); 
   
   if(is_page_template('tpl-checkout-page.php')){
 	wp_enqueue_style('intlTelInput-css', get_template_directory_uri() . '/css/intlTelInput.min.css' );
 	wp_enqueue_script( 'intlTelInput-js', get_template_directory_uri() . '/js/intlTelInput.min.js', array(), _S_VERSION, true );
 
 	wp_enqueue_script( 'checkout-js', get_template_directory_uri() . '/js/checkout.js', array(), _S_VERSION, true );
-  }
+  } 
   
+   if (is_page('find-your-coach')){
+      wp_enqueue_script( 'google', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyACsttdzuma--8b07wAksCPbg4OGGvr1uw&language=en&amp;callback=initMap' );
+   }
   
   wp_enqueue_script( 'main-min-js', get_stylesheet_directory_uri() .'/js/main.min.js', array(), '1.0', true );
     wp_enqueue_script( 'main-ajax-js', get_stylesheet_directory_uri() .'/js/main-ajax.js', array(), '1.0', true );
@@ -189,6 +192,10 @@ add_action( 'wp_enqueue_scripts', 'innercamp_scripts' );
 
 if( ! empty( get_template_directory_uri() . '/main-ajax.php' ) ) {
   require_once 'main-ajax.php';
+}
+
+if( ! empty( get_template_directory_uri() . '/functions-checkout.php' ) ) {
+  require_once 'functions-checkout.php';
 }
 
 /**
@@ -436,9 +443,14 @@ add_image_size( 'team_user', 411, 508, true );
 
 add_image_size( 'team_user_smoll', 70, 70, true ); 
 
+
+
 //add_theme_support( 'post-thumbnails', array( 'post', 'page', 'team_member' ) );
 
 
+
+
+  
 // WooCommerce Checkout Fields add placeholder
 function add_placeholder_checkout_fields( $fields ) {
    foreach ( $fields as $section => $section_fields ) {
@@ -492,4 +504,108 @@ function add_title_checkout_field( $fields ) {
 		'priority' => 2
     );
 	return $fields;
+}
+
+
+
+
+// coach
+
+function coach(){
+	register_post_type('coach', array(
+		'labels' => array(
+			'name'				=> __('Coach people', 'coach'),
+			'singular_name'   	=> __('Coach people', 'coach'),
+			'add_new'		 	=> __('Add post coach', 'coach'),
+			'add_new_item'		=> __('Add post coach', 'coach'),
+			'edit'				=> __('Edit post coach', 'coach'),
+			'edit_item'	   		=> __('Edit post coach', 'coach'),
+			'new_item'			=> __('New post coach', 'coach'),
+			'all_items'	   		=> __('All post coach', 'coach'),
+			'view'				=> __('View post coach', 'coach'),
+			'view_item'	   		=> __('View post coach', 'coach'),
+			'search_items'		=> __('Search post coach', 'coach'),
+			'not_found'	   		=> __('News not coach', 'coach'),
+		),
+		'public' => true, // show in admin panel?
+		'menu_position' => 26,
+		'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'page-attributes', 'revisions', 'post-formats', 'custom-fields'),
+		'taxonomies' => array('category', 'post_tag'),
+		
+		
+// 		'has_archive' => true,
+        'has_archive' => 'coach',
+		'capability_type' => 'post',
+		'menu_icon'   => 'dashicons-admin-post',
+		'rewrite' => array('slug' => 'coach', 'with_front' => false ),
+		
+		
+        // 'hierarchical' => false,
+        // 'description' => 'Custom Theme Posts',
+
+
+        // 'show_ui' => true,
+        // 'show_in_menu' => true,
+    
+        // 'show_in_nav_menus' => true,
+        // 'publicly_queryable' => true,
+        // 'exclude_from_search' => false,
+        // 'query_var' => true,
+        // 'can_export' => true,
+
+		
+	));
+}
+add_action('init', 'coach');
+
+
+
+//hook into the init action and call create_book_taxonomies when it fires
+  
+add_action( 'init', 'coach_taxonomy', 0 );
+  
+//create a custom taxonomy name it subjects for your posts
+  
+function coach_taxonomy() {
+  
+// Add new taxonomy, make it hierarchical like categories
+//first do the translations part for GUI
+  
+  $labels = array(
+    'name' => _x( 'Coach Category', 'taxonomy general name' ),
+    'singular_name' => _x( 'Subject', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Coach Category' ),
+    'all_items' => __( 'All Coach Category' ),
+    'parent_item' => __( 'Parent Coach' ),
+    'parent_item_colon' => __( 'Parent Coach:' ),
+    'edit_item' => __( 'Edit Coach' ), 
+    'update_item' => __( 'Update Coach' ),
+    'add_new_item' => __( 'Add New Coach' ),
+    'new_item_name' => __( 'New Coach Name' ),
+    'menu_name' => __( 'Coach Category' ),
+  );    
+  
+// Now register the taxonomy
+  register_taxonomy('coach_cat',array('coach'), array(
+    'hierarchical' => true,
+    'labels' => $labels,
+    'show_ui' => true,
+    'show_in_rest' => true,
+    'show_admin_column' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'coach_cat' ),
+  ));
+  
+} 
+
+
+
+
+
+add_filter( 'posts_where', 'extend_wp_query_where', 10, 2 );
+function extend_wp_query_where( $where, $wp_query ) {
+    if ( $extend_where = $wp_query->get( 'extend_where' ) ) {
+        $where .= " AND " . $extend_where;
+    }
+    return $where;
 }

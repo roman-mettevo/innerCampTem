@@ -93,7 +93,6 @@ get_header(); ?>
                     <?php } ?>
                   </ul>
                 </div>
-                
                 <div class="box__content">
                    <?php if(get_the_permalink()){ ?><a class="title__" href="<?php echo get_the_permalink(); ?>"><?php } ?>  <?php echo get_the_title(); ?>  <?php if(get_the_permalink()){ ?></a><?php } ?>  
                   

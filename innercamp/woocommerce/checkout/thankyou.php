@@ -77,33 +77,37 @@ defined( 'ABSPATH' ) || exit;
 				<?php endif; ?>
 
 			</ul>
+			
+		 <?php echo '<script> window.location.href = "/thank-you/"; </script>'; ?>
+			
 	   <script>
-        document.addEventListener('DOMContentLoaded', function(){
-            jQuery(document).ready( function($){
-              
-              console.log('thank you order');
-
-              $.fancybox.open({
-                src  : '#modal-thank', 
-            //    type : 'inline',
-            //    'autoScale' : false,
-            //    'padding' :0,
-                 opts : {
-                    afterShow : function( instance, current ) {
-                        console.info( 'done!' );
-                    }
-                },
-            //    'width' : 800,
-            //    'height' : 575,
-
-            //    'onComplete' : function(){
-            //        $('#fancybox-content').css({height:'800px',width:'675px'});
-            //    }
-               });
-
-            });
-        });
+//        document.addEventListener('DOMContentLoaded', function(){
+//            jQuery(document).ready( function($){
+//              
+//              console.log('thank you order');
+//
+//              $.fancybox.open({
+//                src  : '#modal-thank', 
+//            //    type : 'inline',
+//            //    'autoScale' : false,
+//            //    'padding' :0,
+//                 opts : {
+//                    afterShow : function( instance, current ) {
+//                        console.info( 'done!' );
+//                    }
+//                },
+//            //    'width' : 800,
+//            //    'height' : 575,
+//
+//            //    'onComplete' : function(){
+//            //        $('#fancybox-content').css({height:'800px',width:'675px'});
+//            //    }
+//               });
+//
+//            });
+//        });
     </script>
+    
 		<?php endif; ?>
 
 

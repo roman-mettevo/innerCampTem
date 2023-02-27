@@ -1,6 +1,27 @@
 document.addEventListener('DOMContentLoaded', function(){
   jQuery(document).ready( function($){
     
+      $('.find-your-coach__grid-map-switch>li').click(function() {
+        
+//          $('body').addClass("open__menu");
+
+          var num_data = $(this).data('number');
+
+          $('.find-your-coach__switch-item').removeClass('active');
+          $('.find-your-coach__grid-map-switch>li:nth-child('+ num_data + ')').addClass('active');
+        
+         if($('.find-your-coach__grid-map-switch>li:nth-child(2)').hasClass('active')){
+             $('section.find-your-coach .find-your-coach__list').addClass('none');
+            $('#map-canvas').removeClass('none');
+         }
+                 
+         if($('.find-your-coach__grid-map-switch>li:nth-child(1)').hasClass('active')){
+             $('section.find-your-coach .find-your-coach__list').removeClass('none');
+              $('#map-canvas').addClass('none');
+         }
+      });  
+    
+    
         $('[type="submit"]').click(function() {
           
             var invalid = $('.wpcf7-form').hasClass('invalid');

@@ -5,6 +5,315 @@
  */
 get_header(); ?>
 
+  
+  <?php
+$arr_left_menu = []; ?>
+
+  <section class="cacao__end__1" data-menuscroll>
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl12">
+          <h2 class="title">Cacao Ceremony Facilitator Training</h2>
+          <p class="description">This training is designed to help open your heart, find clarity and bliss, and reconnect to your inner wisdom.</p><a class="bundle" href="#">Book now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <div class="left__menu__scroll">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l3 xl3">
+         <a class="bundle" href="javascript:;">Book now</a>
+          <div class="box__">
+            <ul>
+              <li> <a href="#">Book now</a></li>
+              <lI> <a href="#">Course basics</a></lI>
+              <lI> <a href="#">Benefits of Cacao</a></lI>
+              <lI> <a href="#">Training Facilitators</a></lI>
+              <lI> <a href="#">Certification</a></lI>
+              <lI> <a href="#">Certificate</a></lI>
+              <lI> <a href="#">Book a free call</a></lI>
+              <lI> <a href="#">Get yourself ready</a></lI>
+              <lI> <a href="#">Testimonials</a></lI>
+              <lI> <a href="#">FAQ</a></lI>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <section class="cacao__end__2">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl12">
+          <div class="middle"><a class="its" href="#">Cacao</a><a class="whitebuttom" href="#">Teacher training</a><img class="cross" src="<?= get_template_directory_uri(); ?>/img/cacao_logo.svg" alt="#"></div>
+        </div>
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="basic-course-card">
+            <div class="couse-img"></div>
+            <div class="course-info">
+              <div class="course-price-wrapper">
+                <div class="course-price"><span class="price-label">Price:</span><span class="price-quantity">1200&euro;</span></div><a class="bundle" href="#">Start my journey</a>
+              </div>
+              <ul class="course-short-info">
+                <li class="course-short-info-item course-duration">4 weeks</li>
+                <li class="course-short-info-item course-video">30+ videos</li>
+                <li class="course-short-info-item course-hours">50 hours in total</li>
+                <!-- <li class="course-short-info-item course-status">online course</li>-->
+              </ul><span class="course-status">online course</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="box__">
+            <div class="box__content">
+              <h2 class="title">Benefits of Cacao:</h2>
+              <p class="cs16">Theobroma cacao is a sacred plant used for spiritual, medicinal and ceremonial purposes in indigenous cultures of South America. Its molecule has unique components such as</p>
+              <ul class="tahuma-recovery-list">
+                <li>PEA (phenylethylamine) creates a euphoric feeling of pleasure and joy.</li>
+                <li>Serotonin is responsible for happiness in general.</li>
+                <li>Oxytocin creates a deep bond with yourself, your body and all that surrounds you.</li>
+                <li>Magnesium relaxes muscles and increases blood circulation to open up your heart.</li>
+                <li>Theobromine stimulates your senses and sharpens your focus.</li>
+              </ul>
+            </div>
+            <div class="box__img"><img src="<?= get_template_directory_uri(); ?>/img/cacao_benefits.png" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="box__">
+            <div class="box__img"><img src="<?= get_template_directory_uri(); ?>/img/cacao_pm.png" alt=""></div>
+            <div class="box__content">
+              <h2 class="title">About the Course</h2>
+              <div class="tahuma-recovery-list arrow">
+                <p>Introduce yourself to a centuries-old practice as a way to reconnect with your inner self, strengthen awareness, awaken your gifts, and feel present and loving.</p>
+              </div>
+              <p>A Cacao Ceremony is a sacred ritual to look inside your soul, and warm up your whole being with a heart-opening plant medicine. You will learn the history of cacao and its natural benefits, how to prepare ceremonial cacao to help the body heal and become a vessel for intuitive messages and wisdom.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cacao__end__3">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="header">
+            <h2 class="title">The Program</h2>
+            <p>All modules are pre-recorded and available to view and complete anytime.</p>
+          </div>
+          <div class="faciliated-by"><span>Facilitated by</span>
+            <ul class="faciliated-users-list">
+              <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-1.jpg" alt=""></li>
+              <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-2.jpg" alt=""></li>
+              <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-3.jpg" alt=""></li>
+              <li class="faciliated-users-item"><img src="<?= get_template_directory_uri(); ?>/img/bodywork-1/faciliated-by-4.jpg" alt=""></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l5 xl5 offset-xl3 offset-l3">
+          <div class="block__elips">
+            <div class="images"><img src="<?= get_template_directory_uri(); ?>/img/cacao__logo.png" alt="image">
+              <h2 class="title">Cacao Ceremony Facilitator Training</h2>
+            </div>
+            <ul class="right">
+              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo.png" alt="image"><a href="#">Week 1</a></li>
+              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 2</a></li>
+              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 3</a></li>
+              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 4</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col m12 s12 l4 xl4">
+          <div class="twix2">
+            <div class="blog33">
+              <h4 class="title">Week 1</h4>
+              <ul class="reborn">
+                <li> What is cacao?</li>
+                <li> Choosing your cacao</li>
+                <li> Science of cacao</li>
+                <li> Effects of cacao</li>
+                <li> History of cacao</li>
+                <li> Choosing your cacao</li>
+                <li> Plant medicines and cacao</li>
+                <li> Cultural appropriation and cultural appreciation</li>
+                <li> Preparation and serving guidelines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cacao__end__4">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title">The retreat is facilitated by</h2>
+          <div class="coach-blocks">
+            <div class="chach-item">
+              <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/retreat/alexis.jpg" alt=""></div>
+              <div class="coach-text-box">
+                <h3 class="name">Alexis Alcal&aacute;</h3>
+                <ul class="about-labels">
+                  <li class="about-label">InnerCamp founder</li>
+                  <li class="about-label">Holistic coach</li>
+                  <li class="about-label">Breathwork master</li>
+                  <li class="about-label">Tantra teacher</li>
+                </ul>
+                <div class="about-text">
+                  Certified executive and personal coach, breathwork master and tantra teacher who
+                  intuitively uncovers peoples&rsquo; potential so that they feel empowered to unleash
+                  that
+                  power into their lives and the world. Alexis&rsquo; work revolves around people
+                  coaching
+                  in different spheres of life. He has worked with different companies across
+                  Europe,
+                  Africa and Asia as a trainer, mentor, manager and coach. He is someone whose
+                  life
+                  graph took an astounding turnaround when he changed his own life with the method
+                  he
+                  created.
+                </div>
+              </div>
+            </div>
+            <div class="chach-item">
+              <div class="img"><img src="<?= get_template_directory_uri(); ?>/img/retreat/marjolein.jpg" alt=""></div>
+              <div class="coach-text-box">
+                <h3 class="name">Marjolein Van Ommeren</h3>
+                <ul class="about-labels">
+                  <li class="about-label">Method teacher</li>
+                  <li class="about-label">Sacred Womb Awakening Practitioner</li>
+                  <li class="about-label">Shamanic Healing Practitioner</li>
+                </ul>
+                <div class="about-text">
+                  Marjolein is an InnerCamp Tantra teacher and a Sacred Womb Awakening and Shamanic
+                  Healing Practitioner. She strongly believes that we are all healers. Her mission is
+                  to help people restore balance in their lives by reconnecting them to their inner
+                  light and to help people raise their vibration. Womb/Hara Awakening are ancient,
+                  self-empowering practices which are returning into the awareness of the Western
+                  world, helping people to reconnect to their true purpose and aligning their lives.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="certificate">
+            <div class="certificate-img"><img src="<?= get_template_directory_uri(); ?>/img/cacao__sertifcat.png" alt=""></div>
+            <div class="certificate-text">
+              <p>Become a certified <strong>Cacao Ceremony Facilitator</strong>from the comfort of your home!</p><a class="bundle" href="#">Enroll now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cacao__end__5">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title">Got questions?</h2>
+          <p>Schedule a <strong>free</strong> consultation call with one of our experts.</p><a class="bundle" href="#">Schedule now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="cacao__end__6">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <div class="twix2">
+            <div class="blog2">
+              <h2 class="title">Get yourself ready!</h2>
+              <p>For this course, you will need around 500 grams (1.1 lb) of raw cacao, herbs, spices (peppermint, ginger, cardamom, black pepper, clove, cinnamon) and a cup to use during the course. We will provide some delicious recipes once you start the course.</p>
+              <p>We recommend you look for a ceremonial grade, raw and organic Theobroma cacao that has been cultivated with intention, blessed by hand and fair-trade, where workers are paid a fair wage and profits are used to help local communities.</p>
+              <ul>
+                <li><a class="statusonline" href="#">raw cacao</a></li>
+                <li><a class="statusonline" href="#">herbs</a></li>
+                <li><a class="statusonline" href="#">spices</a></li>
+                <li><a class="statusonline" href="#">a cup</a></li>
+                <li></li>
+              </ul>
+            </div>
+            <div class="picture2"><img src="<?= get_template_directory_uri(); ?>/img/cacao_fo2t22.png"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title">Testimonials</h2>
+          <div class="twix2_next">
+            <div class="blog7">
+              <p>"I have used this amazing plant medicine for myself for a few years, but I had never facilitated a cacao ceremony for other people. This training has everything I needed to understand well the origins of cacao, how to appreciate the cultures that first started using cacao, how to prepare cacao for my clients and how to use some shamanic tools, and how to run my own events. I love how InnerCamp empowered me to create my own style, not copying anyone and trends. I'm running a bi-weekly cacao ceremony in Mexico and my clients have so good feedback! So grateful to InnerCamp!"</p>
+              <div class="user">
+                <div class="pictureavatr"><img src="<?= get_template_directory_uri(); ?>/img/cacao_avatart.png"></div>
+                <div class="content">
+                  <h5>Carolina</h5><span class="teg">Breathwork Teacher Training</span>
+                </div>
+              </div>
+            </div>
+            <div class="blog7">
+              <p>"I have used this amazing plant medicine for myself for a few years, but I had never facilitated a cacao ceremony for other people. This training has everything I needed to understand well the origins of cacao, how to appreciate the cultures that first started using cacao, how to prepare cacao for my clients and how to use some shamanic tools, and how to run my own events. I love how InnerCamp empowered me to create my own style, not copying anyone and trends. I'm running a bi-weekly cacao ceremony in Mexico and my clients have so good feedback! So grateful to InnerCamp!"</p>
+              <div class="user">
+                <div class="pictureavatr"><img src="<?= get_template_directory_uri(); ?>/img/cacao_avatart.png"></div>
+                <div class="content">
+                  <h5>JEN D</h5><span class="teg">Breathwork Teacher Training</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m12 s12 l12 xl9 offset-xl3">
+          <h2 class="title">Frequently asked questions</h2>
+          <div class="dropdown-list">
+            <div class="dropdown">
+              <button class="drop-button" type="button">What happens if I fail the assignment?</button>
+              <p class="drop-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
+            </div>
+            <div class="dropdown">
+              <button class="drop-button" type="button">Will I continue to have access to the course even after I complete </button>
+              <p class="drop-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
+            </div>
+            <div class="dropdown">
+              <button class="drop-button" type="button">Will I receive a certification?</button>
+              <p class="drop-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
+            </div>
+            <div class="dropdown">
+              <button class="drop-button" type="button">Will I be able to guide Cacao Ceremonies after I am certified?</button>
+              <p class="drop-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, omnis!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+<?php
+function format_id($str): string
+{
+  $new_str = str_replace(" ", '', $str);
+  return strtolower($new_str);
+}
+
+?>
+
+<?php if(0){ ?>
 <?php
 $arr_left_menu = []; ?>
  
@@ -310,6 +619,7 @@ function format_id($str): string
 }
 
 ?>
+<?php } ?>
 
 <?php
 get_footer();
