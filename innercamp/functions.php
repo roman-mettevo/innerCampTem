@@ -152,14 +152,14 @@ function innercamp_scripts() {
   wp_enqueue_style('sta-css', get_template_directory_uri() . '/css/sta.css' );
   wp_enqueue_style('iho-css', get_template_directory_uri() . '/css/iho.css' );
   
-  	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' ); 
-  
-  if(is_page_template('tpl-checkout-page.php')){
-	wp_enqueue_style('intlTelInput-css', get_template_directory_uri() . '/css/intlTelInput.min.css' );
-	wp_enqueue_script( 'intlTelInput-js', get_template_directory_uri() . '/js/intlTelInput.min.js', array(), _S_VERSION, true );
-
-	wp_enqueue_script( 'checkout-js', get_template_directory_uri() . '/js/checkout.js', array(), _S_VERSION, true );
-  } 
+//  	wp_enqueue_style('checkout-css', get_template_directory_uri() . '/css/checkout.css' ); 
+//  
+//  if(is_page_template('tpl-checkout-page.php')){
+//	wp_enqueue_style('intlTelInput-css', get_template_directory_uri() . '/css/intlTelInput.min.css' );
+//	wp_enqueue_script( 'intlTelInput-js', get_template_directory_uri() . '/js/intlTelInput.min.js', array(), _S_VERSION, true );
+//
+//	wp_enqueue_script( 'checkout-js', get_template_directory_uri() . '/js/checkout.js', array(), _S_VERSION, true );
+//  } 
   
    if (is_page('find-your-coach')){
       wp_enqueue_script( 'google', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyACsttdzuma--8b07wAksCPbg4OGGvr1uw&language=en&amp;callback=initMap' );
@@ -196,6 +196,14 @@ if( ! empty( get_template_directory_uri() . '/main-ajax.php' ) ) {
 
 if( ! empty( get_template_directory_uri() . '/functions-checkout.php' ) ) {
   require_once 'functions-checkout.php';
+}
+
+if( ! empty( get_template_directory_uri() . '/functions-main-ihor.php' ) ) {
+  require_once 'functions-main-ihor.php';
+}
+
+if( ! empty( get_template_directory_uri() . '/functions-main.php' ) ) {
+  require_once 'functions-main.php';
 }
 
 /**
@@ -420,8 +428,8 @@ add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 add_action( 'wp_enqueue_scripts', '_remove_styler', PHP_INT_MAX );
 function _remove_styler() {
-    wp_dequeue_style( 'select2' );
-    wp_dequeue_style('select2.css'); 
+//    wp_dequeue_style( 'select2' );
+//    wp_dequeue_style('select2.css'); 
   
     wp_dequeue_style('wc-blocks-style'); 
     wp_dequeue_style('wc-blocks-style.css');  
@@ -451,60 +459,60 @@ add_image_size( 'team_user_smoll', 70, 70, true );
 
 
   
-// WooCommerce Checkout Fields add placeholder
-function add_placeholder_checkout_fields( $fields ) {
-   foreach ( $fields as $section => $section_fields ) {
-      foreach ( $section_fields as $section_field => $section_field_settings ) {
-		 $fields[$section][$section_field]['placeholder'] = $fields[$section][$section_field]['label'];
-      }
-   }
-   $fields['billing']['billing_email']['priority'] = 1;
-   $fields['billing']['billing_email']['placeholder'] = "Your email";
-   $fields['billing']['billing_first_name']['placeholder'] = "Your first name";
-   $fields['billing']['billing_last_name']['placeholder'] = "Your last name";
-   $fields['billing']['billing_address_1']['placeholder'] = "Adress (ex: 12 Main Street)";
-   $fields['billing']['billing_postcode']['placeholder'] = "Postal code (7 digits)";
-
-   return $fields;
-}
-add_filter( 'woocommerce_checkout_fields', 'add_placeholder_checkout_fields', 20 );
-
-
-//Change the string on woocommerce
-function change_field_strings( $translated_text, $text, $domain ) {
-	switch ( $translated_text ) {
-		case 'Billing details' :
-			$translated_text = __( 'Contact information', 'woocommerce' );
-			break;
-		case 'Returning customer?' :
-			$translated_text = __( 'Already have an account?', 'woocommerce' );
-			break;
-		case 'Click here to login' :
-			$translated_text = __( 'Log in', 'woocommerce' );
-			break;
-	}
-	return $translated_text;
-}
-add_filter( 'gettext', 'change_field_strings', 20, 3 );
+//// WooCommerce Checkout Fields add placeholder
+//function add_placeholder_checkout_fields( $fields ) {
+//   foreach ( $fields as $section => $section_fields ) {
+//      foreach ( $section_fields as $section_field => $section_field_settings ) {
+//		 $fields[$section][$section_field]['placeholder'] = $fields[$section][$section_field]['label'];
+//      }
+//   }
+//   $fields['billing']['billing_email']['priority'] = 1;
+//   $fields['billing']['billing_email']['placeholder'] = "Your email";
+//   $fields['billing']['billing_first_name']['placeholder'] = "Your first name";
+//   $fields['billing']['billing_last_name']['placeholder'] = "Your last name";
+//   $fields['billing']['billing_address_1']['placeholder'] = "Adress (ex: 12 Main Street)";
+//   $fields['billing']['billing_postcode']['placeholder'] = "Postal code (7 digits)";
+//
+//   return $fields;
+//}
+//add_filter( 'woocommerce_checkout_fields', 'add_placeholder_checkout_fields', 20 );
 
 
-//Create field type to WooCommerce form field 
-add_filter( 'woocommerce_form_field_heading','create_title_checkout_field', 10, 4 );
-function create_title_checkout_field($field, $key, $args, $value) {
-    $output = '<h3 class="form-row form-row-wide billing_heading_field">'.__( $args['label'], 'woocommerce' ).'</h3>';
-    echo $output;
-}
-
-// Add field type to WooCommerce form field 
-add_filter( 'woocommerce_checkout_fields','add_title_checkout_field' );
-function add_title_checkout_field( $fields ) {
-    $fields['billing']['billing_heading_name'] = array(
-        'type'      => 'heading',
-        'label'     => 'Please fill in your contact details',
-		'priority' => 2
-    );
-	return $fields;
-}
+////Change the string on woocommerce
+//function change_field_strings( $translated_text, $text, $domain ) {
+//	switch ( $translated_text ) {
+//		case 'Billing details' :
+//			$translated_text = __( 'Contact information', 'woocommerce' );
+//			break;
+//		case 'Returning customer?' :
+//			$translated_text = __( 'Already have an account?', 'woocommerce' );
+//			break;
+//		case 'Click here to login' :
+//			$translated_text = __( 'Log in', 'woocommerce' );
+//			break;
+//	}
+//	return $translated_text;
+//}
+//add_filter( 'gettext', 'change_field_strings', 20, 3 );
+//
+//
+////Create field type to WooCommerce form field 
+//add_filter( 'woocommerce_form_field_heading','create_title_checkout_field', 10, 4 );
+//function create_title_checkout_field($field, $key, $args, $value) {
+//    $output = '<h3 class="form-row form-row-wide billing_heading_field">'.__( $args['label'], 'woocommerce' ).'</h3>';
+//    echo $output;
+//}
+//
+//// Add field type to WooCommerce form field 
+//add_filter( 'woocommerce_checkout_fields','add_title_checkout_field' );
+//function add_title_checkout_field( $fields ) {
+//    $fields['billing']['billing_heading_name'] = array(
+//        'type'      => 'heading',
+//        'label'     => 'Please fill in your contact details',
+//		'priority' => 2
+//    );
+//	return $fields;
+//}
 
 
 

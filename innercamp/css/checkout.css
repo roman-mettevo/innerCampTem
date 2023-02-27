@@ -108,10 +108,7 @@
 	font-size: 14px;
 	line-height: 129.2%;
 	color: #424f44;
-	background: rgba(255, 255, 255, 0.16);
-	box-shadow: inset -4px -2px 15px rgba(190, 190, 190, 0.25),
-		inset 9px 8px 13px rgba(0, 0, 0, 0.12);
-	backdrop-filter: blur(14px);
+	background: #ddeddf;
 	border-radius: 8px;
 	padding: 6px 11px;
 	display: block;
@@ -119,6 +116,26 @@
 	transform: translate(-50%, -100%);
 	bottom: 0;
 	position: absolute;
+	visibility: hidden;
+	transition: 0.2s;
+}
+.woocommerce-checkout #vat_field_field label::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 15px;
+	top: 0;
+	transform: translateY(-50%);
+	border: 7.5px solid transparent;
+	border-top: 7.5px solid #ddeddf;
+	visibility: hidden;
+	transition: 0.2s;
+}
+.woocommerce-checkout #vat_field_field label:hover:before,
+.woocommerce-checkout #vat_field_field label:hover:after {
+	visibility: visible;
 }
 #vat_field {
 	padding-right: 60px;

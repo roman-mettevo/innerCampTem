@@ -301,22 +301,22 @@ do_action('woocommerce_before_main_content');
                 <?php else :?>
                   <div class="block__help">
                 <?php endif; ?>
-                <div class="cont__">
-                  <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
-                  <?php if ( have_rows( 'checkboxes_list' ) ) : ?>
-                    <ul>
-                      <?php while ( have_rows( 'checkboxes_list' ) ) : the_row(); ?>
-                        <li class="cheked"><?php the_sub_field( 'text_item' ); ?></li>
-                      <?php endwhile; ?>
-                    </ul>
-                  <?php endif; ?>
-                </div>
-                <div class="img__">
-                  <?php $post_image = get_sub_field( 'post_image' ); ?>
-                  <?php if ( $post_image ) : ?>
-                    <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
-                  <?php endif; ?>
-                </div>
+                  <div class="cont__">
+                    <h2 class="title"><?php the_sub_field( 'title' ); ?></h2>
+                    <?php if ( have_rows( 'checkboxes_list' ) ) : ?>
+                      <ul>
+                        <?php while ( have_rows( 'checkboxes_list' ) ) : the_row(); ?>
+                          <li class="cheked"><?php the_sub_field( 'text_item' ); ?></li>
+                        <?php endwhile; ?>
+                      </ul>
+                    <?php endif; ?>
+                  </div>
+                  <div class="img__">
+                    <?php $post_image = get_sub_field( 'post_image' ); ?>
+                    <?php if ( $post_image ) : ?>
+                      <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                    <?php endif; ?>
+                  </div>
                 </div>
               <?php endif; ?>
             <?php endwhile; ?>
@@ -328,7 +328,30 @@ do_action('woocommerce_before_main_content');
           <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
             <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
               <?php if ( get_row_layout() == 'section_5' ) : ?>
-                <h2 class="title scroll__init">About the Course</h2>
+                <h2 class="title scroll__init"><?php the_sub_field( 'title' ); ?></h2>
+                <?php if ( have_rows( 'navigation' ) ) : ?>
+                  <?php while ( have_rows( 'navigation' ) ) : the_row(); ?>
+                    <div class="block__next scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
+                  <?php endwhile; ?>
+                <?php else: ?>
+                  <div class="block__next">
+                <?php endif; ?>
+                  <div class="img__">
+                    <?php $post_image = get_sub_field( 'post_image' ); ?>
+                    <?php if ( $post_image ) : ?>
+                      <img src="<?php echo esc_url( $post_image['url'] ); ?>" alt="<?php echo esc_attr( $post_image['alt'] ); ?>" />
+                    <?php endif; ?>
+                  </div>
+                  <div class="cont__">
+                    <div class="box__">
+                      <?php the_sub_field( 'text' ); ?>
+                      <?php $download_button = get_sub_field( 'download_button' ); ?>
+                      <?php if ( $download_button ) : ?>
+                        <a class="download" href="<?php echo esc_url( $download_button['url'] ); ?>"><?php echo esc_html( $download_button['filename'] ); ?></a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
               <?php endif; ?>
             <?php endwhile; ?>
           <?php endif; ?>
@@ -338,7 +361,7 @@ do_action('woocommerce_before_main_content');
         <div class="col m12 s12 l12 xl9 offset-xl3">
           <?php if ( have_rows( 'product__breathwork_levels_1' ) ): ?>
             <?php while ( have_rows( 'product__breathwork_levels_1' ) ) : the_row(); ?>
-              <?php if ( get_row_layout() == 'section_5' ) : ?>
+              <?php if ( get_row_layout() == 'section_6' ) : ?>
                 <div class="block__wrap scroll__init">
                   
                 </div>

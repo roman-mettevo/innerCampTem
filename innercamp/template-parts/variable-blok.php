@@ -1,9 +1,7 @@
-
 <?php
 
-echo $args['param1']; // выведет hello
 
-
+$product_id_param = $args['param1'];
 $product = wc_get_product($args['param1']);
 $variations = $product->get_available_variations();
 $variations_id = wp_list_pluck($variations, 'variation_id');
@@ -40,9 +38,8 @@ endif;
 ?>
 
 
-dadadadada
 <!--  <pre>--><?php //var_dump($variations_id); ?><!--</pre>-->
-<section data-product-id="<?php echo $product_id ?>" class="breathwork-levels-one-two__12">
+<section data-product-id="<?php echo $product_id_param ?>" class="breathwork-levels-one-two__12">
 
   <div class="container">
     <div class="row">
@@ -77,8 +74,8 @@ dadadadada
                     <div onclick="changeSelectValue(<?php echo $el['number'] ?>)"
                          class="price-item <?php echo ($j === 1 && $i === 0) ? 'active' : '' ?>">
                         <span
-                          data-price-variation="<?php echo $el['regular_price'] ?>"
-                          class="price"><?php echo $el['regular_price'] ?>&euro;</span>
+                            data-price-variation="<?php echo $el['regular_price'] ?>"
+                            class="price"><?php echo $el['regular_price'] ?>&euro;</span>
                       <span class="price-type"><?php echo str_replace("1+2", "", $el['name']) ?></span>
                     </div>
                     <?php
@@ -88,8 +85,8 @@ dadadadada
                 <?php
                 ?>
                 <span
-                  data-add="<?php echo $current_variation_id ?>"
-                  class="add__ bundle add-custom-js"
+                    data-add="<?php echo $current_variation_id ?>"
+                    class="add__ bundle add-custom-js"
                 ><?php echo __('Enroll now'); ?></span>
               </div>
               <?php
@@ -108,8 +105,9 @@ dadadadada
               do_action('woocommerce_single_product_summary');
               ?>
             </div>
+
             <div class="right-small-block"
-                 style="background: url('../img/breathwork-teacher/book-now.png') no-repeat top/cover;">
+                 style="background: url(<?php echo get_template_directory_uri(); ?>/img/breathwork-teacher/book-now.png) no-repeat top/cover;">
               <div class="top-block">
                 <h3>Join the InnerCamp Retreat</h3>
                 <div class="calen">Jun 24, 2023 - Jun 27, 2023</div>
@@ -203,6 +201,10 @@ dadadadada
 
     .apartment-item_active {
         box-shadow: 6px 5px 8px 2px #424f44;
+    }
+
+    .price-type {
+        text-align: center;
     }
 </style>
 <script>
