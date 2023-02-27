@@ -1045,7 +1045,7 @@ endif; ?>
         </section>
         <?php elseif (get_row_layout() == 'section_18') : ?>
           <section class="breathwork__2-16">
-            <div class="container">
+                <div class="container">
                   <div class="row">
                     <div class="col m12 s12 l12 xl9 offset-xl3">
                     <?php if ( have_rows( 'navigation' ) ) : 
@@ -1914,8 +1914,8 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
 }
 @media(max-width: 600px) {
   .product-template-tpl-product-bodywork-level-one .faq-item.open .faq-panel p {
-  font: 400 14px/22px var(--o);
-}
+    font: 400 14px/22px var(--o);
+  }
 }
 /* В кінці видалити */
 /* @media only screen and (min-width: 1201px){

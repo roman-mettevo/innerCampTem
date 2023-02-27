@@ -41,12 +41,12 @@ $product = wc_get_product( $post->ID );
             ?>
           </div>
           <form id="form_add_<?php echo get_the_ID(); ?>" method='POST' action='javascript:void(null);'>
-              <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
-              <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
-              <input type="hidden" name="action" value="addcart_prod">
-                <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
-              <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
-            </form>  
+            <?php wp_nonce_field( 'addcart_post', 'addcart_post_nonce' );?>
+            <input type="hidden" name="postid" value="<?php echo get_the_ID(); ?>">
+            <input type="hidden" name="action" value="addcart_prod">
+            <a data-add="<?php echo get_the_ID(); ?>" class="add__ bundle" name="add" ><?php  echo __('Book now'); ?></a>
+            <button hidden type="submit" name="add"  class="tt-btn-close" data-delete="<?php echo get_the_ID(); ?>">x</button>   
+          </form>  
         </div>
       </div>
     </section>
@@ -477,8 +477,6 @@ $product = wc_get_product( $post->ID );
                             $counter=1;
                             ?>
                             <?php while ( have_rows( 'tabs' ) ) : the_row(); ?>
-
-
                             <div class="program-content" id="tab-<?php echo $counter; ?>">
                               <?php 
                               if(get_sub_field('tab_title')) { ?>
@@ -625,7 +623,7 @@ $product = wc_get_product( $post->ID );
                     <?php if ( $certificate_photo ) : ?>
                       <img src="<?php echo esc_url( $certificate_photo['url'] ); ?>" alt="<?php echo esc_attr( $certificate_photo['alt'] ); ?>" />
                     <?php endif; ?>
-                    <!-- <img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/Certificate.png" alt=""> -->
+                   
                   </div>
                   <div class="certificate-content">
                   <?php 
@@ -654,7 +652,8 @@ $product = wc_get_product( $post->ID );
         <div class="tantra__2-9">
           <div class="container">
             <div class="row">
-              <div class="col m12 s12 l12 xl9 offset-xl3"><?php if ( have_rows( 'navigation' ) ) : 
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
                     while ( have_rows( 'navigation' ) ) : the_row(); ?>
                       <article class="tantra-optional-retreat scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
                     <?php endwhile; ?>
