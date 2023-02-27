@@ -8,7 +8,7 @@
 	border: 1px solid #eaebf2;
 	border-radius: 0;
 	padding: 16px 25px;
-	display: block;
+	display: block !important;
 	height: 62px;
 }
 .selection {
@@ -16,6 +16,10 @@
 	border: 1px solid #eaebf2;
 	border-radius: 76px;
 	overflow: hidden;
+}
+.select2,
+#billing_phone_field {
+	margin-bottom: 18px;
 }
 .select2-dropdown {
 	border-radius: 14px !important;
@@ -84,8 +88,61 @@
 .iti__country {
 	padding: 5px 25px;
 }
-.woocommerce-checkout .form-row label {
+.woocommerce-checkout .form-row:not(#vat_field_field) label,
+.woocommerce-checkout .form-row label .optional {
 	display: none;
+}
+#vat_field_field {
+	position: relative;
+}
+.woocommerce-checkout #vat_field_field label {
+	font-size: 0;
+	position: absolute;
+	right: 25px;
+	top: 31px;
+	z-index: 1;
+	width: 24px;
+	height: 24px;
+	background: url(../img/help-circle.svg) center no-repeat;
+	background-size: contain;
+	transform: translateY(-50%);
+}
+.woocommerce-checkout #vat_field_field label::before {
+	content: 'For European companies only';
+	font-size: 14px;
+	line-height: 129.2%;
+	color: #424f44;
+	background: #ddeddf;
+	border-radius: 8px;
+	padding: 6px 11px;
+	display: block;
+	width: max-content;
+	transform: translate(-50%, -100%);
+	bottom: 0;
+	position: absolute;
+	visibility: hidden;
+	transition: 0.2s;
+}
+.woocommerce-checkout #vat_field_field label::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 15px;
+	top: 0;
+	transform: translateY(-50%);
+	border: 7.5px solid transparent;
+	border-top: 7.5px solid #ddeddf;
+	visibility: hidden;
+	transition: 0.2s;
+}
+.woocommerce-checkout #vat_field_field label:hover:before,
+.woocommerce-checkout #vat_field_field label:hover:after {
+	visibility: visible;
+}
+#vat_field {
+	padding-right: 60px;
 }
 #billing_email_field,
 .billing_heading_field {
@@ -151,4 +208,93 @@
 		flex-wrap: wrap;
 		gap: 0 32px;
 	}
+}
+
+.woocommerce-invalid_field {
+	border: 1px solid red !important;
+}
+.woocommerce-error {
+	margin-bottom: 18px;
+	font-weight: 700;
+	color: red;
+}
+#stripe-card-element,
+#stripe-exp-element,
+#stripe-cvc-element {
+	margin-bottom: 18px;
+	color: #000;
+	font: 18px/1.2em var(--o), Arial !important;
+	border: 1px solid #eaebf2;
+	border-radius: 76px;
+	display: block;
+	width: 100%;
+	height: 62px;
+	padding: 22px 25px;
+	background-color: #fff;
+	background-image: rgba(0, 0, 0, 0);
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
+		-webkit-box-shadow 0.15s ease-in-out;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+}
+#wc-stripe-cc-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 32px;
+}
+#wc-stripe-cc-form .form-row-wide.form-row {
+	width: 100%;
+}
+#wc-stripe-cc-form .form-row {
+	width: calc(50% - 16px);
+}
+#wc-stripe-payment-request-button-separator {
+	color: #424f44;
+	font: 200 16px/1.2em var(--o);
+	text-transform: uppercase;
+	position: relative;
+	gap: 0 16px;
+	margin-bottom: 40px;
+	display: flex;
+	align-items: center;
+	height: 20px;
+	overflow: hidden;
+	margin-top: 0 !important;
+}
+#wc-stripe-payment-request-button-separator::before,
+#wc-stripe-payment-request-button-separator::after {
+	content: '';
+	display: block;
+	position: relative;
+	background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzI0IiBoZWlnaHQ9IjIiIHZpZXdCb3g9IjAgMCAzMjQgMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGxpbmUgeDE9IjguNzQyMjhlLTA4IiB5MT0iMSIgeDI9IjMyNCIgeTI9IjEuMDAwMDMiIHN0cm9rZT0idXJsKCNwYWludDBfbGluZWFyXzI1NDFfMzUyNzYyKSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMjU0MV8zNTI3NjIiIHgxPSItMTkuNTg2OSIgeTE9IjIuMDQxMzgiIHgyPSIzMjEuMjUyIiB5Mj0iMi4xNDIyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNCNjg3NDIiIHN0b3Atb3BhY2l0eT0iMCIvPgo8c3RvcCBvZmZzZXQ9IjAuNTMxMjUiIHN0b3AtY29sb3I9IiNCNjg3NDIiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjQjY4NzQyIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K)
+		no-repeat;
+	max-width: 324px;
+	width: 100%;
+	height: 2px;
+}
+#wc-stripe-payment-request-wrapper {
+	gap: 17px;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 710px;
+	padding: 18px 29px;
+	border-radius: 9px;
+	border: 2px solid #b68742;
+	margin: 20px 0 40px;
+	position: relative;
+	justify-content: center;
+}
+#wc-stripe-payment-request-wrapper::before {
+	content: 'Express checkout';
+	color: #424f44;
+	font: 400 16px/1.2em var(--g);
+	background: #f1efe8;
+	padding: 4px 16px;
+	position: absolute;
+	top: -15px;
+}
+#wc-stripe-payment-request-button {
+	width: 100%;
 }
