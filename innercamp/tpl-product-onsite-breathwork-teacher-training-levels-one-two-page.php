@@ -1324,6 +1324,20 @@ $product = wc_get_product( $post->ID );
     article.facilitators #facilitator-slider-list .splide__slide .coach-item .coach-content .coach-description {
       height: 340px;
     }
+
+    .product-template-tpl-product-onsite-breathwork-teacher-training-levels-one-two-page .testimonials-link {
+      height: 365px;
+    }
+    .product-template-tpl-product-onsite-breathwork-teacher-training-levels-one-two-page .testimonials-link img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media(max-width: 600px) {
+      .product-template-tpl-product-onsite-breathwork-teacher-training-levels-one-two-page .testimonials-link {
+        height: 223px;
+      }
+    }
   </style>
   
   

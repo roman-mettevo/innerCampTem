@@ -117,10 +117,13 @@ body.page-template-tpl-app-page header[main] {
 }
 
 
-
+section.home__3 #info__brand .box__con .list_img li img{
+  border-radius: 5px;
+  overflow: hidden;
+}
 
 .select2-selection.select2-selection--single{
-  display: none !important;
+/*  display: none !important;*/
 }
 
 /*-----Nazar style-----*/
@@ -253,3 +256,27 @@ span.wpcf7-checkbox.wpcf7-not-valid input[type=checkbox]{
     background: #e5514f !important;
   
 }
+
+.wpcf7-list-item-label{
+  display: none !important;
+}
+
+#wpcf7-f65108-o1 .wpcf7-list-item-label{
+    display: block!important;
+}
+
+
+/*
+.wpcf7-form .wpcf7-not-valid{
+      border: 2px solid #E5514F;
+      
+      background: #fff url(../img/alert-circle.svg) no-repeat center right 25px;
+      
+    }
+  
+.wpcf7-form .wpcf7-checkbox{
+      border: 2px solid transparent !important;
+      
+      background: transparent !important;
+      
+    }*/

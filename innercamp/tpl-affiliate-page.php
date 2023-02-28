@@ -17,6 +17,11 @@ get_header(); ?>
             </div>
       </div>
       <div class="col m12 s12 l12 xl10">
+      
+
+      
+       <?php echo do_shortcode("[affiliate_area_stats]"); ?>
+       
         <h2 class="title">Affiliate</h2>
         <div class="stats-wrapper splide" id="profile-affiliate-stats">
           <div class="stats splide__track">

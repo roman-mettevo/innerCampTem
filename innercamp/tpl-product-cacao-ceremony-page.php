@@ -24,8 +24,10 @@ $arr_left_menu = []; ?>
     <div class="container">
       <div class="row">
         <div class="col m12 s12 l3 xl3">
-         <a class="bundle" href="javascript:;">Book now</a>
+
           <div class="box__">
+         <a class="bundle" href="javascript:;">Book now</a>
+           
             <ul>
               <li> <a href="#">Book now</a></li>
               <lI> <a href="#">Course basics</a></lI>
@@ -101,6 +103,7 @@ $arr_left_menu = []; ?>
       </div>
     </div>
   </section>
+  
   <section class="cacao__end__3">
     <div class="container">
       <div class="row">
@@ -120,33 +123,96 @@ $arr_left_menu = []; ?>
         </div>
       </div>
       <div class="row">
-        <div class="col m12 s12 l5 xl5 offset-xl3 offset-l3">
+        <div class="col m12 s12 l12 xl5 offset-xl3">
           <div class="block__elips">
             <div class="images"><img src="<?= get_template_directory_uri(); ?>/img/cacao__logo.png" alt="image">
               <h2 class="title">Cacao Ceremony Facilitator Training</h2>
             </div>
             <ul class="right">
-              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo.png" alt="image"><a href="#">Week 1</a></li>
-              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 2</a></li>
-              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 3</a></li>
-              <li><img src="<?= get_template_directory_uri(); ?>/img/cacao__ogo2.png" alt="image"><a href="#">Week 4</a></li>
+              <li><a class="active" href="javascript:;" data-slid="0">Week 1</a></li>
+              <li><a href="javascript:;" data-slid="1">Week 2</a></li>
+              <li><a href="javascript:;" data-slid="2">Week 3</a></li>
+              <li><a href="javascript:;" data-slid="3">Week 4</a></li>
+
             </ul>
           </div>
         </div>
-        <div class="col m12 s12 l4 xl4">
-          <div class="twix2">
-            <div class="blog33">
-              <h4 class="title">Week 1</h4>
-              <ul class="reborn">
-                <li> What is cacao?</li>
-                <li> Choosing your cacao</li>
-                <li> Science of cacao</li>
-                <li> Effects of cacao</li>
-                <li> History of cacao</li>
-                <li> Choosing your cacao</li>
-                <li> Plant medicines and cacao</li>
-                <li> Cultural appropriation and cultural appreciation</li>
-                <li> Preparation and serving guidelines</li>
+        <div class="col m12 s12 l12 xl4">
+          <div class="cacao splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide">
+                  <div class="twix2">
+                    <div class="blog33">
+                      <h4 class="title">Week 1</h4>
+                      <ul class="reborn">
+                        <li> What is cacao?</li>
+                        <li> Choosing your cacao</li>
+                        <li> Science of cacao</li>
+                        <li> Effects of cacao</li>
+                        <li> History of cacao</li>
+                        <li> Choosing your cacao</li>
+                        <li> Plant medicines and cacao</li>
+                        <li> Cultural appropriation and cultural appreciation</li>
+                        <li> Preparation and serving guidelines</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide">
+                  <div class="twix2">
+                    <div class="blog33">
+                      <h4 class="title">Week 2</h4>
+                      <ul class="reborn">
+                        <li> What is cacao?</li>
+                        <li> Choosing your cacao</li>
+                        <li> Science of cacao</li>
+                        <li> Effects of cacao</li>
+                        <li> History of cacao</li>
+                        <li> Choosing your cacao</li>
+                        <li> Plant medicines and cacao</li>
+                        <li> Cultural appropriation and cultural appreciation</li>
+                        <li> Preparation and serving guidelines</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide">
+                  <div class="twix2">
+                    <div class="blog33">
+                      <h4 class="title">Week 3</h4>
+                      <ul class="reborn">
+                        <li> What is cacao?</li>
+                        <li> Choosing your cacao</li>
+                        <li> Science of cacao</li>
+                        <li> Effects of cacao</li>
+                        <li> History of cacao</li>
+                        <li> Choosing your cacao</li>
+                        <li> Plant medicines and cacao</li>
+                        <li> Cultural appropriation and cultural appreciation</li>
+                        <li> Preparation and serving guidelines</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="splide__slide">
+                  <div class="twix2">
+                    <div class="blog33">
+                      <h4 class="title">Week 4</h4>
+                      <ul class="reborn">
+                        <li> What is cacao?</li>
+                        <li> Choosing your cacao</li>
+                        <li> Science of cacao</li>
+                        <li> Effects of cacao</li>
+                        <li> History of cacao</li>
+                        <li> Choosing your cacao</li>
+                        <li> Plant medicines and cacao</li>
+                        <li> Cultural appropriation and cultural appreciation</li>
+                        <li> Preparation and serving guidelines</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
@@ -154,6 +220,7 @@ $arr_left_menu = []; ?>
       </div>
     </div>
   </section>
+  
   <section class="cacao__end__4">
     <div class="container">
       <div class="row">

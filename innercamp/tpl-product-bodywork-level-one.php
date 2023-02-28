@@ -713,9 +713,9 @@ endif; ?>
                       <div class="live-sessions-text">
                         <ul class="schedule-list">
                           <li class="schedule-item schedule-time">
-                            <?php if ( have_rows( 'live_sessions', $product_id ) ) : ?>
-                              <?php while ( have_rows( 'live_sessions', $product_id ) ) : the_row(); ?>
-                              <p><?php the_sub_field( 'time_from', $product_id ); ?> - <?php the_sub_field( 'time_to', $product_id ); ?></p>
+                            <?php if ( have_rows( 'time_of_the_event' ) ) : ?>
+                              <?php while ( have_rows( 'time_of_the_event' ) ) : the_row(); ?>
+                                <p><?php the_sub_field( 'data_start' ); ?> - <?php the_sub_field( 'date_end' ); ?></p>
                               <?php endwhile; ?>
                             <?php endif; ?>
                             <span><?php the_sub_field( 'timezone' ); ?></span>
@@ -734,7 +734,12 @@ endif; ?>
                             <?php endif; ?>
                           </li>
                         </ul>
-                        <div data-start="<?php echo the_field( 'start_datetime', $product_id ); ?>" data-end="<?php echo the_field( 'end_datetime', $product_id ); ?>" class="bundle-check get-time_js"><?php echo __('Check my local time here'); ?></div>
+                        <?php if ( have_rows( 'check_local_time' ) ) : ?>
+                          <?php while ( have_rows( 'check_local_time' ) ) : the_row(); ?>
+                            <div data-start="<?php the_sub_field( 'd_date_start' ); ?>" data-end="<?php the_sub_field( 'd_date_end' ); ?>" class="bundle-check get-time_js"><?php echo __('Check my local time here'); ?></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>
+                        
                         <?php if ( have_rows( 'benefit' ) ) : ?>
                           <ul class="about-schedule-list">
                             <?php while ( have_rows( 'benefit' ) ) : the_row(); ?>
@@ -1045,7 +1050,7 @@ endif; ?>
         </section>
         <?php elseif (get_row_layout() == 'section_18') : ?>
           <section class="breathwork__2-16">
-            <div class="container">
+                <div class="container">
                   <div class="row">
                     <div class="col m12 s12 l12 xl9 offset-xl3">
                     <?php if ( have_rows( 'navigation' ) ) : 
@@ -1144,7 +1149,9 @@ endif; ?>
   .bodywork-first__1 {
     position: relative;
   }
-  
+  .bundle-check {
+      cursor: pointer;
+    }
   .bodywork-first__1::after {
     position: absolute;
     content: '';
@@ -1914,8 +1921,8 @@ section.bodywork-first__10 .row:first-child .bodywork-somatic-table {
 }
 @media(max-width: 600px) {
   .product-template-tpl-product-bodywork-level-one .faq-item.open .faq-panel p {
-  font: 400 14px/22px var(--o);
-}
+    font: 400 14px/22px var(--o);
+  }
 }
 /* В кінці видалити */
 /* @media only screen and (min-width: 1201px){

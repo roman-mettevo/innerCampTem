@@ -1,6 +1,93 @@
 document.addEventListener('DOMContentLoaded', function(){
   jQuery(document).ready( function($){
     
+    
+    
+  if (document.querySelector('.affiliate-content') && document.querySelector('.affiliate-content-nav')) {
+  let tabsLink = [].slice.call(document.querySelectorAll('.affiliate-content-nav .affiliate-content-nav-tab'));
+  let tabContent = [].slice.call(document.querySelectorAll('.affiliate-content .affiliate-content-item'));
+  $('.affiliate-content-nav .affiliate-content-nav-tab').click(function () {
+  tabsLink.forEach(element => {
+  element.classList.remove('active');
+  });
+  this.classList.add('active');
+  tabContent.forEach(item => {
+  item.classList.remove('active');
+  })
+  document.getElementById(this.getAttribute('data-affiliate-tab')).classList.add('active');
+  })
+  };
+  if ($('.referrals')) {
+  let referralsList = [].slice.call(document.querySelectorAll('.referrals-table-row'));
+  referralsList.shift();
+  referralsList.forEach(item => {
+  item.addEventListener('click', function () {
+  $('.profile-affiliate__modal').addClass('active');
+  document.querySelector('.profile-affiliate__modal .modal-name-row .img img').setAttribute('src', item.querySelector('img').getAttribute('src'));
+  document.querySelector('.profile-affiliate__modal .modal-name-row .name').innerText = item.querySelector('.name').innerText;
+  document.querySelector('.profile-affiliate__modal .modal-name-row .id').innerText = item.querySelector('.id').innerText;
+  document.querySelector('.profile-affiliate__modal .modal-options-row .commission-date').innerText = item.querySelector('.affiliate-table-date').innerText;
+  document.querySelector('.profile-affiliate__modal .modal-options-row .price').innerText = item.querySelector('.affiliate-table-commission').innerText;
+  document.querySelector('.profile-affiliate__modal .modal-options-row .active').innerText = item.querySelector('.affiliate-table-status').innerText;
+  })
+  })
+  }
+  if ($('.profile-affiliate__modal')) {
+  $('.profile-affiliate__modal .close').click(function () {
+  $('.profile-affiliate__modal').removeClass('active');
+  })
+  }
+    
+    
+   var $nav = $('.left__menu__scroll');
+    var $win = $(window);
+    var winH = $win.height();   // Get the window height.
+
+    $win.on("scroll", function () {
+        if ($(this).scrollTop() > winH ) {
+            $nav.addClass("header__scroll");
+        } else {
+            $nav.removeClass("header__scroll");
+        }
+    }).on("resize", function(){ // If the user resizes the window
+       winH = $(this).height(); // you'll need the new height value
+    });
+
+    
+    
+      document.addEventListener( 'wpcf7mailsent', function( event ) {
+        if(event.detail.contactFormId=="65994"){ // 32  id form
+             $.fancybox.open({
+                src  : '#modal-thank', 
+                 opts : {
+                    afterShow : function( instance, current ) {
+                        console.info( 'done!' );
+                    }
+                },
+            });
+        };  
+      });  
+    
+      document.addEventListener( 'wpcf7mailsent', function( event ) {
+        if(event.detail.contactFormId=="65108"){ // 32  id form
+             $.fancybox.open({
+                src  : '#modal-thank', 
+                 opts : {
+                    afterShow : function( instance, current ) {
+                        console.info( 'done!' );
+                    }
+                },
+            });
+        };  
+      });  
+    
+     $('.cacao__end__3 .right li a').click(function() {
+  
+         $('.cacao__end__3 .right li a').removeClass('active');
+         $(this).addClass('active');
+      });  
+    
+    
       $('.find-your-coach__grid-map-switch>li').click(function() {
         
 //          $('body').addClass("open__menu");
@@ -22,30 +109,21 @@ document.addEventListener('DOMContentLoaded', function(){
       });  
     
     
-        $('[type="submit"]').click(function() {
-          
-            var invalid = $('.wpcf7-form').hasClass('invalid');
-            var error = $('.wpcf7-form').hasClass('error');
-            if (!invalid && !error) {
-                return true;
-            }else{
-              
-             $.fancybox.open({
-                src  : '#modal-thank', 
-
-                 opts : {
-                    afterShow : function( instance, current ) {
-                        console.info( 'done!' );
-                    }
-                },
-
-               });
-              
-               $('form')[0].reset();
-
-            }
-          
-        });  
+//        $('[type="submit"]').click(function() {
+//          
+//            var invalid = $('.wpcf7-form').hasClass('invalid');
+//            var error = $('.wpcf7-form').hasClass('error');
+//            if (!invalid && !error) {
+//                return true;
+//            }else{
+//              
+//
+//              
+////               $('form')[0].reset();
+//
+//            }
+//          
+//        });  
           
           
     
@@ -880,7 +958,7 @@ for(let div of document.querySelectorAll('section')){
   constructor(data){
     this.options = {
       root: null,
-      rootMargin: "50px",
+      rootMargin: "100px",
       threshold: data.threshold
     };
     
@@ -929,7 +1007,10 @@ for(let div of document.querySelectorAll('section')){
   }
 }
 
-for(let div of document.querySelectorAll('[data-menuscroll]')){
+
+
+
+for(let div of document.querySelectorAll('footer[main]')){
 
   new cssClassTogglerScrollHeader({
     element: div,

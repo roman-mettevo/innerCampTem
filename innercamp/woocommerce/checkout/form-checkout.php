@@ -38,14 +38,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
         <div class="tab__ active">
 
-
-            <div class="box__pay"><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_pa.svg"
-                        alt="paypal"></span><span><img src="<?= get_template_directory_uri(); ?>/img/checkout__1_p.svg"
-                        alt="pay"></span></div>
-            <div class="or">OR</div>
-
-
-
             <?php if ( $checkout->get_checkout_fields() ) : ?>
 
             <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
@@ -69,9 +61,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </svg>
                     Go back
                 </button>
-                <a class="bundle" href="javascript:;" data-num="2">
+                <div id="next_payment" class="bundle" data-num="2">
                     Continue to payment method
-                </a>
+                </div>
             </div>
         </div>
 

@@ -477,8 +477,6 @@ $product = wc_get_product( $post->ID );
                             $counter=1;
                             ?>
                             <?php while ( have_rows( 'tabs' ) ) : the_row(); ?>
-
-
                             <div class="program-content" id="tab-<?php echo $counter; ?>">
                               <?php 
                               if(get_sub_field('tab_title')) { ?>
@@ -625,7 +623,7 @@ $product = wc_get_product( $post->ID );
                     <?php if ( $certificate_photo ) : ?>
                       <img src="<?php echo esc_url( $certificate_photo['url'] ); ?>" alt="<?php echo esc_attr( $certificate_photo['alt'] ); ?>" />
                     <?php endif; ?>
-                    <!-- <img src="<?= get_template_directory_uri(); ?>/img/breathwork-teacher/Certificate.png" alt=""> -->
+                   
                   </div>
                   <div class="certificate-content">
                   <?php 
@@ -654,7 +652,8 @@ $product = wc_get_product( $post->ID );
         <div class="tantra__2-9">
           <div class="container">
             <div class="row">
-              <div class="col m12 s12 l12 xl9 offset-xl3"><?php if ( have_rows( 'navigation' ) ) : 
+              <div class="col m12 s12 l12 xl9 offset-xl3">
+                <?php if ( have_rows( 'navigation' ) ) : 
                     while ( have_rows( 'navigation' ) ) : the_row(); ?>
                       <article class="tantra-optional-retreat scroll__init" id="<?php the_sub_field( 'navigation_id' ); ?>">
                     <?php endwhile; ?>
@@ -720,10 +719,13 @@ $product = wc_get_product( $post->ID );
                     <div class="top-row">
                       <div class="session-content-wrap">
                         <div class="session-schedule">
+                        <?php if ( have_rows( 'time_of_the_event' ) ) : ?>
+                              <?php while ( have_rows( 'time_of_the_event' ) ) : the_row(); ?>
+                              <div class="clock"><?php the_sub_field( 'data_start' ); ?> - <?php the_sub_field( 'date_end' ); ?></div>
+                              <?php endwhile; ?>
+                            <?php endif; ?>
                           <?php 
-                            if(get_sub_field('course_period')) { ?>
-                              <div class="clock"><?php the_sub_field( 'course_period' ); ?></div>
-                            <?php }
+                            
                           if ( have_rows( 'course_period_description' ) ) : ?>
                             <?php while ( have_rows( 'course_period_description' ) ) : the_row(); ?>
                             <span><?php the_sub_field( 'text_item' ); ?></span>
@@ -732,7 +734,14 @@ $product = wc_get_product( $post->ID );
                           if(get_sub_field('day')) { ?>
                             <div class="calen"><?php the_sub_field( 'day' ); ?></div>
                           <?php } ?>
-                          <a class="bundle-check" href="#"><?php echo __('Check my local time here'); ?></a>
+
+                          <?php if ( have_rows( 'check_local_time' ) ) : ?>
+                          <?php while ( have_rows( 'check_local_time' ) ) : the_row(); ?>
+                            <div data-start="<?php the_sub_field( 'd_date_start' ); ?>" data-end="<?php the_sub_field( 'd_date_end' ); ?>" class="bundle-check get-time_js"><?php echo __('Check my local time here'); ?></div>
+                          <?php endwhile; ?>
+                        <?php endif; ?>
+                          
+
                           <div class="schedule-date">
                             <?php if ( have_rows( 'course_date_list' ) ) : ?>
                               <?php while ( have_rows( 'course_date_list' ) ) : the_row(); 
@@ -1283,6 +1292,23 @@ $product = wc_get_product( $post->ID );
       height: 340px;
       padding-right: 0;
     }
+    .bundle-check {
+      cursor: pointer;
+    }
+    .product-template-tpl-product-tantra-page .testimonials-link {
+      height: 365px;
+    }
+    .product-template-tpl-product-tantra-page .testimonials-link img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media(max-width: 600px) {
+    .product-template-tpl-product-tantra-page .testimonials-link {
+      height: 223px;
+    }
+  }
+
   </style>
 <?php
 get_footer();

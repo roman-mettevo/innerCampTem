@@ -3,6 +3,49 @@ document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelector('.splide')) {
       var splide = new Splide('.splide');
     }
+    
+    
+  if (document.querySelector('.cacao')) {
+      var cacaovideoReviewSlider = new Splide('.cacao', {
+        type: 'slide',
+        autoWidth: true,
+        gap: 0,
+        arrows: false,
+        perMove: 1,
+         pagination: false,
+        breakpoints: {
+          991: {
+                   gap: 30,
+          },
+          600: {
+                   gap: 20,
+          },
+        },
+      });
+      cacaovideoReviewSlider.mount();
+//      document
+//        .querySelector('.review__3 .video-review .left_a')
+//        .addEventListener('click', () => {
+//          cacaovideoReviewSlider.go('<');
+//        });
+//      document
+//        .querySelector('.review__3 .video-review .right_a')
+//        .addEventListener('click', () => {
+//          cacaovideoReviewSlider.go('>');
+//        });
+    }
+    
+    
+    $('.cacao__end__3 .right li a').click(function() {
+
+        var num_data = $(this).data('slid');
+        //            console.log();
+        cacaovideoReviewSlider.go(num_data);
+
+    });  
+    
+    
+    
 
     if (document.querySelector('.about__gallery')) {
       //var sliderPost;
@@ -154,6 +197,12 @@ document.addEventListener('DOMContentLoaded', function () {
       //
       //});
     }
+    
+    
+    
+    
+ 
+    
 
     if (document.getElementById('slider__post')) {
       var sliderPost;
@@ -230,6 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Go to the previous slide when the Previous button is activated
       sliderpostPrev.addEventListener('click', function (e) {
         sliderPost.go('<');
+//        sliderPost.go(2);
       });
 
       // Go to the next slide when the Next button is activated
@@ -240,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // Go to the previous slide when the Previous button is activated
       sliderpostPrevR.addEventListener('click', function (e) {
         sliderPost.go('<');
+//        sliderPost.go(2);
       });
 
       // Go to the next slide when the Next button is activated
@@ -247,69 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
         sliderPost.go('>');
       });
 
-      //
-      //spliden.on( 'arrows:mounted', function (prev, next, prevIndex, nextIndex) {
-      //
-      //
-      //
-      //  });
-      //
-
-      //    previousButton.addEventListener('click', function(e) {
-      //    splide.go('<');
-      //  });
-
-      //bts.addEventListener("click", function(){
-      ////        console.log('1');
-      //            spliden.mount('next');
-      // });
-      //  spliden.on( 'arrows:mounted', function ( rate ) {
-      //  console.log( rate ); // 0-1
-      //} );
-
-      //bts.addEventListener('a.left_a', function (event) {
-      //
-      //  spliden.on( 'arrows:mounted', function (next){
-      //     event.mount(next);
-      //  });
-      //})
-
-      //  var button = document.querySelector('right_a');
-      //
-      //    spliden.on('arrows:mounted', function (next) {
-      //
-      //
-      //    button.on('click', function () {    } );
-      //    } );
-
-      //  });
-
-      //spliden.on( 'arrows:mounted', function (prev, next, prevIndex, nextIndex) {
-      //  // do something
-      //
-      //
-      //  // Go to the previous slide when the Previous button is activated
-      //  previousButton.on('click', function() {
-      //    spliden.mount(next);
-      //  });
-      //
-      //  // Go to the next slide when the Next button is activated
-      //  nextButton.on('click', function() {
-      //    spliden.mount(next);
-      //  });
-      //
-      ////  document.querySelectorAll('.home__2 .right_a');
-      //
-      //// const button = document.querySelector('.right_a');
-      //
-      ////  button.mount(next);
-      //
-      ////  previousButton.addEventListener('click', function(e) {
-      //////    spliden.go('<');
-      ////    spliden.mount(next);
-      ////  });
-      //
-      //});
     }
 
     //
@@ -1503,12 +1491,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       bodyworkTestimonials.mount();
       document
-        .querySelector('.bodywork-testimonials .arrows .left_a')
+        .querySelector('.breathwork-levels-one-two__9 .arrows a.left_a')
         .addEventListener('click', () => {
           bodyworkTestimonials.go('<');
         });
       document
-        .querySelector('.bodywork-testimonials .arrows .right_a')
+        .querySelector('.breathwork-levels-one-two__9 .arrows a.right_a')
         .addEventListener('click', () => {
           bodyworkTestimonials.go('>');
         });

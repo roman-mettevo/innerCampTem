@@ -33,7 +33,7 @@ endif
 
 <section <?php echo(!empty($id) ? 'id="' . esc_attr($id) . '"' : '') ?>
     class="affiliate-program__1 <?php echo esc_attr($classes); ?>"
-    style="background-image: url(<?php echo $background_image_url ?>);">
+    style="background-image: url(<?php echo $background_image_url ?>) no-repeat center/cover;">
   <div class="container">
     <div class="row">
       <div class="col m12 s12 l12 xl12">

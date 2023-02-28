@@ -69,13 +69,13 @@
         <?php if ( is_user_logged_in() ) {  ?>
       <a class="orders" href="/my-account/orders/">My orders</a>
           <?php }else{ ?>
-      <a class="orders" data-fancybox="" data-src="#log-in" href="javascript:;">My orders</a>
+      <a class="orders" data-fancybox="" data-src="#sign-up" href="javascript:;">My orders</a>
           <?php } ?>
            
         <?php if ( is_user_logged_in() ) {  ?>
-      <a class="affiliate" href="/affiliate/">Affiliate Program</a>
+      <a class="affiliate" href="/my-account/afwc-dashboard/">Affiliate</a>
         <?php }else{ ?>
-      <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
+      <a class="affiliate" data-fancybox="" data-src="#sign-up" href="javascript:;">Affiliate</a>
         <?php } ?>
            
         <?php if ( is_user_logged_in() ) {  ?>
@@ -274,7 +274,7 @@
                   <?php } ?>
   
                  <?php if ( is_user_logged_in() ) {  ?>
-                <a class="affiliate" href="/affiliate/">Affiliate Program</a>
+                <a class="affiliate" href="/my-account/afwc-dashboard/">Affiliate</a>
                   <?php }else{ ?>
                 <a class="affiliate" data-fancybox="" data-src="#log-in" href="javascript:;">Affiliate Program</a>
                   <?php } ?>

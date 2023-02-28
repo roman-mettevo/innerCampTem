@@ -3,38 +3,46 @@
 
 $product_id_param = $args['param1'];
 $product = wc_get_product($args['param1']);
-$variations = $product->get_available_variations();
-$variations_id = wp_list_pluck($variations, 'variation_id');
-$arr_first = $arr_second = $arr_variations = [];
 
-$i = 0;
-$number = 1;
-$temp_description = '';
-foreach ($variations as $item) {
-  $arr_variations[$i]['number'] = $number;
-  $arr_variations[$i]['id'] = $item['variation_id'];
-  $arr_variations[$i]['name'] = $item['attributes']['attribute_level'];
-  $arr_variations[$i]['description'] = $item['variation_description'];
-  $arr_variations[$i]['display_price'] = $item['display_price'];
-  $arr_variations[$i]['regular_price'] = $item['display_regular_price'];
-  $temp_description = $item['variation_description'];
-  $i++;
-  $number++;
+$is_variable = false;
+if ($product->is_type('variable')) {
+  $is_variable = true;
 }
+
+if ($is_variable) {
+  $variations = $product->get_available_variations();
+  $variations_id = wp_list_pluck($variations, 'variation_id');
+  $arr_first = $arr_second = $arr_variations = [];
+
+  $i = 0;
+  $number = 1;
+  $temp_description = '';
+  foreach ($variations as $item) {
+    $arr_variations[$i]['number'] = $number;
+    $arr_variations[$i]['id'] = $item['variation_id'];
+    $arr_variations[$i]['name'] = $item['attributes']['attribute_level'];
+    $arr_variations[$i]['description'] = $item['variation_description'];
+    $arr_variations[$i]['display_price'] = $item['display_price'];
+    $arr_variations[$i]['regular_price'] = $item['display_regular_price'];
+    $temp_description = $item['variation_description'];
+    $i++;
+    $number++;
+  }
 
 // Новий масив, де ключами будуть значення з поля "description"
-$arr_variations_items = array();
-foreach ($arr_variations as $item) {
-  $description = $item["description"];
+  $arr_variations_items = array();
+  foreach ($arr_variations as $item) {
+    $description = $item["description"];
 //  unset($item["description"]);
-  $arr_variations_items[$description][] = $item;
+    $arr_variations_items[$description][] = $item;
+  }
+  $content_for_variation = [];
+  if (have_rows('content_for_variation')) :
+    while (have_rows('content_for_variation')) : the_row();
+      $content_for_variation[] .= get_sub_field('content');
+    endwhile;
+  endif;
 }
-$content_for_variation = [];
-if (have_rows('content_for_variation')) :
-  while (have_rows('content_for_variation')) : the_row();
-    $content_for_variation[] .= get_sub_field('content');
-  endwhile;
-endif;
 ?>
 
 
@@ -49,50 +57,76 @@ endif;
           <div class="book-training-wrap">
             <?php
             $i = 0;
-
-            foreach ($arr_variations_items as $index => $item) { ?>
-              <div class="<?php echo ($i == 0) ? 'left-small-block' : 'middle-small-block' ?>">
-                <h3><?php echo $index ?></h3>
-                <div class="top-row">
-                  <?php echo $content_for_variation[$i]; ?>
-                  <!--                    <ul class="training-list">-->
-                  <!--                      <li>150 hours, 2 months</li>-->
-                  <!--                      <li>6 weekly sessions</li>-->
-                  <!--                      <li>40+ videos</li>-->
-                  <!--                      <li>Members Hub</li>-->
-                  <!--                    </ul>-->
-                </div>
-                <div class="choose-price">
-                  <?php
-                  $j = 0;
-                  $current_variation_id = '';
-                  foreach ($item as $el) {
-                    if ($j === 1) {
-                      $current_variation_id = $el['id'];
-                    }
-                    ?>
-                    <div onclick="changeSelectValue(<?php echo $el['number'] ?>)"
-                         class="price-item <?php echo ($j === 1 && $i === 0) ? 'active' : '' ?>">
+            if ($is_variable) {
+              foreach ($arr_variations_items as $index => $item) { ?>
+                <div class="<?php echo ($i == 0) ? 'left-small-block' : 'middle-small-block' ?>">
+                  <h3><?php echo $index ?></h3>
+                  <div class="top-row">
+                    <?php echo $content_for_variation[$i]; ?>
+                    <!--                    <ul class="training-list">-->
+                    <!--                      <li>150 hours, 2 months</li>-->
+                    <!--                      <li>6 weekly sessions</li>-->
+                    <!--                      <li>40+ videos</li>-->
+                    <!--                      <li>Members Hub</li>-->
+                    <!--                    </ul>-->
+                  </div>
+                  <div class="choose-price">
+                    <?php
+                    $j = 0;
+                    $current_variation_id = '';
+                    foreach ($item as $el) {
+                      if ($j === 1) {
+                        $current_variation_id = $el['id'];
+                      }
+                      ?>
+                      <div onclick="changeSelectValue(<?php echo $el['number'] ?>)"
+                           class="price-item <?php echo ($j === 1 && $i === 0) ? 'active' : '' ?>">
                         <span
                             data-price-variation="<?php echo $el['regular_price'] ?>"
                             class="price"><?php echo $el['regular_price'] ?>&euro;</span>
-                      <span class="price-type"><?php echo str_replace("1+2", "", $el['name']) ?></span>
-                    </div>
-                    <?php
-                    $j++;
-                  } ?>
+                        <span class="price-type"><?php echo str_replace("1+2", "", $el['name']) ?></span>
+                      </div>
+                      <?php
+                      $j++;
+                    } ?>
+                  </div>
+                  <span
+                      data-add="<?php echo $current_variation_id ?>"
+                      class="add__ bundle add-custom-js"
+                  ><?php echo __('Enroll now'); ?></span>
                 </div>
                 <?php
-                ?>
+                $i++;
+              }
+            } else { ?>
+              <div class="left-small-block">
+                <h3><?php echo get_the_title() ?></h3>
+                <div class="top-row">
+                  <?php
+                  if (have_rows('content_for_variation')) :
+                    while (have_rows('content_for_variation')) : the_row();
+                      echo get_sub_field('content');
+                    endwhile;
+                  endif; ?>
+                </div>
+                <div class="choose-price">
+                  <?php $current_variation_id = ''; ?>
+                  <div class="price-item">
+                    <span class="price"><?php echo $product->get_price(); ?>&euro;</span>
+                    <span
+                        class="price-type"><?php echo $product->get_price(); ?><?php the_field('short_description'); ?></span>
+                  </div>
+                </div>
                 <span
-                    data-add="<?php echo $current_variation_id ?>"
+                    data-add=""
                     class="add__ bundle add-custom-js"
                 ><?php echo __('Enroll now'); ?></span>
               </div>
               <?php
-              $i++;
-            } ?>
 
+            }
+
+            ?>
             <div class="hidden-block">
               <?php
               /**
@@ -192,11 +226,11 @@ endif;
     }
 
     .hidden-block {
-        position: absolute;
-        z-index: -100;
-        height: 1px;
-        width: 1px;
-        left: -10000px;
+        /*position: absolute;*/
+        /*z-index: -100;*/
+        /*height: 1px;*/
+        /*width: 1px;*/
+        /*left: -10000px;*/
     }
 
     .apartment-item_active {
